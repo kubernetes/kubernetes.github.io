@@ -1,10 +1,11 @@
 ---
 title: Resource Types
+content_type: reference
 ---
 
 <!-- overview -->
 
-This section provides information on the different resource types you can request, built into Kubernetes.
+This page provides information on the different resource types you can request, built into Kubernetes.
 
 <!-- body -->
 
@@ -13,7 +14,7 @@ There are 3 different resource types: `cpu`, `memory`, and `storage`.
 ## CPU 
 The `cpu` resource represents CPU in cores and can be specified as either a decimal (e.g. `1`, `0.5`) or as millicores (e.g. `500m`, `1000m`). `0.5` = `500m`.
 
-You can use the cpu resource in Pods and any object that embeds a Pod template.
+You can request or limit the `cpu` resource for Pods and their containers, and any for object that embeds a [Pod template](https://kubernetes.io/docs/concepts/workloads/pods/#pod-templates).
 
 ## Memory
 The `memory` resource represents memory in bytes and is specified with a number and a binary suffix. e.g. `500Mi` = `500MiB` = `500 * 1024 * 1024`. 
@@ -23,10 +24,10 @@ You can use the memory resource in Pods and any object that embeds a Pod templat
 ## Storage 
 The `storage` resource represents volume size in bytes and is specified with a number and a binary suffix. e.g. `500Gi` = `500GiB` = `500 * 1024 * 1024 * 1024`
 
-You can use the storage resource in PersistentVolumeClaims.
+You can use the `storage` resource in a PersistentVolumeClaim.
 
 Examples: 
-### CPU and Memory
+### CPU and memory
 
 ```yaml
 apiVersion: v1
