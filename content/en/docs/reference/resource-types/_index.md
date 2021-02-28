@@ -16,6 +16,7 @@ Resource requests on Pods are an integral part of scheduling and
 limiting and managing resource consumption in a Kubernetes 
 cluster. 
 See [Kubernetes Scheduler](/docs/concepts/scheduling-eviction/kube-scheduler/) and [Requests and Limits](/docs/concepts/configuration/manage-resources-containers/#requests-and-limits) for more details.
+
 ## CPU 
 The `cpu` resource represents CPU in cores and can be specified as either a decimal (e.g. `1`, `0.5`) or as millicores (e.g. `500m`, `1000m`). `0.5` = `500m`.
 
