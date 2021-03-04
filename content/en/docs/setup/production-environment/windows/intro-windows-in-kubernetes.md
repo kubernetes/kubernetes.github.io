@@ -190,15 +190,15 @@ As outlined above, the [Flannel](https://github.com/coreos/flannel) CNI [meta pl
 
 For the node, pod, and service objects, the following network flows are supported for TCP/UDP traffic:
 
-* Pod -> Pod (IP)
-* Pod -> Pod (Name)
-* Pod -> Service (Cluster IP)
-* Pod -> Service (PQDN, but only if there are no ".")
-* Pod -> Service (FQDN)
-* Pod -> External (IP)
-* Pod -> External (DNS)
-* Node -> Pod
-* Pod -> Node
+* Pod → Pod (IP)
+* Pod → Pod (Name)
+* Pod → Service (Cluster IP)
+* Pod → Service (PQDN, but only if there are no ".")
+* Pod → Service (FQDN)
+* Pod → external (IP)
+* Pod → external (DNS)
+* Node → Pod
+* Pod → Node
 
 ##### IP address management (IPAM) {#ipam}
 
