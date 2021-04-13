@@ -1,64 +1,92 @@
-<!-- capture version from first argument in "skew" -->
+{{/* capture version from first argument in "skew" */}}
 {{- $version := .Get 0 -}}
 
-<!-- strip "v" from latest verison  -->
+{{/* strip "v" from latest and current version  */}}
+{{- $currentVersion := site.Params.version -}}
+{{- $currentVersion := (replace $currentVersion "v" "") -}}
 {{- $latestVersion := site.Params.latest -}}
 {{- $latestVersion := (replace $latestVersion "v" "") -}}
 
-<!-- splits a string x.Xy into substrings separated by a "." delimiter  -->
-{{- $versionArray := split $latestVersion "." -}}
+{{/* splits a string x.Xy into substrings separated by a "." delimiter  */}}
+{{- $versionArrayCurrent := split $currentVersion "." -}}
 
-<!-- capture minorVersion ("Xy") in a variable -->
-{{- $minorVersion := int (index $versionArray 1) -}}
+{{/* capture minorVersion ("Xy") in a variable */}}
+{{- $minorVersionCurrent := int (index $versionArrayCurrent 1) -}}
 
-<!-- increment latest 1 minor number for "nextMinorVerison" -->
-{{- $nextMinorVersion := add $minorVersion 1 -}}
+{{/* splits a string x.Xy into substrings separated by a "." delimiter  */}}
+{{- $versionArrayLatest := split $latestVersion "." -}}
 
-<!-- subtract latest 1 minor number for "prevMinorVerison" -->
-{{- $prevMinorVersion := sub $minorVersion 1 -}}
+{{/* capture minorVersion ("Xy") in a variable */}}
+{{- $minorVersionLatest := int (index $versionArrayLatest 1) -}}
 
-<!-- subtract latest 2 minor numbers for "oldestMinorVerison" -->
-{{- $oldestMinorVersion := sub $minorVersion 2 -}}
+{{/* increment latest 1 minor number for "nextMinorVerison" */}}
+{{- $nextMinorVersionLatest := add $minorVersionLatest 1 -}}
 
-<!-- output nextMinorVersion based on captured arg -->
+{{/* subtract latest 1 minor number for "prevMinorVerison" */}}
+{{- $prevMinorVersionLatest := sub $minorVersionLatest 1 -}}
+
+{{/* subtract latest 2 minor numbers for "oldestMinorVerison" */}}
+{{- $oldestMinorVersionLatest := sub $minorVersionLatest 2 -}}
+
+{{/* output nextMinorVersion based on captured arg */}}
 {{- if eq $version "nextMinorVersion" -}}
-    {{- $nextMinorVersion := printf "%s.%d" (index $versionArray 0) $nextMinorVersion -}}
+    {{- $nextMinorVersion := printf "%s.%d" (index $versionArrayLatest 0) $nextMinorVersionLatest -}}
     {{- $nextMinorVersion -}}
 {{- end -}}
 
-<!-- output latestVersion based on captured arg -->
+{{/* output latestVersion based on captured arg */}}
 {{- if eq $version "latestVersion" -}}
     {{- $latestVersion -}}
 {{- end -}}
 
-<!-- output prevMinorVersion based on captured arg -->
+{{/* output prevMinorVersion based on captured arg */}}
 {{- if eq $version "prevMinorVersion" -}}
-    {{- $prevMinorVersion := printf "%s.%d" (index $versionArray 0) $prevMinorVersion -}}
+    {{- $prevMinorVersion := printf "%s.%d" (index $versionArrayLatest 0) $prevMinorVersionLatest -}}
     {{- $prevMinorVersion -}}
 {{- end -}}
 
-<!-- output oldestMinorVersion based on captured arg -->
+{{/* output oldestMinorVersion based on captured arg */}}
 {{- if eq $version "oldestMinorVersion" -}}
-    {{- $oldestMinorVersion := printf "%s.%d" (index $versionArray 0) $oldestMinorVersion -}}
+    {{- $oldestMinorVersion := printf "%s.%d" (index $versionArrayLatest 0) $oldestMinorVersionLatest -}}
     {{- $oldestMinorVersion -}}
 {{- end -}}
-
-<!-- output latestVersionAddMinor based on captured args -->
+{{/* output latestVersionAddMinor based on captured args */}}
 {{- if eq $version "latestVersionAddMinor" -}}
     {{- $seperator := .Get 2 -}}
     {{- if eq $seperator "" -}}
         {{- $seperator = "." -}}
     {{- end -}}
     {{- $latestVersionAddMinor := int (.Get 1) -}}
-    {{- $latestVersionAddMinor = add $minorVersion $latestVersionAddMinor -}}
-    {{- $latestVersionAddMinor = printf "%s%s%d" (index $versionArray 0) $seperator $latestVersionAddMinor -}}
+    {{- $latestVersionAddMinor = add $minorVersionLatest $latestVersionAddMinor -}}
+    {{- $latestVersionAddMinor = printf "%s%s%d" (index $versionArrayLatest 0) $seperator $latestVersionAddMinor -}}
     {{- $latestVersionAddMinor -}}
 {{- end -}}
-<!--
+
+{{/* output currentVersion based on captured arg */}}
+{{- if eq $version "currentVersion" -}}
+    {{- $currentVersion -}}
+{{- end -}}
+
+{{/* output currentVersionAddMinor based on captured args */}}
+{{- if eq $version "currentVersionAddMinor" -}}
+    {{- $seperator := .Get 2 -}}
+    {{- if eq $seperator "" -}}
+        {{- $seperator = "." -}}
+    {{- end -}}
+    {{- $currentVersionAddMinor := int (.Get 1) -}}
+    {{- $currentVersionAddMinor = add $minorVersionCurrent $currentVersionAddMinor -}}
+    {{- $currentVersionAddMinor = printf "%s%s%d" (index $versionArrayCurrent 0) $seperator $currentVersionAddMinor -}}
+    {{- $currentVersionAddMinor -}}
+{{- end -}}
+{{/*
 example shortcode use:
 - skew nextMinorVersion
-- skew latestVersion
+- skew currentVersion
 - skew prevMinorVersion
 - skew oldestMinorVersion
+- skew latestVersion
+- skew latestVersionAddMinor +1 "-"
 - skew latestVersionAddMinor -1 "-"
--->
+- skew currentVersionAddMinor +1 "-"
+- skew currentVersionAddMinor -1 "-"
+*/}}
