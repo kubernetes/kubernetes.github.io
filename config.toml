@@ -141,7 +141,7 @@ showedit = true
 latest = "v1.21"
 
 fullversion = "v1.21.0"
-version = "v1.21"
+version = "v1.19"
 githubbranch = "master"
 docsbranch = "master"
 deprecated = false

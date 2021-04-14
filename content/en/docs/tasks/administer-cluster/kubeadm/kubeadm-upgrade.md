@@ -16,11 +16,11 @@ when upgrading is unsupported.
 To see information about upgrading clusters created using other versions of kubeadm,
 please refer to the following list:
 
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -1 >}} to {{< skew latestVersionAddMinor 0 >}}](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -2 >}} to {{< skew latestVersionAddMinor -1 >}}](https://v{{< skew latestVersionAddMinor -1 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -3 >}} to {{< skew latestVersionAddMinor -2 >}}](https://v{{< skew latestVersionAddMinor -2 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -4 >}} to {{< skew latestVersionAddMinor -3 >}}](https://v{{< skew latestVersionAddMinor -3 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -5 >}} to {{< skew latestVersionAddMinor -4 >}}](https://v{{< skew latestVersionAddMinor -4 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -1 >}} to {{< skew currentVersionAddMinor 0 >}}](https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -2 >}} to {{< skew currentVersionAddMinor -1 >}}](https://v{{< skew currentVersionAddMinor -1 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -3 >}} to {{< skew currentVersionAddMinor -2 >}}](https://v{{< skew currentVersionAddMinor -2 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -4 >}} to {{< skew currentVersionAddMinor -3 >}}](https://v{{< skew currentVersionAddMinor -3 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -5 >}} to {{< skew currentVersionAddMinor -4 >}}](https://v{{< skew currentVersionAddMinor -4 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
 
 The upgrade workflow at high level is the following:
 
