@@ -608,7 +608,7 @@ Some additional, Windows-specific troubleshooting help is included in this secti
 1. `kubectl port-forward` fails with "unable to do port forwarding: wincat not found"
 
    This was implemented in Kubernetes 1.15 by including `wincat.exe` in the pause infrastructure container `mcr.microsoft.com/oss/kubernetes/pause:1.4.1`. Be sure to use a supported version of Kubernetes.
-   If you would like to build your own pause infrastructure container be sure to include [wincat](https://github.com/kubernetes-sigs/sig-windows-tools/tree/master/cmd/wincat).
+   If you would like to build your own pause infrastructure container be sure to include [wincat](https://github.com/kubernetes/kubernetes/tree/master/build/pause/windows/wincat).
 
 1. My Kubernetes installation is failing because my Windows Server node is behind a proxy
 
@@ -653,4 +653,3 @@ The Kubernetes [cluster API](https://cluster-api.sigs.k8s.io/) project also prov
 For a detailed explanation of Windows distribution channels see the [Microsoft documentation](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19).
 
 Information on the different Windows Server servicing channels including their support models can be found at [Windows Server servicing channels](https://docs.microsoft.com/en-us/windows-server/get-started-19/servicing-channels-19).
-
