@@ -642,9 +642,9 @@ You must enable the `ServiceLBNodePortControl` feature gate to use this field.
 
 #### Specifying class of load balancer implementation {#load-balancer-class}
 
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
-Starting in v1.21, you can optionally specify the class of a load balancer implementation for
+From Kubernetes v1.21 onwards, you can optionally specify the class of a load balancer implementation for
 `LoadBalancer` type of Service by setting the field `spec.loadBalancerClass`.
 By default, `spec.loadBalancerClass` is `nil` and a `LoadBalancer` type of Service uses
 the cloud provider's default load balancer implementation. 
@@ -657,7 +657,6 @@ Once set, it cannot be changed.
 The value of `spec.loadBalancerClass` must be a label-style identifier,
 with an optional prefix such as "`internal-vip`" or "`example.com/internal-vip`".
 Unprefixed names are reserved for end-users.
-You must enable the `ServiceLoadBalancerClass` feature gate to use this field.
 
 #### Internal load balancer
 
