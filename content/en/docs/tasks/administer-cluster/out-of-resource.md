@@ -194,11 +194,18 @@ then by [Priority](/docs/concepts/configuration/pod-priority-preemption/), and t
 
 As a result, `kubelet` ranks and evicts Pods in the following order:
 
-* `BestEffort` or `Burstable` Pods whose usage of a starved resource exceeds its request. Such pods are ranked by Priority, and then usage above request.
-* `Guaranteed` pods and `Burstable` pods whose usage is beneath requests are evicted last. `Guaranteed` Pods are guaranteed only when requests and limits are specified for all the containers and they are equal. Such pods are guaranteed to never be evicted because of another Pod's resource consumption. If a system daemon (such as `kubelet`, `docker`, and `journald`) is consuming more resources than were reserved via `system-reserved` or `kube-reserved` allocations, and the node only has `Guaranteed` or `Burstable` Pods using less than requests remaining, then the node must choose to evict such a Pod in order to preserve node stability and to limit the impact of the unexpected consumption to other Pods. In this case, it will choose to evict pods of Lowest Priority first.
+* Pods violating the requests for the resource being starved. Any pod in violation of the starved resource gets grouped here - this includes Pods that have no request set for that resource.
+
+* Pods are then ranked by priority, lowest being grouped first.
+
+* Lastly, Pods are ranked by their consumption of the starved resource relative to it's requests.
 
 If necessary, `kubelet` evicts Pods one at a time to reclaim disk when `DiskPressure`
-is encountered. If the `kubelet` is responding to `inode` starvation, it reclaims
+is encountered. `Kubelet` checks after each eviction to see if the condition is still true. This process continues through the pods in the lowest-priority group that is in violation of the request, moving on to the next priority if needed.
+
+> It's important to ensure that critical pods contain appropriately set requests and limits for CPU, Memory, and ephemeral-storage to avoid scenarios where critical Pods may unexpectedly get evicted. 
+
+If the `kubelet` is responding to `inode` starvation, it reclaims
 `inodes` by evicting Pods with the lowest quality of service first. If the `kubelet`
 is responding to lack of available disk, it ranks Pods within a quality of service
 that consumes the largest amount of disk and kills those first.
