@@ -33,7 +33,7 @@ Add-ons 扩展了 Kubernetes 的功能。
 * [CNI-Genie](https://github.com/Huawei-PaaS/CNI-Genie) enables Kubernetes to seamlessly connect to a choice of CNI plugins, such as Calico, Canal, Flannel, Romana, or Weave.
 * [Contiv](http://contiv.github.io) provides configurable networking (native L3 using BGP, overlay using vxlan, classic L2, and Cisco-SDN/ACI) for various use cases and a rich policy framework. Contiv project is fully [open sourced](http://github.com/contiv). The [installer](http://github.com/contiv/install) provides both kubeadm and non-kubeadm based installation options.
 * [Contrail](http://www.juniper.net/us/en/products-services/sdn/contrail/contrail-networking/), based on [Tungsten Fabric](https://tungsten.io), is an open source, multi-cloud network virtualization and policy management platform. Contrail and Tungsten Fabric are integrated with orchestration systems such as Kubernetes, OpenShift, OpenStack and Mesos, and provide isolation modes for virtual machines, containers/pods and bare metal workloads.
-* [Flannel](https://github.com/coreos/flannel/blob/master/Documentation/kubernetes.md) is an overlay network provider that can be used with Kubernetes.
+* [Flannel](https://github.com/flannel-io/flannel#deploying-flannel-manually) is an overlay network provider that can be used with Kubernetes.
 * [Knitter](https://github.com/ZTE/Knitter/) is a network solution supporting multiple networking in Kubernetes.
 * [Multus](https://github.com/Intel-Corp/multus-cni) is a Multi plugin for multiple network support in Kubernetes to support all CNI plugins (e.g. Calico, Cilium, Contiv, Flannel), in addition to SRIOV, DPDK, OVS-DPDK and VPP based workloads in Kubernetes.
 * [OVN-Kubernetes](https://github.com/ovn-org/ovn-kubernetes/) is a networking provider for Kubernetes based on [OVN (Open Virtual Network)](https://github.com/ovn-org/ovn/), a virtual networking implementation that came out of the Open vSwitch (OVS) project. OVN-Kubernetes provides an overlay based networking implementation for Kubernetes, including an OVS based implementation of load balancing and network policy.
@@ -46,7 +46,7 @@ Add-ons 扩展了 Kubernetes 的功能。
 ## 网络和网络策略
 
 * [ACI](https://www.github.com/noironetworks/aci-containers) 通过 Cisco ACI 提供集成的容器网络和安全网络。
-* [Antrea](https://antrea.io/) 在第 3/4 层执行操作，为 Kubernetes 
+* [Antrea](https://antrea.io/) 在第 3/4 层执行操作，为 Kubernetes
   提供网络连接和安全服务。Antrea 利用 Open vSwitch 作为网络的数据面。
 * [Calico](https://docs.projectcalico.org/v3.11/getting-started/kubernetes/installation/calico)
   是一个安全的 L3 网络和网络策略驱动。
@@ -86,7 +86,7 @@ Add-ons 扩展了 Kubernetes 的功能。
 * [Romana](https://romana.io) 是一个 pod 网络的第三层解决方案，并支持[
   NetworkPolicy API](/zh/docs/concepts/services-networking/network-policies/)。
   Kubeadm add-on 安装细节可以在[这里](https://github.com/romana/romana/tree/master/containerize)找到。
-* [Weave Net](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/) 
+* [Weave Net](https://www.weave.works/docs/net/latest/kubernetes/kube-addon/)
   提供在网络分组两端参与工作的网络和网络策略，并且不需要额外的数据库。
 
 <!--
@@ -134,5 +134,3 @@ Well-maintained ones should be linked to here. PRs welcome!
 还有一些其它 add-ons 归档在已废弃的 [cluster/addons](https://git.k8s.io/kubernetes/cluster/addons) 路径中。
 
 维护完善的 add-ons 应该被链接到这里。欢迎提出 PRs！
-
-
