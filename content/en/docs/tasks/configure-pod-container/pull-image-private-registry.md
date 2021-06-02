@@ -198,6 +198,73 @@ kubectl apply -f my-private-reg-pod.yaml
 kubectl get pod private-reg
 ```
 
+## Differences between Kubernetes and Docker
+
+The interpretation of `config.json` varies between the original Docker
+implementation and the Kubernetes interpretation. In Docker, the `auths` keys
+can only specify root URLs, whereas Kubernetes allows glob URLs as well as
+prefix-matched paths. This means that a `config.json` like this is valid:
+
+```json
+{
+    "auths": {
+        "*my-registry.io/images": {
+            "auth": "…"
+        }
+    }
+}
+```
+
+The root URL (`*my-registry.io`) is matched by using the following syntax:
+
+```
+pattern:
+    { term }
+
+term:
+    '*'         matches any sequence of non-Separator characters
+    '?'         matches any single non-Separator character
+    '[' [ '^' ] { character-range } ']'
+                character class (must be non-empty)
+    c           matches character c (c != '*', '?', '\\', '[')
+    '\\' c      matches character c
+
+character-range:
+    c           matches character c (c != '\\', '-', ']')
+    '\\' c      matches character c
+    lo '-' hi   matches character c for lo <= c <= hi
+```
+
+Image pull operations would now pass the credentials to the CRI container
+runtime for every valid pattern. For example the following container image names
+would match successfully:
+
+- my-registry.io/images
+- my-registry.io/images/my-image
+- my-registry.io/images/another-image
+- sub.my-registry.io/images/my-image
+- a.sub.my-registry.io/images/my-image
+
+The kubelet performs image pulls sequentially for every found credential. This
+means, that multiple entries in `config.json` are possible, too:
+
+```json
+{
+    "auths": {
+        "my-registry.io/images": {
+            "auth": "…"
+        },
+        "my-registry.io/images/subpath": {
+            "auth": "…"
+        }
+    }
+}
+```
+
+If now a container specifies an image `my-registry.io/images/subpath/my-image`
+to be pulled, then the kubelet will try to download them from both
+authentication sources if one of them fails.
+
 ## {{% heading "whatsnext" %}}
 
 * Learn more about [Secrets](/docs/concepts/configuration/secret/).
