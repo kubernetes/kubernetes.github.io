@@ -211,15 +211,25 @@ Stackdriver Logging agent attaches metadata to each log entry, for you to use la
 in queries to select only the messages you're interested in: for example,
 the messages from a particular pod.
 
-The most important pieces of metadata are the resource type and log name.
-The resource type of a container log is `container`, which is named
-`GKE Containers` in the UI (even if the Kubernetes cluster is not on Google Kubernetes Engine).
-The log name is the name of the container, so that if you have a pod with
-two containers, named `container_1` and `container_2` in the spec, their logs
-will have log names `container_1` and `container_2` respectively.
+The most important pieces of metadata are the resource type and log name. There are 
+currently 2 [resource models](https://cloud.google.com/stackdriver/docs/solutions/gke#version) 
+that use separate metadata values in Stackdriver Logging:
+Legacy Logging and Monitoring and Cloud Ops for GKE. For Legacy Logging and Monitoring, 
+the resource type of a container log is `container`, which is named
+`GKE Containers` in the UI. For Cloud Ops for GKE, the resource type of a container
+log is `k8s_container`, which is named `Kubernetes Container` in the UI. The resource
+types are used even if the Kubernetes cluster is not on Google Kubernetes Engine).
 
-System components have resource type `compute`, which is named
-`GCE VM Instance` in the interface. Log names for system components are fixed.
+
+In Legacy Logging and Monitoring, the log name is the name of the container, so that 
+if you have a pod with two containers, named `container_1` and `container_2` in the spec, 
+their logs will have log names `container_1` and `container_2` respectively. In Cloud Ops
+for GKE, the log names are `stdout` and `stderr` so that logs for both `container_1` and 
+`container_2` are both written to the `stdout` and `stderr` log names.
+
+
+In Legacy Logging and Monitoring, system components have resource type `compute`, which is named
+`GCE VM Instance` in the UI. Log names for system components are fixed.
 For a Google Kubernetes Engine node, every log entry from a system component has one of the following
 log names:
 
@@ -227,16 +237,19 @@ log names:
 * kubelet
 * kube-proxy
 
-You can learn more about viewing logs on [the dedicated Stackdriver page](https://cloud.google.com/logging/docs/view/logs_viewer).
+In Cloud Ops for GKE, the node resource type `k8s_node`, which is named `Kubernetes Node` in the UI. 
+You can learn more about system and application logs on the [Understanding your logs page](https://cloud.google.com/stackdriver/docs/solutions/gke/using-logs#understanding_your_logs).
+
+You can learn more about viewing logs on [the dedicated Stackdriver page](https://cloud.google.com/logging/docs/view/logs-viewer-interface).
 
 One of the possible ways to view logs is using the
 [`gcloud logging`](https://cloud.google.com/logging/docs/api/gcloud-logging)
 command line interface from the [Google Cloud SDK](https://cloud.google.com/sdk/).
-It uses Stackdriver Logging [filtering syntax](https://cloud.google.com/logging/docs/view/advanced_filters)
+It uses Stackdriver Logging [query syntax](https://cloud.google.com/logging/docs/view/logging-query-language)
 to query specific logs. For example, you can run the following command:
 
 ```none
-gcloud beta logging read 'logName="projects/$YOUR_PROJECT_ID/logs/count"' --format json | jq '.[].textPayload'
+gcloud logging read 'logName="projects/$YOUR_PROJECT_ID/logs/count"' --format json | jq '.[].textPayload'
 ```
 ```
 ...
@@ -255,11 +268,11 @@ the logs for the first container.
 
 ### Exporting logs
 
-You can export logs to [Google Cloud Storage](https://cloud.google.com/storage/)
-or to [BigQuery](https://cloud.google.com/bigquery/) to run further
-analysis. Stackdriver Logging offers the concept of sinks, where you can
-specify the destination of log entries. More information is available on
-the Stackdriver [Exporting Logs page](https://cloud.google.com/logging/docs/export/configure_export_v2).
+You can export logs to [Google Cloud Storage](https://cloud.google.com/storage/),
+ [BigQuery](https://cloud.google.com/bigquery/) or [Cloud Pub/Sub](https://cloud.google.com/pubsub/) 
+to run further analysis or to integrate with other logging systems. Stackdriver Logging offers the 
+concept of sinks, where you can specify the destination for all or a subset of your log entries. 
+More information is available on the Stackdriver [Exporting Logs page](https://cloud.google.com/logging/docs/export/configure_export_v2).
 
 ## Configuring Stackdriver Logging Agents
 
@@ -275,13 +288,26 @@ In this case you need to be able to change the parameters of `DaemonSet` and `Co
 ### Prerequisites
 
 If you're using GKE and Stackdriver Logging is enabled in your cluster, you
-cannot change its configuration, because it's managed and supported by GKE.
-However, you can disable the default integration and deploy your own.
+cannot change its configuration, because it's managed and supported by GKE. 
+There are several [configuration options](https://cloud.google.com/stackdriver/docs/solutions/gke/installing#migrating) 
+which allow you to collect your cluster's system and application logs. However, 
+you can disable the default Stackdriver Logging integration and deploy your own. 
+Another option is to select the `System logging and monitoring only (beta)` configuration
+option available beginning with GKE version 1.15.7 for your cluster to collect 
+system logs and metrics about your cluster while using your own configuration 
+to collect your application logs. 
 
 {{< note >}}
 You will have to support and maintain a newly deployed configuration
 yourself: update the image and configuration, adjust the resources and so on.
 {{< /note >}}
+
+To select the `System logging and monitoring only (beta)` option available 
+beginning with GKE version 1.15.7, use the following command:
+
+```
+gcloud beta container clusters update --enable-logging-monitoring-system-only CLUSTER
+```
 
 To disable the default logging integration, use the following command:
 
