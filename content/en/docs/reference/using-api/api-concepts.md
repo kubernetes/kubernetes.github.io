@@ -269,20 +269,20 @@ is estimating the size of a collection.
 When you run `kubectl get`, the default output format is a simple tabular representation of one or more instances of a particular resource type. In the past, clients were required to reproduce the tabular and describe output implemented in `kubectl` to perform simple lists of objects.
 A few limitations of that approach include non-trivial logic when dealing with certain objects. Additionally, types provided by API aggregation or third party resources are not known at compile time. This means that generic implementations had to be in place for types unrecognized by a client.
 
-In order to avoid potential limitations as described above, clients may request the Table representation of objects, delegating specific details of printing to the server. The Kubernetes API implements standard HTTP content type negotiation: passing an `Accept` header containing a value of `application/json;as=Table;g=meta.k8s.io;v=v1beta1` with a `GET` call will request that the server return objects in the Table content type.
+In order to avoid potential limitations as described above, clients may request the Table representation of objects, delegating specific details of printing to the server. The Kubernetes API implements standard HTTP content type negotiation: passing an `Accept` header containing a value of `application/json;as=Table;g=meta.k8s.io;v=v1` with a `GET` call will request that the server return objects in the Table content type.
 
 For example, list all of the pods on a cluster in the Table format.
 
 ```console
 GET /api/v1/pods
-Accept: application/json;as=Table;g=meta.k8s.io;v=v1beta1
+Accept: application/json;as=Table;g=meta.k8s.io;v=v1
 ---
 200 OK
 Content-Type: application/json
 
 {
     "kind": "Table",
-    "apiVersion": "meta.k8s.io/v1beta1",
+    "apiVersion": "meta.k8s.io/v1",
     ...
     "columnDefinitions": [
         ...
@@ -301,7 +301,7 @@ Content-Type: application/json
 
 {
     "kind": "Table",
-    "apiVersion": "meta.k8s.io/v1beta1",
+    "apiVersion": "meta.k8s.io/v1",
     ...
     "columnDefinitions": [
         {
@@ -321,7 +321,7 @@ Content-Type: application/json
 Not all API resource types support a Table response; for example, a {{< glossary_tooltip term_id="CustomResourceDefinition" text="CustomResourceDefinitions" >}} might not define field-to-table mappings, and an APIService that [extends the core Kubernetes API](/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation/) might not serve Table responses at all. If you are implementing a client that uses the Table information and must work against all resource types, including extensions, you should make requests that specify multiple content types in the `Accept` header. For example:
 
 ```console
-Accept: application/json;as=Table;g=meta.k8s.io;v=v1beta1, application/json
+Accept: application/json;as=Table;g=meta.k8s.io;v=v1, application/json
 ```
 
 ## Alternate representations of resources
