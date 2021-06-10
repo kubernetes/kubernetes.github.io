@@ -278,9 +278,8 @@ Init containers have all of the fields of an app container. However, Kubernetes
 prohibits `readinessProbe` from being used because init containers cannot
 define readiness distinct from completion. This is enforced during validation.
 
-Use `activeDeadlineSeconds` on the Pod and `livenessProbe` on the container to
-prevent init containers from failing forever. The active deadline includes init
-containers.
+Use `activeDeadlineSeconds` on the Pod. The active deadline includes init
+containers. However it is recommended to use `activeDeadlineSeconds` if user deploy their application as a Job, because 'activeDeadlineSeconds' has an effect even after initContainer finished. The Pod which is already running correctly would be killed by `activeDeadlineSeconds` if you set.
 
 The name of each app and init container in a Pod must be unique; a
 validation error is thrown for any container sharing a name with another.
