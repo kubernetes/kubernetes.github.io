@@ -402,6 +402,7 @@ different Kubernetes components.
 | `WindowsGMSA` | `false` | Alpha | 1.14 | 1.15 |
 | `WindowsGMSA` | `true` | Beta | 1.16 | 1.17 |
 | `WindowsGMSA` | `true` | GA | 1.18 | - |
+| `WindowsHostProcessContainers` | `false` | Alpha | 1.22 |
 | `WindowsRunAsUserName` | `false` | Alpha | 1.16 | 1.16 |
 | `WindowsRunAsUserName` | `true` | Beta | 1.17 | 1.17 |
 | `WindowsRunAsUserName` | `true` | GA | 1.18 | - |
@@ -868,6 +869,7 @@ Each feature gate is designed for enabling/disabling a specific feature:
 - `WinDSR`: Allows kube-proxy to create DSR loadbalancers for Windows.
 - `WinOverlay`: Allows kube-proxy to run in overlay mode for Windows.
 - `WindowsGMSA`: Enables passing of GMSA credential specs from pods to container runtimes.
+- `WindowsHostProcessContainers`: Enables support for Windows HostProcess containers.
 - `WindowsRunAsUserName` : Enable support for running applications in Windows containers
   with as a non-default user. See
   [Configuring RunAsUserName](/docs/tasks/configure-pod-container/configure-runasusername)
