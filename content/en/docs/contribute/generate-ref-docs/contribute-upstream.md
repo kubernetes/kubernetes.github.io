@@ -91,7 +91,7 @@ will be different in your situation.
 
 Here's an example of editing a comment in the Kubernetes source code.
 
-In your local kubernetes/kubernetes repository, check out the master branch,
+In your local kubernetes/kubernetes repository, check out the primary branch,
 and make sure it is up to date:
 
 ```shell
@@ -100,7 +100,7 @@ git checkout master
 git pull https://github.com/kubernetes/kubernetes master
 ```
 
-Suppose this source file in the master branch has the typo "atmost":
+Suppose this source file in that primary branch has the typo "atmost":
 
 [kubernetes/kubernetes/staging/src/k8s.io/api/apps/v1/types.go](https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/api/apps/v1/types.go)
 
