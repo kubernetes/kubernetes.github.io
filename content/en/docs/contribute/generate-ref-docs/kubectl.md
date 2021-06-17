@@ -86,12 +86,12 @@ The remaining steps refer to your base directory as `<rdocs-base>`.
 
 In your local k8s.io/kubernetes repository, check out the branch of interest,
 and make sure it is up to date. For example, if you want to generate docs for
-Kubernetes 1.17, you could use these commands:
+Kubernetes {{< skew prevMinorVersion >}}.0, you could use these commands:
 
 ```shell
 cd <k8s-base>
-git checkout v1.17.0
-git pull https://github.com/kubernetes/kubernetes v1.17.0
+git checkout v{{< skew prevMinorVersion >}}.0
+git pull https://github.com/kubernetes/kubernetes {{< skew prevMinorVersion >}}.0
 ```
 
 If you do not need to edit the `kubectl` source code, follow the instructions for
@@ -109,7 +109,7 @@ local kubernetes/kubernetes repository, and then submit a pull request to the ma
 is an example of a pull request that fixes a typo in the kubectl source code.
 
 Monitor your pull request, and respond to reviewer comments. Continue to monitor your
-pull request until it is merged into the master branch of the kubernetes/kubernetes repository.
+pull request until it is merged into the target branch of the kubernetes/kubernetes repository.
 
 ## Cherry picking your change into a release branch
 
@@ -118,9 +118,10 @@ Kubernetes release. If you want your change to appear in the docs for a Kubernet
 version that has already been released, you need to propose that your change be
 cherry picked into the release branch.
 
-For example, suppose the master branch is being used to develop Kubernetes 1.10,
-and you want to backport your change to the release-1.15 branch. For instructions
-on how to do this, see
+For example, suppose the master branch is being used to develop Kubernetes
+{{< skew currentVersion >}}
+and you want to backport your change to the release-{{< skew prevMinorVersion >}} branch. For
+instructions on how to do this, see
 [Propose a Cherry Pick](https://git.k8s.io/community/contributors/devel/sig-release/cherry-picks.md).
 
 Monitor your cherry-pick pull request until it is merged into the release branch.
@@ -138,14 +139,14 @@ Go to `<rdocs-base>`. On you command line, set the following environment variabl
 * Set `K8S_ROOT` to `<k8s-base>`.
 * Set `K8S_WEBROOT` to `<web-base>`.
 * Set `K8S_RELEASE` to the version of the docs you want to build.
-  For example, if you want to build docs for Kubernetes 1.17, set `K8S_RELEASE` to 1.17.
+  For example, if you want to build docs for Kubernetes {{< skew prevMinorVersion >}}, set `K8S_RELEASE` to {{< skew prevMinorVersion >}}.
 
 For example:
 
 ```shell
 export K8S_WEBROOT=$GOPATH/src/github.com/<your-username>/website
 export K8S_ROOT=$GOPATH/src/k8s.io/kubernetes
-export K8S_RELEASE=1.17
+export K8S_RELEASE={{< skew prevMinorVersion >}}
 ```
 
 ## Creating a versioned directory
@@ -165,13 +166,14 @@ make createversiondirs
 
 In your local `<k8s-base>` repository, checkout the branch that has
 the version of Kubernetes that you want to document. For example, if you want
-to generate docs for Kubernetes 1.17, checkout the `v1.17.0` tag. Make sure
+to generate docs for Kubernetes {{< skew prevMinorVersion >}}.0, check out the
+`v{{< skew prevMinorVersion >}}` tag. Make sure
 you local branch is up to date.
 
 ```shell
 cd <k8s-base>
-git checkout v1.17.0
-git pull https://github.com/kubernetes/kubernetes v1.17.0
+git checkout v{{< skew prevMinorVersion >}}.0
+git pull https://github.com/kubernetes/kubernetes v{{< skew prevMinorVersion >}}.0
 ```
 
 ## Running the doc generation code
