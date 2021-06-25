@@ -31,6 +31,13 @@ Pods to run a Pod on every node, you should probably be using a
 instead.
 {{< /note >}}
 
+{{< note >}}
+The Spec of a Static Pod cannot refer to other API objects
+(e.g., {{< glossary_tooltip text="ServiceAccount" term_id="service-account" >}},
+{{< glossary_tooltip text="ConfigMap" term_id="configmap" >}},
+{{< glossary_tooltip text="Secret" term_id="secret" >}}, etc).
+{{< /note >}}
+
 ## {{% heading "prerequisites" %}}
 
 {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
