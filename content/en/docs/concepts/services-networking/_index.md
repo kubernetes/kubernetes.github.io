@@ -46,7 +46,6 @@ It is possible to request ports on the `Node` itself which forward to your `Pod`
 implemented is also a detail of the container runtime. The `Pod` itself is
 blind to the existence or non-existence of host ports.
 
-
 Kubernetes networking addresses four concerns:
 - Containers within a Pod use networking to communicate via loopback.
 - Cluster networking provides communication between different Pods.

@@ -30,8 +30,7 @@ insert dynamic port numbers into configuration blocks, services have to know
 how to find each other, etc.  Rather than deal with this, Kubernetes takes a
 different approach.
 
-To learn about the Kubernetes networking model, see [here](/docs/concepts/services-networking/_index.md).
-
+To learn about the Kubernetes networking model, see [here](/docs/concepts/services-networking/).
 
 ## How to implement the Kubernetes networking model
 
