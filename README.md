@@ -73,23 +73,15 @@ To update the reference pages for a new Kubernetes release (replace v1.20 in the
 git submodule update --init --recursive --depth 1
 ```
 
-2. Create a new API revision into the submodule, and add the Swagger specification:
+2. Update the Swagger specification:
 
 ```
-mkdir api-ref-generator/gen-resourcesdocs/api/v1.20
-curl 'https://raw.githubusercontent.com/kubernetes/kubernetes/master/api/openapi-spec/swagger.json' > api-ref-generator/gen-resourcesdocs/api/v1.20/swagger.json
+curl 'https://raw.githubusercontent.com/kubernetes/kubernetes/master/api/openapi-spec/swagger.json' > api-ref-assets/api/swagger.json
 ```
 
-3. Copy the table of contents and fields configuration for the new release from a previous one:
+3. In `api-ref-assets/config/`, adapt the files `toc.yaml` and `fields.yaml` to reflect the changes of the new release.
 
-```
-mkdir api-ref-generator/gen-resourcesdocs/api/v1.20
-cp api-ref-generator/gen-resourcesdocs/api/v1.19/* api-ref-generator/gen-resourcesdocs/api/v1.20/
-```
-
-4. Adapt the files `toc.yaml` and `fields.yaml` to reflect the changes between the two releases
-
-5. Next, build the pages:
+4. Next, build the pages:
 
 ```
 make api-reference
@@ -104,7 +96,7 @@ make container-serve
 
 In a web browser, go to http://localhost:1313/docs/reference/kubernetes-api/ to view the API reference.
 
-6. When all changes of the new contract are reflected into the configuration files `toc.yaml` and `fields.yaml`, create a Pull Request with the newly generated API reference pages.
+5. When all changes of the new contract are reflected into the configuration files `toc.yaml` and `fields.yaml`, create a Pull Request with the newly generated API reference pages.
 
 ## Troubleshooting
 ### error: failed to transform resource: TOCSS: failed to transform "scss/main.scss" (text/x-scss): this feature is not available in your current Hugo version
