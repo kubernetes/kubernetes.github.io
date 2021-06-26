@@ -1,0 +1,83 @@
+---
+api_metadata:
+  apiVersion: "{{.ApiVersion}}"
+  import: "{{.Import}}"
+  kind: "{{.Kind}}"
+content_type: "api_reference"
+description: "{{.Metadata.Description}}"
+title: "{{.Metadata.Title}}"
+weight: {{.Metadata.Weight}}
+auto_generated: true
+---
+
+<!--
+The file is auto-generated from the Go source code of the component using a generic
+[generator](https://github.com/kubernetes-sigs/reference-docs/). To learn how
+to generate the reference documentation, please read
+[Contributing to the reference documentation](/docs/contribute/generate-ref-docs/).
+To update the reference content, please follow the 
+[Contributing upstream](/docs/contribute/generate-ref-docs/contribute-upstream/)
+guide. You can file document formatting bugs against the
+[reference-docs](https://github.com/kubernetes-sigs/reference-docs/) project.
+-->
+
+{{if .ApiVersion}}`apiVersion: {{.ApiVersion}}`{{end}}
+
+{{if .Import}}`import "{{.Import}}"`{{end}}
+
+{{range .Sections}}
+{{.Description | replace "<" "\\<" }}
+
+<hr>
+{{range .Fields}}
+{{ ""  | indent .Indent | indent .Indent}}- {{.Name}}{{if .Value}}: {{.Value}}{{end}}
+{{if .Description}}
+{{.Description | replace "<" "\\<" | indent 2 | indent .Indent | indent .Indent}}
+{{- end}}
+{{if .TypeDefinition}}
+{{ ""  | indent .Indent | indent .Indent}}  <a name="{{.Type}}"></a>
+{{.TypeDefinition | indent 2 | indent .Indent | indent .Indent}}
+{{end}}
+{{- end}}{{/* range .Fields */}}
+
+{{range .FieldCategories}}
+### {{.Name}} {#{{"-" | regexReplaceAll "[^a-zA-Z0-9]+" .Name }}}{{/* explicitly set fragment to keep capitalization */}}
+
+{{range .Fields}}
+{{ ""  | indent .Indent | indent .Indent}}- {{.Name}}{{if .Value}}: {{.Value}}{{end}}
+{{if .Description}}
+{{.Description | replace "<" "\\<" | indent 2 | indent .Indent | indent .Indent}}
+{{- end}}
+{{if .TypeDefinition}}
+{{ ""  | indent .Indent | indent .Indent}}  <a name="{{.Type}}"></a>
+{{.TypeDefinition | indent 2 | indent .Indent | indent .Indent}}
+{{end}}
+{{- end}}{{/* range .Fields */}}
+
+{{- end}}{{/* range .FieldCategories */}}
+
+{{range .Operations}}
+
+### `{{.Verb}}` {{.Title}}
+
+#### HTTP Request
+
+{{.RequestMethod}} {{.RequestPath}}
+
+#### Parameters
+
+{{range .Parameters}}
+- {{.Title}}
+
+{{.Description | indent 2}}
+
+{{end}}{{/* range .Parameters */}}
+
+#### Response
+
+{{range .Responses}}
+{{.Code}}{{if .Type}} ({{.Type}}){{end}}: {{.Description}}
+{{end}}{{/* range .Responses */}}
+
+{{- end}}{{/* range .Operations */}}
+{{- end}}{{/* range .Sections */}}
