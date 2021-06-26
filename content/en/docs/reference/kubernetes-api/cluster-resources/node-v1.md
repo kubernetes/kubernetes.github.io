@@ -352,7 +352,7 @@ NodeStatus is information about the current status of a node.
   <a name="ContainerImage"></a>
   *Describe a container image*
 
-  - **images.names** ([]string), required
+  - **images.names** ([]string)
 
     Names by which this image is known. e.g. ["k8s.gcr.io/hyperkube:v1.0.7", "dockerhub.io/google_containers/hyperkube:v1.0.7"]
 
@@ -770,6 +770,8 @@ PATCH /api/v1/nodes/{name}
 
 200 (<a href="{{< ref "../cluster-resources/node-v1#Node" >}}">Node</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/node-v1#Node" >}}">Node</a>): Created
+
 401: Unauthorized
 
 
@@ -817,6 +819,8 @@ PATCH /api/v1/nodes/{name}/status
 
 
 200 (<a href="{{< ref "../cluster-resources/node-v1#Node" >}}">Node</a>): OK
+
+201 (<a href="{{< ref "../cluster-resources/node-v1#Node" >}}">Node</a>): Created
 
 401: Unauthorized
 

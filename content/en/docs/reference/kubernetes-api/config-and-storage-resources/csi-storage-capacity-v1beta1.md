@@ -436,6 +436,8 @@ PATCH /apis/storage.k8s.io/v1beta1/namespaces/{namespace}/csistoragecapacities/{
 
 200 (<a href="{{< ref "../config-and-storage-resources/csi-storage-capacity-v1beta1#CSIStorageCapacity" >}}">CSIStorageCapacity</a>): OK
 
+201 (<a href="{{< ref "../config-and-storage-resources/csi-storage-capacity-v1beta1#CSIStorageCapacity" >}}">CSIStorageCapacity</a>): Created
+
 401: Unauthorized
 
 

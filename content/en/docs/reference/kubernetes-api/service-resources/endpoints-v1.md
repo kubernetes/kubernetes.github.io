@@ -496,6 +496,8 @@ PATCH /api/v1/namespaces/{namespace}/endpoints/{name}
 
 200 (<a href="{{< ref "../service-resources/endpoints-v1#Endpoints" >}}">Endpoints</a>): OK
 
+201 (<a href="{{< ref "../service-resources/endpoints-v1#Endpoints" >}}">Endpoints</a>): Created
+
 401: Unauthorized
 
 

@@ -588,6 +588,8 @@ PATCH /apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}
 
 200 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): Created
+
 401: Unauthorized
 
 
@@ -635,6 +637,8 @@ PATCH /apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}/status
 
 
 200 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): OK
+
+201 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): Created
 
 401: Unauthorized
 

@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "configuration of a horizontal pod autoscaler."
 title: "HorizontalPodAutoscaler"
-weight: 12
+weight: 11
 auto_generated: true
 ---
 
@@ -567,6 +567,8 @@ PATCH /apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name
 
 200 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v1#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v1#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): Created
+
 401: Unauthorized
 
 
@@ -619,6 +621,8 @@ PATCH /apis/autoscaling/v1/namespaces/{namespace}/horizontalpodautoscalers/{name
 
 
 200 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v1#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v1#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): Created
 
 401: Unauthorized
 

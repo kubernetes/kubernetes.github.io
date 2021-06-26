@@ -492,6 +492,8 @@ PATCH /api/v1/namespaces/{name}
 
 200 (<a href="{{< ref "../cluster-resources/namespace-v1#Namespace" >}}">Namespace</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/namespace-v1#Namespace" >}}">Namespace</a>): Created
+
 401: Unauthorized
 
 
@@ -539,6 +541,8 @@ PATCH /api/v1/namespaces/{name}/status
 
 
 200 (<a href="{{< ref "../cluster-resources/namespace-v1#Namespace" >}}">Namespace</a>): OK
+
+201 (<a href="{{< ref "../cluster-resources/namespace-v1#Namespace" >}}">Namespace</a>): Created
 
 401: Unauthorized
 

@@ -630,6 +630,8 @@ PATCH /apis/certificates.k8s.io/v1/certificatesigningrequests/{name}
 
 200 (<a href="{{< ref "../authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" >}}">CertificateSigningRequest</a>): OK
 
+201 (<a href="{{< ref "../authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" >}}">CertificateSigningRequest</a>): Created
+
 401: Unauthorized
 
 
@@ -678,6 +680,8 @@ PATCH /apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/approval
 
 200 (<a href="{{< ref "../authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" >}}">CertificateSigningRequest</a>): OK
 
+201 (<a href="{{< ref "../authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" >}}">CertificateSigningRequest</a>): Created
+
 401: Unauthorized
 
 
@@ -725,6 +729,8 @@ PATCH /apis/certificates.k8s.io/v1/certificatesigningrequests/{name}/status
 
 
 200 (<a href="{{< ref "../authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" >}}">CertificateSigningRequest</a>): OK
+
+201 (<a href="{{< ref "../authentication-resources/certificate-signing-request-v1#CertificateSigningRequest" >}}">CertificateSigningRequest</a>): Created
 
 401: Unauthorized
 

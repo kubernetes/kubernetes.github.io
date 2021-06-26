@@ -469,6 +469,8 @@ PATCH /apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{nam
 
 200 (<a href="{{< ref "../extend-resources/validating-webhook-configuration-v1#ValidatingWebhookConfiguration" >}}">ValidatingWebhookConfiguration</a>): OK
 
+201 (<a href="{{< ref "../extend-resources/validating-webhook-configuration-v1#ValidatingWebhookConfiguration" >}}">ValidatingWebhookConfiguration</a>): Created
+
 401: Unauthorized
 
 

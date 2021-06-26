@@ -444,6 +444,8 @@ PATCH /apis/rbac.authorization.k8s.io/v1/namespaces/{namespace}/rolebindings/{na
 
 200 (<a href="{{< ref "../authorization-resources/role-binding-v1#RoleBinding" >}}">RoleBinding</a>): OK
 
+201 (<a href="{{< ref "../authorization-resources/role-binding-v1#RoleBinding" >}}">RoleBinding</a>): Created
+
 401: Unauthorized
 
 

@@ -109,7 +109,7 @@ IngressSpec describes the Ingress the user wishes to exist.
 
       - **rules.http.paths.path** (string)
 
-        Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.
+        Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value "Exact" or "Prefix".
 
       - **rules.http.paths.pathType** (string)
 
@@ -685,6 +685,8 @@ PATCH /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}
 
 200 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): OK
 
+201 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): Created
+
 401: Unauthorized
 
 
@@ -737,6 +739,8 @@ PATCH /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status
 
 
 200 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): OK
+
+201 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): Created
 
 401: Unauthorized
 

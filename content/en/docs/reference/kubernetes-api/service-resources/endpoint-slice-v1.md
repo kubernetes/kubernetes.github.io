@@ -505,6 +505,8 @@ PATCH /apis/discovery.k8s.io/v1/namespaces/{namespace}/endpointslices/{name}
 
 200 (<a href="{{< ref "../service-resources/endpoint-slice-v1#EndpointSlice" >}}">EndpointSlice</a>): OK
 
+201 (<a href="{{< ref "../service-resources/endpoint-slice-v1#EndpointSlice" >}}">EndpointSlice</a>): Created
+
 401: Unauthorized
 
 

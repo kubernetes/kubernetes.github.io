@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "ReplicaSet ensures that a specified number of pod replicas are running at any given time."
 title: "ReplicaSet"
-weight: 5
+weight: 4
 auto_generated: true
 ---
 
@@ -581,6 +581,8 @@ PATCH /apis/apps/v1/namespaces/{namespace}/replicasets/{name}
 
 200 (<a href="{{< ref "../workload-resources/replica-set-v1#ReplicaSet" >}}">ReplicaSet</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/replica-set-v1#ReplicaSet" >}}">ReplicaSet</a>): Created
+
 401: Unauthorized
 
 
@@ -633,6 +635,8 @@ PATCH /apis/apps/v1/namespaces/{namespace}/replicasets/{name}/status
 
 
 200 (<a href="{{< ref "../workload-resources/replica-set-v1#ReplicaSet" >}}">ReplicaSet</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/replica-set-v1#ReplicaSet" >}}">ReplicaSet</a>): Created
 
 401: Unauthorized
 

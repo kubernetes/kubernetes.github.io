@@ -604,6 +604,8 @@ PATCH /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}
 
 200 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-claim-v1#PersistentVolumeClaim" >}}">PersistentVolumeClaim</a>): OK
 
+201 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-claim-v1#PersistentVolumeClaim" >}}">PersistentVolumeClaim</a>): Created
+
 401: Unauthorized
 
 
@@ -656,6 +658,8 @@ PATCH /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status
 
 
 200 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-claim-v1#PersistentVolumeClaim" >}}">PersistentVolumeClaim</a>): OK
+
+201 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-claim-v1#PersistentVolumeClaim" >}}">PersistentVolumeClaim</a>): Created
 
 401: Unauthorized
 

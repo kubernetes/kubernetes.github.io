@@ -555,6 +555,8 @@ PATCH /api/v1/namespaces/{namespace}/resourcequotas/{name}
 
 200 (<a href="{{< ref "../policy-resources/resource-quota-v1#ResourceQuota" >}}">ResourceQuota</a>): OK
 
+201 (<a href="{{< ref "../policy-resources/resource-quota-v1#ResourceQuota" >}}">ResourceQuota</a>): Created
+
 401: Unauthorized
 
 
@@ -607,6 +609,8 @@ PATCH /api/v1/namespaces/{namespace}/resourcequotas/{name}/status
 
 
 200 (<a href="{{< ref "../policy-resources/resource-quota-v1#ResourceQuota" >}}">ResourceQuota</a>): OK
+
+201 (<a href="{{< ref "../policy-resources/resource-quota-v1#ResourceQuota" >}}">ResourceQuota</a>): Created
 
 401: Unauthorized
 

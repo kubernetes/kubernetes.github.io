@@ -40,6 +40,7 @@ APIService represents a server for a particular GroupVersion. Name must be "vers
 
 - **metadata** (<a href="{{< ref "../common-definitions/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
 
+  Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
 - **spec** (<a href="{{< ref "../cluster-resources/api-service-v1#APIServiceSpec" >}}">APIServiceSpec</a>)
 
@@ -166,9 +167,11 @@ APIServiceList is a list of APIService objects.
 
 - **metadata** (<a href="{{< ref "../common-definitions/list-meta#ListMeta" >}}">ListMeta</a>)
 
+  Standard list metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
 - **items** ([]<a href="{{< ref "../cluster-resources/api-service-v1#APIService" >}}">APIService</a>), required
 
+  Items is the list of APIService
 
 
 
@@ -486,6 +489,8 @@ PATCH /apis/apiregistration.k8s.io/v1/apiservices/{name}
 
 200 (<a href="{{< ref "../cluster-resources/api-service-v1#APIService" >}}">APIService</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/api-service-v1#APIService" >}}">APIService</a>): Created
+
 401: Unauthorized
 
 
@@ -533,6 +538,8 @@ PATCH /apis/apiregistration.k8s.io/v1/apiservices/{name}/status
 
 
 200 (<a href="{{< ref "../cluster-resources/api-service-v1#APIService" >}}">APIService</a>): OK
+
+201 (<a href="{{< ref "../cluster-resources/api-service-v1#APIService" >}}">APIService</a>): Created
 
 401: Unauthorized
 

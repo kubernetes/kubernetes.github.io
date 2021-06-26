@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "Deployment enables declarative updates for Pods and ReplicaSets."
 title: "Deployment"
-weight: 6
+weight: 5
 auto_generated: true
 ---
 
@@ -40,7 +40,7 @@ Deployment enables declarative updates for Pods and ReplicaSets.
 
 - **metadata** (<a href="{{< ref "../common-definitions/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
 
-  Standard object metadata.
+  Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
 - **spec** (<a href="{{< ref "../workload-resources/deployment-v1#DeploymentSpec" >}}">DeploymentSpec</a>)
 
@@ -642,6 +642,8 @@ PATCH /apis/apps/v1/namespaces/{namespace}/deployments/{name}
 
 200 (<a href="{{< ref "../workload-resources/deployment-v1#Deployment" >}}">Deployment</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/deployment-v1#Deployment" >}}">Deployment</a>): Created
+
 401: Unauthorized
 
 
@@ -694,6 +696,8 @@ PATCH /apis/apps/v1/namespaces/{namespace}/deployments/{name}/status
 
 
 200 (<a href="{{< ref "../workload-resources/deployment-v1#Deployment" >}}">Deployment</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/deployment-v1#Deployment" >}}">Deployment</a>): Created
 
 401: Unauthorized
 
