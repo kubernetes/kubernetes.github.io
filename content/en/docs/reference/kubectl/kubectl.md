@@ -328,7 +328,31 @@ kubectl [flags]
 </tbody>
 </table>
 
+## {{% heading "envvars" %}}
 
+   <table style="width: 100%; table-layout: fixed;">
+<colgroup>
+<col span="1" style="width: 10px;" />
+<col span="1" />
+</colgroup>
+<tbody>
+
+<tr>
+<td colspan="2">KUBECONFIG</td>
+</tr>
+<tr>
+<td></td><td style="line-height: 130%; word-wrap: break-word;">Path to the kubectl configuration ("kubeconfig") file. Default: "$HOME/.kube/config"</td>
+</tr>
+
+<tr>
+<td colspan="2">KUBECTL_COMMAND_HEADERS</td>
+</tr>
+<tr>
+<td></td><td style="line-height: 130%; word-wrap: break-word;">When set to false, turns off extra HTTP headers detailing invoked kubectl command (Kubernetes version v1.22 or later)</td>
+</tr>
+
+</tbody>
+</table>
 
 ## {{% heading "seealso" %}}
 
