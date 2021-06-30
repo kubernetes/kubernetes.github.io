@@ -71,6 +71,20 @@ Flags that you specify from the command line override default values and any cor
 
 If you need help, run `kubectl help` from the terminal window.
 
+## In-Cluster Auth, Namespace Defaulting
+
+If you are running `kubectl` within a pod, and thus in a cluster, the cli attempts to scope CLI commands to the pod's namespace. 
+
+**POD_NAMESPACE Environment Variable**
+
+If the `POD_NAMESPACE` environment variable is set, cli operations on namespaced resources will default to the variable value. For example, if the variable is set to `seattle`, `kubectl get pods` would return pods in the `seattle` namespace. This is because pods are a namespaced resource, and no namespace was provided in the command. Review the output of `kubectl api-resources` to determine if a resource is namespaced. 
+
+Explicit use of `--namespace <value>` overrides this behavior. 
+
+**Service Account**
+
+If a pod has a service account token file mounted at "/var/run/secrets/kubernetes.io/serviceaccount/token", then `kubectl` uses the pod's namespace by default. Additionally, the KUBERNETES_SERVICE_HOST and KUBERNETES_SERVICE_PORT environment variables must be set.
+
 ## Operations
 
 The following table includes short descriptions and the general syntax for all of the `kubectl` operations:
