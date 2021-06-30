@@ -124,7 +124,7 @@ beta features must be enabled.
 {{< feature-state for_k8s_version="v1.17" state="alpha" >}}
 
 To disable the `awsElasticBlockStore` storage plugin from being loaded by the controller manager
-and the kubelet, set the `CSIMigrationAWSComplete` flag to `true`. This feature requires the `ebs.csi.aws.com` Container Storage Interface (CSI) driver installed on all worker nodes.
+and the kubelet, set the `InTreePluginAWSUnregister` flag to `true`.
 
 ### azureDisk {#azuredisk}
 
@@ -462,7 +462,8 @@ spec:
     required:
       nodeSelectorTerms:
       - matchExpressions:
-        - key: failure-domain.beta.kubernetes.io/zone
+        # failure-domain.beta.kubernetes.io/zone should be used prior to 1.21
+        - key: topology.kubernetes.io/zone
           operator: In
           values:
           - us-central1-a
@@ -479,6 +480,13 @@ Storage Interface (CSI) Driver. In order to use this feature, the [GCE PD CSI
 Driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
 must be installed on the cluster and the `CSIMigration` and `CSIMigrationGCE`
 beta features must be enabled.
+
+#### GCE CSI migration complete
+
+{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+
+To disable the `gcePersistentDisk` storage plugin from being loaded by the controller manager
+and the kubelet, set the `InTreePluginGCEUnregister` flag to `true`.
 
 ### gitRepo (deprecated) {#gitrepo}
 
@@ -1165,7 +1173,7 @@ but new volumes created by the vSphere CSI driver will not be honoring these par
 
 {{< feature-state for_k8s_version="v1.19" state="beta" >}}
 
-To turn off the `vsphereVolume` plugin from being loaded by the controller manager and the kubelet, you need to set this feature flag to `true`. You must install a `csi.vsphere.vmware.com` {{< glossary_tooltip text="CSI" term_id="csi" >}} driver on all worker nodes.
+To turn off the `vsphereVolume` plugin from being loaded by the controller manager and the kubelet, you need to set `InTreePluginvSphereUnregister` feature flag to `true`. You must install a `csi.vsphere.vmware.com` {{< glossary_tooltip text="CSI" term_id="csi" >}} driver on all worker nodes.
 
 ## Using subPath {#using-subpath}
 
