@@ -1,0 +1,181 @@
+{{/* Kubernetes major version is hard-coded as 1 */}}
+{{/* for simplicity. Will need revising if major */}}
+{{/* version is bumped above 1                   */}}
+{{- $valid_exclusions := (slice "stable" "deprecated" "unstable") -}}
+{{ $state_excludes := slice }}
+{{ if .Get "exclude" }}
+ {{ $state_excludes = (intersect $valid_exclusions (split (.Get "exclude" ) " ") | sort ) }}
+{{ end }}
+<table>
+  <caption>{{ .Inner }}</caption>
+  <colgroup>
+     <col class="feature-name" width="50%">
+     <col span="5" class="feature-multi-details">
+  </colgroup>
+  <thead>
+   <tr>
+     <th>{{ T "feature_heading_name" }}</th>
+     <th>{{ T "feature_heading_default" }}</th>
+     <th>{{ T "feature_heading_stage" }}</th>
+     <th>{{ T "feature_heading_since" }}</th>
+     <th>{{ T "feature_heading_until" }}</th>
+   </tr>
+  </thead>
+  <tbody>
+  {{- range $featureGate := sort $.Site.Data.features.featureList.featureGateList "name" -}}
+    {{- range $versionUnderConsideration := (seq 1 (int (index (split ( site.Params.version ) "." ) 1 ) ) ) -}}
+    {{/* hide final states when not enabled */}}
+    {{ if (or (not (in $state_excludes "unstable" ))   (or (isset $featureGate "stable" ) (isset $featureGate "deprecated" ) ) ) }}
+    {{ if (or (not (in $state_excludes "stable" ))     (not (isset $featureGate "stable" ))) }}
+    {{ if (or (not (in $state_excludes "deprecated" )) (not (isset $featureGate "deprecated" ))) }}
+      {{/* render rows for feature, ordered by stage */}}
+      {{ if eq (index (split $featureGate.alpha.fromVersion "." ) 1) (printf "%d" $versionUnderConsideration )}}
+  <tr class="feature-stage-row" data-featurestage="alpha">
+   <td>
+    <tt data-featuregatename="{{ $featureGate.name }}">{{ $featureGate.name }}</tt>
+   </td>
+   {{- with $featureGate.alpha -}}
+   {{- if (default false .state) -}}
+   <td class="feature-state" data-featurestate="true">
+       {{- T "feature_enabled" -}}
+   </td>
+   {{- else -}}
+   <td class="feature-state" data-featurestate="false">
+       {{- T "feature_disabled" -}}
+   </td>
+   {{- end -}}
+   {{- end -}}
+   <td class="feature-stage" data-featurestage="alpha">{{ T "feature_stage_alpha" }}</td>
+   <td>{{ trim $featureGate.alpha.fromVersion "v" }}</td>
+   <td>
+       {{- if and (isset $featureGate "deprecated") (not (isset $featureGate "beta" )) -}}
+         {{- printf "1.%d" (sub (int (index (split $featureGate.deprecated.fromVersion "." ) 1) ) 1)  -}}
+       {{end}}
+       {{- if and (isset $featureGate "beta") (not (isset $featureGate "deprecated" )) -}}
+         {{- printf "1.%d" (sub (int (index (split $featureGate.beta.fromVersion "." ) 1) ) 1)  -}}
+       {{end}}
+       {{- if and (isset $featureGate "beta") ((isset $featureGate "deprecated" )) -}}
+         {{- printf "1.%d"
+         (sub (index (sort (
+           (int (index (split $featureGate.beta.fromVersion "." ) 1) )
+           (int (index (split $featureGate.deprecated.fromVersion "." ) 1) )
+          ) ) )
+         1)
+       -}}
+       {{end}}
+   </td>
+  </tr>
+      {{- end -}}
+      {{- if eq (index (split $featureGate.beta.fromVersion "." ) 1) (printf "%d" $versionUnderConsideration ) -}}
+  <tr class="feature-stage-row" data-featurestage="beta">
+   <td>
+    <tt data-featuregatename="{{ $featureGate.name }}">{{ $featureGate.name }}</tt>
+   </td>
+   {{- with $featureGate.beta -}}
+   {{- if (default true .state) -}}
+   <td class="feature-state" data-featurestate="true">
+       {{- T "feature_enabled" -}}
+   </td>
+   {{- else -}}
+   <td class="feature-state" data-featurestate="false">
+       {{- T "feature_disabled" -}}
+   </td>
+   {{- end -}}
+   {{- end -}}
+   <td class="feature-stage" data-featurestage="beta">{{T "feature_stage_beta" }}</td>
+   <td>{{ trim $featureGate.beta.fromVersion "v" }}</td>
+   <td>
+     {{- if (isset $featureGate.beta "enabledFromVersion") -}}
+       {{- printf "1.%d" (sub (int (index (split $featureGate.beta.enabledFromVersion "." ) 1) ) 1)  -}}
+     {{- else -}}
+       {{- if and (isset $featureGate "deprecated") (not (isset $featureGate "stable" )) -}}
+         {{- printf "1.%d" (sub (int (index (split $featureGate.deprecated.fromVersion "." ) 1) ) 1)  -}}
+       {{end}}
+       {{- if and (isset $featureGate "stable") (not (isset $featureGate "deprecated" )) -}}
+         {{- printf "1.%d" (sub (int (index (split $featureGate.stable.fromVersion "." ) 1) ) 1)  -}}
+       {{end}}
+       {{- if and (isset $featureGate "stable") ((isset $featureGate "deprecated" )) -}}
+         {{- printf "1.%d"
+         (sub (index (sort (
+           (int (index (split $featureGate.stable.fromVersion "." ) 1) )
+           (int (index (split $featureGate.deprecated.fromVersion "." ) 1) )
+          ) ) )
+         1)
+       -}}
+       {{- end -}}
+     {{- end -}}
+   </td>
+  </tr>
+  {{- if (isset $featureGate.beta "enabledFromVersion") -}}
+  <tr class="feature-stage-row" data-featurestage="beta">
+   <td>
+    <tt data-featuregatename="{{ $featureGate.name }}">{{ $featureGate.name }}</tt>
+   </td>
+   <td class="feature-state" data-featurestate="true">
+       {{- T "feature_enabled" -}}
+   </td>
+   <td class="feature-stage" data-featurestage="beta">{{T "feature_stage_beta" }}</td>
+   <td>{{ trim $featureGate.beta.enabledFromVersion "v" }}</td>
+   <td>
+       {{- if and (isset $featureGate "deprecated") (not (isset $featureGate "stable" )) -}}
+         {{- printf "1.%d" (sub (int (index (split $featureGate.deprecated.fromVersion "." ) 1) ) 1)  -}}
+       {{end}}
+       {{- if and (isset $featureGate "stable") (not (isset $featureGate "deprecated" )) -}}
+         {{- printf "1.%d" (sub (int (index (split $featureGate.stable.fromVersion "." ) 1) ) 1)  -}}
+       {{end}}
+       {{- if and (isset $featureGate "stable") ((isset $featureGate "deprecated" )) -}}
+         {{- printf "1.%d"
+         (sub (index (sort (
+           (int (index (split $featureGate.stable.fromVersion "." ) 1) )
+           (int (index (split $featureGate.deprecated.fromVersion "." ) 1) )
+          ) ) )
+         1)
+       -}}
+       {{- end -}}
+   </td>
+  </tr>
+
+  {{- end -}}
+      {{- end -}}
+      {{- if eq (index (split $featureGate.stable.fromVersion "." ) 1) (printf "%d" $versionUnderConsideration ) -}}
+  <tr class="feature-stage-row" data-featurestage="stable">
+   <td>
+    <tt data-featuregatename="{{ $featureGate.name }}">{{ $featureGate.name }}</tt>
+   </td>
+   <td class="feature-state" data-featurestate="true">
+       {{- T "feature_enabled" -}}
+   </td>
+   <td class="feature-stage" data-featurestage="stable">{{ T "feature_stage_stable" }}</td>
+   <td>{{ trim $featureGate.stable.fromVersion "v" }}</td>
+   <td>
+       {{- if (not (isset $featureGate "deprecated" )) -}}
+       {{- T "feature_omitted" -}}
+       {{- end -}}
+       {{ if (isset $featureGate "deprecated" ) -}}
+         {{- trim $featureGate.deprecated.fromVersion "v" -}}
+       {{end}}
+   </td>
+  </tr>
+      {{- end -}}
+      {{ if eq (index (split $featureGate.deprecated.fromVersion "." ) 1) (printf "%d" $versionUnderConsideration )}}
+  <tr class="feature-stage-row" data-featurestage="deprecated">
+   <td>
+    <tt data-featuregatename="{{ $featureGate.name }}">{{ $featureGate.name }}</tt>
+   </td>
+   <td>
+      {{- T "feature_omitted" -}}
+   </td>
+   <td class="feature-stage" data-featurestage="deprecated">{{ T "feature_stage_deprecated" }}</td>
+   <td>
+         {{- trim $featureGate.deprecated.fromVersion "v" -}}
+   </td>
+   <td>-</td>
+  </tr>
+      {{- end -}}
+      {{- end -}}
+      {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  </tbody>
+</table>

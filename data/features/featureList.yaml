@@ -1,0 +1,891 @@
+## Annotated examples
+## Just for documentation, not used by code. Please leave intact.
+examples:
+
+  # A feature gate that is alpha, enabled, and still configurable
+- name: ExampleFeature1
+  alpha:
+    fromVersion: v1.3
+    state: true # override the default state for this stage (false)
+  deprecated:
+    fromVersion: v1.18
+
+  # An experiment that didn't work out. After a while in alpha, it
+  # was deprecated and can no longer be enabled.
+- name: ExampleFeature2
+  alpha:
+    fromVersion: v1.15
+  deprecated:
+    fromVersion: v1.18
+
+  # A feature gate that is no longer available. This started as a
+  # beta featured but, unusually, one that was initially disabled
+  # by default.
+  # Later, it was enabled by default (still beta), eventually
+  # graduating to general availability.
+- name: ExampleFeature3
+  beta:
+    fromVersion: v1.4
+    state: false #
+    enabledFromVersion: v1.5
+  stable:
+    fromVersion: v1.7
+
+featureGateList:
+# Sorted alphabetically
+- name: Accelerators
+  alpha:
+    fromVersion: v1.6
+  deprecated:
+    fromVersion: v1.11
+- name: AdvancedAuditing
+  alpha:
+    fromVersion: v1.7
+  beta:
+    fromVersion: v1.8
+  stable:
+    fromVersion: v1.12
+- name: AffinityInAnnotations
+  alpha:
+    fromVersion: v1.6
+  deprecated:
+    fromVersion: v1.8
+- name: AllowInsecureBackendProxy
+  beta:
+    fromVersion: v1.17
+- name: AllowExtTrafficLocalEndpoints
+  beta:
+    fromVersion: v1.4
+    state: false
+  stable:
+    fromVersion: v1.7
+- name: AnyVolumeDataSource
+  alpha:
+    fromVersion: v1.18
+- name: APIListChunking
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.9
+- name: APIPriorityAndFairness
+  alpha:
+    fromVersion: v1.17
+  beta:
+    fromVersion: v1.20
+- name: APIResponseCompression
+  alpha:
+    fromVersion: v1.7
+  beta:
+    fromVersion: v1.16
+- name: APIServerIdentity
+  alpha:
+    fromVersion: v1.20
+- name: AppArmor
+  beta:
+    fromVersion: v1.4
+- name: AttachVolumeLimit
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.17
+- name: BalanceAttachedNodeVolumes
+  alpha:
+    fromVersion: v1.11
+- name: BlockVolume
+  alpha:
+    fromVersion: v1.9
+  beta:
+    fromVersion: v1.13
+  stable:
+    fromVersion: v1.18
+- name: BoundServiceAccountTokenVolume
+  alpha:
+    fromVersion: v1.13
+  beta:
+    fromVersion: v1.21
+- name: ConfigurableFSGroupPolicy
+  alpha:
+    fromVersion: v1.18
+  beta:
+    fromVersion: v1.20
+- name: CPUManager
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.10
+- name: CRIContainerLogRotation
+  alpha:
+    fromVersion: v1.10
+  beta:
+    fromVersion: v1.11
+  stable:
+    fromVersion: v1.21
+- name: CronJobControllerV2
+  alpha:
+    fromVersion: v1.20
+  beta:
+    fromVersion: v1.21
+- name: CSIBlockVolume
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.14
+  stable:
+    fromVersion: v1.18
+- name: CSIDriverRegistry
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.14
+  stable:
+    fromVersion: v1.18
+- name: CSIInlineVolume
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.16
+- name: CSIMigration
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.17
+- name: CSIMigrationAWS
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.17
+    state: false
+- name: CSIMigrationAWSComplete
+  alpha:
+    fromVersion: v1.17
+- name: CSIMigrationAzureDisk
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.19
+    state: false
+- name: CSIMigrationAzureDiskComplete
+  alpha:
+    fromVersion: v1.17
+- name: CSIMigrationAzureFile
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.21
+    state: false
+- name: CSIMigrationAzureFileComplete
+  alpha:
+    fromVersion: v1.17
+- name: CSIMigrationGCE
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.17
+    state: false
+- name: CSIMigrationGCEComplete
+  alpha:
+    fromVersion: v1.17
+- name: CSIMigrationOpenStack
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.18
+- name: CSIMigrationOpenStackComplete
+  alpha:
+    fromVersion: v1.17
+- name: CSIMigrationvSphere
+  beta:
+    fromVersion: v1.19
+    state: false
+- name: CSIMigrationvSphereComplete
+  beta:
+    fromVersion: v1.19
+    state: false
+- name: CSINodeInfo
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.14
+  stable:
+    fromVersion: v1.17
+- name: CSIPersistentVolume
+  alpha:
+    fromVersion: v1.9
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.13
+- name: CSIServiceAccountToken
+  alpha:
+    fromVersion: v1.20
+  beta:
+    fromVersion: v1.21
+- name: CSIStorageCapacity
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.21
+- name: CSIVolumeFSGroupPolicy
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.20
+- name: CSIVolumeHealth
+  alpha:
+    fromVersion: v1.21
+- name: CustomCPUCFSQuotaPeriod
+  alpha:
+    fromVersion: v1.12
+- name: CustomPodDNS
+  alpha:
+    fromVersion: v1.9
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.14
+- name: CustomResourceDefaulting
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.16
+  stable:
+    fromVersion: v1.17
+- name: CustomResourcePublishOpenAPI
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.15
+  stable:
+    fromVersion: v1.16
+- name: CustomResourceSubresources
+  alpha:
+    fromVersion: v1.10
+  beta:
+    fromVersion: v1.11
+  stable:
+    fromVersion: v1.16
+- name: CustomResourceValidation
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.9
+  stable:
+    fromVersion: v1.16
+- name: CustomResourceWebhookConversion
+  alpha:
+    fromVersion: v1.13
+  beta:
+    fromVersion: v1.15
+  stable:
+    fromVersion: v1.16
+- name: DefaultPodTopologySpread
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.20
+- name: DevicePlugins
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.10
+- name: DisableAcceleratorUsageMetrics
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.20
+- name: DownwardAPIHugePages
+  alpha:
+    fromVersion: v1.20
+  beta:
+    fromVersion: v1.21
+    state: false
+- name: DryRun
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.13
+  stable:
+    fromVersion: v1.19
+- name: DynamicAuditing
+  alpha:
+    fromVersion: v1.13
+  deprecated:
+    fromVersion: v1.19
+- name: DynamicKubeletConfig
+  alpha:
+    fromVersion: v1.4
+  beta:
+    fromVersion: v1.11
+- name: DynamicProvisioningScheduling
+  alpha:
+    fromVersion: v1.11
+  deprecated:
+    fromVersion: v|
+- name: DynamicVolumeProvisioning
+  alpha:
+    fromVersion: v1.3
+    state: true
+  stable:
+    fromVersion: v1.8
+- name: EfficientWatchResumption
+  alpha:
+    fromVersion: v1.20
+- name: EnableAggregatedDiscoveryTimeout
+  deprecated:
+    fromVersion: v1.16
+- name: EnableEquivalenceClassCache
+  alpha:
+    fromVersion: v1.8
+  deprecated:
+    fromVersion: v1.15
+- name: EndpointSlice
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.17
+    state: false # see next line!
+    enabledFromVersion: 1.18
+  stable:
+    fromVersion: v1.21
+- name: EndpointSliceNodeName
+  alpha:
+    fromVersion: v1.20
+  stable:
+    fromVersion: v1.21
+- name: EndpointSliceProxying
+  alpha:
+    fromVersion: v1.18
+  beta:
+    fromVersion: v1.19
+- name: EndpointSliceTerminatingCondition
+  alpha:
+    fromVersion: v1.20
+- name: EphemeralContainers
+  alpha:
+    fromVersion: v1.16
+- name: EvenPodsSpread
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.18
+  stable:
+    fromVersion: v1.19
+- name: ExpandCSIVolumes
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.16
+- name: ExpandInUsePersistentVolumes
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.15
+- name: ExpandPersistentVolumes
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.11
+- name: ExperimentalCriticalPodAnnotation
+  alpha:
+    fromVersion: v1.5
+  deprecated:
+    fromVersion: v1.13
+- name: ExperimentalHostUserNamespaceDefaulting
+  beta:
+    fromVersion: v1.5
+    state: false
+- name: GenericEphemeralVolume
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.21
+- name: GracefulNodeShutdown
+  alpha:
+    fromVersion: v1.20
+  beta:
+    fromVersion: v1.21
+- name: HPAContainerMetrics
+  alpha:
+    fromVersion: v1.20
+- name: HPAScaleToZero
+  alpha:
+    fromVersion: v1.16
+- name: HugePages
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.14
+- name: HugePageStorageMediumSize
+  alpha:
+    fromVersion: v1.18
+  beta:
+    fromVersion: v1.19
+- name: HyperVContainer
+  alpha:
+    fromVersion: v1.10
+  deprecated:
+    fromVersion: v1.20
+- name: ImmutableEphemeralVolumes
+  alpha:
+    fromVersion: v1.18
+  beta:
+    fromVersion: v1.19
+  stable:
+    fromVersion: v1.21
+- name: IndexedJob
+  alpha:
+    fromVersion: v1.21
+- name: IngressClassNamespacedParams
+  alpha:
+    fromVersion: v1.21
+- name: Initializers
+  alpha:
+    fromVersion: v1.7
+  deprecated:
+    fromVersion: v1.14
+- name: IPv6DualStack
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.21
+- name: KubeletConfigFile
+  alpha:
+    fromVersion: v1.8
+  deprecated:
+    fromVersion: v1.10
+- name: KubeletCredentialProviders
+  alpha:
+    fromVersion: v1.20
+- name: KubeletPluginsWatcher
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.13
+- name: KubeletPodResources
+  alpha:
+    fromVersion: v1.13
+  beta:
+    fromVersion: v1.15
+  stable:
+    fromVersion: v1.20
+- name: KubeletPodResourcesGetAllocatable
+  alpha:
+    fromVersion: v1.21
+- name: LegacyNodeRoleBehavior
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.19
+  stable:
+    fromVersion: v1.21
+- name: LocalStorageCapacityIsolation
+  alpha:
+    fromVersion: v1.7
+  beta:
+    fromVersion: v1.10
+- name: LocalStorageCapacityIsolationFSQuotaMonitoring
+  alpha:
+    fromVersion: v1.15
+- name: LogarithmicScaleDown
+  alpha:
+    fromVersion: v1.21
+- name: MixedProtocolLBService
+  alpha:
+    fromVersion: v1.20
+- name: MountContainers
+  alpha:
+    fromVersion: v1.9
+  deprecated:
+    fromVersion: v1.17
+- name: MountPropagation
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.12
+- name: NamespaceDefaultLabelName
+  beta:
+    fromVersion: v1.21
+- name: NetworkPolicyEndPort
+  alpha:
+    fromVersion: v1.21
+- name: NodeDisruptionExclusion
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.19
+  stable:
+    fromVersion: v1.21
+- name: NodeLease
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.14
+  stable:
+    fromVersion: v1.17
+- name: NonPreemptingPriority
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.19
+- name: PersistentLocalVolumes
+  alpha:
+    fromVersion: v1.7
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.14
+- name: PodAffinityNamespaceSelector
+  alpha:
+    fromVersion: v1.21
+- name: PodDeletionCost
+  alpha:
+    fromVersion: v1.21
+- name: PodDisruptionBudget
+  alpha:
+    fromVersion: v1.3
+  beta:
+    fromVersion: v1.5
+  stable:
+    fromVersion: v1.21
+- name: PodOverhead
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.18
+- name: PodPriority
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.11
+  stable:
+    fromVersion: v1.14
+- name: PodReadinessGates
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.14
+- name: PodShareProcessNamespace
+  alpha:
+    fromVersion: v1.10
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.17
+- name: ProbeTerminationGracePeriod
+  alpha:
+    fromVersion: v1.21
+- name: ProcMountType
+  alpha:
+    fromVersion: v1.12
+- name: PVCProtection
+  alpha:
+    fromVersion: v1.9
+  deprecated:
+    fromVersion: v1.10
+- name: QOSReserved
+  alpha:
+    fromVersion: v1.11
+- name: RemainingItemCount
+  alpha:
+    fromVersion: v1.15
+- name: RemoveSelfLink
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.20
+- name: RequestManagement
+  alpha:
+    fromVersion: v1.15
+  deprecated:
+    fromVersion: v1.17
+- name: ResourceLimitsPriorityFunction
+  alpha:
+    fromVersion: v1.9
+  deprecated:
+    fromVersion: v1.19
+- name: ResourceQuotaScopeSelectors
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.17
+- name: RootCAConfigMap
+  alpha:
+    fromVersion: v1.13
+  beta:
+    fromVersion: v1.20
+  stable:
+    fromVersion: v1.21
+- name: RotateKubeletClientCertificate
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.19
+- name: RotateKubeletServerCertificate
+  alpha:
+    fromVersion: v1.7
+  stable:
+    fromVersion: v1.12
+- name: RunAsGroup
+  beta:
+    fromVersion: v1.14
+- name: RuntimeClass
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.14
+  stable:
+    fromVersion: v1.20
+- name: ScheduleDaemonSetPods
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.17
+- name: SCTPSupport
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.19
+  stable:
+    fromVersion: v1.20
+- name: ServerSideApply
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.16
+- name: ServiceAccountIssuerDiscovery
+  alpha:
+    fromVersion: v1.18
+  beta:
+    fromVersion: v1.20
+  stable:
+    fromVersion: v1.21
+- name: ServiceAppProtocol
+  alpha:
+    fromVersion: v1.18
+  beta:
+    fromVersion: v1.19
+  stable:
+    fromVersion: v1.20
+- name: ServiceInternalTrafficPolicy
+  alpha:
+    fromVersion: v1.21
+- name: ServiceLBNodePortControl
+  alpha:
+    fromVersion: v1.20
+- name: ServiceLoadBalancerClass
+  alpha:
+    fromVersion: v1.21
+- name: ServiceLoadBalancerFinalizer
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.16
+  stable:
+    fromVersion: v1.17
+- name: ServiceNodeExclusion
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.19
+  stable:
+    fromVersion: v1.21
+- name: ServiceTopology
+  alpha:
+    fromVersion: v1.17
+- name: SetHostnameAsFQDN
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.20
+- name: SizeMemoryBackedVolumes
+  alpha:
+    fromVersion: v1.20
+- name: StartupProbe
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.18
+  stable:
+    fromVersion: v1.20
+- name: StorageObjectInUseProtection
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.11
+- name: StorageVersionAPI
+  alpha:
+    fromVersion: v1.20
+- name: StorageVersionHash
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.15
+- name: StreamingProxyRedirects
+  beta:
+    fromVersion: v1.5
+    state: false # see next line!
+    enabledFromVersion: 1.6
+  stable:
+    fromVersion: v1.19
+- name: SupportIPVSProxyMode
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.9
+    state: false # see next line!
+    enabledFromVersion: 1.10
+  stable:
+    fromVersion: v1.11
+- name: SupportNodePidsLimit
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.15
+  stable:
+    fromVersion: v1.20
+- name: SupportPodPidsLimit
+  alpha:
+    fromVersion: v1.10
+  beta:
+    fromVersion: v1.14
+  stable:
+    fromVersion: v1.20
+- name: SuspendJob
+  alpha:
+    fromVersion: v1.21
+- name: Sysctls
+  beta:
+    fromVersion: v1.11
+  stable:
+    fromVersion: v1.21
+- name: TaintBasedEvictions
+  alpha:
+    fromVersion: v1.6
+  beta:
+    fromVersion: v1.13
+  stable:
+    fromVersion: v1.18
+- name: TaintNodesByCondition
+  alpha:
+    fromVersion: v1.8
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.17
+- name: TokenRequest
+  alpha:
+    fromVersion: v1.10
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.20
+- name: TokenRequestProjection
+  alpha:
+    fromVersion: v1.11
+  beta:
+    fromVersion: v1.12
+  stable:
+    fromVersion: v1.20
+- name: TopologyAwareHints
+  alpha:
+    fromVersion: v1.21
+- name: TopologyManager
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.18
+- name: TTLAfterFinished
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.21
+- name: ValidateProxyRedirects
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.14
+- name: VolumeCapacityPriority
+  alpha:
+    fromVersion: v1.21
+- name: VolumePVCDataSource
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.16
+  stable:
+    fromVersion: v1.18
+- name: VolumeScheduling
+  alpha:
+    fromVersion: v1.9
+  beta:
+    fromVersion: v1.10
+  stable:
+    fromVersion: v1.13
+- name: VolumeSnapshotDataSource
+  alpha:
+    fromVersion: v1.12
+  beta:
+    fromVersion: v1.17
+  stable:
+    fromVersion: v1.20
+- name: VolumeSubPath
+  stable:
+    fromVersion: v1.10
+- name: VolumeSubpathEnvExpansion
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.15
+  stable:
+    fromVersion: v1.17
+- name: WarningHeaders
+  beta:
+    fromVersion: v1.19
+- name: WatchBookmark
+  alpha:
+    fromVersion: v1.15
+  beta:
+    fromVersion: v1.16
+  stable:
+    fromVersion: v1.17
+- name: WindowsEndpointSliceProxying
+  alpha:
+    fromVersion: v1.19
+  beta:
+    fromVersion: v1.21
+- name: WindowsGMSA
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.16
+  stable:
+    fromVersion: v1.18
+- name: WindowsRunAsUserName
+  alpha:
+    fromVersion: v1.16
+  beta:
+    fromVersion: v1.17
+  stable:
+    fromVersion: v1.18
+- name: WinDSR
+  alpha:
+    fromVersion: v1.14
+- name: WinOverlay
+  alpha:
+    fromVersion: v1.14
+  beta:
+    fromVersion: v1.20
