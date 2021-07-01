@@ -35,13 +35,13 @@ tags:
  A Kubernetes {{< glossary_tooltip text="control plane" term_id="control-plane" >}} component
 that embeds cloud-specific control logic. The cloud controller manager lets you link your
 cluster into your cloud provider's API, and separates out the components that interact
-with that cloud platform from components that just interact with your cluster.
+with that cloud platform from components that only interact with your cluster.
 -->
 
 云控制器管理器是指嵌入特定云的控制逻辑的
 {{< glossary_tooltip text="控制平面" term_id="control-plane" >}}组件。
-云控制器管理器允许您链接聚合到云提供商的应用编程接口中，
-并分离出相互作用的组件与您的集群交互的组件。
+云控制器管理器允许您链接集群到云提供商的应用编程接口中，
+并把和该云平台交互的组件与只和您的集群交互的组件分离开。
 
 <!--more--> 
 

@@ -78,3 +78,4 @@ telemetry agents on the node, make sure to check with the vendor of the agent wh
 We keep the work in progress version of migration instructions for various telemetry and security agent vendors
 in [Google doc](https://docs.google.com/document/d/1ZFi4uKit63ga5sxEiZblfb-c23lFhvy6RXVPikS8wf0/edit#).
 Please contact the vendor to get up to date instructions for migrating from dockershim.
+

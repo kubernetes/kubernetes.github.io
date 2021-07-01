@@ -323,7 +323,7 @@ prioritize scaling down pods based on the following general algorithm:
 If all of the above match, then selection is random.
 
 ### Pod deletion cost 
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
 Using the [`controller.kubernetes.io/pod-deletion-cost`](/docs/reference/labels-annotations-taints/#pod-deletion-cost) 
 annotation, users can set a preference regarding which pods to remove first when downscaling a ReplicaSet.
@@ -335,7 +335,7 @@ cost are preferred to be deleted before pods with higher deletion cost.
 The implicit value for this annotation for pods that don't set it is 0; negative values are permitted.
 Invalid values will be rejected by the API server.
 
-This feature is alpha and disabled by default. You can enable it by setting the
+This feature is beta and enabled by default. You can disable it using the
 [feature gate](/docs/reference/command-line-tools-reference/feature-gates/)
 `PodDeletionCost` in both kube-apiserver and kube-controller-manager.
 

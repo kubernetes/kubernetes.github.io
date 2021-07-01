@@ -224,7 +224,7 @@ The minikube tool includes a set of built-in {{< glossary_tooltip text="addons" 
     The output is similar to:
 
     ```
-    metrics-server was successfully enabled
+    The 'metrics-server' addon is enabled
     ```
 
 3. View the Pod and Service you created:

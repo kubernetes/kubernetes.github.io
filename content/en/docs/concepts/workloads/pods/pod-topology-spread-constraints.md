@@ -16,7 +16,7 @@ You can use _topology spread constraints_ to control how {{< glossary_tooltip te
 In versions of Kubernetes before v1.18, you must enable the `EvenPodsSpread`
 [feature gate](/docs/reference/command-line-tools-reference/feature-gates/) on
 the [API server](/docs/concepts/overview/components/#kube-apiserver) and the
-[scheduler](/docs/reference/generated/kube-scheduler/) in order to use Pod
+[scheduler](/docs/reference/command-line-tools-reference/kube-scheduler/) in order to use Pod
 topology spread constraints.
 {{< /note >}}
 

@@ -192,6 +192,7 @@ kubelet은 gRPC 서비스를 제공하여 사용 중인 장치를 검색하고, 
 // PodResourcesLister는 kubelet에서 제공하는 서비스로, 노드의 포드 및 컨테이너가
 // 사용한 노드 리소스에 대한 정보를 제공한다.
 service PodResourcesLister {
+    rpc List(ListPodResourcesRequest) returns (ListPodResourcesResponse) {}
     rpc GetAllocatableResources(AllocatableResourcesRequest) returns (AllocatableResourcesResponse) {}
 }
 ```
@@ -252,7 +253,7 @@ message AllocatableResourcesResponse {
 
 `ContainerDevices` 는 장치가 어떤 NUMA 셀과 연관되는지를 선언하는 토폴로지 정보를 노출한다.
 NUMA 셀은 불분명한(opaque) 정수 ID를 사용하여 식별되며, 이 값은
-[kubelet에 등록할 때](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-integration-with-the-topology-manager) 장치 플러그인이 보고하는 것과 일치한다.
+[kubelet에 등록할 때](/ko/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#토폴로지-관리자로-장치-플러그인-통합) 장치 플러그인이 보고하는 것과 일치한다.
 
 
 gRPC 서비스는 `/var/lib/kubelet/pod-resources/kubelet.sock` 의 유닉스 소켓을 통해 제공된다.
@@ -264,8 +265,9 @@ gRPC 서비스는 `/var/lib/kubelet/pod-resources/kubelet.sock` 의 유닉스 �
 {{< glossary_tooltip text="볼륨" term_id="volume" >}}으로 마운트해야 한다.
 
 `PodResourcesLister service` 를 지원하려면 `KubeletPodResources` [기능 게이트](/ko/docs/reference/command-line-tools-reference/feature-gates/)를 활성화해야 한다.
+이것은 쿠버네티스 1.15부터 기본으로 활성화되어 있으며, 쿠버네티스 1.20부터는 v1 상태이다.
 
-## 토폴로지 관리자와 장치 플러그인 통합
+## 토폴로지 관리자로 장치 플러그인 통합
 
 {{< feature-state for_k8s_version="v1.18" state="beta" >}}
 

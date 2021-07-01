@@ -22,7 +22,6 @@ The following methods exist for installing kubectl on macOS:
 - [Install kubectl binary with curl on macOS](#install-kubectl-binary-with-curl-on-macos)
 - [Install with Homebrew on macOS](#install-with-homebrew-on-macos)
 - [Install with Macports on macOS](#install-with-macports-on-macos)
-- [Install on macOS as part of the Google Cloud SDK](#install-on-macos-as-part-of-the-google-cloud-sdk)
 
 ### Install kubectl binary with curl on macOS
 
@@ -31,7 +30,6 @@ The following methods exist for installing kubectl on macOS:
    {{< tabs name="download_binary_macos" >}}
    {{< tab name="Intel" codelang="bash" >}}
    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/amd64/kubectl"
-   chmod +x kubectl
    {{< /tab >}}
    {{< tab name="Apple Silicon" codelang="bash" >}}
    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/darwin/arm64/kubectl"
@@ -104,6 +102,10 @@ The following methods exist for installing kubectl on macOS:
    sudo chown root: /usr/local/bin/kubectl
    ```
 
+   {{< note >}}
+   Make sure `/usr/local/bin` is in your PATH environment variable.
+   {{< /note >}}
+
 1. Test to ensure the version you installed is up-to-date:
 
    ```bash
@@ -148,11 +150,6 @@ If you are on macOS and using [Macports](https://macports.org/) package manager,
    ```bash
    kubectl version --client
    ```
-
-
-### Install on macOS as part of the Google Cloud SDK
-
-{{< include "included/install-kubectl-gcloud.md" >}}
 
 ## Verify kubectl configuration
 

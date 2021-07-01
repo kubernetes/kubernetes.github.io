@@ -6,8 +6,9 @@ NETLIFY_FUNC      = $(NODE_BIN)/netlify-lambda
 # but this can be overridden when calling make, e.g.
 # CONTAINER_ENGINE=podman make container-image
 CONTAINER_ENGINE ?= docker
+IMAGE_REGISTRY ?= gcr.io/k8s-staging-sig-docs
 IMAGE_VERSION=$(shell scripts/hash-files.sh Dockerfile Makefile | cut -c 1-12)
-CONTAINER_IMAGE   = kubernetes-hugo:v$(HUGO_VERSION)-$(IMAGE_VERSION)
+CONTAINER_IMAGE   = $(IMAGE_REGISTRY)/k8s-website-hugo:v$(HUGO_VERSION)-$(IMAGE_VERSION)
 CONTAINER_RUN     = $(CONTAINER_ENGINE) run --rm --interactive --tty --volume $(CURDIR):/src
 
 CCRED=\033[0;31m

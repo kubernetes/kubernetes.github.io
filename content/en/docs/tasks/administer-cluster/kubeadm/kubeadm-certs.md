@@ -85,7 +85,11 @@ Additionally, kubeadm informs the user if the certificate is externally managed;
 {{< /warning >}}
 
 {{< note >}}
-`kubelet.conf` is not included in the list above because kubeadm configures kubelet for automatic certificate renewal.
+`kubelet.conf` is not included in the list above because kubeadm configures kubelet
+for [automatic certificate renewal](/docs/tasks/tls/certificate-rotation/)
+with rotatable certificates under `/var/lib/kubelet/pki`.
+To repair an expired kubelet client certificate see
+[Kubelet client certificate rotation fails](/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert).
 {{< /note >}}
 
 {{< warning >}}
@@ -142,7 +146,7 @@ The Kubernetes certificates normally reach their expiration date after one year.
 
 ## Renew certificates with the Kubernetes certificates API
 
-This section provide more details about how to execute manual certificate renewal using the Kubernetes certificates API.
+This section provides more details about how to execute manual certificate renewal using the Kubernetes certificates API.
 
 {{< caution >}}
 These are advanced topics for users who need to integrate their organization's certificate infrastructure into a kubeadm-built cluster. If the default kubeadm configuration satisfies your needs, you should let kubeadm manage certificates instead.

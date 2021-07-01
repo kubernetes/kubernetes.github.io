@@ -285,7 +285,7 @@ arbitrary tolerations to DaemonSets.
 
 ## {{% heading "whatsnext" %}}
 
-* Read about [out of resource handling](/docs/tasks/administer-cluster/out-of-resource/) and how you can configure it
-* Read about [pod priority](/docs/concepts/configuration/pod-priority-preemption/)
+* Read about [out of resource handling](/docs/concepts/scheduling-eviction/out-of-resource/) and how you can configure it
+* Read about [pod priority](/docs/concepts/scheduling-eviction/pod-priority-preemption/)
 
 

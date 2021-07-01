@@ -116,7 +116,7 @@ Operator.
 * [Charmed Operator Framework](https://juju.is/)
 * [kubebuilder](https://book.kubebuilder.io/)
 * [KUDO](https://kudo.dev/) (Kubernetes Universal Declarative Operator)
-* [Metacontroller](https://metacontroller.app/) along with WebHooks that
+* [Metacontroller](https://metacontroller.github.io/metacontroller/intro.html) along with WebHooks that
   you implement yourself
 * [Operator Framework](https://operatorframework.io)
 * [shell-operator](https://github.com/flant/shell-operator)

@@ -7,7 +7,6 @@ card:
   weight: 40
 ---
 
-
 <!-- overview -->
 
 This page shows how to configure access to multiple clusters by using
@@ -22,18 +21,20 @@ It does not mean that there is a file named `kubeconfig`.
 {{< /note >}}
 
 
+{{< warning >}}
+Only use kubeconfig files from trusted sources. Using a specially-crafted kubeconfig file could result in malicious code execution or file exposure. 
+If you must use an untrusted kubeconfig file, inspect it carefully first, much as you would a shell script.
+{{< /warning>}}
+
 
 ## {{% heading "prerequisites" %}}
-
 
 {{< include "task-tutorial-prereqs.md" >}}
 
 To check that {{< glossary_tooltip text="kubectl" term_id="kubectl" >}} is installed,
 run `kubectl version --client`. The kubectl version should be
-[within one minor version](/docs/setup/release/version-skew-policy/#kubectl) of your
+[within one minor version](/releases/version-skew-policy/#kubectl) of your
 cluster's API server.
-
-
 
 <!-- steps -->
 
@@ -186,7 +187,7 @@ kubectl config --kubeconfig=config-demo view --minify
 
 The output shows configuration information associated with the `dev-frontend` context:
 
-```shell
+```yaml
 apiVersion: v1
 clusters:
 - cluster:
@@ -238,7 +239,6 @@ kubectl config --kubeconfig=config-demo use-context dev-storage
 
 View configuration associated with the new current context, `dev-storage`.
 
-
 ```shell
 kubectl config --kubeconfig=config-demo view --minify
 ```
@@ -247,7 +247,7 @@ kubectl config --kubeconfig=config-demo view --minify
 
 In your `config-exercise` directory, create a file named `config-demo-2` with this content:
 
-```shell
+```yaml
 apiVersion: v1
 kind: Config
 preferences: {}
@@ -269,13 +269,17 @@ current value of your `KUBECONFIG` environment variable, so you can restore it l
 For example:
 
 ### Linux
+
 ```shell
 export KUBECONFIG_SAVED=$KUBECONFIG
 ```
+
 ### Windows PowerShell
-```shell
+
+```powershell
 $Env:KUBECONFIG_SAVED=$ENV:KUBECONFIG
 ```
+
  The `KUBECONFIG` environment variable is a list of paths to configuration files. The list is
 colon-delimited for Linux and Mac, and semicolon-delimited for Windows. If you have
 a `KUBECONFIG` environment variable, familiarize yourself with the configuration files
@@ -284,11 +288,14 @@ in the list.
 Temporarily append two paths to your `KUBECONFIG` environment variable. For example:
 
 ### Linux
+
 ```shell
 export KUBECONFIG=$KUBECONFIG:config-demo:config-demo-2
 ```
+
 ### Windows PowerShell
-```shell
+
+```powershell
 $Env:KUBECONFIG=("config-demo;config-demo-2")
 ```
 
@@ -303,7 +310,7 @@ environment variable. In particular, notice that the merged information has the
 `dev-ramp-up` context from the `config-demo-2` file and the three contexts from
 the `config-demo` file:
 
-```shell
+```yaml
 contexts:
 - context:
     cluster: development
@@ -347,11 +354,14 @@ If you have a `$HOME/.kube/config` file, and it's not already listed in your
 For example:
 
 ### Linux
+
 ```shell
 export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
 ```
+
 ### Windows Powershell
-```shell
+
+```powershell
 $Env:KUBECONFIG="$Env:KUBECONFIG;$HOME\.kube\config"
 ```
 
@@ -367,23 +377,19 @@ kubectl config view
 Return your `KUBECONFIG` environment variable to its original value. For example:<br>
 
 ### Linux
+
 ```shell
 export KUBECONFIG=$KUBECONFIG_SAVED
 ```
+
 ### Windows PowerShell
-```shell
+
+```powershell
 $Env:KUBECONFIG=$ENV:KUBECONFIG_SAVED
 ```
 
-
-
 ## {{% heading "whatsnext" %}}
-
 
 * [Organizing Cluster Access Using kubeconfig Files](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 * [kubectl config](/docs/reference/generated/kubectl/kubectl-commands#config)
-
-
-
-
 

@@ -287,7 +287,7 @@ tables, use HTML instead.
 ## Visualizations with Mermaid
 
 You can use [Mermaid JS](https://mermaidjs.github.io) visualizations.
-The Mermaid JS version is specified in [/layouts/partials/head.html](https://github.com/kubernetes/website/blob/master/layouts/partials/head.html)
+The Mermaid JS version is specified in [/layouts/partials/head.html](https://github.com/kubernetes/website/blob/main/layouts/partials/head.html)
 
 ```
 {{</* mermaid */>}}

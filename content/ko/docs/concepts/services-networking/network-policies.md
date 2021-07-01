@@ -212,9 +212,10 @@ __ipBlock__: 인그레스 소스 또는 이그레스 대상으로 허용할 IP C
 
 ## SCTP 지원
 
-{{< feature-state for_k8s_version="v1.19" state="beta" >}}
+{{< feature-state for_k8s_version="v1.20" state="stable" >}}
 
-베타 기능으로, 기본 활성화되어 있다. 클러스터 수준에서 SCTP를 비활성화하려면, 사용자(또는 클러스터 관리자)가 API 서버에 `--feature-gates=SCTPSupport=false,…` 를 사용해서 `SCTPSupport` [기능 게이트](/ko/docs/reference/command-line-tools-reference/feature-gates/)를 비활성화해야 한다.
+안정된 기능으로, 기본 활성화되어 있다. 클러스터 수준에서 SCTP를 비활성화하려면, 사용자(또는 클러스터 관리자)가 API 서버에 `--feature-gates=SCTPSupport=false,…` 를 사용해서 `SCTPSupport` [기능 게이트](/ko/docs/reference/command-line-tools-reference/feature-gates/)를 비활성화해야 한다.
+해당 기능 게이트가 활성화되어 있는 경우, 네트워크폴리시의 `protocol` 필드를 `SCTP`로 지정할 수 있다.
 
 {{< note >}}
 SCTP 프로토콜 네트워크폴리시를 지원하는 {{< glossary_tooltip text="CNI" term_id="cni" >}} 플러그인을 사용하고 있어야 한다.

@@ -98,7 +98,7 @@ Once you've opened a localization PR, you can become members of the Kubernetes G
 
 ### Add your localization team in GitHub
 
-Next, add your Kubernetes localization team to [`sig-docs/teams.yaml`](https://github.com/kubernetes/org/blob/master/config/kubernetes/sig-docs/teams.yaml). For an example of adding a localization team, see the PR to add the [Spanish localization team](https://github.com/kubernetes/org/pull/685).
+Next, add your Kubernetes localization team to [`sig-docs/teams.yaml`](https://github.com/kubernetes/org/blob/main/config/kubernetes/sig-docs/teams.yaml). For an example of adding a localization team, see the PR to add the [Spanish localization team](https://github.com/kubernetes/org/pull/685).
 
 Members of `@kubernetes/sig-docs-**-owners` can approve PRs that change content within (and only within) your localization directory: `/content/**/`.
 
@@ -117,7 +117,7 @@ For an example of adding a label, see the PR for adding the [Italian language la
 
 ### Modify the site configuration
 
-The Kubernetes website uses Hugo as its web framework. The website's Hugo configuration resides in the  [`config.toml`](https://github.com/kubernetes/website/tree/master/config.toml) file. To support a new localization, you'll need to modify `config.toml`.
+The Kubernetes website uses Hugo as its web framework. The website's Hugo configuration resides in the  [`config.toml`](https://github.com/kubernetes/website/tree/main/config.toml) file. To support a new localization, you'll need to modify `config.toml`.
 
 Add a configuration block for the new language to `config.toml`, under the existing `[languages]` block. The German block, for example, looks like:
 
@@ -136,7 +136,7 @@ For more information about Hugo's multilingual support, see "[Multilingual Mode]
 
 ### Add a new localization directory
 
-Add a language-specific subdirectory to the [`content`](https://github.com/kubernetes/website/tree/master/content) folder in the repository. For example, the two-letter code for German is `de`:
+Add a language-specific subdirectory to the [`content`](https://github.com/kubernetes/website/tree/main/content) folder in the repository. For example, the two-letter code for German is `de`:
 
 ```shell
 mkdir content/de
@@ -219,7 +219,7 @@ For an example of adding a new localization, see the PR to enable [docs in Frenc
 
 ### Add a localized README file
 
-To guide other localization contributors, add a new [`README-**.md`](https://help.github.com/articles/about-readmes/) to the top level of k/website, where `**` is the two-letter language code. For example, a German README file would be `README-de.md`.
+To guide other localization contributors, add a new [`README-**.md`](https://help.github.com/articles/about-readmes/) to the top level of [k/website](https://github.com/kubernetes/website/), where `**` is the two-letter language code. For example, a German README file would be `README-de.md`.
 
 Provide guidance to localization contributors in the localized `README-**.md` file. Include the same information contained in `README.md` as well as:
 
@@ -276,15 +276,15 @@ To find source files for your target version:
 2. Select a branch for your target version from the following table:
     Target version | Branch
     -----|-----
-    Latest version | [`master`](https://github.com/kubernetes/website/tree/master)
+    Latest version | [`main`](https://github.com/kubernetes/website/tree/main)
     Previous version | [`release-{{< skew prevMinorVersion >}}`](https://github.com/kubernetes/website/tree/release-{{< skew prevMinorVersion >}})
     Next version | [`dev-{{< skew nextMinorVersion >}}`](https://github.com/kubernetes/website/tree/dev-{{< skew nextMinorVersion >}})
 
-The `master` branch holds content for the current release `{{< latest-version >}}`. The release team will create a `{{< release-branch >}}` branch before the next release: v{{< skew nextMinorVersion >}}.
+The `main` branch holds content for the current release `{{< latest-version >}}`. The release team will create a `{{< release-branch >}}` branch before the next release: v{{< skew nextMinorVersion >}}.
 
 ### Site strings in i18n
 
-Localizations must include the contents of [`data/i18n/en/en.toml`](https://github.com/kubernetes/website/blob/master/data/i18n/en/en.toml) in a new language-specific file. Using German as an example: `data/i18n/de/de.toml`.
+Localizations must include the contents of [`data/i18n/en/en.toml`](https://github.com/kubernetes/website/blob/main/data/i18n/en/en.toml) in a new language-specific file. Using German as an example: `data/i18n/de/de.toml`.
 
 Add a new localization directory and file to `data/i18n/`. For example, with German (`de`):
 
@@ -339,14 +339,14 @@ Repeat steps 1-4 as needed until the localization is complete. For example, subs
 Teams must merge localized content into the same branch from which the content was sourced.
 
 For example:
-- a localization branch sourced from `master` must be merged into `master`.
-- a localization branch sourced from `release-1.19` must be merged into `release-1.19`.
+- a localization branch sourced from `main` must be merged into `main`.
+- a localization branch sourced from `release-{{ skew "prevMinorVersion" }}` must be merged into `release-{{ skew "prevMinorVersion" }}`.
 
 {{< note >}}
-If your localization branch was created from `master` branch but it is not merged into `master` before new release branch `{{< release-branch >}}` created, merge it into both `master` and new release branch `{{< release-branch >}}`. To merge your localization branch into new release branch `{{< release-branch >}}`, you need to switch upstream branch of your localization branch to `{{< release-branch >}}`.
+If your localization branch was created from `main` branch but it is not merged into `main` before new release branch `{{< release-branch >}}` created, merge it into both `main` and new release branch `{{< release-branch >}}`. To merge your localization branch into new release branch `{{< release-branch >}}`, you need to switch upstream branch of your localization branch to `{{< release-branch >}}`.
 {{< /note >}}
 
-At the beginning of every team milestone, it's helpful to open an issue comparing upstream changes between the previous localization branch and the current localization branch. There are two scripts for comparing upstream changes. [`upstream_changes.py`](https://github.com/kubernetes/website/tree/master/scripts#upstream_changespy) is useful for checking the changes made to a specific file. And [`diff_l10n_branches.py`](https://github.com/kubernetes/website/tree/master/scripts#diff_l10n_branchespy) is useful for creating a list of outdated files for a specific localization branch.
+At the beginning of every team milestone, it's helpful to open an issue comparing upstream changes between the previous localization branch and the current localization branch. There are two scripts for comparing upstream changes. [`upstream_changes.py`](https://github.com/kubernetes/website/tree/main/scripts#upstream_changespy) is useful for checking the changes made to a specific file. And [`diff_l10n_branches.py`](https://github.com/kubernetes/website/tree/main/scripts#diff_l10n_branchespy) is useful for creating a list of outdated files for a specific localization branch.
 
 While only approvers can open a new localization branch and merge pull requests, anyone can open a pull request for a new localization branch. No special permissions are required.
 

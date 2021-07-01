@@ -238,7 +238,7 @@ serverTLSBootstrap: true
 `serverTLSBootstrap: true` 필드는 kubelet 인증서를 이용한 부트스트랩을
 `certificates.k8s.io` API에 요청함으로써 활성화할 것이다. 한 가지 알려진 제약은
 이 인증서들에 대한 CSR(인증서 서명 요청)들이 kube-controller-manager -
-[`kubernetes.io/kubelet-serving`](https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#kubernetes-signers)의
+[`kubernetes.io/kubelet-serving`](/docs/reference/access-authn-authz/certificate-signing-requests/#kubernetes-signers)의
 기본 서명자(default signer)에 의해서 자동으로 승인될 수 없다는 점이다.
 이것은 사용자나 제 3의 컨트롤러의 액션을 필요로 할 것이다.
 

@@ -332,6 +332,9 @@ kubectl get pods --show-labels
 JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}' \
  && kubectl get nodes -o jsonpath="$JSONPATH" | grep "Ready=True"
 
+# Output decoded secrets without external tools
+kubectl get secret my-secret -o go-template='{{range $k,$v := .data}}{{"### "}}{{$k}}{{"\n"}}{{$v|base64decode}}{{"\n\n"}}{{end}}'
+
 # List all Secrets currently in use by a pod
 kubectl get pods -o json | jq '.items[].spec.containers[].env[]?.valueFrom.secretKeyRef.name' | grep -v null | sort | uniq
 
@@ -352,6 +355,9 @@ kubectl get nodes -o json | jq -c 'path(..)|[.[]|tostring]|join(".")'
 # Produce a period-delimited tree of all keys returned for pods, etc
 kubectl get pods -o json | jq -c 'path(..)|[.[]|tostring]|join(".")'
 
+# Produce ENV for all pods, assuming you have a default container for the pods, default namespace and the `env` command is supported.
+# Helpful when running any supported command across all pods, not just `env`
+for pod in $(kubectl get po --output=jsonpath={.items..metadata.name}); do echo $pod && kubectl exec -it $pod env; done
 ```
 -->
 ```bash
@@ -405,11 +411,14 @@ kubectl get pods --show-labels
 JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}' \
  && kubectl get nodes -o jsonpath="$JSONPATH" | grep "Ready=True"
 
+# 不使用外部工具来输出解码后的 Secret
+kubectl get secret my-secret -o go-template='{{range $k,$v := .data}}{{"### "}}{{$k}}{{"\n"}}{{$v|base64decode}}{{"\n\n"}}{{end}}'
+
 # 列出被一个 Pod 使用的全部 Secret
 kubectl get pods -o json | jq '.items[].spec.containers[].env[]?.valueFrom.secretKeyRef.name' | grep -v null | sort | uniq
 
 # 列举所有 Pods 中初始化容器的容器 ID（containerID）
-# Helpful when cleaning up stopped containers, while avoiding removal of initContainers.
+# 可用于在清理已停止的容器时避免删除初始化容器
 kubectl get pods --all-namespaces -o jsonpath='{range .items[*].status.initContainerStatuses[*]}{.containerID}{"\n"}{end}' | cut -d/ -f3
 
 # 列出事件（Events），按时间戳排序
@@ -425,6 +434,9 @@ kubectl get nodes -o json | jq -c 'path(..)|[.[]|tostring]|join(".")'
 # 生成一个句点分隔的树，其中包含为pod等返回的所有键
 kubectl get pods -o json | jq -c 'path(..)|[.[]|tostring]|join(".")'
 
+# 假设你的 Pods 有默认的容器和默认的名字空间，并且支持 'env' 命令，可以使用以下脚本为所有 Pods 生成 ENV 变量。
+# 该脚本也可用于在所有的 Pods 里运行任何受支持的命令，而不仅仅是 'env'。 
+for pod in $(kubectl get po --output=jsonpath={.items..metadata.name}); do echo $pod && kubectl exec -it $pod env; done
 ```
 
 <!--
@@ -609,6 +621,7 @@ kubectl exec my-pod -- ls /                         # Run command in existing po
 kubectl exec --stdin --tty my-pod -- /bin/sh        # Interactive shell access to a running pod (1 container case) 
 kubectl exec my-pod -c my-container -- ls /         # Run command in existing pod (multi-container case)
 kubectl top pod POD_NAME --containers               # Show metrics for a given pod and its containers
+kubectl top pod POD_NAME --sort-by=cpu              # Show metrics for a given pod and sort it by 'cpu' or 'memory'
 ```
 -->
 ```bash
@@ -632,6 +645,35 @@ kubectl exec my-pod -- ls /                         # 在已有的 Pod 中运行
 kubectl exec --stdin --tty my-pod -- /bin/sh        # 使用交互 shell 访问正在运行的 Pod (一个容器场景)
 kubectl exec my-pod -c my-container -- ls /         # 在已有的 Pod 中运行命令（多容器场景）
 kubectl top pod POD_NAME --containers               # 显示给定 Pod 和其中容器的监控数据
+kubectl top pod POD_NAME --sort-by=cpu              # 显示给定 Pod 的指标并且按照 'cpu' 或者 'memory' 排序
+```
+
+<!--
+## Interacting with Deployments and Services
+-->
+## 与 Deployments 和 Services 进行交互
+
+<!--
+```bash
+kubectl logs deploy/my-deployment                         # dump Pod logs for a Deployment (single-container case)
+kubectl logs deploy/my-deployment -c my-container         # dump Pod logs for a Deployment (multi-container case)
+
+kubectl port-forward svc/my-service 5000                  # listen on local port 5000 and forward to port 5000 on Service backend
+kubectl port-forward svc/my-service 5000:my-service-port  # listen on local port 5000 and forward to Service target port with name <my-service-port>
+
+kubectl port-forward deploy/my-deployment 5000:6000       # listen on local port 5000 and forward to port 6000 on a Pod created by <my-deployment>
+kubectl exec deploy/my-deployment -- ls                   # run command in first Pod and first container in Deployment (single- or multi-container cases)
+```
+-->
+```bash
+kubectl logs deploy/my-deployment                         # 获取一个 Deployment 的 Pod 的日志（单容器例子）
+kubectl logs deploy/my-deployment -c my-container         # 获取一个 Deployment 的 Pod 的日志（多容器例子）
+
+kubectl port-forward svc/my-service 5000                  # 侦听本地端口 5000 并转发到 Service 后端端口 5000
+kubectl port-forward svc/my-service 5000:my-service-port  # 侦听本地端口 5000 并转发到名字为 <my-service-port> 的 Service 目标端口
+
+kubectl port-forward deploy/my-deployment 5000:6000       # 侦听本地端口 5000 并转发到 <my-deployment> 创建的 Pod 里的端口 6000
+kubectl exec deploy/my-deployment -- ls                   # 在 Deployment 里的第一个 Pod 的第一个容器里运行命令（单容器和多容器例子）
 ```
 
 <!--
@@ -672,9 +714,9 @@ kubectl taint nodes foo dedicated=special-user:NoSchedule
 ### 资源类型
 
 <!--
-List all supported resource types along with their shortnames, [API group](/docs/concepts/overview/kubernetes-api/#api-groups), whether they are [namespaced](/docs/concepts/overview/working-with-objects/namespaces), and [Kind](/docs/concepts/overview/working-with-objects/kubernetes-objects):
+List all supported resource types along with their shortnames, [API group](/docs/concepts/overview/kubernetes-api/#api-groups-and-versioning), whether they are [namespaced](/docs/concepts/overview/working-with-objects/namespaces), and [Kind](/docs/concepts/overview/working-with-objects/kubernetes-objects):
 -->
-列出所支持的全部资源类型和它们的简称、[API 组](/zh/docs/concepts/overview/kubernetes-api/#api-groups), 是否是[名字空间作用域](/zh/docs/concepts/overview/working-with-objects/namespaces) 和 [Kind](/zh/docs/concepts/overview/working-with-objects/kubernetes-objects)。
+列出所支持的全部资源类型和它们的简称、[API 组](/zh/docs/concepts/overview/kubernetes-api/#api-groups-and-versioning), 是否是[名字空间作用域](/zh/docs/concepts/overview/working-with-objects/namespaces) 和 [Kind](/zh/docs/concepts/overview/working-with-objects/kubernetes-objects)。
 
 ```bash
 kubectl api-resources
@@ -689,7 +731,7 @@ Other operations for exploring API resources:
 ```bash
 kubectl api-resources --namespaced=true      # All namespaced resources
 kubectl api-resources --namespaced=false     # All non-namespaced resources
-kubectl api-resources -o name                # All resources with simple output (just the resource name)
+kubectl api-resources -o name                # All resources with simple output (only the resource name)
 kubectl api-resources -o wide                # All resources with expanded (aka "wide") output
 kubectl api-resources --verbs=list,get       # All resources that support the "list" and "get" request verbs
 kubectl api-resources --api-group=extensions # All resources in the "extensions" API group
@@ -743,7 +785,10 @@ Examples using `-o=custom-columns`:
 # All images running in a cluster
 kubectl get pods -A -o=custom-columns='DATA:spec.containers[*].image'
 
- # All images excluding "k8s.gcr.io/coredns:1.6.2"
+# All images running in namespace: default, grouped by Pod
+kubectl get pods --namespace default --output=custom-columns="NAME:.metadata.name,IMAGE:.spec.containers[*].image"
+
+# All images excluding "k8s.gcr.io/coredns:1.6.2"
 kubectl get pods -A -o=custom-columns='DATA:spec.containers[?(@.image!="k8s.gcr.io/coredns:1.6.2")].image'
 
 # All fields under metadata regardless of name
@@ -758,7 +803,10 @@ More examples in the kubectl [reference documentation](/docs/reference/kubectl/o
 # 集群中运行着的所有镜像
 kubectl get pods -A -o=custom-columns='DATA:spec.containers[*].image'
 
- # 除 "k8s.gcr.io/coredns:1.6.2" 之外的所有镜像
+# 列举 default 名字空间中运行的所有镜像，按 Pod 分组
+kubectl get pods --namespace default --output=custom-columns="NAME:.metadata.name,IMAGE:.spec.containers[*].image"
+
+# 除 "k8s.gcr.io/coredns:1.6.2" 之外的所有镜像
 kubectl get pods -A -o=custom-columns='DATA:spec.containers[?(@.image!="k8s.gcr.io/coredns:1.6.2")].image'
 
 # 输出 metadata 下面的所有字段，无论 Pod 名字为何

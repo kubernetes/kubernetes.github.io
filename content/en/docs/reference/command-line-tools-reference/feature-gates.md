@@ -59,8 +59,6 @@ different Kubernetes components.
 | `AnyVolumeDataSource` | `false` | Alpha | 1.18 | |
 | `AppArmor` | `true` | Beta | 1.4 | |
 | `BalanceAttachedNodeVolumes` | `false` | Alpha | 1.11 | |
-| `BoundServiceAccountTokenVolume` | `false` | Alpha | 1.13 | 1.20 |
-| `BoundServiceAccountTokenVolume` | `true` | Beta | 1.21 | |
 | `CPUManager` | `false` | Alpha | 1.8 | 1.9 |
 | `CPUManager` | `true` | Beta | 1.10 | |
 | `CSIInlineVolume` | `false` | Alpha | 1.15 | 1.15 |
@@ -93,8 +91,6 @@ different Kubernetes components.
 | `CSIVolumeHealth` | `false` | Alpha | 1.21 | |
 | `ConfigurableFSGroupPolicy` | `false` | Alpha | 1.18 | 1.19 |
 | `ConfigurableFSGroupPolicy` | `true` | Beta | 1.20 | |
-| `CronJobControllerV2` | `false` | Alpha | 1.20 | 1.20 |
-| `CronJobControllerV2` | `true` | Beta | 1.21 | |
 | `CustomCPUCFSQuotaPeriod` | `false` | Alpha | 1.12 | |
 | `DefaultPodTopologySpread` | `false` | Alpha | 1.19 | 1.19 |
 | `DefaultPodTopologySpread` | `true` | Beta | 1.20 | |
@@ -128,7 +124,8 @@ different Kubernetes components.
 | `HugePageStorageMediumSize` | `false` | Alpha | 1.18 | 1.18 |
 | `HugePageStorageMediumSize` | `true` | Beta | 1.19 | |
 | `IndexedJob` | `false` | Alpha | 1.21 | |
-| `IngressClassNamespacedParams` | `false` | Alpha | 1.21 | |
+| `IngressClassNamespacedParams` | `false` | Alpha | 1.21 | 1.21 |
+| `IngressClassNamespacedParams` | `true` | Beta | 1.22 | |
 | `IPv6DualStack` | `false` | Alpha | 1.15 | 1.20 |
 | `IPv6DualStack` | `true` | Beta | 1.21 | |
 | `KubeletCredentialProviders` | `false` | Alpha | 1.20 | |
@@ -146,8 +143,10 @@ different Kubernetes components.
 | `NodeDisruptionExclusion` | `true` | Beta | 1.19 | 1.20 |
 | `NonPreemptingPriority` | `false` | Alpha | 1.15 | 1.18 |
 | `NonPreemptingPriority` | `true` | Beta | 1.19 | |
-| `PodDeletionCost` | `false` | Alpha | 1.21 | |
-| `PodAffinityNamespaceSelector` | `false` | Alpha | 1.21 | |
+| `PodDeletionCost` | `false` | Alpha | 1.21 | 1.21 |
+| `PodDeletionCost` | `true` | Beta | 1.22 | |
+| `PodAffinityNamespaceSelector` | `false` | Alpha | 1.21 | 1.21 |
+| `PodAffinityNamespaceSelector` | `true` | Beta | 1.22 | |
 | `PodOverhead` | `false` | Alpha | 1.16 | 1.17 |
 | `PodOverhead` | `true` | Beta | 1.18 |  |
 | `ProbeTerminationGracePeriod` | `false` | Alpha | 1.21 | |
@@ -159,14 +158,13 @@ different Kubernetes components.
 | `RotateKubeletServerCertificate` | `false` | Alpha | 1.7 | 1.11 |
 | `RotateKubeletServerCertificate` | `true` | Beta | 1.12 | |
 | `RunAsGroup` | `true` | Beta | 1.14 | |
+| `SeccompDefault` | `false` | Alpha | 1.22 | |
 | `ServiceInternalTrafficPolicy` | `false` | Alpha | 1.21 | |
 | `ServiceLBNodePortControl` | `false` | Alpha | 1.20 | |
 | `ServiceLoadBalancerClass` | `false` | Alpha | 1.21 | |
 | `ServiceNodeExclusion` | `false` | Alpha | 1.8 | 1.18 |
 | `ServiceNodeExclusion` | `true` | Beta | 1.19 | 1.20 |
 | `ServiceTopology` | `false` | Alpha | 1.17 | |
-| `SetHostnameAsFQDN` | `false` | Alpha | 1.19 | 1.19 |
-| `SetHostnameAsFQDN` | `true` | Beta | 1.20 | |
 | `SizeMemoryBackedVolumes` | `false` | Alpha | 1.20 | |
 | `StorageVersionAPI` | `false` | Alpha | 1.20 | |
 | `StorageVersionHash` | `false` | Alpha | 1.14 | 1.14 |
@@ -200,9 +198,15 @@ different Kubernetes components.
 | `AffinityInAnnotations` | - | Deprecated | 1.8 | - |
 | `AllowExtTrafficLocalEndpoints` | `false` | Beta | 1.4 | 1.6 |
 | `AllowExtTrafficLocalEndpoints` | `true` | GA | 1.7 | - |
+| `AttachVolumeLimit` | `false` | Alpha | 1.11 | 1.11 |
+| `AttachVolumeLimit` | `true` | Beta | 1.12 | 1.16 |
+| `AttachVolumeLimit` | `true` | GA | 1.17 | - |
 | `BlockVolume` | `false` | Alpha | 1.9 | 1.12 |
 | `BlockVolume` | `true` | Beta | 1.13 | 1.17 |
 | `BlockVolume` | `true` | GA | 1.18 | - |
+| `BoundServiceAccountTokenVolume` | `false` | Alpha | 1.13 | 1.20 |
+| `BoundServiceAccountTokenVolume` | `true` | Beta | 1.21 | 1.22 |
+| `BoundServiceAccountTokenVolume` | `true` | GA | 1.22 | - |
 | `CRIContainerLogRotation` | `false` | Alpha | 1.10 | 1.10 |
 | `CRIContainerLogRotation` | `true` | Beta | 1.11 | 1.20 |
 | `CRIContainerLogRotation` | `true` | GA | 1.21 | - |
@@ -215,12 +219,12 @@ different Kubernetes components.
 | `CSINodeInfo` | `false` | Alpha | 1.12 | 1.13 |
 | `CSINodeInfo` | `true` | Beta | 1.14 | 1.16 |
 | `CSINodeInfo` | `true` | GA | 1.17 | |
-| `AttachVolumeLimit` | `false` | Alpha | 1.11 | 1.11 |
-| `AttachVolumeLimit` | `true` | Beta | 1.12 | 1.16 |
-| `AttachVolumeLimit` | `true` | GA | 1.17 | - |
 | `CSIPersistentVolume` | `false` | Alpha | 1.9 | 1.9 |
 | `CSIPersistentVolume` | `true` | Beta | 1.10 | 1.12 |
 | `CSIPersistentVolume` | `true` | GA | 1.13 | - |
+| `CronJobControllerV2` | `false` | Alpha | 1.20 | 1.20 |
+| `CronJobControllerV2` | `true` | Beta | 1.21 | 1.21 |
+| `CronJobControllerV2` | `true` | GA | 1.22 | - |
 | `CustomPodDNS` | `false` | Alpha | 1.9 | 1.9 |
 | `CustomPodDNS` | `true` | Beta| 1.10 | 1.13 |
 | `CustomPodDNS` | `true` | GA | 1.14 | - |
@@ -345,6 +349,9 @@ different Kubernetes components.
 | `ServiceLoadBalancerFinalizer` | `true` | Beta | 1.16 | 1.16 |
 | `ServiceLoadBalancerFinalizer` | `true` | GA | 1.17 | - |
 | `ServiceNodeExclusion` | `true` | GA | 1.21 | - |
+| `SetHostnameAsFQDN` | `false` | Alpha | 1.19 | 1.19 |
+| `SetHostnameAsFQDN` | `true` | Beta | 1.20 | 1.21 |
+| `SetHostnameAsFQDN` | `true` | GA | 1.22 | - |
 | `StartupProbe` | `false` | Alpha | 1.16 | 1.17 |
 | `StartupProbe` | `true` | Beta | 1.18 | 1.19 |
 | `StartupProbe` | `true` | GA | 1.20 | - |
@@ -576,7 +583,6 @@ Each feature gate is designed for enabling/disabling a specific feature:
 - `CronJobControllerV2`: Use an alternative implementation of the
   {{< glossary_tooltip text="CronJob" term_id="cronjob" >}} controller. Otherwise,
   version 1 of the same controller is selected.
-  The version 2 controller provides experimental performance improvements.
 - `CustomCPUCFSQuotaPeriod`: Enable nodes to change `cpuCFSQuotaPeriod` in
   [kubelet config](/docs/tasks/administer-cluster/kubelet-config-file/).
 - `CustomPodDNS`: Enable customizing the DNS settings for a Pod using its `dnsConfig` property.
@@ -781,6 +787,8 @@ Each feature gate is designed for enabling/disabling a specific feature:
   instead of the DaemonSet controller.
 - `SCTPSupport`: Enables the _SCTP_ `protocol` value in Pod, Service,
   Endpoints, EndpointSlice, and NetworkPolicy definitions.
+- `SeccompDefault`: Enables the use of `RuntimeDefault` as the default seccomp profile for all workloads. 
+  The seccomp profile is specified in the `securityContext` of a Pod and/or a Container.
 - `ServerSideApply`: Enables the [Sever Side Apply (SSA)](/docs/reference/using-api/server-side-apply/)
   feature on the API Server.
 - `ServiceAccountIssuerDiscovery`: Enable OIDC discovery endpoints (issuer and

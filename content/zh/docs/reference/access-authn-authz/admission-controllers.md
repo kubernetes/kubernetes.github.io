@@ -1351,7 +1351,7 @@ PVC/PV 不会被删除。
 
 ### TaintNodesByCondition {#taintnodesbycondition} 
 
-{{< feature-state for_k8s_version="v1.12" state="beta" >}}
+{{< feature-state for_k8s_version="v1.17" state="stable" >}}
 
 <!--
 This admission controller {{< glossary_tooltip text="taints" term_id="taint" >}} newly created Nodes as `NotReady` and `NoSchedule`. That tainting avoids a race condition that could cause Pods to be scheduled on new Nodes before their taints were updated to accurately reflect their reported conditions.

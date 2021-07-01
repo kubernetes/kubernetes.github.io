@@ -159,11 +159,12 @@ You can run your own controller as a set of Pods,
 or externally to Kubernetes. What fits best will depend on what that particular
 controller does.
 
-
-
 ## {{% heading "whatsnext" %}}
 
 * Read about the [Kubernetes control plane](/docs/concepts/overview/components/#control-plane-components)
 * Discover some of the basic [Kubernetes objects](/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 * Learn more about the [Kubernetes API](/docs/concepts/overview/kubernetes-api/)
-* If you want to write your own controller, see [Extension Patterns](/docs/concepts/extend-kubernetes/extend-cluster/#extension-patterns) in Extending Kubernetes.
+* If you want to write your own controller, see
+  [Extension Patterns](/docs/concepts/extend-kubernetes/#extension-patterns)
+  in Extending Kubernetes.
+

@@ -66,7 +66,6 @@ their authors, not the Kubernetes team.
 | PHP                  | [github.com/maclof/kubernetes-client](https://github.com/maclof/kubernetes-client) |
 | PHP                  | [github.com/travisghansen/kubernetes-client-php](https://github.com/travisghansen/kubernetes-client-php) |
 | PHP                  | [github.com/renoki-co/php-k8s](https://github.com/renoki-co/php-k8s) |
-| Python               | [github.com/eldarion-gondor/pykube](https://github.com/eldarion-gondor/pykube) |
 | Python               | [github.com/fiaas/k8s](https://github.com/fiaas/k8s) |
 | Python               | [github.com/mnubo/kubernetes-py](https://github.com/mnubo/kubernetes-py) |
 | Python               | [github.com/tomplus/kubernetes_asyncio](https://github.com/tomplus/kubernetes_asyncio) |

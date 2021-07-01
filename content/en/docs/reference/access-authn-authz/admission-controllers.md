@@ -698,6 +698,8 @@ admission plugin, which allows preventing pods from running on specifically tain
 
 ### PodSecurityPolicy {#podsecuritypolicy}
 
+{{< feature-state for_k8s_version="v1.21" state="deprecated" >}}
+
 This admission controller acts on creation and modification of the pod and determines if it should be admitted
 based on the requested security context and the available Pod Security Policies.
 

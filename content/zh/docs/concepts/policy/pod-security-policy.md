@@ -17,7 +17,7 @@ weight: 30
 <!--
 PodSecurityPolicy is deprecated as of Kubernetes v1.21, and will be removed in v1.25.
 -->
-PodSecurityPolicy 在 Kubernetes v1.21 版本中被启用，将在 v1.25 中删除。
+PodSecurityPolicy 在 Kubernetes v1.21 版本中被弃用，将在 v1.25 中删除。
 
 <!--
 Pod Security Policies enable fine-grained authorization of pod creation and

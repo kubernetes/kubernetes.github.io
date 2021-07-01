@@ -6,10 +6,10 @@ min-kubernetes-server-version: v1.5
 
 <!-- overview -->
 
-쿠버네티스 클러스터에서 실행 중인 애플리케이션은 서로 간에 외부 세계와
-서비스 추상화를 통해 찾고 통신한다. 이 문서는
-다른 종류의 서비스로 보내진 패킷의 소스 IP 주소에 어떤 일이 벌어지는지와
-이 동작을 요구에 따라 토글할 수 있는지 설명한다.
+쿠버네티스 클러스터에서 실행 중인 애플리케이션은 서비스 추상화를 통해서
+서로를, 그리고 외부 세계를 찾고 통신한다. 이 문서는
+다른 종류의 서비스로 전송된 패킷의 소스 IP에 어떤 일이 벌어지는지와
+이 동작을 필요에 따라 어떻게 전환할 수 있는지 설명한다.
 
 
 
@@ -29,16 +29,16 @@ min-kubernetes-server-version: v1.5
 : 네트워크 주소 변환
 
 [소스 NAT](https://en.wikipedia.org/wiki/Network_address_translation#SNAT)
-: 패킷 상의 소스 IP 주소를 변경함, 보통 노드의 IP 주소
+: 패킷 상의 소스 IP 주소를 변경하는 것. 이 페이지에서는 일반적으로 노드 IP 주소로의 변경을 의미함.
 
 [대상 NAT](https://en.wikipedia.org/wiki/Network_address_translation#DNAT)
-: 패킷 상의 대상 IP 주소를 변경함, 보통 파드의 IP 주소
+: 패킷 상의 대상 IP 주소를 변경하는 것. 이 페이지에서는 일반적으로 {{< glossary_tooltip term_id="pod" text="파드" >}} IP 주소로의 변경을 의미함.
 
 [VIP](/ko/docs/concepts/services-networking/service/#가상-ip와-서비스-프록시)
-: 가상 IP 주소, 모든 쿠버네티스 서비스에 할당된 것 같은
+: 쿠버네티스의 모든 {{< glossary_tooltip text="서비스" term_id="service" >}}에 할당되어 있는 것과 같은, 가상 IP 주소.
 
 [Kube-proxy](/ko/docs/concepts/services-networking/service/#가상-ip와-서비스-프록시)
-: 네트워크 데몬으로 모든 노드에서 서비스 VIP 관리를 관리한다.
+: 모든 노드에서 서비스 VIP 관리를 조율하는 네트워크 데몬.
 
 ### 전제 조건
 
@@ -80,7 +80,7 @@ deployment.apps/source-ip-app created
 ```console
 kubectl get nodes
 ```
-출력은 다음과 유사하다
+출력은 다음과 유사하다.
 ```
 NAME                           STATUS     ROLES    AGE     VERSION
 kubernetes-node-6jst   Ready      <none>   2h      v1.13.0
@@ -219,7 +219,6 @@ graph LR;
   class node1,node2,endpoint k8s;
   class client plain;
 {{</ mermaid >}}
-
 
 이를 피하기 위해 쿠버네티스는
 [클라이언트 소스 IP 주소를 보존](/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip)하는 기능이 있다.
@@ -439,5 +438,5 @@ kubectl delete deployment source-ip-app
 
 ## {{% heading "whatsnext" %}}
 
-* [서비스를 통한 애플리케이션 연결하기](/ko/docs/concepts/services-networking/connect-applications-service/)에 더 자세히 본다.
-* 어떻게 [외부 로드밸런서 생성](/docs/tasks/access-application-cluster/create-external-load-balancer/)하는지 본다.
+* [서비스를 통한 애플리케이션 연결하기](/ko/docs/concepts/services-networking/connect-applications-service/)를 더 자세히 본다.
+* [외부 로드밸런서 생성](/docs/tasks/access-application-cluster/create-external-load-balancer/) 방법을 본다.

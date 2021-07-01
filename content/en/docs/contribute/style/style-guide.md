@@ -30,7 +30,7 @@ glossary entries, tabs, and representing feature state.
 ## Language
 
 Kubernetes documentation has been translated into multiple languages
-(see [Localization READMEs](https://github.com/kubernetes/website/blob/master/README.md#localization-readmemds)).
+(see [Localization READMEs](https://github.com/kubernetes/website/blob/main/README.md#localization-readmemds)).
 
 The way of localizing the docs for a different language is described in [Localizing Kubernetes Documentation](/docs/contribute/localization/).
 

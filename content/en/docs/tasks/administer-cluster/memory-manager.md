@@ -51,7 +51,7 @@ The Memory Manager updates the Node Map during the startup and runtime as follow
 
 This occurs once a node administrator employs `--reserved-memory` (section [Reserved memory flag](#reserved-memory-flag)). In this case, the Node Map becomes updated to reflect this reservation as illustrated in [Memory Manager KEP: Memory Maps at start-up (with examples)][5].
 
-The administrator must provide `--reserved-memory` flag when `static` policy is configured.
+The administrator must provide `--reserved-memory` flag when `Static` policy is configured.
 
 ### Runtime
 
@@ -61,7 +61,7 @@ Important topic in the context of Memory Manager operation is the management of 
 
 ## Memory Manager configuration
 
-Other Managers should be first pre-configured (section [Pre-configuration](#pre-configuration)). Next, the Memory Manger feature should be enabled (section [Enable the Memory Manager feature](#enable-the-memory-manager-feature)) and be run with `static` policy (section [static policy](#static-policy)). Optionally, some amount of memory can be reserved for system or kubelet processes to increase node stability (section [Reserved memory flag](#reserved-memory-flag)).
+Other Managers should be first pre-configured (section [Pre-configuration](#pre-configuration)). Next, the Memory Manger feature should be enabled (section [Enable the Memory Manager feature](#enable-the-memory-manager-feature)) and be run with `Static` policy (section [Static policy](#static-policy)). Optionally, some amount of memory can be reserved for system or kubelet processes to increase node stability (section [Reserved memory flag](#reserved-memory-flag)).
 
 ### Policies 
 
@@ -69,21 +69,21 @@ Memory Manager supports two policies. You can select a policy via a `kubelet` fl
 
 Two policies can be selected:
 
-* `none` (default)
-* `static`
+* `None` (default)
+* `Static`
 
-#### none policy {#policy-none}
+#### None policy {#policy-none}
 
 This is the default policy and does not affect the memory allocation in any way.
 It acts the same as if the Memory Manager is not present at all.
 
-The `none` policy returns default topology hint. This special hint denotes that Hint Provider (Memory Manger in this case) has no preference for NUMA affinity with any resource.
+The `None` policy returns default topology hint. This special hint denotes that Hint Provider (Memory Manger in this case) has no preference for NUMA affinity with any resource.
 
-#### static policy {#policy-static}
+#### Static policy {#policy-static}
 
-In the case of the `Guaranteed` pod, the `static` Memory Manger policy returns topology hints relating to the set of NUMA nodes where the memory can be guaranteed, and reserves the memory through updating the internal [NodeMap][2] object.
+In the case of the `Guaranteed` pod, the `Static` Memory Manger policy returns topology hints relating to the set of NUMA nodes where the memory can be guaranteed, and reserves the memory through updating the internal [NodeMap][2] object.
 
-In the case of the `BestEffort` or `Burstable` pod, the `static` Memory Manager policy sends back the default topology hint as there is no request for the guaranteed memory, and does not reserve the memory in the internal [NodeMap][2] object.
+In the case of the `BestEffort` or `Burstable` pod, the `Static` Memory Manager policy sends back the default topology hint as there is no request for the guaranteed memory, and does not reserve the memory in the internal [NodeMap][2] object.
 
 ### Reserved memory flag
 
@@ -100,7 +100,7 @@ The Memory Manager will not use this reserved memory for the allocation of conta
 
 For example, if you have a NUMA node "NUMA0" with `10Gi` of memory available, and the `--reserved-memory` was specified to reserve `1Gi` of memory at "NUMA0", the Memory Manager assumes that only `9Gi` is available for containers.
 
-You can omit this parameter, however, you should be aware that the quantity of reserved memory from all NUMA nodes should be equal to the quantity of memory specified by the [Node Allocatable feature](/docs/tasks/administer-cluster/reserve-compute-resources/). If at least one node allocatable parameter is non-zero, you will need to specify `--reserved-memory` for at least one NUMA node. In fact, `eviction-hard` threshold value is equal to `100Mi` by default, so if `static` policy is used, `--reserved-memory` is obligatory.
+You can omit this parameter, however, you should be aware that the quantity of reserved memory from all NUMA nodes should be equal to the quantity of memory specified by the [Node Allocatable feature](/docs/tasks/administer-cluster/reserve-compute-resources/). If at least one node allocatable parameter is non-zero, you will need to specify `--reserved-memory` for at least one NUMA node. In fact, `eviction-hard` threshold value is equal to `100Mi` by default, so if `Static` policy is used, `--reserved-memory` is obligatory.
 
 Also, avoid the following configurations:
 1. duplicates, i.e. the same NUMA node or memory type, but with a different value;
@@ -152,7 +152,7 @@ Here is an example of a correct configuration:
 --feature-gates=MemoryManager=true 
 --kube-reserved=cpu=4,memory=4Gi 
 --system-reserved=cpu=1,memory=1Gi 
---memory-manager-policy=static 
+--memory-manager-policy=Static 
 --reserved-memory 0:memory=3Gi --reserved-memory 1:memory=2148Mi
 ```
 Let us validate the configuration above:
@@ -163,7 +163,7 @@ Let us validate the configuration above:
 
 ## Placing a Pod in the Guaranteed QoS class
 
-If the selected policy is anything other than `none`, the Memory Manager identifies pods that are in the `Guaranteed` QoS class. The Memory Manager provides specific topology hints to the Topology Manager for each `Guaranteed` pod. For pods in a QoS class other than `Guaranteed`, the Memory Manager provides default topology hints to the Topology Manager.
+If the selected policy is anything other than `None`, the Memory Manager identifies pods that are in the `Guaranteed` QoS class. The Memory Manager provides specific topology hints to the Topology Manager for each `Guaranteed` pod. For pods in a QoS class other than `Guaranteed`, the Memory Manager provides default topology hints to the Topology Manager.
 
 The following excerpts from pod manifests assign a pod to the `Guaranteed` QoS class.
 
@@ -270,7 +270,7 @@ spec:
 Next, let us log into the node where it was deployed and examine the state file in `/var/lib/kubelet/memory_manager_state`:
 ```json
 {
-   "policyName":"static",
+   "policyName":"Static",
    "machineState":{
       "0":{
          "numberOfAssignments":1,

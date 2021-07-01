@@ -249,5 +249,4 @@ implementation in `kube-proxy`.
 
 ## {{% heading "whatsnext" %}}
 
-* Learn about [Enabling EndpointSlices](/docs/tasks/administer-cluster/enabling-endpointslices)
 * Read [Connecting Applications with Services](/docs/concepts/services-networking/connect-applications-service/)

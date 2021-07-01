@@ -7,12 +7,9 @@ weight: 10
 ---
 
 <!-- overview -->
-
 This page shows how to perform a rolling update on a DaemonSet.
 
 ## {{% heading "prerequisites" %}}
-
-* The DaemonSet rolling update feature is only supported in Kubernetes version 1.6 or later.
 
 <!-- steps -->
 
@@ -20,22 +17,26 @@ This page shows how to perform a rolling update on a DaemonSet.
 
 DaemonSet has two update strategy types:
 
-* OnDelete:  With `OnDelete` update strategy, after you update a DaemonSet template, new
+* `OnDelete`: With `OnDelete` update strategy, after you update a DaemonSet template, new
   DaemonSet pods will *only* be created when you manually delete old DaemonSet
   pods. This is the same behavior of DaemonSet in Kubernetes version 1.5 or
   before.
-* RollingUpdate: This is the default update strategy.  
+* `RollingUpdate`: This is the default update strategy.  
   With `RollingUpdate` update strategy, after you update a
   DaemonSet template, old DaemonSet pods will be killed, and new DaemonSet pods
-  will be created automatically, in a controlled fashion. At most one pod of the DaemonSet will be running on each node during the whole update process.
+  will be created automatically, in a controlled fashion. At most one pod of
+  the DaemonSet will be running on each node during the whole update process.
 
 ## Performing a Rolling Update
 
 To enable the rolling update feature of a DaemonSet, you must set its
 `.spec.updateStrategy.type` to `RollingUpdate`.
 
-You may want to set [`.spec.updateStrategy.rollingUpdate.maxUnavailable`](/docs/concepts/workloads/controllers/deployment/#max-unavailable) (default
-to 1) and [`.spec.minReadySeconds`](/docs/concepts/workloads/controllers/deployment/#min-ready-seconds) (default to 0) as well.
+You may want to set
+[`.spec.updateStrategy.rollingUpdate.maxUnavailable`](/docs/concepts/workloads/controllers/deployment/#max-unavailable)
+(default to 1) and
+[`.spec.minReadySeconds`](/docs/concepts/workloads/controllers/deployment/#min-ready-seconds)
+(default to 0) as well.
 
 ### Creating a DaemonSet with `RollingUpdate` update strategy
 
@@ -143,7 +144,7 @@ causes:
 
 The rollout is stuck because new DaemonSet pods can't be scheduled on at least one
 node. This is possible when the node is
-[running out of resources](/docs/tasks/administer-cluster/out-of-resource/).
+[running out of resources](/docs/concepts/scheduling-eviction/node-pressure-eviction/).
 
 When this happens, find the nodes that don't have the DaemonSet pods scheduled on
 by comparing the output of `kubectl get nodes` and the output of:
@@ -184,14 +185,8 @@ Delete DaemonSet from a namespace :
 kubectl delete ds fluentd-elasticsearch -n kube-system
 ```
 
-
-
-
 ## {{% heading "whatsnext" %}}
 
-
-* See [Task: Performing a rollback on a
-  DaemonSet](/docs/tasks/manage-daemon/rollback-daemon-set/)
-* See [Concepts: Creating a DaemonSet to adopt existing DaemonSet pods](/docs/concepts/workloads/controllers/daemonset/)
-
+* See [Performing a rollback on a DaemonSet](/docs/tasks/manage-daemon/rollback-daemon-set/)
+* See [Creating a DaemonSet to adopt existing DaemonSet pods](/docs/concepts/workloads/controllers/daemonset/)
 

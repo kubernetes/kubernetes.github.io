@@ -1,0 +1,14 @@
+{{ $file := .Get "file" }}
+{{ $codelang := .Get "language" | default (path.Ext $file | strings.TrimPrefix ".") }}
+{{ $fileDir := path.Split $file }}
+{{ $bundlePath := path.Join .Page.File.Dir $fileDir.Dir }}
+{{ $filename := printf "/content/%s/examples/%s" .Page.Lang $file | safeURL }}
+{{ $ghlink := printf "https://%s/%s%s" site.Params.githubwebsiteraw (default "main" (site.Params.github_branch)) $filename | safeURL }}
+
+<a href="{{ $ghlink }}" download="{{ $file }}">
+{{- if gt (len .Inner) 0 -}}
+  {{- .Inner -}}
+{{- else -}}
+  {{- $file -}}
+{{- end -}}
+</a>

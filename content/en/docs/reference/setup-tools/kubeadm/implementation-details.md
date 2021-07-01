@@ -298,26 +298,6 @@ Please note that:
 2. in case of kubeadm is executed in the `--dry-run` mode, the etcd static Pod manifest is written in a temporary folder
 3. Static Pod manifest generation for local etcd can be invoked individually with the [`kubeadm init phase etcd local`](/docs/reference/setup-tools/kubeadm/kubeadm-init-phase/#cmd-phase-etcd) command
 
-### Optional Dynamic Kubelet Configuration
-
-To use this functionality call `kubeadm alpha kubelet config enable-dynamic`. It writes the kubelet init configuration
-into `/var/lib/kubelet/config/init/kubelet` file.
-
-The init configuration is used for starting the kubelet on this specific node, providing an alternative for the kubelet drop-in file;
-such configuration will be replaced by the kubelet base configuration as described in following steps.
-See [set kubelet parameters via a config file](/docs/tasks/administer-cluster/kubelet-config-file) for additional information.
-
-Please note that:
-
-1. To make dynamic kubelet configuration work, flag `--dynamic-config-dir=/var/lib/kubelet/config/dynamic` should be specified
-   in `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf`
-1. The kubelet configuration can be changed by passing a `KubeletConfiguration` object to `kubeadm init` or `kubeadm join` by using
-   a configuration file `--config some-file.yaml`. The `KubeletConfiguration` object can be separated from other objects such
-   as `InitConfiguration` using the `---` separator. For more details have a look at the `kubeadm config print-default` command.
-
-For more details about the `KubeletConfiguration` struct, take a look at the
-[`KubeletConfiguration` reference](/docs/reference/config-api/kubelet-config.v1beta1/).
-
 ### Wait for the control plane to come up
 
 kubeadm waits (upto 4m0s) until `localhost:6443/healthz` (kube-apiserver liveness) returns `ok`. However in order to detect
@@ -326,17 +306,6 @@ deadlock conditions, kubeadm fails fast if `localhost:10255/healthz` (kubelet li
 
 kubeadm relies on the kubelet to pull the control plane images and run them properly as static Pods.
 After the control plane is up, kubeadm completes the tasks described in following paragraphs.
-
-### (optional) Write base kubelet configuration
-
-{{< feature-state for_k8s_version="v1.11" state="beta" >}}
-
-If kubeadm is invoked with `--feature-gates=DynamicKubeletConfig`:
-
-1. Write the kubelet base configuration into the `kubelet-base-config-v1.9` ConfigMap in the `kube-system` namespace
-2. Creates RBAC rules for granting read access to that ConfigMap to all bootstrap tokens and all kubelet instances
-   (that is `system:bootstrappers:kubeadm:default-node-token` and `system:nodes` groups)
-3. Enable the dynamic kubelet configuration feature for the initial control-plane node by pointing `Node.spec.configSource` to the newly-created ConfigMap
 
 ### Save the kubeadm ClusterConfiguration in a ConfigMap for later reference
 
@@ -520,18 +489,3 @@ Please note that:
 - The temporary authentication resolve to a user member of `system:bootstrappers:kubeadm:default-node-token` group which was granted
   access to CSR api during the `kubeadm init` process
 - The automatic CSR approval is managed by the csrapprover controller, according with configuration done the `kubeadm init` process
-
-### (optional) Write init kubelet configuration
-
-{{< feature-state for_k8s_version="v1.11" state="beta" >}}
-
-If kubeadm is invoked with `--feature-gates=DynamicKubeletConfig`:
-
-1. Read the kubelet base configuration from the `kubelet-base-config-v1.x` ConfigMap in the `kube-system` namespace  using the
-   Bootstrap Token credentials, and write it to disk as kubelet init configuration file  `/var/lib/kubelet/config/init/kubelet`
-2. As soon as kubelet starts with the Node's own credential (`/etc/kubernetes/kubelet.conf`), update current node configuration
-   specifying that the source for the node/kubelet configuration is the above ConfigMap.
-
-Please note that:
-
-1. To make dynamic kubelet configuration work, flag `--dynamic-config-dir=/var/lib/kubelet/config/dynamic` should be specified in `/etc/systemd/system/kubelet.service.d/10-kubeadm.conf`

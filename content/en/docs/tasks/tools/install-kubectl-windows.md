@@ -21,7 +21,6 @@ The following methods exist for installing kubectl on Windows:
 
 - [Install kubectl binary with curl on Windows](#install-kubectl-binary-with-curl-on-windows)
 - [Install on Windows using Chocolatey or Scoop](#install-on-windows-using-chocolatey-or-scoop)
-- [Install on Windows as part of the Google Cloud SDK](#install-on-windows-as-part-of-the-google-cloud-sdk)
 
 
 ### Install kubectl binary with curl on Windows
@@ -126,10 +125,6 @@ If you have installed Docker Desktop before, you may need to place your `PATH` e
 {{< note >}}
 Edit the config file with a text editor of your choice, such as Notepad.
 {{< /note >}}
-
-### Install on Windows as part of the Google Cloud SDK
-
-{{< include "included/install-kubectl-gcloud.md" >}}
 
 ## Verify kubectl configuration
 

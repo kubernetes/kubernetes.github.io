@@ -139,9 +139,9 @@ Flags that you specify from the command line override default values and any cor
 {{< /caution >}}
 
 <!--
-If you need help, just run `kubectl help` from the terminal window.
+If you need help, run `kubectl help` from the terminal window.
 -->
-如果你需要帮助，只需从终端窗口运行 ` kubectl help ` 即可。
+如果你需要帮助，从终端窗口运行 `kubectl help` 。
 
 <!--
 ## Operations

@@ -27,8 +27,8 @@ The kubelet uses certificates for authenticating to the Kubernetes API.  By
 default, these certificates are issued with one year expiration so that they do
 not need to be renewed too frequently.
 
-Kubernetes 1.8 contains [kubelet certificate
-rotation](/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/), a beta feature
+Kubernetes contains [kubelet certificate
+rotation](/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/),
 that will automatically generate a new key and request a new certificate from
 the Kubernetes API as the current certificate approaches expiration. Once the
 new certificate is available, it will be used for authenticating connections to
@@ -62,7 +62,7 @@ criteria, it will be auto approved by the controller manager, then it will have
 a status of `Approved`. Next, the controller manager will sign a certificate,
 issued for the duration specified by the 
 `--cluster-signing-duration` parameter, and the signed certificate
-will be attached to the certificate signing requests.
+will be attached to the certificate signing request.
 
 The kubelet will retrieve the signed certificate from the Kubernetes API and
 write that to disk, in the location specified by `--cert-dir`. Then the kubelet

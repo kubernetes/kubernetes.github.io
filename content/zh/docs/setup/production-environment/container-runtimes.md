@@ -169,7 +169,10 @@ Install containerd:
 {{% tab name="Linux" %}}
 
 <!--
-1. Install the `containerd.io` package from the official Docker repositories. Instructions for setting up the Docker repository for your respective Linux distribution and installing the `containerd.io` package can be found at [Install Docker Engine](https://docs.docker.com/engine/install/#server).
+1. Install the `containerd.io` package from the official Docker repositories.
+   Instructions for setting up the Docker repository for your respective Linux distribution and
+   installing the `containerd.io` package can be found at
+   [Install Docker Engine](https://docs.docker.com/engine/install/#server).
 -->
 1. 从官方Docker仓库安装 `containerd.io` 软件包。可以在
    [安装 Docker 引擎](https://docs.docker.com/engine/install/#server)
@@ -199,9 +202,10 @@ Install containerd:
 {{% tab name="Windows (PowerShell)" %}}
 
 <!--
-Start a Powershell session, set `$Version` to the desired version (ex: `$Version=1.4.3`), and then run the following commands:
+Start a Powershell session, set `$Version` to the desired version (ex: `$Version=1.4.3`),
+and then run the following commands:
 -->
-启动 Powershell 会话，将 `$Version` 设置为所需的版本（例如：`$ Version=1.4.3`），
+启动 Powershell 会话，将 `$Version` 设置为所需的版本（例如：`$Version=1.4.3`），
 然后运行以下命令：
 
 <!--
@@ -382,7 +386,8 @@ sudo apt-get install cri-o cri-o-runc
 {{% tab name="Ubuntu" %}}
 
 <!-- 
-To install on the following operating systems, set the environment variable `OS` to the appropriate field in the following table:
+To install on the following operating systems, set the environment variable `OS`
+to the appropriate field in the following table:
 
 | Operating system | `$OS`             |
 | ---------------- | ----------------- |
@@ -438,7 +443,8 @@ sudo apt-get install cri-o cri-o-runc
 {{% tab name="CentOS" %}}
 
 <!-- 
-To install on the following operating systems, set the environment variable `OS` to the appropriate field in the following table:
+To install on the following operating systems, set the environment variable `OS`
+to the appropriate field in the following table:
 
 | Operating system | `$OS`             |
 | ---------------- | ----------------- |
@@ -527,7 +533,7 @@ Start CRI-O:
 
 ```shell
 sudo systemctl daemon-reload
-sudo systemctl enable crio --no
+sudo systemctl enable crio --now
 ```
 
 <!--
@@ -569,7 +575,10 @@ in sync.
 ### Docker
 
 <!--
-1. On each of your nodes, install the Docker for your Linux distribution as per [Install Docker Engine](https://docs.docker.com/engine/install/#server). You can find the latest validated version of Docker in this [dependencies](https://git.k8s.io/kubernetes/build/dependencies.yaml) file.
+1. On each of your nodes, install the Docker for your Linux distribution as per
+   [Install Docker Engine](https://docs.docker.com/engine/install/#server).
+   You can find the latest validated version of Docker in this
+   [dependencies](https://git.k8s.io/kubernetes/build/dependencies.yaml) file.
  -->
 1. 在每个节点上，根据[安装 Docker 引擎](https://docs.docker.com/engine/install/#server)
    为你的 Linux 发行版安装 Docker。
@@ -597,7 +606,8 @@ in sync.
 
    {{< note >}}
    <!--
-   `overlay2` is the preferred storage driver for systems running Linux kernel version 4.0 or higher, or RHEL or CentOS using version 3.10.0-514 and above.
+   `overlay2` is the preferred storage driver for systems running Linux kernel version 4.0 or higher,
+   or RHEL or CentOS using version 3.10.0-514 and above.
    -->
    对于运行 Linux 内核版本 4.0 或更高版本，或使用 3.10.0-51 及更高版本的 RHEL
    或 CentOS 的系统，`overlay2`是首选的存储驱动程序。

@@ -41,7 +41,7 @@ the container starts.
 
         kubectl apply -f https://k8s.io/examples/debug/termination.yaml
 
-    In the YAML file, in the `cmd` and `args` fields, you can see that the
+    In the YAML file, in the `command` and `args` fields, you can see that the
     container sleeps for 10 seconds and then writes "Sleep expired" to
     the `/dev/termination-log` file. After the container writes
     the "Sleep expired" message, it terminates.

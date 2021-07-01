@@ -17,23 +17,17 @@ itself. Unless resources are set aside for these system daemons, pods and system
 daemons compete for resources and lead to resource starvation issues on the
 node.
 
-The `kubelet` exposes a feature named `Node Allocatable` that helps to reserve
+The `kubelet` exposes a feature named 'Node Allocatable' that helps to reserve
 compute resources for system daemons. Kubernetes recommends cluster
-administrators to configure `Node Allocatable` based on their workload density
+administrators to configure 'Node Allocatable' based on their workload density
 on each node.
 
-
-
-
 ## {{% heading "prerequisites" %}}
-
 
 {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
 Your Kubernetes server must be at or later than version 1.17 to use
 the kubelet command line option `--reserved-cpus` to set an
 [explicitly reserved CPU list](#explicitly-reserved-cpu-list).
-
-
 
 <!-- steps -->
 
@@ -41,9 +35,9 @@ the kubelet command line option `--reserved-cpus` to set an
 
 ![node capacity](/images/docs/node-capacity.svg)
 
-`Allocatable` on a Kubernetes node is defined as the amount of compute resources
+'Allocatable' on a Kubernetes node is defined as the amount of compute resources
 that are available for pods. The scheduler does not over-subscribe
-`Allocatable`. `CPU`, `memory` and `ephemeral-storage` are supported as of now.
+'Allocatable'. 'CPU', 'memory' and 'ephemeral-storage' are supported as of now.
 
 Node Allocatable is exposed as part of `v1.Node` object in the API and as part
 of `kubectl describe node` in the CLI.
@@ -97,8 +91,7 @@ flag.
 It is recommended that the kubernetes system daemons are placed under a top
 level control group (`runtime.slice` on systemd machines for example). Each
 system daemon should ideally run within its own child control group. Refer to
-[this
-doc](https://git.k8s.io/community/contributors/design-proposals/node/node-allocatable.md#recommended-cgroups-setup)
+[the design proposal](https://git.k8s.io/community/contributors/design-proposals/node/node-allocatable.md#recommended-cgroups-setup)
 for more details on recommended control group hierarchy.
 
 Note that Kubelet **does not** create `--kube-reserved-cgroup` if it doesn't
@@ -108,7 +101,6 @@ exist. Kubelet will fail if an invalid cgroup is specified.
 
 - **Kubelet Flag**: `--system-reserved=[cpu=100m][,][memory=100Mi][,][ephemeral-storage=1Gi][,][pid=1000]`
 - **Kubelet Flag**: `--system-reserved-cgroup=`
-
 
 `system-reserved` is meant to capture resource reservation for OS system daemons
 like `sshd`, `udev`, etc. `system-reserved` should reserve `memory` for the
@@ -127,13 +119,14 @@ kubelet flag.
 It is recommended that the OS system daemons are placed under a top level
 control group (`system.slice` on systemd machines for example).
 
-Note that Kubelet **does not** create `--system-reserved-cgroup` if it doesn't
-exist. Kubelet will fail if an invalid cgroup is specified.
+Note that `kubelet` **does not** create `--system-reserved-cgroup` if it doesn't
+exist. `kubelet` will fail if an invalid cgroup is specified.
 
 ### Explicitly Reserved CPU List
+
 {{< feature-state for_k8s_version="v1.17" state="stable" >}}
 
-- **Kubelet Flag**: `--reserved-cpus=0-3`
+**Kubelet Flag**: `--reserved-cpus=0-3`
 
 `reserved-cpus` is meant to define an explicit CPU set for OS system daemons and
 kubernetes system daemons. `reserved-cpus` is for systems that do not intend to
@@ -154,14 +147,15 @@ For example: in Centos, you can do this using the tuned toolset.
 
 ### Eviction Thresholds
 
-- **Kubelet Flag**: `--eviction-hard=[memory.available<500Mi]`
+**Kubelet Flag**: `--eviction-hard=[memory.available<500Mi]`
 
 Memory pressure at the node level leads to System OOMs which affects the entire
 node and all pods running on it. Nodes can go offline temporarily until memory
 has been reclaimed. To avoid (or reduce the probability of) system OOMs kubelet
-provides [`Out of Resource`](/docs/tasks/administer-cluster/out-of-resource/) management. Evictions are
+provides [out of resource](/docs/concepts/scheduling-eviction/node-pressure-eviction/)
+management. Evictions are
 supported for `memory` and `ephemeral-storage` only. By reserving some memory via
-`--eviction-hard` flag, the `kubelet` attempts to `evict` pods whenever memory
+`--eviction-hard` flag, the `kubelet` attempts to evict pods whenever memory
 availability on the node drops below the reserved value. Hypothetically, if
 system daemons did not exist on a node, pods cannot use more than `capacity -
 eviction-hard`. For this reason, resources reserved for evictions are not
@@ -169,16 +163,16 @@ available for pods.
 
 ### Enforcing Node Allocatable
 
-- **Kubelet Flag**: `--enforce-node-allocatable=pods[,][system-reserved][,][kube-reserved]`
+**Kubelet Flag**: `--enforce-node-allocatable=pods[,][system-reserved][,][kube-reserved]`
 
-The scheduler treats `Allocatable` as the available `capacity` for pods.
+The scheduler treats 'Allocatable' as the available `capacity` for pods.
 
-`kubelet` enforce `Allocatable` across pods by default. Enforcement is performed
+`kubelet` enforce 'Allocatable' across pods by default. Enforcement is performed
 by evicting pods whenever the overall usage across all pods exceeds
-`Allocatable`. More details on eviction policy can be found
-[here](/docs/tasks/administer-cluster/out-of-resource/#eviction-policy). This enforcement is controlled by
+'Allocatable'. More details on eviction policy can be found
+on the [node pressure eviction](/docs/concepts/scheduling-eviction/node-pressure-eviction/)
+page. This enforcement is controlled by
 specifying `pods` value to the kubelet flag `--enforce-node-allocatable`.
-
 
 Optionally, `kubelet` can be made to enforce `kube-reserved` and
 `system-reserved` by specifying `kube-reserved` & `system-reserved` values in
@@ -188,10 +182,10 @@ respectively.
 
 ## General Guidelines
 
-System daemons are expected to be treated similar to `Guaranteed` pods. System
+System daemons are expected to be treated similar to 'Guaranteed' pods. System
 daemons can burst within their bounding control groups and this behavior needs
 to be managed as part of kubernetes deployments. For example, `kubelet` should
-have its own control group and share `Kube-reserved` resources with the
+have its own control group and share `kube-reserved` resources with the
 container runtime. However, Kubelet cannot burst and use up all available Node
 resources if `kube-reserved` is enforced.
 
@@ -200,9 +194,9 @@ to critical system services being CPU starved, OOM killed, or unable
 to fork on the node. The
 recommendation is to enforce `system-reserved` only if a user has profiled their
 nodes exhaustively to come up with precise estimates and is confident in their
-ability to recover if any process in that group is oom_killed.
+ability to recover if any process in that group is oom-killed.
 
-* To begin with enforce `Allocatable` on `pods`.
+* To begin with enforce 'Allocatable' on `pods`.
 * Once adequate monitoring and alerting is in place to track kube system
   daemons, attempt to enforce `kube-reserved` based on usage heuristics.
 * If absolutely necessary, enforce `system-reserved` over time.
@@ -211,8 +205,6 @@ The resource requirements of kube system daemons may grow over time as more and
 more features are added. Over time, kubernetes project will attempt to bring
 down utilization of node system daemons, but that is not a priority as of now.
 So expect a drop in `Allocatable` capacity in future releases.
-
-
 
 <!-- discussion -->
 
@@ -225,15 +217,15 @@ Here is an example to illustrate Node Allocatable computation:
 * `--system-reserved` is set to `cpu=500m,memory=1Gi,ephemeral-storage=1Gi`
 * `--eviction-hard` is set to `memory.available<500Mi,nodefs.available<10%`
 
-Under this scenario, `Allocatable` will be `14.5 CPUs`, `28.5Gi` of memory and
+Under this scenario, 'Allocatable' will be 14.5 CPUs, 28.5Gi of memory and
 `88Gi` of local storage.
 Scheduler ensures that the total memory `requests` across all pods on this node does
-not exceed `28.5Gi` and storage doesn't exceed `88Gi`.
-Kubelet evicts pods whenever the overall memory usage across pods exceeds `28.5Gi`,
-or if overall disk usage exceeds `88Gi` If all processes on the node consume as
-much CPU as they can, pods together cannot consume more than `14.5 CPUs`.
+not exceed 28.5Gi and storage doesn't exceed 88Gi.
+Kubelet evicts pods whenever the overall memory usage across pods exceeds 28.5Gi,
+or if overall disk usage exceeds 88Gi If all processes on the node consume as
+much CPU as they can, pods together cannot consume more than 14.5 CPUs.
 
 If `kube-reserved` and/or `system-reserved` is not enforced and system daemons
 exceed their reservation, `kubelet` evicts pods whenever the overall node memory
-usage is higher than `31.5Gi` or `storage` is greater than `90Gi`
+usage is higher than 31.5Gi or `storage` is greater than 90Gi.
 

@@ -21,6 +21,7 @@ These virtual clusters are called namespaces.
 -->
 Kubernetes 支持多个虚拟集群，它们底层依赖于同一个物理集群。
 这些虚拟集群被称为名字空间。
+在一些文档里名字空间也称为命名空间。
 
 <!-- body -->
 

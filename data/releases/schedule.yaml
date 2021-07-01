@@ -8,6 +8,7 @@ schedules:
     - release: 1.21.1
       cherryPickDeadline: 2021-05-07
       targetDate: 2021-05-12
+      note: Regression https://groups.google.com/g/kubernetes-dev/c/KuF8s2zueFs
 - release: 1.20
   next: 1.20.8
   cherryPickDeadline: 2021-06-12
@@ -17,6 +18,7 @@ schedules:
     - release: 1.20.7
       cherryPickDeadline: 2021-05-07
       targetDate: 2021-05-12
+      note: Regression https://groups.google.com/g/kubernetes-dev/c/KuF8s2zueFs
     - release: 1.20.6
       cherryPickDeadline: 2021-04-09
       targetDate: 2021-04-14
@@ -27,14 +29,16 @@ schedules:
       cherryPickDeadline: 2021-02-12
       targetDate: 2021-02-18
     - release: 1.20.3
-      cherryPickDeadline: "Conformance Tests Issue https://groups.google.com/g/kubernetes-dev/c/oUpY9vWgzJo"
+      cherryPickDeadline: 2021-02-12
       targetDate: 2021-02-17
+      note: "Conformance Tests Issue https://groups.google.com/g/kubernetes-dev/c/oUpY9vWgzJo"
     - release: 1.20.2
       cherryPickDeadline: 2021-01-08
       targetDate: 2021-01-13
     - release: 1.20.1
-      cherryPickDeadline: "Tagging Issue https://groups.google.com/g/kubernetes-dev/c/dNH2yknlCBA"
+      cherryPickDeadline: 2020-12-11
       targetDate: 2020-12-18
+      note: "Tagging Issue https://groups.google.com/g/kubernetes-dev/c/dNH2yknlCBA"
 - release: 1.19
   next: 1.19.12
   cherryPickDeadline: 2021-06-12
@@ -44,6 +48,7 @@ schedules:
     - release: 1.19.11
       cherryPickDeadline: 2021-05-07
       targetDate: 2021-05-12
+      note: Regression https://groups.google.com/g/kubernetes-dev/c/KuF8s2zueFs
     - release: 1.19.10
       cherryPickDeadline: 2021-04-09
       targetDate: 2021-04-14
@@ -57,8 +62,9 @@ schedules:
       cherryPickDeadline: 2021-01-08
       targetDate: 2021-01-13
     - release: 1.19.6
-      cherryPickDeadline: "Tagging Issue https://groups.google.com/g/kubernetes-dev/c/dNH2yknlCBA"
+      cherryPickDeadline: 2020-12-11
       targetDate: 2020-12-18
+      note: "Tagging Issue https://groups.google.com/g/kubernetes-dev/c/dNH2yknlCBA"
     - release: 1.19.5
       cherryPickDeadline: 2020-12-04
       targetDate: 2020-12-09

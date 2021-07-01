@@ -36,9 +36,10 @@ maximum length of a Job name is no more than 63 characters.
 
 ## CronJob
 
-CronJobs are useful for creating periodic and recurring tasks, like running backups or
-sending emails. CronJobs can also schedule individual tasks for a specific time, such as
-scheduling a Job for when your cluster is likely to be idle.
+CronJobs are meant for performing regular scheduled actions such as backups,
+report generation, and so on. Each of those tasks should be configured to recur
+indefinitely (for example: once a day / week / month); you can define the point
+in time within that interval when the job should start.
 
 ### Example
 

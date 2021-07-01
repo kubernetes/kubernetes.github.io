@@ -484,7 +484,7 @@ Any container in a Pod can enable privileged mode, using the `privileged` flag o
 the [security context](/docs/tasks/configure-pod-container/security-context/) of the container spec. This is useful for containers that want to use operating system administrative capabilities such as manipulating the network stack or accessing hardware devices.
 Processes within a privileged container get almost the same privileges that are available to processes outside a container.
 -->
-## 容器的特权模式     {#rivileged-mode-for-containers}
+## 容器的特权模式     {#privileged-mode-for-containers}
 
 Pod 中的任何容器都可以使用容器规约中的
 [安全性上下文](/zh/docs/tasks/configure-pod-container/security-context/)中的

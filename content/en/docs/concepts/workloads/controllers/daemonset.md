@@ -32,7 +32,8 @@ different flags and/or different memory and cpu requests for different hardware 
 
 ### Create a DaemonSet
 
-You can describe a DaemonSet in a YAML file. For example, the `daemonset.yaml` file below describes a DaemonSet that runs the fluentd-elasticsearch Docker image:
+You can describe a DaemonSet in a YAML file. For example, the `daemonset.yaml` file below
+describes a DaemonSet that runs the fluentd-elasticsearch Docker image:
 
 {{< codenew file="controllers/daemonset.yaml" >}}
 
@@ -46,19 +47,23 @@ kubectl apply -f https://k8s.io/examples/controllers/daemonset.yaml
 
 As with all other Kubernetes config, a DaemonSet needs `apiVersion`, `kind`, and `metadata` fields.  For
 general information about working with config files, see
-[running stateless applications](/docs/tasks/run-application/run-stateless-application-deployment/),
-[configuring containers](/docs/tasks/), and [object management using kubectl](/docs/concepts/overview/working-with-objects/object-management/) documents.
+[running stateless applications](/docs/tasks/run-application/run-stateless-application-deployment/)
+and [object management using kubectl](/docs/concepts/overview/working-with-objects/object-management/).
 
 The name of a DaemonSet object must be a valid
 [DNS subdomain name](/docs/concepts/overview/working-with-objects/names#dns-subdomain-names).
 
-A DaemonSet also needs a [`.spec`](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) section.
+A DaemonSet also needs a
+[`.spec`](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status)
+section.
 
 ### Pod Template
 
 The `.spec.template` is one of the required fields in `.spec`.
 
-The `.spec.template` is a [pod template](/docs/concepts/workloads/pods/#pod-templates). It has exactly the same schema as a {{< glossary_tooltip text="Pod" term_id="pod" >}}, except it is nested and does not have an `apiVersion` or `kind`.
+The `.spec.template` is a [pod template](/docs/concepts/workloads/pods/#pod-templates).
+It has exactly the same schema as a {{< glossary_tooltip text="Pod" term_id="pod" >}},
+except it is nested and does not have an `apiVersion` or `kind`.
 
 In addition to required fields for a Pod, a Pod template in a DaemonSet has to specify appropriate
 labels (see [pod selector](#pod-selector)).
@@ -79,20 +84,23 @@ unintentional orphaning of Pods, and it was found to be confusing to users.
 
 The `.spec.selector` is an object consisting of two fields:
 
-* `matchLabels` - works the same as the `.spec.selector` of a [ReplicationController](/docs/concepts/workloads/controllers/replicationcontroller/).
+* `matchLabels` - works the same as the `.spec.selector` of a
+  [ReplicationController](/docs/concepts/workloads/controllers/replicationcontroller/).
 * `matchExpressions` - allows to build more sophisticated selectors by specifying key,
   list of values and an operator that relates the key and values.
 
 When the two are specified the result is ANDed.
 
-If the `.spec.selector` is specified, it must match the `.spec.template.metadata.labels`. Config with these not matching will be rejected by the API.
+If the `.spec.selector` is specified, it must match the `.spec.template.metadata.labels`.
+Config with these not matching will be rejected by the API.
 
 ### Running Pods on select Nodes
 
 If you specify a `.spec.template.spec.nodeSelector`, then the DaemonSet controller will
-create Pods on nodes which match that [node
-selector](/docs/concepts/scheduling-eviction/assign-pod-node/). Likewise if you specify a `.spec.template.spec.affinity`,
-then DaemonSet controller will create Pods on nodes which match that [node affinity](/docs/concepts/scheduling-eviction/assign-pod-node/).
+create Pods on nodes which match that [node selector](/docs/concepts/scheduling-eviction/assign-pod-node/).
+Likewise if you specify a `.spec.template.spec.affinity`,
+then DaemonSet controller will create Pods on nodes which match that
+[node affinity](/docs/concepts/scheduling-eviction/assign-pod-node/).
 If you do not specify either, then the DaemonSet controller will create Pods on all nodes.
 
 ## How Daemon Pods are scheduled
@@ -106,18 +114,19 @@ node that a Pod runs on is selected by the Kubernetes scheduler. However,
 DaemonSet pods are created and scheduled by the DaemonSet controller instead.
 That introduces the following issues:
 
- * Inconsistent Pod behavior: Normal Pods waiting to be scheduled are created
-   and in `Pending` state, but DaemonSet pods are not created in `Pending`
-   state. This is confusing to the user.
- * [Pod preemption](/docs/concepts/configuration/pod-priority-preemption/)
-   is handled by default scheduler. When preemption is enabled, the DaemonSet controller
-   will make scheduling decisions without considering pod priority and preemption.
+* Inconsistent Pod behavior: Normal Pods waiting to be scheduled are created
+  and in `Pending` state, but DaemonSet pods are not created in `Pending`
+  state. This is confusing to the user.
+* [Pod preemption](/docs/concepts/scheduling-eviction/pod-priority-preemption/)
+  is handled by default scheduler. When preemption is enabled, the DaemonSet controller
+  will make scheduling decisions without considering pod priority and preemption.
 
 `ScheduleDaemonSetPods` allows you to schedule DaemonSets using the default
 scheduler instead of the DaemonSet controller, by adding the `NodeAffinity` term
 to the DaemonSet pods, instead of the `.spec.nodeName` term. The default
 scheduler is then used to bind the pod to the target host. If node affinity of
-the DaemonSet pod already exists, it is replaced (the original node affinity was taken into account before selecting the target host). The DaemonSet controller only
+the DaemonSet pod already exists, it is replaced (the original node affinity was
+taken into account before selecting the target host). The DaemonSet controller only
 performs these operations when creating or modifying DaemonSet pods, and no
 changes are made to the `spec.template` of the DaemonSet.
 
@@ -158,10 +167,12 @@ Some possible patterns for communicating with Pods in a DaemonSet are:
 
 - **Push**: Pods in the DaemonSet are configured to send updates to another service, such
   as a stats database.  They do not have clients.
-- **NodeIP and Known Port**: Pods in the DaemonSet can use a `hostPort`, so that the pods are reachable via the node IPs.  Clients know the list of node IPs somehow, and know the port by convention.
-- **DNS**: Create a [headless service](/docs/concepts/services-networking/service/#headless-services) with the same pod selector,
-  and then discover DaemonSets using the `endpoints` resource or retrieve multiple A records from
-  DNS.
+- **NodeIP and Known Port**: Pods in the DaemonSet can use a `hostPort`, so that the pods
+  are reachable via the node IPs.
+  Clients know the list of node IPs somehow, and know the port by convention.
+- **DNS**: Create a [headless service](/docs/concepts/services-networking/service/#headless-services)
+  with the same pod selector, and then discover DaemonSets using the `endpoints`
+  resource or retrieve multiple A records from DNS.
 - **Service**: Create a service with the same Pod selector, and use the service to reach a
   daemon on a random node. (No way to reach specific node.)
 

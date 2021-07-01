@@ -22,7 +22,6 @@ The following methods exist for installing kubectl on Linux:
 - [Install kubectl binary with curl on Linux](#install-kubectl-binary-with-curl-on-linux)
 - [Install using native package management](#install-using-native-package-management)
 - [Install using other package management](#install-using-other-package-management)
-- [Install on Linux as part of the Google Cloud SDK](#install-on-linux-as-part-of-the-google-cloud-sdk)
 
 ### Install kubectl binary with curl on Linux
 
@@ -167,10 +166,6 @@ kubectl version --client
 {{% /tab %}}
 
 {{< /tabs >}}
-
-### Install on Linux as part of the Google Cloud SDK
-
-{{< include "included/install-kubectl-gcloud.md" >}}
 
 ## Verify kubectl configuration
 

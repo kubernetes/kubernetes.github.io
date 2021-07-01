@@ -127,7 +127,7 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
     upstream	https://github.com/kubernetes/website.git (push)
     ```
 
-6. Fetch commits from your fork's `origin/master` and `kubernetes/website`'s `upstream/master`:
+6. Fetch commits from your fork's `origin/main` and `kubernetes/website`'s `upstream/main`:
 
     ```bash
     git fetch origin
@@ -137,15 +137,15 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
     This makes sure your local repository is up to date before you start making changes.
 
     {{< note >}}
-    This workflow is different than the [Kubernetes Community GitHub Workflow](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md). You do not need to merge your local copy of `master` with `upstream/master` before pushing updates to your fork.
+    This workflow is different than the [Kubernetes Community GitHub Workflow](https://github.com/kubernetes/community/blob/master/contributors/guide/github-workflow.md). You do not need to merge your local copy of `main` with `upstream/main` before pushing updates to your fork.
     {{< /note >}}
 
 ### Create a branch
 
 1. Decide which branch base to your work on:
 
-  - For improvements to existing content, use `upstream/master`.
-  - For new content about existing features, use `upstream/master`.
+  - For improvements to existing content, use `upstream/main`.
+  - For new content about existing features, use `upstream/main`.
   - For localized content, use the localization's conventions. For more information, see [localizing Kubernetes documentation](/docs/contribute/localization/).
   - For new features in an upcoming Kubernetes release, use the feature branch. For more information, see [documenting for a release](/docs/contribute/new-content/new-features/).
   - For long-running efforts that multiple SIG Docs contributors collaborate on,
@@ -154,10 +154,10 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
     If you need help choosing a branch, ask in the `#sig-docs` Slack channel.
 
-2. Create a new branch based on the branch identified in step 1. This example assumes the base branch is `upstream/master`:
+2. Create a new branch based on the branch identified in step 1. This example assumes the base branch is `upstream/main`:
 
     ```bash
-    git checkout -b <my_new_branch> upstream/master
+    git checkout -b <my_new_branch> upstream/main
     ```
 
 3.  Make your changes using a text editor.
@@ -262,7 +262,7 @@ The commands below use Docker as default container engine. Set the `CONTAINER_EN
 
 Alternately, install and use the `hugo` command on your computer:
 
-1.  Install the [Hugo](https://gohugo.io/getting-started/installing/) version specified in [`website/netlify.toml`](https://raw.githubusercontent.com/kubernetes/website/master/netlify.toml).
+1.  Install the [Hugo](https://gohugo.io/getting-started/installing/) version specified in [`website/netlify.toml`](https://raw.githubusercontent.com/kubernetes/website/main/netlify.toml).
 
 2.  If you have not updated your website repository, the `website/themes/docsy` directory is empty.
     The site cannot build without a local copy of the theme. To update the website theme, run:
@@ -370,11 +370,11 @@ If another contributor commits changes to the same file in another PR, it can cr
     git push --force-with-lease origin <your-branch-name>
     ```
 
-2. Fetch changes from `kubernetes/website`'s `upstream/master` and rebase your branch:
+2. Fetch changes from `kubernetes/website`'s `upstream/main` and rebase your branch:
 
     ```bash
     git fetch upstream
-    git rebase upstream/master
+    git rebase upstream/main
     ```
 
 3. Inspect the results of the rebase:

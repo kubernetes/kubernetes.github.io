@@ -215,7 +215,7 @@ each Service port. The value of this field is mirrored by the corresponding
 Endpoints and EndpointSlice objects.
 
 This field follows standard Kubernetes label syntax. Values should either be
-[IANA standard service names](http://www.iana.org/assignments/service-names) or
+[IANA standard service names](https://www.iana.org/assignments/service-names) or
 domain prefixed names such as `mycompany.com/my-custom-protocol`.
 
 ## Virtual IPs and service proxies

@@ -279,7 +279,7 @@ DC 上运行的 VMware）也在[这里](https://portworx.com/architects-corner-k
 [Calico](https://docs.projectcalico.org/) 是一个开源的联网及网络安全方案，
 用于基于容器、虚拟机和本地主机的工作负载。
 Calico 支持多个数据面，包括：纯 Linux eBPF 的数据面、标准的 Linux 联网数据面
-以及 Windwos HNS 数据面。Calico 在提供完整的联网堆栈的同时，还可与
+以及 Windows HNS 数据面。Calico 在提供完整的联网堆栈的同时，还可与
 [云驱动 CNIs](https://docs.projectcalico.org/networking/determine-best-networking#calico-compatible-cni-plugins-and-cloud-provider-integrations) 联合使用，以保证网络策略实施。
 
 <!--

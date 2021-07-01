@@ -97,7 +97,10 @@ containerd를 설치한다.
 {{< tabs name="tab-cri-containerd-installation" >}}
 {{% tab name="Linux" %}}
 
-1. 공식 도커 리포지터리에서 `containerd.io` 패키지를 설치한다. 각 리눅스 배포한에 대한 도커 리포지터리를 설정하고 `containerd.io` 패키지를 설치하는 방법은 [도커 엔진 설치](https://docs.docker.com/engine/install/#server)에서 찾을 수 있다.
+1. 공식 도커 리포지터리에서 `containerd.io` 패키지를 설치한다.
+각 리눅스 배포판에 대한 도커 리포지터리를 설정하고
+`containerd.io` 패키지를 설치하는 방법은
+[도커 엔진 설치](https://docs.docker.com/engine/install/#server)에서 찾을 수 있다.
 
 2. containerd 설정
 
@@ -115,7 +118,8 @@ containerd를 설치한다.
 {{% /tab %}}
 {{% tab name="Windows (PowerShell)" %}}
 
-PowerShell 세션을 시작하고 `$Version`을 원하는 버전(예: `$Version:1.4.3`)으로 설정한 후 다음 명령을 실행한다.
+PowerShell 세션을 시작하고 `$Version`을 원하는 버전으로
+설정(예: `$Version:1.4.3`)한 후 다음 명령을 실행한다.
 
 1. containerd 다운로드
 
@@ -242,7 +246,8 @@ sudo apt-get install cri-o cri-o-runc
 
 {{% tab name="Ubuntu" %}}
 
-다음의 운영 체제에서 CRI-O를 설치하려면, 환경 변수 `OS` 를 아래의 표에서 적절한 필드로 설정한다.
+다음의 운영 체제에서 CRI-O를 설치하려면, 환경 변수 `OS` 를
+아래의 표에서 적절한 필드로 설정한다.
 
 | 운영 체제          | `$OS`             |
 | ---------------- | ----------------- |
@@ -277,7 +282,8 @@ apt-get install cri-o cri-o-runc
 
 {{% tab name="CentOS" %}}
 
-다음의 운영 체제에서 CRI-O를 설치하려면, 환경 변수 `OS` 를 아래의 표에서 적절한 필드로 설정한다.
+다음의 운영 체제에서 CRI-O를 설치하려면, 환경 변수 `OS` 를
+아래의 표에서 적절한 필드로 설정한다.
 
 | 운영 체제          | `$OS`             |
 | ---------------- | ----------------- |
@@ -357,7 +363,10 @@ CRI-O의 cgroup 드라이버 구성을 동기화 상태로
 
 ### 도커
 
-1. 각 노드에서 [도커 엔진 설치](https://docs.docker.com/engine/install/#server)에 따라 리눅스 배포판용 도커를 설치한다. 이 [의존성 파일](https://git.k8s.io/kubernetes/build/dependencies.yaml)에서 검증된 최신 버전의 도커를 찾을 수 있다.
+1. 각 노드에서 [도커 엔진 설치](https://docs.docker.com/engine/install/#server)에 따라
+리눅스 배포판용 도커를 설치한다.
+이 [의존성 파일](https://git.k8s.io/kubernetes/build/dependencies.yaml)에서
+검증된 최신 버전의 도커를 찾을 수 있다.
 
 2. 특히 컨테이너의 cgroup 관리에 systemd를 사용하도록 도커 데몬을 구성한다.
 
@@ -376,7 +385,8 @@ CRI-O의 cgroup 드라이버 구성을 동기화 상태로
    ```
 
    {{< note >}}
-   `overlay2`는 리눅스 커널 4.0 이상 또는 3.10.0-514 버전 이상을 사용하는 RHEL 또는 CentOS를 구동하는 시스템에서 선호하는 스토리지 드라이버이다.
+   `overlay2`는 리눅스 커널 4.0 이상 또는 3.10.0-514 버전 이상을 사용하는 RHEL
+   또는 CentOS를 구동하는 시스템에서 선호하는 스토리지 드라이버이다.
    {{< /note >}}
 
 3. 도커 재시작과 부팅시 실행되게 설정

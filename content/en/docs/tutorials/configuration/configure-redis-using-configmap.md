@@ -55,7 +55,7 @@ Apply the ConfigMap created above, along with a Redis pod manifest:
 
 ```shell
 kubectl apply -f example-redis-config.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/config/redis-pod.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/pods/config/redis-pod.yaml
 ```
 
 Examine the contents of the Redis pod manifest and note the following:
@@ -206,7 +206,7 @@ values from associated ConfigMaps. Let's delete and recreate the Pod:
 
 ```shell
 kubectl delete pod redis
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/pods/config/redis-pod.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/pods/config/redis-pod.yaml
 ```
 
 Now re-check the configuration values one last time:

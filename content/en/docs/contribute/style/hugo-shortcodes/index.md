@@ -55,7 +55,7 @@ You can reference glossary terms with an inclusion that automatically updates an
 As well as inclusions with tooltips, you can reuse the definitions from the glossary in
 page content.
 
-The raw data for glossary terms is stored at [https://github.com/kubernetes/website/tree/master/content/en/docs/reference/glossary](https://github.com/kubernetes/website/tree/master/content/en/docs/reference/glossary), with a content file for each glossary term.
+The raw data for glossary terms is stored at [https://github.com/kubernetes/website/tree/main/content/en/docs/reference/glossary](https://github.com/kubernetes/website/tree/main/content/en/docs/reference/glossary), with a content file for each glossary term.
 
 ### Glossary demo
 

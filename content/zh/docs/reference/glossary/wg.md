@@ -36,11 +36,11 @@ tags:
 <!--more--> 
 
 <!--
-Working groups are a way of organizing people to accomplish a discrete task, and are relatively easy to create and deprecate when inactive.
+Working groups are a way of organizing people to accomplish a discrete task.
 
 For more information, see the [kubernetes/community](https://github.com/kubernetes/community) repo and the current list of [SIGs and working groups](https://github.com/kubernetes/community/blob/master/sig-list.md).
 -->
 
-工作组可以将人们组织起来，一起完成一项分散的任务。它组建简单，完成任务即可解散。
+工作组可以将人们组织起来，一起完成一项分散的任务。
 
 更多信息请参考 [kubernetes/community](https://github.com/kubernetes/community) 代码库和当前的 [SIGs 和工作组](https://github.com/kubernetes/community/blob/master/sig-list.md) 列表。

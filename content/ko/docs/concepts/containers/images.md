@@ -116,7 +116,7 @@ weight: 10
 
 
 도커는 프라이빗 레지스트리를 위한 키를 `$HOME/.dockercfg` 또는 `$HOME/.docker/config.json` 파일에 저장한다. 만약 동일한 파일을
-아래의 검색 경로 리스트에 넣으면, kubelete은 이미지를 풀 할 때 해당 파일을 자격 증명 공급자로 사용한다.
+아래의 검색 경로 리스트에 넣으면, kubelet은 이미지를 풀 할 때 해당 파일을 자격 증명 공급자로 사용한다.
 
 * `{--root-dir:-/var/lib/kubelet}/config.json`
 * `{cwd of kubelet}/config.json`

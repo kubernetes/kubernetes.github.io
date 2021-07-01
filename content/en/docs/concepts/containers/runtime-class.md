@@ -51,7 +51,7 @@ heterogeneous node configurations, see [Scheduling](#scheduling) below.
 {{< /note >}}
 
 The configurations have a corresponding `handler` name, referenced by the RuntimeClass. The
-handler must be a valid DNS 1123 label (alpha-numeric + `-` characters).
+handler must be a valid [DNS label name](/docs/concepts/overview/working-with-objects/names/#dns-label-names).
 
 ### 2. Create the corresponding RuntimeClass resources
 
@@ -135,7 +135,7 @@ table](https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md#crioruntim
   runtime_path = "${PATH_TO_BINARY}"
 ```
 
-See CRI-O's [config documentation](https://raw.githubusercontent.com/cri-o/cri-o/9f11d1d/docs/crio.conf.5.md) for more details.
+See CRI-O's [config documentation](https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md) for more details.
 
 ## Scheduling
 
@@ -179,4 +179,4 @@ are accounted for in Kubernetes.
 - [RuntimeClass Design](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.md)
 - [RuntimeClass Scheduling Design](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.md#runtimeclass-scheduling)
 - Read about the [Pod Overhead](/docs/concepts/scheduling-eviction/pod-overhead/) concept
-- [PodOverhead Feature Design](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/20190226-pod-overhead.md)
+- [PodOverhead Feature Design](https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/688-pod-overhead)

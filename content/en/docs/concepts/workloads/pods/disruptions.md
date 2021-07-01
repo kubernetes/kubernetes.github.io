@@ -86,7 +86,7 @@ rolling out node software updates can cause voluntary disruptions. Also, some im
 of cluster (node) autoscaling may cause voluntary disruptions to defragment and compact nodes.
 Your cluster administrator or hosting provider should have documented what level of voluntary
 disruptions, if any, to expect. Certain configuration options, such as
-[using PriorityClasses](/docs/concepts/configuration/pod-priority-preemption/)
+[using PriorityClasses](/docs/concepts/scheduling-eviction/pod-priority-preemption/)
 in your pod spec can also cause voluntary (and involuntary) disruptions.
 
 

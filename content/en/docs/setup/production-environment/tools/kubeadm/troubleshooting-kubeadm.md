@@ -220,6 +220,25 @@ Unable to connect to the server: x509: certificate signed by unknown authority (
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
   ```
 
+## Kubelet client certificate rotation fails {#kubelet-client-cert}
+
+By default, kubeadm configures a kubelet with automatic rotation of client certificates by using the `/var/lib/kubelet/pki/kubelet-client-current.pem` symlink specified in `/etc/kubernetes/kubelet.conf`.
+If this rotation process fails you might see errors such as `x509: certificate has expired or is not yet valid`
+in kube-apserver logs. To fix the issue you must follow these steps:
+
+1. Backup and delete `/etc/kubernetes/kubelet.conf` and `/var/lib/kubelet/pki/kubelet-client*` from the failed node.
+1. From a working control plane node in the cluster that has `/etc/kubernetes/pki/ca.key` execute
+`kubeadm kubeconfig user --org system:nodes --client-name system:node:$NODE > kubelet.conf`.
+`$NODE` must be set to the name of the existing failed node in the cluster.
+Modify the resulted `kubelet.conf` manually to adjust the cluster name and server endpoint,
+or pass `kubeconfig user --config` (it accepts `InitConfiguration`). If your cluster does not have
+the `ca.key` you must sign the embedded certificates in the `kubelet.conf` externally.
+1. Copy this resulted `kubelet.conf` to `/etc/kubernetes/kubelet.conf` on the failed node.
+1. Restart the kubelet (`systemctl restart kubelet`) on the failed node and wait for
+`/var/lib/kubelet/pki/kubelet-client-current.pem` to be recreated.
+1. Run `kubeadm init phase kubelet-finalize all` on the failed node. This will make the new
+`kubelet.conf` file use `/var/lib/kubelet/pki/kubelet-client-current.pem` and will restart the kubelet.
+1. Make sure the node becomes `Ready`.
 ## Default NIC When using flannel as the pod network in Vagrant
 
 The following error might indicate that something was wrong in the pod network:

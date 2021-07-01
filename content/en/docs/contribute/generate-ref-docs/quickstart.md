@@ -18,8 +18,8 @@ the build setup and generates the reference documentation for a release.
 
 ## Getting the docs repository
 
-Make sure your `website` fork is up-to-date with the `kubernetes/website` master and clone
-your `website` fork.
+Make sure your `website` fork is up-to-date with the `kubernetes/website` remote on
+GitHub (`main` branch), and clone your `website` fork.
 
 ```shell
 mkdir github.com
@@ -171,7 +171,7 @@ For example:
 The `release.yml` configuration file contains instructions to fix relative links.
 To fix relative links within your imported files, set the`gen-absolute-links`
 property to `true`. You can find an example of this in
-[`release.yml`](https://github.com/kubernetes/website/blob/master/update-imported-docs/release.yml).
+[`release.yml`](https://github.com/kubernetes/website/blob/main/update-imported-docs/release.yml).
 
 ## Adding and committing changes in kubernetes/website
 

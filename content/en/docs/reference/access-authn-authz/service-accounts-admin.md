@@ -62,10 +62,9 @@ It acts synchronously to modify pods as they are created or updated. When this p
 
 #### Bound Service Account Token Volume
 
-{{< feature-state for_k8s_version="v1.21" state="beta" >}}
+{{< feature-state for_k8s_version="v1.22" state="stable" >}}
 
-When the `BoundServiceAccountTokenVolume` [feature gate](/docs/reference/command-line-tools-reference/feature-gates/) is enabled, the service account admission controller will
-add the following projected volume instead of a Secret-based volume for the non-expiring service account token created by Token Controller.
+The ServiceAccount admission controller will add the following projected volume instead of a Secret-based volume for the non-expiring service account token created by Token Controller.
 
 ```yaml
 - name: kube-api-access-<random-suffix>
@@ -95,10 +94,6 @@ This projected volume consists of three sources:
 1. A DownwardAPI that references the namespace of the pod.
 
 See more details about [projected volumes](/docs/tasks/configure-pod-container/configure-projected-volume-storage/).
-
-You can manually migrate a Secret-based service account volume to a projected volume when
-the `BoundServiceAccountTokenVolume` feature gate is not enabled by adding the above
-projected volume to the pod spec.
 
 ### Token Controller
 

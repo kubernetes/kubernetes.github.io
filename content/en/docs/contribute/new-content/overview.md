@@ -42,7 +42,7 @@ When opening a pull request, you need to know in advance which branch to base yo
 
 Scenario | Branch
 :---------|:------------
-Existing or new English language content for the current release | `master`
+Existing or new English language content for the current release | `main`
 Content for a feature change release | The branch which corresponds to the major and minor version the feature change is in, using the pattern `dev-<version>`. For example, if a feature changes in the `v{{< skew nextMinorVersion >}}` release, then add documentation changes to the ``dev-{{< skew nextMinorVersion >}}`` branch.
 Content in other languages (localizations) | Use the localization's convention. See the [Localization branching strategy](/docs/contribute/localization/#branching-strategy) for more information.
 
@@ -60,6 +60,6 @@ Limit pull requests to one language per PR. If you need to make an identical cha
 
 ## Tools for contributors
 
-The [doc contributors tools](https://github.com/kubernetes/website/tree/master/content/en/docs/doc-contributor-tools) directory in the `kubernetes/website` repository contains tools to help your contribution journey go more smoothly.
+The [doc contributors tools](https://github.com/kubernetes/website/tree/main/content/en/docs/doc-contributor-tools) directory in the `kubernetes/website` repository contains tools to help your contribution journey go more smoothly.
 
 

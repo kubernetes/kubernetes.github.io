@@ -56,10 +56,10 @@ To download a specific version, replace the following portion of the command wit
 $(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)
 ```
 
-For example, to download kops version v1.15.0 type:
+For example, to download kops version v1.20.0 type:
 
 ```shell
-curl -LO  https://github.com/kubernetes/kops/releases/download/1.15.0/kops-darwin-amd64
+curl -LO https://github.com/kubernetes/kops/releases/download/v1.20.0/kops-darwin-amd64
 ```
 
 Make the kops binary executable.
@@ -94,10 +94,10 @@ To download a specific version of kops, replace the following portion of the com
 $(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)
 ```
 
-For example, to download kops version v1.15.0 type:
+For example, to download kops version v1.20.0 type:
 
 ```shell
-curl -LO  https://github.com/kubernetes/kops/releases/download/1.15.0/kops-linux-amd64
+curl -LO https://github.com/kubernetes/kops/releases/download/v1.20.0/kops-linux-amd64
 ```
 
 Make the kops binary executable

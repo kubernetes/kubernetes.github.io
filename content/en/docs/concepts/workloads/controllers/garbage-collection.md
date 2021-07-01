@@ -68,7 +68,7 @@ is subject to deletion once all owners are verified absent.
 
 Cluster-scoped dependents can only specify cluster-scoped owners.
 In v1.20+, if a cluster-scoped dependent specifies a namespaced kind as an owner,
-it is treated as having an unresolveable owner reference, and is not able to be garbage collected.
+it is treated as having an unresolvable owner reference, and is not able to be garbage collected.
 
 In v1.20+, if the garbage collector detects an invalid cross-namespace `ownerReference`,
 or a cluster-scoped dependent with an `ownerReference` referencing a namespaced kind, a warning Event 

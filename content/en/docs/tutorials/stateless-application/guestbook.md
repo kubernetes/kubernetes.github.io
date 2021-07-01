@@ -1,64 +1,63 @@
 ---
-title: "Example: Deploying PHP Guestbook application with MongoDB"
+title: "Example: Deploying PHP Guestbook application with Redis"
 reviewers:
 - ahmetb
+- jimangel
 content_type: tutorial
 weight: 20
 card:
   name: tutorials
   weight: 30
-  title: "Stateless Example: PHP Guestbook with MongoDB"
+  title: "Stateless Example: PHP Guestbook with Redis"
 min-kubernetes-server-version: v1.14
+source: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
 ---
 
 <!-- overview -->
 This tutorial shows you how to build and deploy a simple _(not production ready)_, multi-tier web application using Kubernetes and [Docker](https://www.docker.com/). This example consists of the following components:
 
-* A single-instance [MongoDB](https://www.mongodb.com/) to store guestbook entries
+* A single-instance [Redis](https://www.redis.com/) to store guestbook entries
 * Multiple web frontend instances
 
 ## {{% heading "objectives" %}}
 
-* Start up a Mongo database.
+* Start up a Redis leader.
+* Start up two Redis followers.
 * Start up the guestbook frontend.
 * Expose and view the Frontend Service.
 * Clean up.
 
-
 ## {{% heading "prerequisites" %}}
-
 
 {{< include "task-tutorial-prereqs.md" >}}
 
 {{< version-check >}}
 
-
-
 <!-- lessoncontent -->
 
-## Start up the Mongo Database
+## Start up the Redis Database
 
-The guestbook application uses MongoDB to store its data.
+The guestbook application uses Redis to store its data.
 
-### Creating the Mongo Deployment
+### Creating the Redis Deployment
 
-The manifest file, included below, specifies a Deployment controller that runs a single replica MongoDB Pod.
+The manifest file, included below, specifies a Deployment controller that runs a single replica Redis Pod.
 
-{{< codenew file="application/guestbook/mongo-deployment.yaml" >}}
+{{< codenew file="application/guestbook/redis-leader-deployment.yaml" >}}
 
 1. Launch a terminal window in the directory you downloaded the manifest files.
-1. Apply the MongoDB Deployment from the `mongo-deployment.yaml` file:
+1. Apply the Redis Deployment from the `redis-leader-deployment.yaml` file:
 
       <!---
       for local testing of the content via relative file path
-      kubectl apply -f ./content/en/examples/application/guestbook/mongo-deployment.yaml
+      kubectl apply -f ./content/en/examples/application/guestbook/redis-leader-deployment.yaml
       -->
 
       ```shell
-      kubectl apply -f https://k8s.io/examples/application/guestbook/mongo-deployment.yaml
+      kubectl apply -f https://k8s.io/examples/application/guestbook/redis-leader-deployment.yaml
       ```
 
-1. Query the list of Pods to verify that the MongoDB Pod is running:
+1. Query the list of Pods to verify that the Redis Pod is running:
 
       ```shell
       kubectl get pods
@@ -67,34 +66,34 @@ The manifest file, included below, specifies a Deployment controller that runs a
       The response should be similar to this:
 
       ```shell
-      NAME                            READY     STATUS    RESTARTS   AGE
-      mongo-5cfd459dd4-lrcjb          1/1       Running   0          28s
+      NAME                           READY   STATUS    RESTARTS   AGE
+      redis-leader-fb76b4755-xjr2n   1/1     Running   0          13s
       ```
 
-1. Run the following command to view the logs from the MongoDB Deployment:
+1. Run the following command to view the logs from the Redis leader Pod:
 
      ```shell
-     kubectl logs -f deployment/mongo
+     kubectl logs -f deployment/redis-leader
      ```
 
-### Creating the MongoDB Service
+### Creating the Redis leader Service
 
-The guestbook application needs to communicate to the MongoDB to write its data. You need to apply a [Service](/docs/concepts/services-networking/service/) to proxy the traffic to the MongoDB Pod. A Service defines a policy to access the Pods.
+The guestbook application needs to communicate to the Redis to write its data. You need to apply a [Service](/docs/concepts/services-networking/service/) to proxy the traffic to the Redis Pod. A Service defines a policy to access the Pods.
 
-{{< codenew file="application/guestbook/mongo-service.yaml" >}}
+{{< codenew file="application/guestbook/redis-leader-service.yaml" >}}
 
-1. Apply the MongoDB Service from the following `mongo-service.yaml` file:
+1. Apply the Redis Service from the following `redis-leader-service.yaml` file:
 
       <!---
       for local testing of the content via relative file path
-      kubectl apply -f ./content/en/examples/application/guestbook/mongo-service.yaml
+      kubectl apply -f ./content/en/examples/application/guestbook/redis-leader-service.yaml
       -->
 
       ```shell
-      kubectl apply -f https://k8s.io/examples/application/guestbook/mongo-service.yaml
+      kubectl apply -f https://k8s.io/examples/application/guestbook/redis-leader-service.yaml
       ```
 
-1. Query the list of Services to verify that the MongoDB Service is running:
+1. Query the list of Services to verify that the Redis Service is running:
 
       ```shell
       kubectl get service
@@ -105,17 +104,85 @@ The guestbook application needs to communicate to the MongoDB to write its data.
       ```shell
       NAME           TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
       kubernetes     ClusterIP   10.0.0.1     <none>        443/TCP    1m
-      mongo          ClusterIP   10.0.0.151   <none>        27017/TCP   8s
+      redis-leader   ClusterIP   10.103.78.24 <none>        6379/TCP   16s
       ```
 
 {{< note >}}
-This manifest file creates a Service named `mongo` with a set of labels that match the labels previously defined, so the Service routes network traffic to the MongoDB Pod.
+This manifest file creates a Service named `redis-leader` with a set of labels that match the labels previously defined, so the Service routes network traffic to the Redis Pod.
 {{< /note >}}
 
+### Set up Redis followers
+
+Although the Redis leader is a single Pod, you can make it highly available and meet traffic demands by adding a few Redis followers, or replicas.
+
+{{< codenew file="application/guestbook/redis-follower-deployment.yaml" >}}
+
+1. Apply the Redis Service from the following `redis-follower-deployment.yaml` file:
+
+      <!---
+      for local testing of the content via relative file path
+      kubectl apply -f ./content/en/examples/application/guestbook/redis-follower-deployment.yaml
+      -->
+
+      ```shell
+      kubectl apply -f https://k8s.io/examples/application/guestbook/redis-follower-deployment.yaml
+      ```
+
+1. Verify that the two Redis follower replicas are running by querying the list of Pods:
+
+      ```shell
+      kubectl get pods
+      ```
+
+      The response should be similar to this:
+
+      ```shell
+      NAME                             READY   STATUS    RESTARTS   AGE
+      redis-follower-dddfbdcc9-82sfr   1/1     Running   0          37s
+      redis-follower-dddfbdcc9-qrt5k   1/1     Running   0          38s
+      redis-leader-fb76b4755-xjr2n     1/1     Running   0          11m
+
+### Creating the Redis follower service
+
+The guestbook application needs to communicate with the Redis followers to read data. To make the Redis followers discoverable, you must set up another [Service](/docs/concepts/services-networking/service/).
+
+{{< codenew file="application/guestbook/redis-follower-service.yaml" >}}
+
+1. Apply the Redis Service from the following `redis-follower-service.yaml` file:
+
+      <!---
+      for local testing of the content via relative file path
+      kubectl apply -f ./content/en/examples/application/guestbook/redis-follower-service.yaml
+      -->
+
+      ```shell
+      kubectl apply -f https://k8s.io/examples/application/guestbook/redis-follower-service.yaml
+      ```
+
+1. Query the list of Services to verify that the Redis Service is running:
+
+      ```shell
+      kubectl get service
+      ```
+
+      The response should be similar to this:
+
+      ```shell
+     NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+     kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP    3d19h
+     redis-follower   ClusterIP   10.110.162.42   <none>        6379/TCP   9s
+     redis-leader     ClusterIP   10.103.78.24    <none>        6379/TCP   6m10s
+      ```
+
+{{< note >}}
+This manifest file creates a Service named `redis-follower` with a set of labels that match the labels previously defined, so the Service routes network traffic to the Redis Pod.
+{{< /note >}}
 
 ## Set up and Expose the Guestbook Frontend
 
-The guestbook application has a web frontend serving the HTTP requests written in PHP. It is configured to connect to the `mongo` Service to store Guestbook entries.
+Now that you have the Redis storage of your guestbook up and running, start the guestbook web servers. Like the Redis followers, the frontend is deployed using a Kubernetes Deployment.
+
+The guestbook app uses a PHP frontend. It is configured to communicate with either the Redis follower or leader Services, depending on whether the request is a read or a write. The frontend exposes a JSON interface, and serves a jQuery-Ajax-based UX.
 
 ### Creating the Guestbook Frontend Deployment
 
@@ -135,21 +202,21 @@ The guestbook application has a web frontend serving the HTTP requests written i
 1. Query the list of Pods to verify that the three frontend replicas are running:
 
       ```shell
-      kubectl get pods -l app.kubernetes.io/name=guestbook -l app.kubernetes.io/component=frontend
+      kubectl get pods -l app=guestbook -l tier=frontend
       ```
 
       The response should be similar to this:
 
       ```
-      NAME                        READY     STATUS    RESTARTS   AGE
-      frontend-3823415956-dsvc5   1/1       Running   0          54s
-      frontend-3823415956-k22zn   1/1       Running   0          54s
-      frontend-3823415956-w9gbt   1/1       Running   0          54s
+     NAME                        READY   STATUS    RESTARTS   AGE
+     frontend-85595f5bf9-5tqhb   1/1     Running   0          47s
+     frontend-85595f5bf9-qbzwm   1/1     Running   0          47s
+     frontend-85595f5bf9-zchwc   1/1     Running   0          47s
       ```
 
 ### Creating the Frontend Service
 
-The `mongo` Services you applied is only accessible within the Kubernetes cluster because the default type for a Service is [ClusterIP](/docs/concepts/services-networking/service/#publishing-services-service-types). `ClusterIP` provides a single IP address for the set of Pods the Service is pointing to. This IP address is accessible only within the cluster.
+The `Redis` Services you applied is only accessible within the Kubernetes cluster because the default type for a Service is [ClusterIP](/docs/concepts/services-networking/service/#publishing-services-service-types). `ClusterIP` provides a single IP address for the set of Pods the Service is pointing to. This IP address is accessible only within the cluster.
 
 If you want guests to be able to access your guestbook, you must configure the frontend Service to be externally visible, so a client can request the Service from outside the Kubernetes cluster. However a Kubernetes user you can use `kubectl port-forward` to access the service even though it uses a `ClusterIP`.
 
@@ -179,10 +246,11 @@ Some cloud providers, like Google Compute Engine or Google Kubernetes Engine, su
       The response should be similar to this:
 
       ```
-      NAME           TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
-      frontend       ClusterIP   10.0.0.112   <none>        80/TCP         6s
-      kubernetes     ClusterIP   10.0.0.1     <none>        443/TCP        4m
-      mongo          ClusterIP   10.0.0.151   <none>        6379/TCP       2m
+     NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+     frontend         ClusterIP   10.97.28.230    <none>        80/TCP     19s
+     kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP    3d19h
+     redis-follower   ClusterIP   10.110.162.42   <none>        6379/TCP   5m48s
+     redis-leader     ClusterIP   10.103.78.24    <none>        6379/TCP   11m
       ```
 
 ### Viewing the Frontend Service via `kubectl port-forward`
@@ -221,6 +289,10 @@ If you deployed the `frontend-service.yaml` manifest with type: `LoadBalancer` y
 
 1. Copy the external IP address, and load the page in your browser to view your guestbook.
 
+{{< note >}}
+Try adding some guestbook entries by typing in a message, and clicking Submit. The message you typed appears in the frontend. This message indicates that data is successfully added to Redis through the Services you created earlier.
+{{< /note >}}
+
 ## Scale the Web Frontend
 
 You can scale up or down as needed because your servers are defined as a Service that uses a Deployment controller.
@@ -240,13 +312,15 @@ You can scale up or down as needed because your servers are defined as a Service
       The response should look similar to this:
 
       ```
-      NAME                            READY     STATUS    RESTARTS   AGE
-      frontend-3823415956-70qj5       1/1       Running   0          5s
-      frontend-3823415956-dsvc5       1/1       Running   0          54m
-      frontend-3823415956-k22zn       1/1       Running   0          54m
-      frontend-3823415956-w9gbt       1/1       Running   0          54m
-      frontend-3823415956-x2pld       1/1       Running   0          5s
-      mongo-1068406935-3lswp          1/1       Running   0          56m
+      NAME                             READY   STATUS    RESTARTS   AGE
+      frontend-85595f5bf9-5df5m        1/1     Running   0          83s
+      frontend-85595f5bf9-7zmg5        1/1     Running   0          83s
+      frontend-85595f5bf9-cpskg        1/1     Running   0          15m
+      frontend-85595f5bf9-l2l54        1/1     Running   0          14m
+      frontend-85595f5bf9-l9c8z        1/1     Running   0          14m
+      redis-follower-dddfbdcc9-82sfr   1/1     Running   0          97m
+      redis-follower-dddfbdcc9-qrt5k   1/1     Running   0          97m
+      redis-leader-fb76b4755-xjr2n     1/1     Running   0          108m
       ```
 
 1. Run the following command to scale down the number of frontend Pods:
@@ -264,13 +338,13 @@ You can scale up or down as needed because your servers are defined as a Service
       The response should look similar to this:
 
       ```
-      NAME                            READY     STATUS    RESTARTS   AGE
-      frontend-3823415956-k22zn       1/1       Running   0          1h
-      frontend-3823415956-w9gbt       1/1       Running   0          1h
-      mongo-1068406935-3lswp          1/1       Running   0          1h
+      NAME                             READY   STATUS    RESTARTS   AGE
+      frontend-85595f5bf9-cpskg        1/1     Running   0          16m
+      frontend-85595f5bf9-l9c8z        1/1     Running   0          15m
+      redis-follower-dddfbdcc9-82sfr   1/1     Running   0          98m
+      redis-follower-dddfbdcc9-qrt5k   1/1     Running   0          98m
+      redis-leader-fb76b4755-xjr2n     1/1     Running   0          109m
       ```
-
-
 
 ## {{% heading "cleanup" %}}
 
@@ -279,17 +353,17 @@ Deleting the Deployments and Services also deletes any running Pods. Use labels 
 1. Run the following commands to delete all Pods, Deployments, and Services.
 
       ```shell
-      kubectl delete deployment -l app.kubernetes.io/name=mongo
-      kubectl delete service -l app.kubernetes.io/name=mongo
-      kubectl delete deployment -l app.kubernetes.io/name=guestbook
-      kubectl delete service -l app.kubernetes.io/name=guestbook
+      kubectl delete deployment -l app=redis
+      kubectl delete service -l app=redis
+      kubectl delete deployment frontend
+      kubectl delete service frontend
       ```
 
-      The responses should be:
+      The response should look similar to this:
 
       ```
-      deployment.apps "mongo" deleted
-      service "mongo" deleted
+      deployment.apps "redis-follower" deleted
+      deployment.apps "redis-leader" deleted
       deployment.apps "frontend" deleted
       service "frontend" deleted
       ```
@@ -300,13 +374,11 @@ Deleting the Deployments and Services also deletes any running Pods. Use labels 
       kubectl get pods
       ```
 
-      The response should be this:
+      The response should look similar to this:
 
       ```
-      No resources found.
+      No resources found in default namespace.
       ```
-
-
 
 ## {{% heading "whatsnext" %}}
 

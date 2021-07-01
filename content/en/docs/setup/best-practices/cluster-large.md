@@ -12,7 +12,7 @@ or virtual machines) running Kubernetes agents, managed by the
 Kubernetes {{< param "version" >}} supports clusters with up to 5000 nodes. More specifically,
 Kubernetes is designed to accommodate configurations that meet *all* of the following criteria:
 
-* No more than 100 pods per node
+* No more than 110 pods per node
 * No more than 5000 nodes
 * No more than 150000 total pods
 * No more than 300000 total containers

@@ -514,6 +514,7 @@ RemoveSelfLink=true|false (BETA - default=true)<br/>
 RootCAConfigMap=true|false (BETA - default=true)<br/>
 RotateKubeletServerCertificate=true|false (BETA - default=true)<br/>
 RunAsGroup=true|false (BETA - default=true)<br/>
+SeccompDefault=true|false (ALPHA - default=false)<br/>
 ServerSideApply=true|false (BETA - default=true)<br/>
 ServiceAccountIssuerDiscovery=true|false (BETA - default=true)<br/>
 ServiceLBNodePortControl=true|false (ALPHA - default=false)<br/>
@@ -1071,6 +1072,13 @@ WindowsEndpointSliceProxying=true|false (ALPHA - default=false)<br/>
 </tr>
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">Timeout of all runtime requests except long running request - `pull`, `logs`, `exec` and `attach`. When timeout exceeded, kubelet will cancel the request, throw out an error and retry later. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's `--config` flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)</td>
+</tr>
+
+<tr>
+<td colspan="2">--seccomp-default RuntimeDefault&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: `false`</td>
+</tr>
+<tr>
+<td></td><td style="line-height: 130%; word-wrap: break-word;">&lt;Warning: Alpha feature&gt; Enable the use of RuntimeDefault as the default seccomp profile for all workloads. The SeccompDefault feature gate must be enabled to allow this flag, which is disabled per default.</td>
 </tr>
 
 <tr>

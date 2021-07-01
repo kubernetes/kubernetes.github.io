@@ -4,7 +4,7 @@
 {{ $fileDir := path.Split $file }}
 {{ $bundlePath := path.Join .Page.File.Dir $fileDir.Dir }}
 {{ $filename := printf "/content/%s/examples/%s" .Page.Lang $file | safeURL }}
-{{ $ghlink := printf "https://%s/master%s" site.Params.githubwebsiteraw $filename | safeURL }}
+{{ $ghlink := printf "https://%s/main%s" site.Params.githubwebsiteraw $filename | safeURL }}
 {{/* First assume this is a bundle and the file is inside it. */}}
 {{ $resource := $p.Resources.GetMatch (printf "%s*" $file ) }}
 {{ with $resource }}

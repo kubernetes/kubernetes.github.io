@@ -1,4 +1,4 @@
 ---
-title: "kubectl 命令行界面"
+title: "kubectl"
 weight: 60
 ---

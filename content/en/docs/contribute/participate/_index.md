@@ -73,8 +73,8 @@ two [prow plugins](https://github.com/kubernetes/test-infra/tree/master/prow/plu
 - approve
 
 These two plugins use the
-[OWNERS](https://github.com/kubernetes/website/blob/master/OWNERS) and
-[OWNERS_ALIASES](https://github.com/kubernetes/website/blob/master/OWNERS_ALIASES)
+[OWNERS](https://github.com/kubernetes/website/blob/main/OWNERS) and
+[OWNERS_ALIASES](https://github.com/kubernetes/website/blob/main/OWNERS_ALIASES)
 files in the top level of the `kubernetes/website` GitHub repository to control
 how prow works within the repository.
 

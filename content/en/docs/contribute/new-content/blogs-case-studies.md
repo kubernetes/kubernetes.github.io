@@ -40,7 +40,7 @@ Anyone can write a blog post and submit it for review.
     - Many CNCF projects have their own blog. These are often a better choice for posts. There are times of major feature or milestone for a CNCF project that users would be interested in reading on the Kubernetes blog.
 - Blog posts should be original content
   - The official blog is not for repurposing existing content from a third party as new content.
-  - The [license](https://github.com/kubernetes/website/blob/master/LICENSE) for the blog allows commercial use of the content for commercial purposes, but not the other way around.
+  - The [license](https://github.com/kubernetes/website/blob/main/LICENSE) for the blog allows commercial use of the content for commercial purposes, but not the other way around.
 - Blog posts should aim to be future proof
   - Given the development velocity of the project, we want evergreen content that won't require updates to stay accurate for the reader. 
   - It can be a better choice to add a tutorial or update official documentation than to write a high level overview as a blog post.
@@ -56,7 +56,7 @@ The SIG Docs [blog subproject](https://github.com/kubernetes/community/tree/mast
 
 To submit a blog post follow these directions:
 
-- [Open a pull request](/docs/contribute/new-content/open-a-pr/#fork-the-repo) with a new blog post. New blog posts go under the [`content/en/blog/_posts`](https://github.com/kubernetes/website/tree/master/content/en/blog/_posts) directory.
+- [Open a pull request](/docs/contribute/new-content/open-a-pr/#fork-the-repo) with a new blog post. New blog posts go under the [`content/en/blog/_posts`](https://github.com/kubernetes/website/tree/main/content/en/blog/_posts) directory.
 
 - Ensure that your blog post follows the correct naming conventions and the following frontmatter (metadata) information:
 
@@ -90,6 +90,6 @@ Case studies highlight how organizations are using Kubernetes to solve
 real-world problems. The Kubernetes marketing team and members of the {{< glossary_tooltip text="CNCF" term_id="cncf" >}} collaborate with you on all case studies.
 
 Have a look at the source for the
-[existing case studies](https://github.com/kubernetes/website/tree/master/content/en/case-studies).
+[existing case studies](https://github.com/kubernetes/website/tree/main/content/en/case-studies).
 
 Refer to the [case study guidelines](https://github.com/cncf/foundation/blob/master/case-study-guidelines.md) and submit your request as outlined in the guidelines.

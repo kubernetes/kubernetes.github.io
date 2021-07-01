@@ -17,6 +17,11 @@ a *kubeconfig file*. This is a generic way of referring to configuration files.
 It does not mean that there is a file named `kubeconfig`.
 {{< /note >}}
 
+{{< warning >}}
+Only use kubeconfig files from trusted sources. Using a specially-crafted kubeconfig file could result in malicious code execution or file exposure. 
+If you must use an untrusted kubeconfig file, inspect it carefully first, much as you would a shell script.
+{{< /warning>}}
+
 By default, `kubectl` looks for a file named `config` in the `$HOME/.kube` directory.
 You can specify other kubeconfig files by setting the `KUBECONFIG` environment
 variable or by setting the
@@ -151,7 +156,6 @@ are stored absolutely.
 
 * [Configure Access to Multiple Clusters](/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)
 * [`kubectl config`](/docs/reference/generated/kubectl/kubectl-commands#config)
-
 
 
 

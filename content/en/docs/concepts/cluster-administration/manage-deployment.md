@@ -50,7 +50,7 @@ It is a recommended practice to put resources related to the same microservice o
 A URL can also be specified as a configuration source, which is handy for deploying directly from configuration files checked into GitHub:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/application/nginx/nginx-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/website/main/content/en/examples/application/nginx/nginx-deployment.yaml
 ```
 
 ```shell

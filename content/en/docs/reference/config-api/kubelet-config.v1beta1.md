@@ -14,6 +14,48 @@ auto_generated: true
   
     
 
+## `LoggingConfiguration`     {#LoggingConfiguration}
+    
+
+
+
+**Appears in:**
+
+- [KubeletConfiguration](#kubelet-config-k8s-io-v1beta1-KubeletConfiguration)
+
+
+LoggingConfiguration contains logging options
+Refer [Logs Options](https://github.com/kubernetes/component-base/blob/master/logs/options.go) for more information.
+
+<table class="table">
+<thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
+<tbody>
+    
+
+  
+<tr><td><code>format</code> <B>[Required]</B><br/>
+<code>string</code>
+</td>
+<td>
+   Format Flag specifies the structure of log messages.
+default value of format is `text`</td>
+</tr>
+    
+  
+<tr><td><code>sanitization</code> <B>[Required]</B><br/>
+<code>bool</code>
+</td>
+<td>
+   [Experimental] When enabled prevents logging of fields tagged as sensitive (passwords, keys, tokens).
+Runtime log sanitization may introduce significant computation overhead and therefore should not be enabled in production.`)</td>
+</tr>
+    
+  
+</tbody>
+</table>
+  
+    
+
 
 ## `KubeletConfiguration`     {#kubelet-config-k8s-io-v1beta1-KubeletConfiguration}
     
@@ -445,10 +487,10 @@ Default: "10s"</td>
 status to master if node status does not change. Kubelet will ignore this
 frequency and post node status immediately if any change is detected. It is
 only used when node lease feature is enabled. nodeStatusReportFrequency's
-default value is 1m. But if nodeStatusUpdateFrequency is set explicitly,
+default value is 5m. But if nodeStatusUpdateFrequency is set explicitly,
 nodeStatusReportFrequency's default value will be set to
 nodeStatusUpdateFrequency for backward compatibility.
-Default: "1m"</td>
+Default: "5m"</td>
 </tr>
     
   
@@ -590,7 +632,7 @@ Default: "cgroupfs"</td>
 Requires the CPUManager feature gate to be enabled.
 Dynamic Kubelet Config (beta): This field should not be updated without a full node
 reboot. It is safest to keep this value the same as the local config.
-Default: "none"</td>
+Default: "None"</td>
 </tr>
     
   
@@ -603,6 +645,18 @@ Requires the CPUManager feature gate to be enabled.
 Dynamic Kubelet Config (beta): If dynamically updating this field, consider that
 shortening the period may carry a performance impact.
 Default: "10s"</td>
+</tr>
+    
+  
+<tr><td><code>memoryManagerPolicy</code><br/>
+<code>string</code>
+</td>
+<td>
+   MemoryManagerPolicy is the name of the policy to use by memory manager.
+Requires the MemoryManager feature gate to be enabled.
+Dynamic Kubelet Config (beta): This field should not be updated without a full node
+reboot. It is safest to keep this value the same as the local config.
+Default: "none"</td>
 </tr>
     
   
@@ -1231,7 +1285,7 @@ Default: true</td>
 </td>
 <td>
    ShutdownGracePeriod specifies the total duration that the node should delay the shutdown and total grace period for pod termination during a node shutdown.
-Default: "30s"</td>
+Default: "0s"</td>
 </tr>
     
   
@@ -1241,7 +1295,46 @@ Default: "30s"</td>
 <td>
    ShutdownGracePeriodCriticalPods specifies the duration used to terminate critical pods during a node shutdown. This should be less than ShutdownGracePeriod.
 For example, if ShutdownGracePeriod=30s, and ShutdownGracePeriodCriticalPods=10s, during a node shutdown the first 20 seconds would be reserved for gracefully terminating normal pods, and the last 10 seconds would be reserved for terminating critical pods.
-Default: "10s"</td>
+Default: "0s"</td>
+</tr>
+    
+  
+<tr><td><code>reservedMemory</code><br/>
+<a href="#kubelet-config-k8s-io-v1beta1-MemoryReservation"><code>[]MemoryReservation</code></a>
+</td>
+<td>
+   ReservedMemory specifies a comma-separated list of memory reservations for NUMA nodes.
+The parameter makes sense only in the context of the memory manager feature. The memory manager will not allocate reserved memory for container workloads.
+For example, if you have a NUMA0 with 10Gi of memory and the ReservedMemory was specified to reserve 1Gi of memory at NUMA0,
+the memory manager will assume that only 9Gi is available for allocation.
+You can specify a different amount of NUMA node and memory types.
+You can omit this parameter at all, but you should be aware that the amount of reserved memory from all NUMA nodes
+should be equal to the amount of memory specified by the node allocatable features(https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#node-allocatable).
+If at least one node allocatable parameter has a non-zero value, you will need to specify at least one NUMA node.
+Also, avoid specifying:
+1. Duplicates, the same NUMA node, and memory type, but with a different value.
+2. zero limits for any memory type.
+3. NUMAs nodes IDs that do not exist under the machine.
+4. memory types except for memory and hugepages-<size>
+Default: nil</td>
+</tr>
+    
+  
+<tr><td><code>enableProfilingHandler</code><br/>
+<code>bool</code>
+</td>
+<td>
+   enableProfilingHandler enables profiling via web interface host:port/debug/pprof/
+Default: true</td>
+</tr>
+    
+  
+<tr><td><code>enableDebugFlagsHandler</code><br/>
+<code>bool</code>
+</td>
+<td>
+   enableDebugFlagsHandler enables flags endpoint via web interface host:port/debug/flags/v
+Default: true</td>
 </tr>
     
   
@@ -1544,6 +1637,47 @@ and groups corresponding to the Organization in the client certificate.</td>
     
 
 
+## `MemoryReservation`     {#kubelet-config-k8s-io-v1beta1-MemoryReservation}
+    
+
+
+
+**Appears in:**
+
+- [KubeletConfiguration](#kubelet-config-k8s-io-v1beta1-KubeletConfiguration)
+
+
+MemoryReservation specifies the memory reservation of different types for each NUMA node
+
+<table class="table">
+<thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
+<tbody>
+    
+
+  
+<tr><td><code>numaNode</code> <B>[Required]</B><br/>
+<code>int32</code>
+</td>
+<td>
+   <span class="text-muted">No description provided.</span>
+   </td>
+</tr>
+    
+  
+<tr><td><code>limits</code> <B>[Required]</B><br/>
+<a href="https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#resourcelist-v1-core"><code>core/v1.ResourceList</code></a>
+</td>
+<td>
+   <span class="text-muted">No description provided.</span>
+   </td>
+</tr>
+    
+  
+</tbody>
+</table>
+    
+
+
 ## `ResourceChangeDetectionStrategy`     {#kubelet-config-k8s-io-v1beta1-ResourceChangeDetectionStrategy}
     
 (Alias of `string`)
@@ -1560,45 +1694,3 @@ managers (secret, configmap) are discovering object changes.
 
     
   
-  
-    
-
-## `LoggingConfiguration`     {#LoggingConfiguration}
-    
-
-
-
-**Appears in:**
-
-- [KubeletConfiguration](#kubelet-config-k8s-io-v1beta1-KubeletConfiguration)
-
-
-LoggingConfiguration contains logging options
-Refer [Logs Options](https://github.com/kubernetes/component-base/blob/master/logs/options.go) for more information.
-
-<table class="table">
-<thead><tr><th width="30%">Field</th><th>Description</th></tr></thead>
-<tbody>
-    
-
-  
-<tr><td><code>format</code> <B>[Required]</B><br/>
-<code>string</code>
-</td>
-<td>
-   Format Flag specifies the structure of log messages.
-default value of format is `text`</td>
-</tr>
-    
-  
-<tr><td><code>sanitization</code> <B>[Required]</B><br/>
-<code>bool</code>
-</td>
-<td>
-   [Experimental] When enabled prevents logging of fields tagged as sensitive (passwords, keys, tokens).
-Runtime log sanitization may introduce significant computation overhead and therefore should not be enabled in production.`)</td>
-</tr>
-    
-  
-</tbody>
-</table>

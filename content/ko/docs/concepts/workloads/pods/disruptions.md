@@ -89,6 +89,7 @@ weight: 60
 파드 스펙 안에 [프라이어리티클래스 사용하기](/ko/docs/concepts/configuration/pod-priority-preemption/)와 같은 특정 환경설정 옵션
 또한 자발적(+ 비자발적) 중단을 유발할 수 있다.
 
+
 ## 파드 disruption budgets
 
 {{< feature-state for_k8s_version="v1.21" state="stable" >}}

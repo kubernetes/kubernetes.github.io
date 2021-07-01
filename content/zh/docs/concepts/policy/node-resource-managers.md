@@ -38,7 +38,7 @@ The configuration of individual managers is elaborated in dedicated documents:
 <!-- 
 - [CPU Manager Policies](/docs/tasks/administer-cluster/cpu-management-policies/)
 - [Device Manager](/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-integration-with-the-topology-manager)
-- [Memory Manger Policies](/docs/tasks/administer-cluster/memory-manager/)
+- [Memory Manager Policies](/docs/tasks/administer-cluster/memory-manager/)
 -->
 - [CPU 管理器策略](/zh/docs/tasks/administer-cluster/cpu-management-policies/)
 - [设备管理器](/zh/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-integration-with-the-topology-manager)

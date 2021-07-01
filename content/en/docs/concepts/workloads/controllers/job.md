@@ -304,7 +304,7 @@ cleaned up by CronJobs based on the specified capacity-based cleanup policy.
 
 ### TTL mechanism for finished Jobs
 
-{{< feature-state for_k8s_version="v1.12" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.21" state="beta" >}}
 
 Another way to clean up finished Jobs (either `Complete` or `Failed`)
 automatically is to use a TTL mechanism provided by a
@@ -341,11 +341,6 @@ seconds after it finishes.
 If the field is set to `0`, the Job will be eligible to be automatically deleted
 immediately after it finishes. If the field is unset, this Job won't be cleaned
 up by the TTL controller after it finishes.
-
-Note that this TTL mechanism is alpha, with feature gate `TTLAfterFinished`. For
-more information, see the documentation for
-[TTL controller](/docs/concepts/workloads/controllers/ttlafterfinished/) for
-finished resources.
 
 ## Job patterns
 
