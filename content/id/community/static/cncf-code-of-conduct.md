@@ -23,8 +23,8 @@ Kode etik ini berlaku baik di dalam ruang proyek maupun di ruang publik ketika s
 Contoh perilaku kasar, melecehkan, atau tidak dapat diterima di Kubernetes dapat dilaporkan dengan menghubungi [Komite Kode Etik Kubernetes](https://git.k8s.io/community/committee-code-of-conduct) melalui <conduct@kubernetes.io>. Untuk proyek lain, silakan hubungi pengelola proyek CNCF atau mediator kami, Mishi Choudhary <mishi@linux.com>.
 
 Kode Etik ini diadaptasi dari Covenant Contributor
-<http://contributor-covenant.org>, versi 1.2.0, tersedia di
-<http://contributor-covenant.org/version/1/2/0/>
+<https://contributor-covenant.org>, versi 1.2.0, tersedia di
+<https://contributor-covenant.org/version/1/2/0/>
 
 ### Pedoman Perilaku Acara CNCF
 
