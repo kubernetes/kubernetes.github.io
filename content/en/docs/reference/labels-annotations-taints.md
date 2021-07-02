@@ -262,11 +262,11 @@ The value of the annotation is the container name that is default for this Pod. 
 
 ## endpoints.kubernetes.io/over-capacity
 
-Example: `endpoints.kubernetes.io/over-capacity:warning`
+Example: `endpoints.kubernetes.io/over-capacity:truncated`
 
 Used on: Endpoints
 
-In Kubernetes clusters v1.21 (or later), the Endpoints controller adds this annotation to an Endpoints resource if it has more than 1000 endpoints. The annotation indicates that the Endpoints resource is over capacity.
+In Kubernetes clusters v1.22 (or later), the Endpoints controller adds this annotation to an Endpoints resource if it has more than 1000 endpoints. The annotation indicates that the Endpoints resource was over capacity and the number of endpoints has been truncated to 1000.
 
 ## batch.kubernetes.io/job-tracking
 
