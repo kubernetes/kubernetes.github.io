@@ -84,8 +84,6 @@ CSIDriverSpec is the specification of a CSIDriver.
   RequiresRepublish indicates the CSI driver wants `NodePublishVolume` being periodically called to reflect any possible change in the mounted volume. This field defaults to false.
   
   Note: After a successful initial NodePublishVolume call, subsequent calls to NodePublishVolume should only update the contents of the volume. New mount points will not be seen by a running container.
-  
-  This is a beta feature and only available when the CSIServiceAccountToken feature is enabled.
 
 - **storageCapacity** (boolean)
 
@@ -112,8 +110,6 @@ CSIDriverSpec is the specification of a CSIDriver.
   }
   
   Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically.
-  
-  This is a beta feature and only available when the CSIServiceAccountToken feature is enabled.
 
   <a name="TokenRequest"></a>
   *TokenRequest contains parameters of a service account token.*
