@@ -613,11 +613,11 @@ metadata:
 provisioner: kubernetes.io/azure-disk
 parameters:
   storageaccounttype: Standard_LRS
-  kind: Shared
+  kind: managed
 ```
 
 * `storageaccounttype`: Azure storage account Sku tier. Default is empty.
-* `kind`: Possible values are `shared` (default), `dedicated`, and `managed`.
+* `kind`: Possible values are `shared`, `dedicated`, and `managed` (default).
   When `kind` is `shared`, all unmanaged disks are created in a few shared
   storage accounts in the same resource group as the cluster. When `kind` is
   `dedicated`, a new dedicated storage account will be created for the new
