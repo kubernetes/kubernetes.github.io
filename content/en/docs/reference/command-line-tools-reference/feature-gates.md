@@ -139,6 +139,7 @@ different Kubernetes components.
 | `LocalStorageCapacityIsolationFSQuotaMonitoring` | `false` | Alpha | 1.15 | |
 | `LogarithmicScaleDown` | `false` | Alpha | 1.21 | |
 | `LogarithmicScaleDown` | `true` | Beta | 1.22 | |
+| `KubeletInUserNamespace` | `false` | Alpha | 1.22 | |
 | `KubeletPodResourcesGetAllocatable` | `false` | Alpha | 1.21 | |
 | `MemoryManager` | `false` | Alpha | 1.21 | 1.21 |
 | `MemoryManager` | `true` | Beta | 1.22 | |
@@ -741,6 +742,16 @@ Each feature gate is designed for enabling/disabling a specific feature:
   See [setting kubelet parameters via a config file](/docs/tasks/administer-cluster/kubelet-config-file/)
   for more details.
 - `KubeletCredentialProviders`: Enable kubelet exec credential providers for image pull credentials.
+- `KubeletInUserNamespace`: Enables support for running kubelet in a user namespace.
+   The user namespace has to be created before running kubelet.
+   All the node components such as CRI need to be running in the same user namespace.
+   When the feature gate is enabled, kubelet ignores errors that may happen during setting the following sysctl values:
+  `vm.overcommit_memory`, `vm.panic_on_oom`, `kernel.panic`, `kernel.panic_on_oops`, `kernel.keys.root_maxkeys`, `kernel.keys.root_maxbytes`.
+   (these sysctl values for the host, not for the containers).
+   Kubelet also ignores an error during opening `/dev/kmsg`.
+   This feature gate also allows kube-proxy to ignore an error during setting `RLIMIT_NOFILE`.
+   This feature gate is especially useful for running Kubernetes inside Rootless Docker/Podman with `kind` or `minikube`.
+   See [Running Kubernetes node components as a non-root user (`KubeletInUserNamespace`)](/docs/tasks/administer-cluster/kubelet-in-userns.md).
 - `KubeletPluginsWatcher`: Enable probe-based plugin watcher utility to enable kubelet
   to discover plugins such as [CSI volume drivers](/docs/concepts/storage/volumes/#csi).
 - `KubeletPodResources`: Enable the kubelet's pod resources gRPC endpoint. See
