@@ -62,17 +62,17 @@ NodeSpec describes the attributes that a node is created with.
 
 - **configSource** (NodeConfigSource)
 
-  If specified, the source to get node configuration from The DynamicKubeletConfig feature gate must be enabled for the Kubelet to use this field
+  Deprecated. If specified, the source of the node's configuration. The DynamicKubeletConfig feature gate must be enabled for the Kubelet to use this field. This field is deprecated as of 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration
 
   <a name="NodeConfigSource"></a>
-  *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil.*
+  *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22*
 
   - **configSource.configMap** (ConfigMapNodeConfigSource)
 
     ConfigMap is a reference to a Node's ConfigMap
 
     <a name="ConfigMapNodeConfigSource"></a>
-    *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node.*
+    *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration*
 
     - **configSource.configMap.kubeletConfigKey** (string), required
 
@@ -226,14 +226,14 @@ NodeStatus is information about the current status of a node.
     Active reports the checkpointed config the node is actively using. Active will represent either the current version of the Assigned config, or the current LastKnownGood config, depending on whether attempting to use the Assigned config results in an error.
 
     <a name="NodeConfigSource"></a>
-    *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil.*
+    *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22*
 
     - **config.active.configMap** (ConfigMapNodeConfigSource)
 
       ConfigMap is a reference to a Node's ConfigMap
 
       <a name="ConfigMapNodeConfigSource"></a>
-      *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node.*
+      *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration*
 
       - **config.active.configMap.kubeletConfigKey** (string), required
 
@@ -260,14 +260,14 @@ NodeStatus is information about the current status of a node.
     Assigned reports the checkpointed config the node will try to use. When Node.Spec.ConfigSource is updated, the node checkpoints the associated config payload to local disk, along with a record indicating intended config. The node refers to this record to choose its config checkpoint, and reports this record in Assigned. Assigned only updates in the status after the record has been checkpointed to disk. When the Kubelet is restarted, it tries to make the Assigned config the Active config by loading and validating the checkpointed payload identified by Assigned.
 
     <a name="NodeConfigSource"></a>
-    *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil.*
+    *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22*
 
     - **config.assigned.configMap** (ConfigMapNodeConfigSource)
 
       ConfigMap is a reference to a Node's ConfigMap
 
       <a name="ConfigMapNodeConfigSource"></a>
-      *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node.*
+      *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration*
 
       - **config.assigned.configMap.kubeletConfigKey** (string), required
 
@@ -298,14 +298,14 @@ NodeStatus is information about the current status of a node.
     LastKnownGood reports the checkpointed config the node will fall back to when it encounters an error attempting to use the Assigned config. The Assigned config becomes the LastKnownGood config when the node determines that the Assigned config is stable and correct. This is currently implemented as a 10-minute soak period starting when the local record of Assigned config is updated. If the Assigned config is Active at the end of this period, it becomes the LastKnownGood. Note that if Spec.ConfigSource is reset to nil (use local defaults), the LastKnownGood is also immediately reset to nil, because the local default config is always assumed good. You should not make assumptions about the node's method of determining config stability and correctness, as this may change or become configurable in the future.
 
     <a name="NodeConfigSource"></a>
-    *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil.*
+    *NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22*
 
     - **config.lastKnownGood.configMap** (ConfigMapNodeConfigSource)
 
       ConfigMap is a reference to a Node's ConfigMap
 
       <a name="ConfigMapNodeConfigSource"></a>
-      *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node.*
+      *ConfigMapNodeConfigSource contains the information to reference a ConfigMap as a config source for the Node. This API is deprecated since 1.22: https://git.k8s.io/enhancements/keps/sig-node/281-dynamic-kubelet-configuration*
 
       - **config.lastKnownGood.configMap.kubeletConfigKey** (string), required
 

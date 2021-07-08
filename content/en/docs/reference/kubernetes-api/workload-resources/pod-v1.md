@@ -1206,7 +1206,7 @@ An EphemeralContainer is a container that may be added temporarily to an existin
 
 - **securityContext** (SecurityContext)
 
-  SecurityContext is not allowed for ephemeral containers.
+  Optional: SecurityContext defines the security options the ephemeral container should be run with. If set, the fields of SecurityContext override the equivalent fields of PodSecurityContext.
 
   <a name="SecurityContext"></a>
   *SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.*

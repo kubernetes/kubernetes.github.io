@@ -198,6 +198,30 @@ JobStatus represents the current state of a Job.
 
     (brief) reason for the condition's last transition.
 
+- **uncountedTerminatedPods** (UncountedTerminatedPods)
+
+  UncountedTerminatedPods holds the UIDs of Pods that have terminated but the job controller hasn't yet accounted for in the status counters.
+  
+  The job controller creates pods with a finalizer. When a pod terminates (succeeded or failed), the controller does three steps to account for it in the job status: (1) Add the pod UID to the arrays in this field. (2) Remove the pod finalizer. (3) Remove the pod UID from the arrays while increasing the corresponding
+      counter.
+  
+  This field is alpha-level. The job controller only makes use of this field when the feature gate PodTrackingWithFinalizers is enabled. Old jobs might not be tracked using this field, in which case the field remains null.
+
+  <a name="UncountedTerminatedPods"></a>
+  *UncountedTerminatedPods holds UIDs of Pods that have terminated but haven't been accounted in Job status counters.*
+
+  - **uncountedTerminatedPods.failed** ([]string)
+
+    *Set: unique values will be kept during a merge*
+    
+    Failed holds UIDs of failed Pods.
+
+  - **uncountedTerminatedPods.succeeded** ([]string)
+
+    *Set: unique values will be kept during a merge*
+    
+    Succeeded holds UIDs of succeeded Pods.
+
 
 
 
