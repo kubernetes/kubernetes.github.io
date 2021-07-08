@@ -1,0 +1,7 @@
+{{ $base := "docs/reference/kubernetes-api" }}
+{{ $pageArg := .Get "page" }}
+{{ $anchorArg := .Get "anchor" }}
+{{ $textArg := .Get "text" }}
+{{ $page := site.GetPage "page" (printf "%s/%s" $base $pageArg) }}
+{{ $metadata := $page.Params.api_metadata }}
+<a href="{{ $page.URL }}{{if $anchorArg}}#{{ $anchorArg }}{{end}}">{{if $textArg}}{{ $textArg }}{{else if $anchorArg}}{{ $anchorArg }}{{else}}{{ $metadata.kind }}{{end}}</a>
