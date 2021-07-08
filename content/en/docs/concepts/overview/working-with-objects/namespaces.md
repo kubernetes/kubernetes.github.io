@@ -128,4 +128,5 @@ The value of the label is the namespace name.
 
 * Learn more about [creating a new namespace](/docs/tasks/administer-cluster/namespaces/#creating-a-new-namespace).
 * Learn more about [deleting a namespace](/docs/tasks/administer-cluster/namespaces/#deleting-a-namespace).
-
+* Namespace is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="cluster-resources/namespace-v1" >}} object definition describes the object in detail.

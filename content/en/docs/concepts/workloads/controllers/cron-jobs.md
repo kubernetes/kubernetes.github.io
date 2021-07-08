@@ -138,3 +138,5 @@ documents the format of CronJob `schedule` fields.
 For instructions on creating and working with cron jobs, and for an example of CronJob
 manifest, see [Running automated tasks with cron jobs](/docs/tasks/job/automated-tasks-with-cron-jobs).
 
+
+CronJob is a top-level resource in the Kubernetes REST API. The {{< api-reference page="workload-resources/cron-job-v1" >}} object definition describes the object in detail.

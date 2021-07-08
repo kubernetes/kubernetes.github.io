@@ -253,8 +253,7 @@ The ReplicationController is intended to be a composable building-block primitiv
 ## API Object
 
 Replication controller is a top-level resource in the Kubernetes REST API. More details about the
-API object can be found at:
-[ReplicationController API object](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#replicationcontroller-v1-core).
+API object can be found at: {{< api-reference page="workload-resources/replication-controller-v1" >}}.
 
 ## Alternatives to ReplicationController
 
@@ -287,3 +286,9 @@ safe to terminate when the machine is otherwise ready to be rebooted/shutdown.
 ## For more information
 
 Read [Run Stateless Application Deployment](/docs/tasks/run-application/run-stateless-application-deployment/).
+
+
+## {{% heading "whatsnext" %}}
+
+* ReplicationController is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="workload-resources/replication-controller-v1" >}} object definition describes the object in detail.

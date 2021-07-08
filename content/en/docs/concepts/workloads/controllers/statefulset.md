@@ -289,4 +289,5 @@ StatefulSet will then begin to recreate the Pods using the reverted template.
 * Follow an example of [deploying a stateful application](/docs/tutorials/stateful-application/basic-stateful-set/).
 * Follow an example of [deploying Cassandra with Stateful Sets](/docs/tutorials/stateful-application/cassandra/).
 * Follow an example of [running a replicated stateful application](/docs/tasks/run-application/run-replicated-stateful-application/).
-
+* StatefulSet is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="workload-resources/stateful-set-v1" >}} object definition describes the object in detail.

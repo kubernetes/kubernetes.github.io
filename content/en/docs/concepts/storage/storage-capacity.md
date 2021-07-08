@@ -35,12 +35,12 @@ text="Container Storage Interface" term_id="csi" >}} (CSI) drivers and
 ## API
 
 There are two API extensions for this feature:
-- CSIStorageCapacity objects:
+- `CSIStorageCapacity` objects:
   these get produced by a CSI driver in the namespace
   where the driver is installed. Each object contains capacity
   information for one storage class and defines which nodes have
   access to that storage.
-- [The `CSIDriverSpec.StorageCapacity` field](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#csidriverspec-v1-storage-k8s-io):
+- The {{< api-reference page="config-and-storage-resources/csi-driver-v1" anchor="CSIDriverSpec" text="`CSIDriverSpec.StorageCapacity` field" >}}:
   when set to `true`, the Kubernetes scheduler will consider storage
   capacity for volumes that use the CSI driver.
 

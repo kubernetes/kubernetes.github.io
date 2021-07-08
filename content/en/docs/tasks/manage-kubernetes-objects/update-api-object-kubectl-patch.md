@@ -166,7 +166,7 @@ You can also see the patch strategy in the
 ```
 
 And you can see the patch strategy in the
-[Kubernetes API documentation](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podspec-v1-core).
+{{< api-reference page="workload-resources/pod-v1" anchor="PodSpec" text="Kubernetes API documentation" >}}.
 
 Create a file named `patch-file-tolerations.yaml` that has this content:
 
@@ -395,7 +395,7 @@ You can also see the `retainKeys` strategy in the [OpenApi spec](https://raw.git
 ```
 
 And you can see the `retainKeys` strategy in the
-[Kubernetes API documentation](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#deploymentspec-v1-apps).
+{{< api-reference page="workload-resources/deployment-v1" anchor="DeploymentSpec" text="Kubernetes API documentation" >}}.
 
 ## Alternate forms of the kubectl patch command
 

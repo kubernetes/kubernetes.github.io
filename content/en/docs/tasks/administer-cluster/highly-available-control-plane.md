@@ -196,7 +196,7 @@ kube-apiserver \
 
 During bootstrap, each kube-apiserver assigns a unique ID to itself. The ID is
 in the format of `kube-apiserver-{UUID}`. Each kube-apiserver creates a
-[Lease](/docs/reference/generated/kubernetes-api/{{< param "version" >}}//#lease-v1-coordination-k8s-io)
+{{< api-reference page="cluster-resources/lease-v1" >}}
 in the _kube-system_ {{< glossary_tooltip text="namespaces" term_id="namespace">}}.
 The Lease name is the unique ID for the kube-apiserver. The Lease contains a
 label `k8s.io/component=kube-apiserver`. Each kube-apiserver refreshes its

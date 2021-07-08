@@ -74,5 +74,5 @@ is defined or not. This can be seen from the `ESCAPED_REFERENCE` case above.
 
 
 * Learn more about [environment variables](/docs/tasks/inject-data-application/environment-variable-expose-pod-information/).
-* See [EnvVarSource](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#envvarsource-v1-core).
+* See {{< api-reference page="workload-resources/pod-v1" anchor="EnvVarSource" >}}.
 

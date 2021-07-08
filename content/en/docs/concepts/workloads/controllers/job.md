@@ -603,3 +603,8 @@ object, but maintains complete control over what Pods are created and how work i
 ## Cron Jobs {#cron-jobs}
 
 You can use a [`CronJob`](/docs/concepts/workloads/controllers/cron-jobs/) to create a Job that will run at specified times/dates, similar to the Unix tool `cron`.
+
+## {{% heading "whatsnext" %}}
+
+* Job is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="workload-resources/job-v1" >}} object definition describes the object in detail.

@@ -247,9 +247,9 @@ This functionality is available in Kubernetes v1.6 and later.
 
 ### References
 
-* [Secret](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#secret-v1-core)
-* [Volume](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#volume-v1-core)
-* [Pod](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#pod-v1-core)
+* {{< api-reference page="config-and-storage-resources/secret-v1" >}}
+* {{< api-reference page="config-and-storage-resources/volume" >}}
+* {{< api-reference page="workload-resources/pod-v1" >}}
 
 ## {{% heading "whatsnext" %}}
 

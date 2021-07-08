@@ -31,7 +31,7 @@ a Pod or Container. Security context settings include, but are not limited to:
 * readOnlyRootFilesystem: Mounts the container's root filesystem as read-only.
 
 The above bullets are not a complete set of security context settings -- please see
-[SecurityContext](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#securitycontext-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="SecurityContext" >}}
 for a comprehensive list.
 
 For more information about security mechanisms in Linux, see
@@ -52,7 +52,7 @@ For more information about security mechanisms in Linux, see
 
 To specify security settings for a Pod, include the `securityContext` field
 in the Pod specification. The `securityContext` field is a
-[PodSecurityContext](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podsecuritycontext-v1-core) object.
+{{< api-reference page="workload-resources/pod-v1" anchor="PodSecurityContext" >}} object.
 The security settings that you specify for a Pod apply to all Containers in the Pod.
 Here is a configuration file for a Pod that has a `securityContext` and an `emptyDir` volume:
 
@@ -189,7 +189,7 @@ and [`emptydir`](/docs/concepts/storage/volumes/#emptydir).
 
 To specify security settings for a Container, include the `securityContext` field
 in the Container manifest. The `securityContext` field is a
-[SecurityContext](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#securitycontext-v1-core) object.
+{{< api-reference page="workload-resources/pod-v1" anchor="SecurityContext" >}} object.
 Security settings that you specify for a Container apply only to
 the individual Container, and they override settings made at the Pod level when
 there is overlap. Container settings do not affect the Pod's Volumes.
@@ -363,8 +363,8 @@ Linux capability constants have the form `CAP_XXX`. But when you list capabiliti
 To set the Seccomp profile for a Container, include the `seccompProfile` field
 in the `securityContext` section of your Pod or Container manifest. The
 `seccompProfile` field is a
-[SeccompProfile](/docs/reference/generated/kubernetes-api/{{< param "version"
->}}/#seccompprofile-v1-core) object consisting of `type` and `localhostProfile`.
+{{< api-reference page="workload-resources/pod-v1" anchor="SeccompProfile" >}}
+object consisting of `type` and `localhostProfile`.
 Valid options for `type` include `RuntimeDefault`, `Unconfined`, and
 `Localhost`. `localhostProfile` must only be set set if `type: Localhost`. It
 indicates the path of the pre-configured profile on the node, relative to the
@@ -397,7 +397,7 @@ securityContext:
 To assign SELinux labels to a Container, include the `seLinuxOptions` field in
 the `securityContext` section of your Pod or Container manifest. The
 `seLinuxOptions` field is an
-[SELinuxOptions](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#selinuxoptions-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="SELinuxOptions" >}}
 object. Here's an example that applies an SELinux level:
 
 ```yaml
@@ -448,8 +448,8 @@ kubectl delete pod security-context-demo-4
 ## {{% heading "whatsnext" %}}
 
 
-* [PodSecurityContext](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podsecuritycontext-v1-core)
-* [SecurityContext](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#securitycontext-v1-core)
+* {{< api-reference page="workload-resources/pod-v1" anchor="PodSecurityContext" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="SecurityContext" >}}
 * [Tuning Docker with the newest security enhancements](https://opensource.com/business/15/3/docker-security-tuning)
 * [Security Contexts design document](https://git.k8s.io/community/contributors/design-proposals/auth/security_context.md)
 * [Ownership Management design document](https://git.k8s.io/community/contributors/design-proposals/storage/volume-ownership-management.md)

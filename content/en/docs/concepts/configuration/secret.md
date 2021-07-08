@@ -64,7 +64,7 @@ precedence.
 ## Types of Secret {#secret-types}
 
 When creating a Secret, you can specify its type using the `type` field of
-the [`Secret`](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#secret-v1-core)
+the {{< api-reference page="config-and-storage-resources/secret-v1" >}}
 resource, or certain equivalent `kubectl` command line flags (if available).
 The Secret type is used to facilitate programmatic handling of the Secret data.
 
@@ -147,7 +147,7 @@ See the [ServiceAccount](/docs/tasks/configure-pod-container/configure-service-a
 documentation for more information on how service accounts work.
 You can also check the `automountServiceAccountToken` field and the
 `serviceAccountName` field of the
-[`Pod`](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#pod-v1-core)
+{{< api-reference page="workload-resources/pod-v1" >}}
 for information on referencing service account from Pods.
 
 ### Docker config Secrets
@@ -786,7 +786,7 @@ these pods.
 The `imagePullSecrets` field is a list of references to secrets in the same namespace.
 You can use an `imagePullSecrets` to pass a secret that contains a Docker (or other) image registry
 password to the kubelet. The kubelet uses this information to pull a private image on behalf of your Pod.
-See the [PodSpec API](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podspec-v1-core) for more information about the `imagePullSecrets` field.
+See the {{< api-reference page="workload-resources/pod-v1" anchor="PodSpec" >}} API for more information about the `imagePullSecrets` field.
 
 #### Manually specifying an imagePullSecret
 
@@ -1242,4 +1242,5 @@ for secret data, so that the secrets are not stored in the clear into {{< glossa
 - Learn how to [manage Secret using `kubectl`](/docs/tasks/configmap-secret/managing-secret-using-kubectl/)
 - Learn how to [manage Secret using config file](/docs/tasks/configmap-secret/managing-secret-using-config-file/)
 - Learn how to [manage Secret using kustomize](/docs/tasks/configmap-secret/managing-secret-using-kustomize/)
-
+- Secret is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="config-and-storage-resources/secret-v1" >}} object definition describes the object in detail.

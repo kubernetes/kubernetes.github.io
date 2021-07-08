@@ -250,3 +250,5 @@ implementation in `kube-proxy`.
 ## {{% heading "whatsnext" %}}
 
 * Read [Connecting Applications with Services](/docs/concepts/services-networking/connect-applications-service/)
+* EndpointSlice is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="service-resources/endpoint-slice-v1" >}} object definition describes the object in detail.

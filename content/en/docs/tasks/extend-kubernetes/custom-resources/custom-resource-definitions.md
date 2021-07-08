@@ -15,7 +15,7 @@ weight: 20
 This page shows how to install a
 [custom resource](/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
 into the Kubernetes API by creating a
-[CustomResourceDefinition](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#customresourcedefinition-v1-apiextensions-k8s-io).
+{{< api-reference page="extend-resources/custom-resource-definition-v1" >}}.
 
 ## {{% heading "prerequisites" %}}
 
@@ -1222,7 +1222,7 @@ crontabs/my-new-cron-object   3s
 
 * Read about [custom resources](/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
-* See [CustomResourceDefinition](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#customresourcedefinition-v1-apiextensions-k8s-io).
+* See {{< api-reference page="extend-resources/custom-resource-definition-v1" >}}.
 
 * Serve [multiple versions](/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definition-versioning/) of a
   CustomResourceDefinition.

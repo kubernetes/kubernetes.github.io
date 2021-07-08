@@ -671,7 +671,7 @@ the node.
 
 The amount of resources available to Pods is less than the node capacity, because
 system daemons use a portion of the available resources. The `allocatable` field
-[NodeStatus](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#nodestatus-v1-core)
+{{< api-reference page="cluster-resources/node-v1" anchor="NodeStatus" >}}
 gives the amount of resources that are available to Pods. For more information, see
 [Node Allocatable Resources](https://git.k8s.io/community/contributors/design-proposals/node/node-allocatable.md).
 
@@ -747,8 +747,8 @@ You can see that the Container was terminated because of `reason:OOM Killed`, wh
 * Get hands-on experience [assigning CPU resources to Containers and Pods](/docs/tasks/configure-pod-container/assign-cpu-resource/).
 * For more details about the difference between requests and limits, see
   [Resource QoS](https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md).
-* Read the [Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core) API reference
-* Read the [ResourceRequirements](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#resourcerequirements-v1-core) API reference
+* Read the {{< api-reference page="workload-resources/pod-v1" anchor="Container" >}} API reference
+* Read the {{< api-reference page="workload-resources/pod-v1" anchor="ResourceRequirements" >}} API reference
 * Read about [project quotas](https://xfs.org/docs/xfsdocs-xml-dev/XFS_User_Guide/tmp/en-US/html/xfs-quotas.html) in XFS
 * Read more about the [kube-scheduler Policy reference (v1)](/docs/reference/config-api/kube-scheduler-policy-config.v1/)
 

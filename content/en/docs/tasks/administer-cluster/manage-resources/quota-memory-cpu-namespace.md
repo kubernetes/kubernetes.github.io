@@ -9,7 +9,7 @@ weight: 50
 
 This page shows how to set quotas for the total amount memory and CPU that
 can be used by all Containers running in a namespace. You specify quotas in a
-[ResourceQuota](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#resourcequota-v1-core)
+{{< api-reference page="policy-resources/resource-quota-v1" >}}
 object.
 
 

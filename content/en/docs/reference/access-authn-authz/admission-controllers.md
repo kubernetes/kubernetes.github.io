@@ -765,7 +765,7 @@ for more information.
 ### SecurityContextDeny {#securitycontextdeny}
 
 This admission controller will deny any pod that attempts to set certain escalating
-[SecurityContext](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#securitycontext-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="SecurityContext" >}}
 fields, as shown in the
 [Configure a Security Context for a Pod or Container](/docs/tasks/configure-pod-container/security-context/)
 task.

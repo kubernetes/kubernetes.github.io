@@ -1241,3 +1241,10 @@ kubectl create clusterrolebinding permissive-binding \
 
 After you have transitioned to use RBAC, you should adjust the access controls
 for your cluster to ensure that these meet your information security needs.
+
+ ## Reference
+ 
+* {{< api-reference page="authorization-resources/cluster-role-v1" >}}
+* {{< api-reference page="authorization-resources/cluster-role-binding-v1" >}}
+* {{< api-reference page="authorization-resources/role-v1" >}}
+* {{< api-reference page="authorization-resources/role-binding-v1" >}}

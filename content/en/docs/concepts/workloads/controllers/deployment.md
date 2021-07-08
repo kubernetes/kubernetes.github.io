@@ -1177,3 +1177,7 @@ Deployment will not trigger new rollouts as long as it is paused. A Deployment i
 it is created.
 
 
+## {{% heading "whatsnext" %}}
+
+* Deployment is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="workload-resources/deployment-v1" >}} object definition describes the object in detail.

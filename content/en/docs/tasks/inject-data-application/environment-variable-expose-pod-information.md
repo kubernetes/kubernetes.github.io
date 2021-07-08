@@ -42,8 +42,7 @@ configuration file for the Pod:
 {{< codenew file="pods/inject/dapi-envars-pod.yaml" >}}
 
 In the configuration file, you can see five environment variables. The `env`
-field is an array of
-[EnvVars](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#envvar-v1-core).
+field is an array of {{< api-reference page="workload-resources/pod-v1" anchor="EnvVar" text="EnvVars" >}}.
 The first element in the array specifies that the `MY_NODE_NAME` environment
 variable gets its value from the Pod's `spec.nodeName` field. Similarly, the
 other environment variables get their names from Pod fields.
@@ -121,8 +120,7 @@ container:
 {{< codenew file="pods/inject/dapi-envars-container.yaml" >}}
 
 In the configuration file, you can see four environment variables. The `env`
-field is an array of
-[EnvVars](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#envvar-v1-core).
+field is an array of {{< api-reference page="workload-resources/pod-v1" anchor="EnvVar" text="EnvVars" >}}.
 The first element in the array specifies that the `MY_CPU_REQUEST` environment
 variable gets its value from the `requests.cpu` field of a Container named
 `test-container`. Similarly, the other environment variables get their values
@@ -161,12 +159,12 @@ The output shows the values of selected environment variables:
 
 
 * [Defining Environment Variables for a Container](/docs/tasks/inject-data-application/define-environment-variable-container/)
-* [PodSpec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podspec-v1-core)
-* [Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core)
-* [EnvVar](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#envvar-v1-core)
-* [EnvVarSource](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#envvarsource-v1-core)
-* [ObjectFieldSelector](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#objectfieldselector-v1-core)
-* [ResourceFieldSelector](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#resourcefieldselector-v1-core)
+* {{< api-reference page="workload-resources/pod-v1" anchor="PodSpec" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="Container" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="EnvVar" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="EnvVarSource" >}}
+* {{< api-reference page="common-definitions/object-field-selector" >}}
+* {{< api-reference page="common-definitions/resource-field-selector" >}}
 
 
 

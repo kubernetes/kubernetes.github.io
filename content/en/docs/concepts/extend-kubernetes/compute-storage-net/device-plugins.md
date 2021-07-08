@@ -49,7 +49,7 @@ and reports two healthy devices on a node, the node status is updated
 to advertise that the node has 2 "Foo" devices installed and available.
 
 Then, users can request devices in a
-[Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="Container" >}}
 specification as they request other types of resources, with the following limitations:
 
 * Extended resources are only supported as integer resources and cannot be overcommitted.
@@ -156,7 +156,7 @@ so a device plugin must run in a privileged security context.
 If you're deploying a device plugin as a DaemonSet, `/var/lib/kubelet/device-plugins`
 must be mounted as a {{< glossary_tooltip term_id="volume" >}}
 in the plugin's
-[PodSpec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podspec-v1-core).
+{{< api-reference page="workload-resources/pod-v1" anchor="PodSpec" >}}.
 
 If you choose the DaemonSet approach you can rely on Kubernetes to: place the device plugin's
 Pod onto Nodes, to restart the daemon Pod after failure, and to help automate upgrades.
@@ -262,7 +262,7 @@ The canonical directory `/var/lib/kubelet/pod-resources` requires privileged acc
 agents must run in a privileged security context.  If a device monitoring agent is running as a
 DaemonSet, `/var/lib/kubelet/pod-resources` must be mounted as a
 {{< glossary_tooltip term_id="volume" >}} in the device monitoring agent's
-[PodSpec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podspec-v1-core).
+{{< api-reference page="workload-resources/pod-v1" anchor="PodSpec" >}}.
 
 Support for the `PodResourcesLister service` requires `KubeletPodResources` [feature gate](/docs/reference/command-line-tools-reference/feature-gates/) to be enabled.
 It is enabled by default starting with Kubernetes 1.15 and is v1 since Kubernetes 1.20.

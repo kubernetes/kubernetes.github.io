@@ -1232,7 +1232,7 @@ IPVS is designed for load balancing and based on in-kernel hash tables. So you c
 ## API Object
 
 Service is a top-level resource in the Kubernetes REST API. You can find more details
-about the API object at: [Service API object](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#service-v1-core).
+about the API object at: {{< api-reference page="service-resources/service-v1" >}}.
 
 ## Supported protocols {#protocol-support}
 
@@ -1307,3 +1307,5 @@ followed by the data from the client.
 * Read [Connecting Applications with Services](/docs/concepts/services-networking/connect-applications-service/)
 * Read about [Ingress](/docs/concepts/services-networking/ingress/)
 * Read about [EndpointSlices](/docs/concepts/services-networking/endpoint-slices/)
+* Service is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="service-resources/service-v1" >}} object definition describes the object in detail.

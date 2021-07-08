@@ -706,3 +706,5 @@ and it is to be created in a namespace other than `kube-system`.
 - See a [detailed example for how to use resource quota](/docs/tasks/administer-cluster/quota-api-object/).
 - Read [Quota support for priority class design doc](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/scheduling/pod-priority-resourcequota.md).
 - See [LimitedResources](https://github.com/kubernetes/kubernetes/pull/36765)
+- ResourceQuota is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="policy-resources/resource-quota-v1" >}} object definition describes the object in detail.

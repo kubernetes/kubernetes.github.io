@@ -153,7 +153,7 @@ Here are some examples:
 
 * Learn more about [configuring pods and containers](/docs/tasks/).
 * Learn more about [running commands in a container](/docs/tasks/debug-application-cluster/get-shell-running-container/).
-* See [Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core).
+* See {{< api-reference page="workload-resources/pod-v1" anchor="Container" >}}.
 
 
 

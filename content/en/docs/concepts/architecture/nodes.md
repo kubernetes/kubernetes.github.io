@@ -255,7 +255,7 @@ The node controller checks the state of each node every `--node-monitor-period` 
 Heartbeats, sent by Kubernetes nodes, help determine the availability of a node.
 
 There are two forms of heartbeats: updates of `NodeStatus` and the
-[Lease object](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#lease-v1-coordination-k8s-io).
+{{< api-reference page="cluster-resources/lease-v1" >}} object.
 Each Node has an associated Lease object in the `kube-node-lease`
 {{< glossary_tooltip term_id="namespace" text="namespace">}}.
 Lease is a lightweight resource, which improves the performance
@@ -395,7 +395,8 @@ This is a change of behavior compared to abrupt node termination.
 ## {{% heading "whatsnext" %}}
 
 * Learn about the [components](/docs/concepts/overview/components/#node-components) that make up a node.
-* Read the [API definition for Node](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#node-v1-core).
+* Node is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="cluster-resources/node-v1" >}} object definition describes the object in detail.
 * Read the [Node](https://git.k8s.io/community/contributors/design-proposals/architecture/architecture.md#the-kubernetes-node)
   section of the architecture design document.
 * Read about [taints and tolerations](/docs/concepts/scheduling-eviction/taint-and-toleration/).

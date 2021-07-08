@@ -48,10 +48,7 @@ Each request can be recorded with an associated _stage_. The defined stages are:
 {{< note >}}
 The configuration of an
 [Audit Event configuration](/docs/reference/config-api/apiserver-audit.v1/#audit-k8s-io-v1-Event)
-is different from the
-[Event](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#event-v1-core)
-API object.
-{{< /note >}}
+is different from the {{< api-reference page="cluster-resources/event-v1" >}} API object.
 
 The audit logging feature increases the memory consumption of the API server
 because some context required for auditing is stored for each request.
