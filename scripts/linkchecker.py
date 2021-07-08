@@ -35,6 +35,8 @@
 #   + /docs/bar                : is a redirect entry, or
 #   + /docs/bar                : is something we don't understand
 #
+# + {{ < api-reference page="" anchor="" ... > }}
+# + {{ < api-reference page="" > }}
 
 import argparse
 import glob
@@ -72,7 +74,8 @@ ARGS = None
 RESULT = {}
 # Cached redirect entries
 REDIRECTS = {}
-
+# Cached anchors in target pages
+ANCHORS = {}
 
 def new_record(level, message, target):
     """Create new checking record.
@@ -330,6 +333,44 @@ def check_target(page, anchor, target):
     msg = "Link may be wrong for the anchor [%s]" % anchor
     return new_record("WARNING", msg, target)
 
+def check_anchor(target_page, anchor):
+    """Check if an anchor is defined in the target page
+
+    :param target_page: The target page to check
+    :param anchor: Anchor string to find in the target page
+    """
+    if target_page not in ANCHORS:
+        try:
+            with open(target_page, "r") as f:
+                data = f.readlines()
+        except Exception as ex:
+            print("[Error] failed in reading markdown file: " + str(ex))
+            return
+        content = "\n".join(strip_comments(data))
+        anchor_pattern1 = r"<a name=\"(.*?)\""
+        regex1 = re.compile(anchor_pattern1)
+        anchor_pattern2 = r"{#(.*?)}"
+        regex2 = re.compile(anchor_pattern2)
+        ANCHORS[target_page] = regex1.findall(content) + regex2.findall(content)
+    return anchor in ANCHORS[target_page]
+
+def check_apiref_target(target, anchor):
+    """Check a link to an API reference page.
+
+    :param target: The link target string to check
+    :param anchor: Anchor string from the content page
+    """
+    base = os.path.join(ROOT, "content", "en", "docs", "reference", "kubernetes-api")
+    ok = check_file_exists(base + "/", target)
+    if not ok:
+        return new_record("ERROR", "API reference page not found", target)
+
+    if anchor is None:
+        return
+
+    target_page = os.path.join(base, target)+".md"
+    if not check_anchor(target_page, anchor):
+        return new_record("ERROR", "Anchor not found in API reference page", target+"#"+anchor)
 
 def validate_links(page):
     """Find and validate links on a content page.
@@ -355,6 +396,27 @@ def validate_links(page):
         r = check_target(page, m[0], m[1])
         if r:
             records.append(r)
+
+    # searches for pattern: {{< api-reference page="" anchor=""
+    apiref_pattern = r"{{ *< *api-reference page=\"([^\"]*?)\" *anchor=\"(.*?)\""
+    regex = re.compile(apiref_pattern)
+
+    matches = regex.findall(content)
+    for m in matches:
+        r = check_apiref_target(m[0], m[1])
+        if r:
+            records.append(r)
+
+    # searches for pattern: {{< api-reference page=""
+    apiref_pattern = r"{{ *< *api-reference page=\"([^\"]*?)\""
+    regex = re.compile(apiref_pattern)
+
+    matches = regex.findall(content)
+    for m in matches:
+        r = check_apiref_target(m, None)
+        if r:
+            records.append(r)
+
     if len(records):
         RESULT[page] = records
 
