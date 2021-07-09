@@ -218,4 +218,4 @@ DaemonSetのコントローラーは、DaemonSetが中断されるのを防ぐ�
 ## {{% heading "whatsnext" %}}
 
 * [リソース枯渇の対処](/docs/tasks/administer-cluster/out-of-resource/)とどのような設定ができるかについてを読む
-* [Podの優先度](/docs/concepts/configuration/pod-priority-preemption/)を読む
+* [Podの優先度](/ja/docs/concepts/configuration/pod-priority-preemption/)を読む

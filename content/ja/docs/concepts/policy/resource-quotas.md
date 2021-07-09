@@ -201,7 +201,7 @@ Kubernetes v1.8において、ローカルのエフェメラルストレージ�
 
 {{< feature-state for_k8s_version="v1.17" state="stable" >}}
 
-Podは特定の[優先度](/docs/concepts/configuration/pod-priority-preemption/#pod-priority)で作成されます。リソースクォータのSpec内にある`scopeSelector`フィールドを使用して、Podの優先度に基づいてPodのシステムリソースの消費をコントロールできます。
+Podは特定の[優先度](/ja/docs/concepts/configuration/pod-priority-preemption/#pod-priority)で作成されます。リソースクォータのSpec内にある`scopeSelector`フィールドを使用して、Podの優先度に基づいてPodのシステムリソースの消費をコントロールできます。
 
 リソースクォータのSpec内の`scopeSelector`によってPodが選択されたときのみ、そのリソースクォータが一致し、消費されます。
 

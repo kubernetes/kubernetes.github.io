@@ -424,7 +424,7 @@ GAになってからさらなる変更を加えることは現実的ではない
 - `PersistentLocalVolumes`: Podで`local`ボリュームタイプの使用を有効にします。`local`ボリュームを要求する場合、Podアフィニティを指定する必要があります。
 - `PodOverhead`: [PodOverhead](/docs/concepts/scheduling-eviction/pod-overhead/)機能を有効にして、Podのオーバーヘッドを考慮するようにします。
 - `PodDisruptionBudget`: [PodDisruptionBudget](/docs/tasks/run-application/configure-pdb/)機能を有効にします。
-- `PodPriority`: [優先度](/docs/concepts/configuration/pod-priority-preemption/)に基づいてPodの再スケジューリングとプリエンプションを有効にします。
+- `PodPriority`: [優先度](/ja/docs/concepts/configuration/pod-priority-preemption/)に基づいてPodの再スケジューリングとプリエンプションを有効にします。
 - `PodReadinessGates`: Podのreadinessの評価を拡張するために`PodReadinessGate`フィールドの設定を有効にします。詳細は[Pod readiness gate](/ja/docs/concepts/workloads/pods/pod-lifecycle/#pod-readiness-gate)で確認できます。
 - `PodShareProcessNamespace`: Podで実行されているコンテナ間で単一のプロセス名前空間を共有するには、Podで`shareProcessNamespace`の設定を有効にします。詳細については、[Pod内のコンテナ間でプロセス名前空間を共有する](/docs/tasks/configure-pod-container/share-process-namespace/)をご覧ください。
 - `ProcMountType`: コンテナのProcMountTypeの制御を有効にします。

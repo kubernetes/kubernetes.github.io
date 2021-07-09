@@ -86,7 +86,7 @@ DaemonSetは全ての利用可能なNodeが単一のPodのコピーを稼働さ�
 下記の問題について説明します:
 
  * 矛盾するPodのふるまい: スケジューリングされるのを待っている通常のPodは、作成されているが`Pending`状態となりますが、DaemonSetのPodは`Pending`状態で作成されません。これはユーザーにとって困惑するものです。
- * [Podプリエンプション(Pod preemption)](/docs/concepts/configuration/pod-priority-preemption/)はデフォルトスケジューラーによってハンドルされます。もしプリエンプションが有効な場合、そのDaemonSetコントローラーはPodの優先順位とプリエンプションを考慮することなくスケジューリングの判断を行います。
+ * [Podプリエンプション(Pod preemption)](/ja/docs/concepts/configuration/pod-priority-preemption/)はデフォルトスケジューラーによってハンドルされます。もしプリエンプションが有効な場合、そのDaemonSetコントローラーはPodの優先順位とプリエンプションを考慮することなくスケジューリングの判断を行います。
 
 `ScheduleDaemonSetPods`は、DaemonSetのPodに対して`NodeAffinity`項目を追加することにより、DaemonSetコントローラーの代わりにデフォルトスケジューラーを使ってDaemonSetのスケジュールを可能にします。その際に、デフォルトスケジューラーはPodをターゲットのホストにバインドします。もしDaemonSetのNodeAffinityが存在するとき、それは新しいものに置き換えられます(ターゲットホストを選択する前に、元のNodeAffinityが考慮されます)。DaemonSetコントローラーはDaemonSetのPodの作成や修正を行うときのみそれらの操作を実施します。そしてDaemonSetの`.spec.template`フィールドに対しては何も変更が加えられません。
 
