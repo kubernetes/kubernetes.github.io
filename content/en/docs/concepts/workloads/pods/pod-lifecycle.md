@@ -63,7 +63,7 @@ web server that uses a persistent volume for shared storage between the containe
 ## Pod phase
 
 A Pod's `status` field is a
-[PodStatus](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podstatus-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="PodStatus" >}}
 object, which has a `phase` field.
 
 The phase of a Pod is a simple, high-level summary of where the Pod is in its
@@ -153,7 +153,7 @@ without any problems, the kubelet resets the restart backoff timer for that cont
 ## Pod conditions
 
 A Pod has a PodStatus, which has an array of
-[PodConditions](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podcondition-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="PodCondition" >}}
 through which the Pod has or has not passed:
 
 * `PodScheduled`: the Pod has been scheduled to a node.
@@ -233,23 +233,22 @@ When a Pod's containers are Ready but at least one custom condition is missing o
 
 ## Container probes
 
-A [Probe](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#probe-v1-core) is a diagnostic
-performed periodically by the
+A {{< api-reference page="workload-resources/pod-v1" anchor="Probe" >}}
+is a diagnostic performed periodically by the
 [kubelet](/docs/reference/command-line-tools-reference/kubelet/)
 on a Container. To perform a diagnostic,
-the kubelet calls a
-[Handler](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#handler-v1-core) implemented by
+the kubelet calls a {{< api-reference page="workload-resources/pod-v1" anchor="Handler" >}} implemented by
 the container. There are three types of handlers:
 
-* [ExecAction](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#execaction-v1-core):
+* {{< api-reference page="workload-resources/pod-v1" anchor="ExecAction" >}}:
   Executes a specified command inside the container. The diagnostic
   is considered successful if the command exits with a status code of 0.
 
-* [TCPSocketAction](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#tcpsocketaction-v1-core):
+* {{< api-reference page="workload-resources/pod-v1" anchor="TCPSocketAction" >}}:
   Performs a TCP check against the Pod's IP address on
   a specified port. The diagnostic is considered successful if the port is open.
 
-* [HTTPGetAction](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#httpgetaction-v1-core):
+* {{< api-reference page="workload-resources/pod-v1" anchor="HTTPGetAction" >}}:
   Performs an HTTP `GET` request against the Pod's IP
   address on a specified port and path. The diagnostic is considered successful
   if the response has a status code greater than or equal to 200 and less than 400.
@@ -448,6 +447,6 @@ This avoids a resource leak as Pods are created and terminated over time.
 
 * Learn more about [container lifecycle hooks](/docs/concepts/containers/container-lifecycle-hooks/).
 
-* For detailed information about Pod / Container status in the API, see [PodStatus](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podstatus-v1-core)
-and
-[ContainerStatus](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#containerstatus-v1-core).
+* For detailed information about Pod / Container status in the API, see
+{{< api-reference page="workload-resources/pod-v1" anchor="PodStatus">}} and
+{{< api-reference page="workload-resources/pod-v1" anchor="ContainerStatus" >}}.

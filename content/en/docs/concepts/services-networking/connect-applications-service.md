@@ -80,7 +80,7 @@ with the `run: my-nginx` label, and expose it on an abstracted Service port
 (`targetPort`: is the port the container accepts traffic on, `port`: is the
 abstracted Service port, which can be any port other pods use to access the
 Service).
-View [Service](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#service-v1-core)
+View {{< api-reference page="service-resources/service-v1" >}}
 API object to see the list of supported fields in service definition.
 Check your Service:
 
@@ -137,7 +137,7 @@ and DNS. The former works out of the box while the latter requires the
 {{< note >}}
 If the service environment variables are not desired (because possible clashing with expected program ones,
 too many variables to process, only using DNS, etc) you can disable this mode by setting the `enableServiceLinks`
-flag to `false` on the [pod spec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#pod-v1-core).
+flag to `false` on the {{< api-reference page="workload-resources/pod-v1" anchor="PodSpec" >}}.
 {{< /note >}}
 
 

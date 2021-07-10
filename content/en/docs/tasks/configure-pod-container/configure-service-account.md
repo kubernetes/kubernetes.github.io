@@ -382,3 +382,5 @@ See also:
 - [Cluster Admin Guide to Service Accounts](/docs/reference/access-authn-authz/service-accounts-admin/)
 - [Service Account Signing Key Retrieval KEP](https://github.com/kubernetes/enhancements/tree/master/keps/sig-auth/1393-oidc-discovery)
 - [OIDC Discovery Spec](https://openid.net/specs/openid-connect-discovery-1_0.html)
+- ServiceAccount is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="authentication-resources/service-account-v1" >}} object definition describes the object in detail.

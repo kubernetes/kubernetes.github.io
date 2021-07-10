@@ -64,7 +64,7 @@ operation (create, replace, etc.), optional flags and at least one file
 name. The file specified must contain a full definition of the object
 in YAML or JSON format.
 
-See the [API reference](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/)
+See the [API reference](/docs/reference/kubernetes-api/)
 for more details on object definitions.
 
 {{< warning >}}
@@ -174,5 +174,5 @@ Disadvantages compared to imperative object configuration:
 - [Managing Kubernetes Objects Using Kustomize (Declarative)](/docs/tasks/manage-kubernetes-objects/kustomization/)
 - [Kubectl Command Reference](/docs/reference/generated/kubectl/kubectl-commands/)
 - [Kubectl Book](https://kubectl.docs.kubernetes.io)
-- [Kubernetes API Reference](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/)
+- [Kubernetes API Reference](/docs/reference/kubernetes-api/)
 

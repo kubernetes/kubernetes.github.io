@@ -39,7 +39,8 @@ For a network flow between two pods to be allowed, both the egress policy on the
 
 ## The NetworkPolicy resource {#networkpolicy-resource}
 
-See the [NetworkPolicy](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#networkpolicy-v1-networking-k8s-io) reference for a full definition of the resource.
+See the {{< api-reference page="policy-resources/network-policy-v1" >}}
+reference for a full definition of the resource.
 
 An example NetworkPolicy might look like this:
 
@@ -297,3 +298,5 @@ As of Kubernetes {{< skew latestVersion >}}, the following functionality does no
 - See the [Declare Network Policy](/docs/tasks/administer-cluster/declare-network-policy/)
   walkthrough for further examples.
 - See more [recipes](https://github.com/ahmetb/kubernetes-network-policy-recipes) for common scenarios enabled by the NetworkPolicy resource.
+- NetworkPolicy is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="policy-resources/network-policy-v1" >}} object definition describes the object in detail.

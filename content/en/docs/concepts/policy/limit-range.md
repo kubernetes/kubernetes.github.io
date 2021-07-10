@@ -63,4 +63,6 @@ For examples on using limits, see:
 - [how to configure default Memory Requests and Limits per namespace](/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/).
 - [how to configure minimum and maximum Storage consumption per namespace](/docs/tasks/administer-cluster/limit-storage-consumption/#limitrange-to-limit-requests-for-storage).
 - a [detailed example on configuring quota per namespace](/docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/).
+- LimitRange is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="policy-resources/limit-range-v1" >}} object definition describes the object in detail.
 

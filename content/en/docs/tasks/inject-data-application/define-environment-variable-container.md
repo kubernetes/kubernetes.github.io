@@ -112,5 +112,5 @@ Upon creation, the command `echo Warm greetings to The Most Honorable Kubernetes
 
 * Learn more about [environment variables](/docs/tasks/inject-data-application/environment-variable-expose-pod-information/).
 * Learn about [using secrets as environment variables](/docs/concepts/configuration/secret/#using-secrets-as-environment-variables).
-* See [EnvVarSource](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#envvarsource-v1-core).
+* See {{< api-reference page="workload-resources/pod-v1" anchor="EnvVarSource" >}}.
 

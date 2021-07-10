@@ -242,3 +242,7 @@ You can use a selector which selects a subset or superset of the pods belonging 
 controller.  The eviction API will disallow eviction of any pod covered by multiple PDBs,
 so most users will want to avoid overlapping selectors.  One reasonable use of overlapping
 PDBs is when pods are being transitioned from one PDB to another.
+
+## {{% heading "whatsnext" %}}
+- PodDisruptionBudget is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="policy-resources/pod-disruption-budget-v1" >}} object definition describes the object in detail.

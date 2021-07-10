@@ -273,5 +273,5 @@ to the deleted ConfigMap, it is recommended to recreate these pods.
 * Read [Configure a Pod to Use a ConfigMap](/docs/tasks/configure-pod-container/configure-pod-configmap/).
 * Read [The Twelve-Factor App](https://12factor.net/) to understand the motivation for
   separating code from configuration.
-
-
+* ConfigMap is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="config-and-storage-resources/config-map-v1" >}} object definition describes the object in detail.

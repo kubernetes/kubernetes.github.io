@@ -90,9 +90,6 @@ kubectl patch pv <your-pv-name> -p "{\"spec\":{\"persistentVolumeReclaimPolicy\"
 
 ### Reference
 
-* [PersistentVolume](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#persistentvolume-v1-core)
-* [PersistentVolumeClaim](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#persistentvolumeclaim-v1-core)
-* See the `persistentVolumeReclaimPolicy` field of [PersistentVolumeSpec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#persistentvolumeclaim-v1-core).
-
-
-
+* {{< api-reference page="config-and-storage-resources/persistent-volume-v1" >}}
+* {{< api-reference page="config-and-storage-resources/persistent-volume-claim-v1" >}}
+* See the `persistentVolumeReclaimPolicy` field of {{< api-reference page="config-and-storage-resources/persistent-volume-v1" anchor="PersistentVolumeSpec" >}}.

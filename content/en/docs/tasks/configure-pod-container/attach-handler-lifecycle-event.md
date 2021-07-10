@@ -95,9 +95,9 @@ This limitation is tracked in [issue #55087](https://github.com/kubernetes/kuber
 
 ### Reference
 
-* [Lifecycle](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#lifecycle-v1-core)
-* [Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core)
-* See `terminationGracePeriodSeconds` in [PodSpec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podspec-v1-core)
+* {{< api-reference page="workload-resources/pod-v1" anchor="Lifecycle" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="Container" >}}
+* See `terminationGracePeriodSeconds` in {{< api-reference page="workload-resources/pod-v1" anchor="Lifecycle" text="PodSpec" >}}
 
 
 

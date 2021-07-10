@@ -135,7 +135,7 @@ the shared Volume is lost.
 
 * See [Configure a Pod to share process namespace between containers in a Pod](/docs/tasks/configure-pod-container/share-process-namespace/)
 
-* See [Volume](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#volume-v1-core).
+* See {{< api-reference page="config-and-storage-resources/volume" >}}.
 
-* See [Pod](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#pod-v1-core).
+* See {{< api-reference page="workload-resources/pod-v1" >}}.
 

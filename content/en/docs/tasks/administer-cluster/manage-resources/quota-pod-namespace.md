@@ -9,7 +9,7 @@ weight: 60
 
 This page shows how to set a quota for the total number of Pods that can run
 in a namespace. You specify quotas in a
-[ResourceQuota](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#resourcequota-v1-core)
+{{< api-reference page="policy-resources/resource-quota-v1" >}}
 object.
 
 

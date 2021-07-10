@@ -1485,3 +1485,6 @@ sudo systemctl restart docker
 ## {{% heading "whatsnext" %}}
 
 Follow an example of [deploying WordPress and MySQL with Persistent Volumes](/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/).
+
+The API reference for {{< api-reference page="config-and-storage-resources/volume" >}} provides
+details about this definition and how is is used in the Kubernetes API.

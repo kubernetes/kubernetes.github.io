@@ -8,11 +8,11 @@ reviewers:
 
 <!-- overview -->
 
-*Node Problem Detector* is a daemon for monitoring and reporting about a node's health.
+*Node problem detector* is a daemon for monitoring and reporting about a node's health.
 You can run Node Problem Detector as a `DaemonSet` or as a standalone daemon.
 Node Problem Detector collects information about node problems from various daemons
 and reports these conditions to the API server as [NodeCondition](/docs/concepts/architecture/nodes/#condition)
-and [Event](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#event-v1-core).
+and {{< api-reference page="cluster-resources/event-v1" >}}.
 
 To learn how to install and use Node Problem Detector, see
 [Node Problem Detector project documentation](https://github.com/kubernetes/node-problem-detector).

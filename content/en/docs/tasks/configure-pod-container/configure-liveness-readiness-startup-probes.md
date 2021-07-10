@@ -223,7 +223,7 @@ kubectl describe pod goproxy
 ## Use a named port
 
 You can use a named
-[ContainerPort](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#containerport-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="ContainerPort" >}}
 for HTTP or TCP liveness checks:
 
 ```yaml
@@ -323,7 +323,7 @@ for it, and that containers are restarted when they fail.
 Eventually, some of this section could be moved to a concept topic.
 {{< /comment >}}
 
-[Probes](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#probe-v1-core) have a number of fields that
+{{< api-reference page="workload-resources/pod-v1" anchor="Probe" text="Probes" >}} have a number of fields that
 you can use to more precisely control the behavior of liveness and readiness
 checks:
 
@@ -364,7 +364,7 @@ of processes in the container, and resource starvation if this is left unchecked
 
 ### HTTP probes
 
-[HTTP probes](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#httpgetaction-v1-core)
+{{< api-reference page="workload-resources/pod-v1" anchor="HTTPGetAction" text="HTTP Probes" >}}
 have additional fields that can be set on `httpGet`:
 
 * `host`: Host name to connect to, defaults to the pod IP. You probably want to
@@ -478,6 +478,6 @@ It will be rejected by the API server.
 
 You can also read the API references for:
 
-* [Pod](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#pod-v1-core)
-* [Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core)
-* [Probe](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#probe-v1-core)
+* {{< api-reference page="workload-resources/pod-v1" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="Container" >}}
+* {{< api-reference page="workload-resources/pod-v1" anchor="Probe" >}}

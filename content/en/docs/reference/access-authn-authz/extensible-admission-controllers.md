@@ -76,8 +76,8 @@ how to [authenticate apiservers](#authenticate-apiservers).
 ### Deploy the admission webhook service
 
 The webhook server in the e2e test is deployed in the Kubernetes cluster, via
-the [deployment API](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#deployment-v1-apps).
-The test also creates a [service](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#service-v1-core)
+the {{< api-reference page="workload-resources/deployment-v1" >}} API.
+The test also creates a {{< api-reference page="service-resources/service-v1" >}}
 as the front-end of the webhook server. See
 [code](https://github.com/kubernetes/kubernetes/blob/v1.15.0/test/e2e/apimachinery/webhook.go#L301).
 
@@ -88,9 +88,9 @@ your webhook configurations accordingly.
 
 You can dynamically configure what resources are subject to what admission
 webhooks via
-[ValidatingWebhookConfiguration](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#validatingwebhookconfiguration-v1-admissionregistration-k8s-io)
+{{< api-reference page="extend-resources/validating-webhook-configuration-v1" >}}
 or
-[MutatingWebhookConfiguration](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#mutatingwebhookconfiguration-v1-admissionregistration-k8s-io).
+{{< api-reference page="extend-resources/mutating-webhook-configuration-v1" >}}.
 
 The following is an example `ValidatingWebhookConfiguration`, a mutating webhook configuration is similar.
 See the [webhook configuration](#webhook-configuration) section for details about each config field.

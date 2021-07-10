@@ -864,3 +864,8 @@ Delaying volume binding allows the scheduler to consider all of a Pod's
 scheduling constraints when choosing an appropriate PersistentVolume for a
 PersistentVolumeClaim.
 
+
+## {{% heading "whatsnext" %}}
+
+- StorageClass is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="config-and-storage-resources/storage-class-v1" >}} object definition describes the object in detail.

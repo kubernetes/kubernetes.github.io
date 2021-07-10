@@ -409,4 +409,7 @@ The two serve the same purpose, and behave similarly, except that a ReplicationC
 selector requirements as described in the [labels user guide](/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 As such, ReplicaSets are preferred over ReplicationControllers
 
+## {{% heading "whatsnext" %}}
 
+* ReplicaSet is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="workload-resources/replica-set-v1" >}} object definition describes the object in detail.

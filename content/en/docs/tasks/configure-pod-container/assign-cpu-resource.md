@@ -219,7 +219,7 @@ could use all of the CPU resources available on the Node where it is running.
 
 * The Container is running in a namespace that has a default CPU limit, and the
 Container is automatically assigned the default limit. Cluster administrators can use a
-[LimitRange](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#limitrange-v1-core/)
+{{< api-reference page="policy-resources/limit-range-v1" >}}
 to specify a default value for the CPU limit.
 
 ## If you specify a CPU limit but do not specify a CPU request

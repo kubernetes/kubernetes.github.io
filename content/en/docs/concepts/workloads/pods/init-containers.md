@@ -33,7 +33,7 @@ However, if the Pod has a `restartPolicy` of Never, and an init container fails 
 
 To specify an init container for a Pod, add the `initContainers` field into
 the Pod specification, as an array of objects of type
-[Container](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#container-v1-core),
+{{< api-reference page="workload-resources/pod-v1" anchor="Container" >}},
 alongside the app `containers` array.
 The status of the init containers is returned in `.status.initContainerStatuses`
 field as an array of the container statuses (similar to the `.status.containerStatuses`

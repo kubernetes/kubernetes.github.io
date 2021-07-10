@@ -51,8 +51,9 @@ are incompatible and disallowed for ephemeral containers.
 - Ephemeral containers may not have ports, so fields such as `ports`,
   `livenessProbe`, `readinessProbe` are disallowed.
 - Pod resource allocations are immutable, so setting `resources` is disallowed.
-- For a complete list of allowed fields, see the [EphemeralContainer reference
-  documentation](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#ephemeralcontainer-v1-core).
+- For a complete list of allowed fields, see the
+{{< api-reference page="workload-resources/ephemeral-containers-v1" >}}
+reference documentation.
 
 Ephemeral containers are created using a special `ephemeralcontainers` handler
 in the API rather than by adding them directly to `pod.spec`, so it's not

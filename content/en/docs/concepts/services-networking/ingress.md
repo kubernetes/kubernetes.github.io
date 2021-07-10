@@ -25,7 +25,8 @@ For clarity, this guide defines the following terms:
 
 ## What is Ingress?
 
-[Ingress](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#ingress-v1-networking-k8s-io) exposes HTTP and HTTPS routes from outside the cluster to
+{{< api-reference page="service-resources/ingress-v1" >}}
+exposes HTTP and HTTPS routes from outside the cluster to
 {{< link text="services" url="/docs/concepts/services-networking/service/" >}} within the cluster.
 Traffic routing is controlled by rules defined on the Ingress resource.
 
@@ -565,6 +566,8 @@ You can expose a Service in multiple ways that don't directly involve the Ingres
 
 ## {{% heading "whatsnext" %}}
 
-* Learn about the [Ingress API](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#ingress-v1beta1-networking-k8s-io)
+* Learn about the {{< api-reference page="service-resources/ingress-v1" >}} API
 * Learn about [Ingress controllers](/docs/concepts/services-networking/ingress-controllers/)
 * [Set up Ingress on Minikube with the NGINX Controller](/docs/tasks/access-application-cluster/ingress-minikube/)
+* Ingress is a top-level resource in the Kubernetes REST API.
+  The {{< api-reference page="service-resources/ingress-v1" >}} object definition describes the object in detail.
