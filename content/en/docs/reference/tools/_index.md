@@ -8,14 +8,14 @@ no_list: true
 ---
 
 <!-- overview -->
-Kubernetes contains several built-in tools to help you work with the Kubernetes system.
+Kubernetes contains several built-in as well as third party tools to help you work with the Kubernetes system.
 
 
 <!-- body -->
 
 ## Minikube
 
-[`minikube`](https://minikube.sigs.k8s.io/docs/) is a tool that
+[`minikube`](https://minikube.sigs.k8s.io/docs/) is a built-in tool that
 runs a single-node Kubernetes cluster locally on your workstation for
 development and testing purposes.
 
@@ -26,7 +26,7 @@ to a Kubernetes cluster, troubleshoot them, and manage the cluster and its resou
 
 ## Helm
 
-[`Kubernetes Helm`](https://github.com/kubernetes/helm) is a tool for managing packages of pre-configured
+[`Kubernetes Helm`](https://github.com/kubernetes/helm) is a third party managed tool for managing packages of pre-configured
 Kubernetes resources, aka Kubernetes charts.
 
 Use Helm to:
@@ -39,7 +39,7 @@ Use Helm to:
 
 ## Kompose
 
-[`Kompose`](https://github.com/kubernetes/kompose) is a tool to help Docker Compose users move to Kubernetes.
+[`Kompose`](https://github.com/kubernetes/kompose) is a built-in tool to help Docker Compose users move to Kubernetes.
 
 Use Kompose to:
 
