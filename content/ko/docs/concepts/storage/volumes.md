@@ -544,7 +544,7 @@ glusterfs 볼륨에 데이터를 미리 채울 수 있으며, 파드 간에 데�
 | | 빈 문자열 (기본값)은 이전 버전과의 호환성을 위한 것으로, hostPath 볼륨은 마운트 하기 전에 아무런 검사도 수행되지 않는다. |
 | `DirectoryOrCreate` | 만약 주어진 경로에 아무것도 없다면, 필요에 따라 Kubelet이 가지고 있는 동일한 그룹과 소유권, 권한을 0755로 설정한 빈 디렉터리를 생성한다. |
 | `Directory` | 주어진 경로에 디렉터리가 있어야 함 |
-| `FileOrCreate` | 만약 주어진 경로에 아무것도 없다면, 필요에 따라 Kubelet이 가지고 있는 동일한 그룹과 소유권, 권한을 0644로 설정한 빈 디렉터리를 생성한다. |
+| `FileOrCreate` | 만약 주어진 경로에 아무것도 없다면, 필요에 따라 Kubelet이 가지고 있는 동일한 그룹과 소유권, 권한을 0644로 설정한 빈 파일을 생성한다. |
 | `File` | 주어진 경로에 파일이 있어야 함 |
 | `Socket` | 주어진 경로에 UNIX 소캣이 있어야 함 |
 | `CharDevice` | 주어진 경로에 문자 디바이스가 있어야 함 |
@@ -914,7 +914,7 @@ projected 볼륨 소스를 [`subPath`](#subpath-사용하기) 볼륨으로 마�
 
 ### quobyte
 
-`quobyte` 볼륨을 사용하면 기존 [Quobyte](http://www.quobyte.com) 볼륨을
+`quobyte` 볼륨을 사용하면 기존 [Quobyte](https://www.quobyte.com) 볼륨을
 파드에 마운트할 수 있다.
 
 {{< note >}}

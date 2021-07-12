@@ -1235,10 +1235,6 @@ for secret data, so that the secrets are not stored in the clear into {{< glossa
  - A user who can create a Pod that uses a secret can also see the value of that secret. Even
    if the API server policy does not allow that user to read the Secret, the user could
    run a Pod which exposes the secret.
- - Currently, anyone with root permission on any node can read _any_ secret from the API server,
-   by impersonating the kubelet. It is a planned feature to only send secrets to
-   nodes that actually require them, to restrict the impact of a root exploit on a
-   single node.
 
 
 ## {{% heading "whatsnext" %}}

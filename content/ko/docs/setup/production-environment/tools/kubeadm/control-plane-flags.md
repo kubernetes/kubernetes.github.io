@@ -9,7 +9,8 @@ weight: 40
 
 {{< feature-state for_k8s_version="v1.12" state="stable" >}}
 
-kubeadm의 `ClusterConfiguration` 오브젝트는 API 서버, 컨트롤러매니저, 스케줄러와 같은 컨트롤 플레인 구성요소에 전달되는 기본 플래그 `extraArgs` 필드를 노출한다. 이 구성요소는 다음 필드를 사용하도록 정의되어 있다.
+kubeadm의 `ClusterConfiguration` 오브젝트는 API 서버, 컨트롤러매니저, 스케줄러와 같은 컨트롤 플레인 구성요소에 전달되는
+기본 플래그 `extraArgs` 필드를 노출한다. 이 구성요소는 다음 필드를 사용하도록 정의되어 있다.
 
 - `apiServer`
 - `controllerManager`
@@ -19,7 +20,7 @@ kubeadm의 `ClusterConfiguration` 오브젝트는 API 서버, 컨트롤러매니
 
 1.  사용자 구성에서 적절한 필드를 추가한다.
 2.  필드에 대체할 플래그를 추가한다.
-3.  `kubeadm init`에 `--config <YOUR CONFIG YAML>` 파라미터를 추가해서 실행한다.
+3.  `kubeadm init`에 `--config <CONFIG YAML 파일>` 파라미터를 추가해서 실행한다.
 
 각 필드의 구성에서 자세한 정보를 보려면,
 [API 참고 문서](https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2#ClusterConfiguration)에서 확인해 볼 수 있다.
@@ -34,9 +35,9 @@ kubeadm의 `ClusterConfiguration` 오브젝트는 API 서버, 컨트롤러매니
 
 ## APIServer 플래그
 
-자세한 내용은 [kube-apiserver에 대한 참고 문서](/docs/reference/command-line-tools-reference/kube-apiserver/)를 확인한다.
+자세한 내용은 [kube-apiserver 레퍼런스 문서](/docs/reference/command-line-tools-reference/kube-apiserver/)를 확인한다.
 
-사용 예:
+예시:
 ```yaml
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
@@ -51,9 +52,9 @@ apiServer:
 
 ## 컨트롤러매니저 플래그
 
-자세한 내용은 [kube-controller-manager에 대한 참고 문서](/docs/reference/command-line-tools-reference/kube-controller-manager/)를 확인한다.
+자세한 내용은 [kube-controller-manager 레퍼런스 문서](/docs/reference/command-line-tools-reference/kube-controller-manager/)를 확인한다.
 
-사용 예:
+예시:
 ```yaml
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration
@@ -67,9 +68,9 @@ controllerManager:
 
 ## 스케줄러 플래그
 
-자세한 내용은 [kube-scheduler에 대한 참고 문서](/docs/reference/command-line-tools-reference/kube-scheduler/)를 확인한다.
+자세한 내용은 [kube-scheduler 레퍼런스 문서](/docs/reference/command-line-tools-reference/kube-scheduler/)를 확인한다.
 
-사용 예:
+예시:
 ```yaml
 apiVersion: kubeadm.k8s.io/v1beta2
 kind: ClusterConfiguration

@@ -94,7 +94,7 @@ JOSH BERKUS: That goes into release notes. I mean, keep in mind that one of the 
 
 However, stuff happens, and we do occasionally have to do those. And so far, our main way to identify that to people actually is in the release notes. If you look at [the current release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md#no-really-you-must-do-this-before-you-upgrade), there are actually two things in there right now that are sort of breaking changes. 
 
-One of them is the bit with [priority and preemption](/docs/concepts/configuration/pod-priority-preemption/) in that preemption being on by default now allows badly behaved users of the system to cause trouble in new ways. I'd actually have to look at the release notes to see what the second one was...
+One of them is the bit with [priority and preemption](/docs/concepts/scheduling-eviction/pod-priority-preemption/) in that preemption being on by default now allows badly behaved users of the system to cause trouble in new ways. I'd actually have to look at the release notes to see what the second one was...
 
 TIM PEPPER: The [JSON capitalization case sensitivity](https://github.com/kubernetes/kubernetes/issues/64612). 
 

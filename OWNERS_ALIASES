@@ -235,10 +235,12 @@ aliases:
     - parispittman
   # authoritative source: https://git.k8s.io/sig-release/OWNERS_ALIASES
   sig-release-leads:
+    - cpanato # SIG Technical Lead
     - hasheddan # SIG Technical Lead
     - jeremyrickard # SIG Technical Lead
     - justaugustus # SIG Chair
     - LappleApple # SIG Program Manager
+    - puerco # SIG Technical Lead
     - saschagrunert # SIG Chair
   release-engineering-approvers:
     - cpanato # Release Manager

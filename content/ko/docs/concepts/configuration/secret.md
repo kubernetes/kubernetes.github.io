@@ -31,7 +31,7 @@ weight: 30
 시크릿을 안전하게 사용하려면 (최소한) 다음과 같이 하는 것이 좋다.
 
 1. 시크릿에 대한 [암호화 활성화](/docs/tasks/administer-cluster/encrypt-data/).
-2. 시크릿 읽기 및 쓰기를 제한하는 [RBAC 규칙 활성화 또는 구성](/docs/reference/access-authn-authz/authorization/). 파드를 만들 권한이 있는 모든 사용자는 시크릿을 암묵적으로 얻을 수 있다.
+2. 시크릿 읽기 및 쓰기를 제한하는 [RBAC 규칙 활성화 또는 구성](/ko/docs/reference/access-authn-authz/authorization/). 파드를 만들 권한이 있는 모든 사용자는 시크릿을 암묵적으로 얻을 수 있다.
 {{< /caution >}}
 
 <!-- body -->
@@ -48,7 +48,7 @@ weight: 30
 - 파드의 [이미지를 가져올 때 kubelet](#imagepullsecrets-사용하기)에 의해 사용.
 
 시크릿 오브젝트의 이름은 유효한
-[DNS 서브도메인 이름](/docs/concepts/overview/working-with-objects/names#dns-subdomain-names)이어야 한다.
+[DNS 서브도메인 이름](/ko/docs/concepts/overview/working-with-objects/names/#dns-서브도메인-이름)이어야 한다.
 사용자는 시크릿을 위한 파일을 구성할 때 `data` 및 (또는) `stringData` 필드를
 명시할 수 있다. 해당 `data` 와 `stringData` 필드는 선택적으로 명시할 수 있다.
 `data` 필드의 모든 키(key)에 해당하는 값(value)은 base64로 인코딩된 문자열이어야 한다.
@@ -1156,10 +1156,10 @@ HTTP 요청을 처리하고, 복잡한 비즈니스 로직을 수행한 다음, 
 
 ### 시크릿 API를 사용하는 클라이언트
 
-시크릿 API와 상호 작용하는 애플리케이션을 배포할 때, [RBAC](
-/docs/reference/access-authn-authz/rbac/)과 같은 [인가 정책](
-/docs/reference/access-authn-authz/authorization/)을
-사용하여 접근를 제한해야 한다.
+시크릿 API와 상호 작용하는 애플리케이션을 배포할 때, 
+[RBAC](/docs/reference/access-authn-authz/rbac/)과 같은 
+[인가 정책](/ko/docs/reference/access-authn-authz/authorization/)을
+사용하여 접근을 제한해야 한다.
 
 시크릿은 종종 다양한 중요도에 걸친 값을 보유하며, 이 중 많은 부분이
 쿠버네티스(예: 서비스 어카운트 토큰)와 외부 시스템으로 단계적으로

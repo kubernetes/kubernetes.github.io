@@ -5,11 +5,12 @@ metadata:
   labels:
     app: MyApp
 spec:
-  ipFamily: IPv6
+  ipFamilyPolicy: PreferDualStack
+  ipFamilies:
+  - IPv6
   type: LoadBalancer
   selector:
     app: MyApp
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 9376

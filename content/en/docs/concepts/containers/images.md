@@ -77,6 +77,20 @@ the pull policy of any object after its initial creation.
 
 When `imagePullPolicy` is defined without a specific value, it is also set to `Always`.
 
+### ImagePullBackOff
+
+When a kubelet starts creating containers for a Pod using a container runtime,
+it might be possible the container is in [Waiting](/docs/concepts/workloads/pods/pod-lifecycle/#container-state-waiting)
+state because of `ImagePullBackOff`.
+
+The status `ImagePullBackOff` means that a container could not start because Kubernetes
+could not pull a container image (for reasons such as invalid image name, or pulling
+from a private registry without `imagePullSecret`). The `BackOff` part indicates
+that Kubernetes will keep trying to pull the image, with an increasing back-off delay.
+
+Kubernetes raises the delay between each attempt until it reaches a compiled-in limit,
+which is 300 seconds (5 minutes).
+
 ## Multi-architecture images with image indexes
 
 As well as providing binary images, a container registry can also serve a [container image index](https://github.com/opencontainers/image-spec/blob/master/image-index.md). An image index can point to multiple [image manifests](https://github.com/opencontainers/image-spec/blob/master/manifest.md) for architecture-specific versions of a container. The idea is that you can have a name for an image (for example: `pause`, `example/mycontainer`, `kube-apiserver`) and allow different systems to fetch the right binary image for the machine architecture they are using.

@@ -22,7 +22,6 @@ card:
 - [리눅스에 curl을 사용하여 kubectl 바이너리 설치](#install-kubectl-binary-with-curl-on-linux)
 - [기본 패키지 관리 도구를 사용하여 설치](#install-using-native-package-management)
 - [다른 패키지 관리 도구를 사용하여 설치](#install-using-other-package-management)
-- [리눅스에 Google Cloud SDK를 사용하여 설치](#install-on-linux-as-part-of-the-google-cloud-sdk)
 
 ### 리눅스에서 curl을 사용하여 kubectl 바이너리 설치 {#install-kubectl-binary-with-curl-on-linux}
 
@@ -167,10 +166,6 @@ kubectl version --client
 {{% /tab %}}
 
 {{< /tabs >}}
-
-### 리눅스에 Google Cloud SDK를 사용하여 설치 {#install-on-linux-as-part-of-the-google-cloud-sdk}
-
-{{< include "included/install-kubectl-gcloud.md" >}}
 
 ## kubectl 구성 확인
 

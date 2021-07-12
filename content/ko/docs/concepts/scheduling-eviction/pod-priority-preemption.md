@@ -25,7 +25,7 @@ weight: 70
 관리자는 리소스쿼터를 사용하여 사용자가 우선순위가 높은 파드를 생성하지
 못하게 할 수 있다.
 
-자세한 내용은 [기본적으로 프라이어리티 클래스(Priority Class) 소비 제한](/ko/docs/concepts/policy/resource-quotas/#기본적으로-우선-순위-클래스-소비-제한)을
+자세한 내용은 [기본적으로 프라이어리티클래스(Priority Class) 소비 제한](/ko/docs/concepts/policy/resource-quotas/#기본적으로-우선-순위-클래스-소비-제한)을
 참고한다.
 {{< /warning >}}
 
@@ -50,7 +50,7 @@ weight: 70
 
 ## 프라이어리티클래스
 
-프라이어리티클래스는 프라이어리티 클래스 이름에서 우선순위의 정수 값으로의 매핑을
+프라이어리티클래스는 프라이어리티클래스 이름에서 우선순위의 정수 값으로의 매핑을
 정의하는 네임스페이스가 아닌(non-namespaced) 오브젝트이다. 이름은
 프라이어리티클래스 오브젝트의 메타데이터의 `name` 필드에 지정된다. 값은
 필수 `value` 필드에 지정되어 있다. 값이 클수록, 우선순위가
@@ -96,7 +96,7 @@ metadata:
   name: high-priority
 value: 1000000
 globalDefault: false
-description: "이 프라이어리티 클래스는 XYZ 서비스 파드에만 사용해야 한다."
+description: "이 프라이어리티클래스는 XYZ 서비스 파드에만 사용해야 한다."
 ```
 
 ## 비-선점 프라이어리티클래스 {#non-preempting-priority-class}
@@ -142,7 +142,7 @@ metadata:
 value: 1000000
 preemptionPolicy: Never
 globalDefault: false
-description: "이 프라이어리티 클래스는 다른 파드를 축출하지 않는다."
+description: "이 프라이어리티클래스는 다른 파드를 축출하지 않는다."
 ```
 
 ## 파드 우선순위
@@ -150,7 +150,7 @@ description: "이 프라이어리티 클래스는 다른 파드를 축출하지 
 프라이어리티클래스가 하나 이상 있으면, 그것의 명세에서 이들 프라이어리티클래스 이름 중 하나를
 지정하는 파드를 생성할 수 있다. 우선순위 어드미션
 컨트롤러는 `priorityClassName` 필드를 사용하고 우선순위의 정수 값을
-채운다. 프라이어리티 클래스를 찾을 수 없으면, 파드가 거부된다.
+채운다. 프라이어리티클래스를 찾을 수 없으면, 파드가 거부된다.
 
 다음의 YAML은 이전 예제에서 생성된 프라이어리티클래스를
 사용하는 파드 구성의 예이다. 우선순위 어드미션 컨트롤러는
@@ -351,12 +351,12 @@ spec:
 축출 대상으로 고려한다.
 
 QoS와 파드 우선순위를 모두 고려하는 유일한 컴포넌트는
-[kubelet 리소스 부족 축출](/docs/tasks/administer-cluster/out-of-resource/)이다.
+[kubelet 리소스 부족 축출](/docs/concepts/scheduling-eviction/node-pressure-eviction/)이다.
 kubelet은 부족한 리소스의 사용이 요청을 초과하는지 여부에 따라, 그런 다음 우선순위에 따라,
 파드의 스케줄링 요청에 대한 부족한 컴퓨팅 리소스의 소비에 의해
 먼저 축출 대상 파드의 순위를 매긴다.
 더 자세한 내용은
-[엔드유저 파드 축출](/docs/tasks/administer-cluster/out-of-resource/#evicting-end-user-pods)을
+[엔드유저 파드 축출](/docs/concepts/scheduling-eviction/node-pressure-eviction/#evicting-end-user-pods)을
 참조한다.
 
 kubelet 리소스 부족 축출은 사용량이 요청을 초과하지 않는 경우
@@ -367,4 +367,4 @@ kubelet 리소스 부족 축출은 사용량이 요청을 초과하지 않는 �
 
 ## {{% heading "whatsnext" %}}
 
-* 프라이어리티클래스와 관련하여 리소스쿼터 사용에 대해 [기본적으로 프라이어리티 클래스 소비 제한](/ko/docs/concepts/policy/resource-quotas/#기본적으로-우선-순위-클래스-소비-제한)을 읽어보자.
+* 프라이어리티클래스와 관련하여 리소스쿼터 사용에 대해 [기본적으로 프라이어리티클래스 소비 제한](/ko/docs/concepts/policy/resource-quotas/#기본적으로-우선-순위-클래스-소비-제한)을 읽어보자.

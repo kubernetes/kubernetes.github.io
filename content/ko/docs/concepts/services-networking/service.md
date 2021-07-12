@@ -215,7 +215,7 @@ API 리소스이다. 개념적으로 엔드포인트와 매우 유사하지만, 
 오브젝트에 의해 미러링된다.
 
 이 필드는 표준 쿠버네티스 레이블 구문을 따른다. 값은
-[IANA 표준 서비스 이름](http://www.iana.org/assignments/service-names) 또는
+[IANA 표준 서비스 이름](https://www.iana.org/assignments/service-names) 또는
 `mycompany.com/my-custom-protocol`과 같은 도메인 접두사 이름 중 하나여야 한다.
 
 ## 가상 IP와 서비스 프록시

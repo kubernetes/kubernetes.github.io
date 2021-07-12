@@ -18,7 +18,7 @@ weight: 10
 - 적합한 코멘트를 남길 수 있도록 [콘텐츠 가이드](/docs/contribute/style/content-guide/)와
   [스타일 가이드](/docs/contribute/style/style-guide/)를 읽는다.
 - 쿠버네티스 문서화 커뮤니티의 다양한
-  [역할과 책임](/ko/docs/contribute/participating/#역할과-책임)을 이해한다.
+  [역할과 책임](/ko/docs/contribute/participate/#역할과-책임)을 이해한다.
 
 <!-- body -->
 
@@ -87,7 +87,7 @@ weight: 10
 - PR이 새로운 페이지를 소개하는가? 그렇다면,
   - 페이지가 올바른 [페이지 콘텐츠 타입](/docs/contribute/style/page-content-types/)과 연관된 Hugo 단축 코드를 사용하는가?
   - 섹션의 측면 탐색에 페이지가 올바르게 나타나는가?
-  - 페이지가 [문서 홈](/ko/docs/home/) 목록에 나타나야 하는가?
+  - 페이지가 [문서 홈](/docs/home/) 목록에 나타나야 하는가?
 - 변경 사항이 Netlify 미리보기에 표시되는가? 목록, 코드 블록, 표, 메모 및 이미지에 특히 주의한다.
 
 ### 기타

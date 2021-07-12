@@ -10,7 +10,7 @@ aliases: [ '/docs/tasks/administer-cluster/highly-available-master/' ]
 
 {{< feature-state for_k8s_version="v1.5" state="alpha" >}}
 
-You can replicate Kubernetes control plane nodes in `kube-up` or `kube-down` scripts for Google Compute Engine.
+You can replicate Kubernetes control plane nodes in `kube-up` or `kube-down` scripts for Google Compute Engine. However this scripts are not suitable for any sort of production use, it's widely used in the project's CI.
 This document describes how to use kube-up/down scripts to manage a highly available (HA) control plane and how HA control planes are implemented for use with GCE.
 
 
@@ -156,14 +156,14 @@ and the IP address of the first replica will be promoted to IP address of load b
 Similarly, after removal of the penultimate control plane node, the load balancer will be removed and its IP address will be assigned to the last remaining replica.
 Please note that creation and removal of load balancer are complex operations and it may take some time (~20 minutes) for them to propagate.
 
-### Master service & kubelets
+### Control plane service & kubelets
 
 Instead of trying to keep an up-to-date list of Kubernetes apiserver in the Kubernetes service,
 the system directs all traffic to the external IP:
 
 * in case of a single node control plane, the IP points to the control plane node,
 
-* in case of an HA control plane, the IP points to the load balancer in-front of the masters.
+* in case of an HA control plane, the IP points to the load balancer in-front of the control plane nodes.
 
 Similarly, the external IP will be used by kubelets to communicate with the control plane.
 

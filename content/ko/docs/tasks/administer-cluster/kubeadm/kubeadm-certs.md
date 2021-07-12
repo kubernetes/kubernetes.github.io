@@ -85,7 +85,11 @@ front-proxy-ca          Dec 28, 2029 23:36 UTC   9y              no
 {{< /warning >}}
 
 {{< note >}}
-kubeadm은 자동 인증서 갱신을 위해 kubelet을 구성하기 때문에 `kubelet.conf` 는 위 목록에 포함되어 있지 않다.
+`kubelet.conf` 는 위 목록에 포함되어 있지 않은데, 이는
+kubeadm이 [자동 인증서 갱신](/ko/docs/tasks/tls/certificate-rotation/)을 위해 
+`/var/lib/kubelet/pki`에 있는 갱신 가능한 인증서를 이용하여 kubelet을 구성하기 때문이다.
+만료된 kubelet 클라이언트 인증서를 갱신하려면 
+[kubelet 클라이언트 갱신 실패](/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/#kubelet-client-cert) 섹션을 확인한다.
 {{< /note >}}
 
 {{< warning >}}

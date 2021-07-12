@@ -6,22 +6,21 @@
 
 
 
-title: 쿠버네티스 버전 및 버전 차이(skew) 지원 정책
-content_type: concept
-weight: 30
+title: 버전 차이(skew) 정책
+type: docs
+description: >
+  다양한 쿠버네티스 구성 요소 간에 지원되는 최대 버전 차이
 ---
 
 <!-- overview -->
 이 문서는 다양한 쿠버네티스 구성 요소 간에 지원되는 최대 버전 차이를 설명한다.
 특정 클러스터 배포 도구는 버전 차이에 대한 추가적인 제한을 설정할 수 있다.
 
-
 <!-- body -->
 
 ## 지원되는 버전
 
-쿠버네티스 버전은 **x.y.z** 로 표현되는데,
-여기서 **x** 는 메이저 버전, **y** 는 마이너 버전, **z** 는 패치 버전을 의미하며, 이는 [시맨틱 버전](https://semver.org/) 용어에 따른 것이다.
+쿠버네티스 버전은 **x.y.z** 로 표현되는데, 여기서 **x** 는 메이저 버전, **y** 는 마이너 버전, **z** 는 패치 버전을 의미하며, 이는 [시맨틱 버전](https://semver.org/) 용어에 따른 것이다.
 자세한 내용은 [쿠버네티스 릴리스 버전](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/release/versioning.md#kubernetes-release-versioning)을 참조한다.
 
 쿠버네티스 프로젝트는 최근 세 개의 마이너 릴리스 ({{< skew latestVersion >}}, {{< skew prevMinorVersion >}}, {{< skew oldestMinorVersion >}}) 에 대한 릴리스 분기를 유지한다. 쿠버네티스 1.19 이상은 약 1년간의 패치 지원을 받는다. 쿠버네티스 1.18 이상은 약 9개월의 패치 지원을 받는다.

@@ -50,7 +50,7 @@ options ndots:5
 ```
 
 In summary, a pod in the _test_ namespace can successfully resolve either 
-`data.prod` or `data.prod.cluster.local`.
+`data.prod` or `data.prod.svc.cluster.local`.
 
 ### DNS Records
 

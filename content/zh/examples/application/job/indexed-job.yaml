@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 'indexed-job'
+spec:
+  completions: 5
+  parallelism: 3
+  completionMode: Indexed
+  template:
+    spec:
+      restartPolicy: Never
+      initContainers:
+      - name: 'input'
+        image: 'docker.io/library/bash'
+        command:
+        - "bash"
+        - "-c"
+        - |
+          items=(foo bar baz qux xyz)
+          echo ${items[$JOB_COMPLETION_INDEX]} > /input/data.txt
+        volumeMounts:
+        - mountPath: /input
+          name: input
+      containers:
+      - name: 'worker'
+        image: 'docker.io/library/busybox'
+        command:
+        - "rev"
+        - "/input/data.txt"
+        volumeMounts:
+        - mountPath: /input
+          name: input
+      volumes:
+      - name: input
+        emptyDir: {}

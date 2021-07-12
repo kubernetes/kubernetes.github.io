@@ -282,7 +282,7 @@ Of course you need to set up the webhook server to handle these authentications.
 
 ### Request
 
-Webhooks are sent a POST request, with `Content-Type: application/json`,
+Webhooks are sent as POST requests, with `Content-Type: application/json`,
 with an `AdmissionReview` API object in the `admission.k8s.io` API group
 serialized to JSON as the body.
 

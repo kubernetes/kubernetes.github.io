@@ -1,18 +1,15 @@
 ---
+
+
 title: 데몬셋(DaemonSet)에서 롤링 업데이트 수행
 content_type: task
 weight: 10
 ---
 
-
-
 <!-- overview -->
-
 이 페이지는 데몬셋에서 롤링 업데이트를 수행하는 방법을 보여준다.
 
 ## {{% heading "prerequisites" %}}
-
-* 데몬셋 롤링 업데이트 기능은 쿠버네티스 버전 1.6 이상에서만 지원된다.
 
 <!-- steps -->
 
@@ -20,22 +17,26 @@ weight: 10
 
 데몬셋에는 두 가지 업데이트 전략 유형이 있다.
 
-* OnDelete: `OnDelete` 업데이트 전략을 사용하여, 데몬셋 템플릿을 업데이트한 후,
+* `OnDelete`: `OnDelete` 업데이트 전략을 사용하여, 데몬셋 템플릿을 업데이트한 후,
   이전 데몬셋 파드를 수동으로 삭제할 때 *만* 새 데몬셋 파드가
   생성된다. 이것은 쿠버네티스 버전 1.5 이하에서의 데몬셋의 동작과
   동일하다.
-* RollingUpdate: 기본 업데이트 전략이다.
+* `RollingUpdate`: 기본 업데이트 전략이다.
   `RollingUpdate` 업데이트 전략을 사용하여, 데몬셋 템플릿을
   업데이트한 후, 오래된 데몬셋 파드가 종료되고, 새로운 데몬셋 파드는
-  제어 방식으로 자동 생성된다. 전체 업데이트 프로세스 동안 데몬셋의 최대 하나의 파드가 각 노드에서 실행된다.
+  제어 방식으로 자동 생성된다. 전체 업데이트 프로세스 동안 
+  데몬셋의 최대 하나의 파드가 각 노드에서 실행된다.
 
 ## 롤링 업데이트 수행
 
 데몬셋의 롤링 업데이트 기능을 사용하려면,
 `.spec.updateStrategy.type` 에 `RollingUpdate` 를 설정해야 한다.
 
-[`.spec.updateStrategy.rollingUpdate.maxUnavailable`](/ko/docs/concepts/workloads/controllers/deployment/#최대-불가max-unavailable)(기본값은 1)과
-[`.spec.minReadySeconds`](/ko/docs/concepts/workloads/controllers/deployment/#최소-대기-시간초)(기본값은 0)으로 설정할 수도 있다.
+[`.spec.updateStrategy.rollingUpdate.maxUnavailable`](/ko/docs/concepts/workloads/controllers/deployment/#최대-불가max-unavailable)
+(기본값은 1)과
+[`.spec.minReadySeconds`](/ko/docs/concepts/workloads/controllers/deployment/#최소-대기-시간초)
+(기본값은 0)으로 
+설정할 수도 있다.
 
 ### `RollingUpdate` 업데이트 전략으로 데몬셋 생성
 
@@ -142,7 +143,7 @@ daemonset "fluentd-elasticsearch" successfully rolled out
 #### 일부 노드에 리소스가 부족하다
 
 적어도 하나의 노드에서 새 데몬셋 파드를 스케줄링할 수 없어서 롤아웃이
-중단되었다. 노드에 [리소스가 부족](/docs/tasks/administer-cluster/out-of-resource/)할 때
+중단되었다. 노드에 [리소스가 부족](/docs/concepts/scheduling-eviction/node-pressure-eviction/)할 때
 발생할 수 있다.
 
 이 경우, `kubectl get nodes` 의 출력 결과와 다음의 출력 결과를 비교하여
@@ -184,12 +185,7 @@ kubectl get pods -l name=fluentd-elasticsearch -o wide -n kube-system
 kubectl delete ds fluentd-elasticsearch -n kube-system
 ```
 
-
-
-
 ## {{% heading "whatsnext" %}}
 
-
-* [태스크: 데몬셋에서 롤백
-  수행](/ko/docs/tasks/manage-daemon/rollback-daemon-set/)을 참고한다.
-* [개념: 기존 데몬셋 파드를 채택하기 위한 데몬셋 생성](/ko/docs/concepts/workloads/controllers/daemonset/)을 참고한다.
+* [데몬셋에서 롤백 수행](/ko/docs/tasks/manage-daemon/rollback-daemon-set/)을 참고한다.
+* [기존 데몬셋 파드를 채택하기 위한 데몬셋 생성](/ko/docs/concepts/workloads/controllers/daemonset/)을 참고한다.

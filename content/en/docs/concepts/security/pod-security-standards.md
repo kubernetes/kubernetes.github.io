@@ -86,7 +86,7 @@ enforced/disallowed:
 		<tr>
 			<td>Capabilities</td>
 			<td>
-				Adding additional capabilities beyond the <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities">default set</a> must be disallowed.<br>
+				Adding <tt>NET_RAW</tt> or capabilities beyond the <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities">default set</a> must be disallowed.<br>
 				<br><b>Restricted Fields:</b><br>
 				spec.containers[*].securityContext.capabilities.add<br>
 				spec.initContainers[*].securityContext.capabilities.add<br>
@@ -194,7 +194,7 @@ well as lower-trust users.The following listed controls should be enforced/disal
 		<tr>
 			<td>Volume Types</td>
 			<td>
-				In addition to restricting HostPath volumes, the restricted profile limits usage of non-core volume types to those defined through PersistentVolumes.<br>
+				In addition to restricting HostPath volumes, the restricted profile limits usage of non-ephemeral volume types to those defined through PersistentVolumes.<br>
 				<br><b>Restricted Fields:</b><br>
 				spec.volumes[*].hostPath<br>
 				spec.volumes[*].gcePersistentDisk<br>
@@ -216,7 +216,6 @@ well as lower-trust users.The following listed controls should be enforced/disal
 				spec.volumes[*].portworxVolume<br>
 				spec.volumes[*].scaleIO<br>
 				spec.volumes[*].storageos<br>
-				spec.volumes[*].csi<br>
 				<br><b>Allowed Values:</b> undefined/nil<br>
 			</td>
 		</tr>

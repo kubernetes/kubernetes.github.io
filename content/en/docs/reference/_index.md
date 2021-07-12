@@ -79,6 +79,10 @@ operator to use or manage a cluster.
 * [Client authentication API (v1beta1)](/docs/reference/config-api/client-authentication.v1beta1/)
 * [WebhookAdmission configuration (v1)](/docs/reference/config-api/apiserver-webhookadmission.v1/)
 
+## Config API for kubeadm
+
+* [v1beta2](/docs/reference/config-api/kubeadm-config.v1beta2/)
+
 ## Design Docs
 
 An archive of the design docs for Kubernetes functionality. Good starting points are

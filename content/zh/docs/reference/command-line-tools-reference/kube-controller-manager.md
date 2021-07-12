@@ -342,7 +342,7 @@ The instance prefix for the cluster.
 Filename containing a PEM-encoded X509 CA certificate used to issue cluster-scoped certificates.  If specified, no more specific --cluster-signing-* flag may be specified.
 -->
 包含 PEM 编码格式的 X509 CA 证书的文件名。该证书用来发放集群范围的证书。
-如果设置了此标志，则不需要锦衣设置 <code>--cluster-signing-*</code> 标志。
+如果设置了此标志，则不能指定更具体的<code>--cluster-signing-*</code> 标志。
 </td>
 </tr>
 

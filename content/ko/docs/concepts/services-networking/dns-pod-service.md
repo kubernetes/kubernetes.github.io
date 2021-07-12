@@ -7,6 +7,7 @@ content_type: concept
 weight: 20
 ---
 <!-- overview -->
+
 쿠버네티스는 파드와 서비스를 위한 DNS 레코드를 생성한다. 사용자는 IP 주소 대신에
 일관된 DNS 네임을 통해서 서비스에 접속할 수 있다.
 
@@ -261,6 +262,8 @@ spec:
 
 ### 파드의 DNS 설정 {#pod-dns-config}
 
+{{< feature-state for_k8s_version="v1.14" state="stable" >}}
+
 사용자들은 파드의 DNS 설정을 통해서 직접 파드의 DNS를 세팅할 수 있다.
 
 `dnsConfig` 필드는 선택적이고, `dnsPolicy` 세팅과 함께 동작한다.
@@ -309,18 +312,6 @@ nameserver fd00:79:30::a
 search default.svc.cluster-domain.example svc.cluster-domain.example cluster-domain.example
 options ndots:5
 ```
-
-### 기능 지원 여부
-
-파드 DNS 구성 및 DNS 정책 "`None`"에 대한 지원 정보는 아래에서 확인 할 수 있다.
-
-| k8s 버전 | 기능 지원 |
-| :---------: |:-----------:|
-| 1.14 | 안정 |
-| 1.10 | 베타 (기본)|
-| 1.9 | 알파 |
-
-
 
 ## {{% heading "whatsnext" %}}
 

@@ -41,7 +41,7 @@ content_type: task
 
         kubectl apply -f https://k8s.io/examples/debug/termination.yaml
 
-	   YAML 파일에 있는 `cmd` 와 `args` 필드에서 컨테이너가 10초 간 잠든 뒤에
+	   YAML 파일에 있는 `command` 와 `args` 필드에서 컨테이너가 10초 간 잠든 뒤에
 	   "Sleep expired" 문자열을 `/dev/termination-log` 파일에 기록하는
 	   것을 확인할 수 있다. 컨테이너는 "Sleep expired" 메시지를
 	   기록한 후에 종료된다.

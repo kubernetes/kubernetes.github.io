@@ -21,7 +21,7 @@ For each server that you want to use as a {{< glossary_tooltip text="node" term_
 
 You need to have an IPv4 and and IPv6 address range to use. Cluster operators typically
 use private address ranges for IPv4. For IPv6, a cluster operator typically chooses a global
-unicast address block from within `2000::/3`, using a range that is assigned to the operator.  
+unicast address block from within `2000::/3`, using a range that is assigned to the operator.
 You don't have to route the cluster's IP address ranges to the public internet.
 
 The size of the IP address allocations should be suitable for the number of Pods and
@@ -30,7 +30,7 @@ Services that you are planning to run.
 {{< note >}}
 If you are upgrading an existing cluster then, by default, the `kubeadm upgrade` command
 changes the [feature gate](/docs/reference/command-line-tools-reference/feature-gates/)
-`IPv6DualStack` to `true` if that is not already enabled.  
+`IPv6DualStack` to `true` if that is not already enabled.
 However, `kubeadm` does not support making modifications to the pod IP address range
 (“cluster CIDR”) nor to the cluster's Service address range (“Service CIDR”).
 {{< /note >}}
@@ -45,11 +45,11 @@ similar to the following example:
 kubeadm init --pod-network-cidr=10.244.0.0/16,2001:db8:42:0::/56 --service-cidr=10.96.0.0/16,2001:db8:42:1::/112
 ```
 
-To make things clearer, here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2) `kubeadm-config.yaml` for the primary dual-stack control plane node.
+To make things clearer, here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3) `kubeadm-config.yaml` for the primary dual-stack control plane node.
 
 ```yaml
 ---
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
 featureGates:
   IPv6DualStack: true
@@ -57,7 +57,7 @@ networking:
   podSubnet: 10.244.0.0/16,2001:db8:42:0::/56
   serviceSubnet: 10.96.0.0/16,2001:db8:42:1::/112
 ---
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: InitConfiguration
 localAPIEndpoint:
   advertiseAddress: "10.100.0.1"
@@ -85,10 +85,10 @@ The `--apiserver-advertise-address` flag does not support dual-stack.
 
 Before joining a node, make sure that the node has IPv6 routable network interface and allows IPv6 forwarding.
 
-Here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2) `kubeadm-config.yaml` for joining a worker node to the cluster.
+Here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3) `kubeadm-config.yaml` for joining a worker node to the cluster.
 
 ```yaml
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: JoinConfiguration
 discovery:
   bootstrapToken:
@@ -98,9 +98,9 @@ nodeRegistration:
     node-ip: 10.100.0.3,fd00:1:2:3::3
 ```
 
-Also, here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2) `kubeadm-config.yaml` for joining another control plane node to the cluster.
+Also, here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3) `kubeadm-config.yaml` for joining another control plane node to the cluster.
 ```yaml
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: JoinConfiguration
 controlPlane:
   localAPIEndpoint:
@@ -124,7 +124,7 @@ kubeadm join --config=kubeadm-config.yaml ...
 ### Create a single-stack cluster
 
 {{< note >}}
-Enabling the dual-stack feature doesn't mean that you need to use dual-stack addressing.  
+Enabling the dual-stack feature doesn't mean that you need to use dual-stack addressing.
 You can deploy a single-stack cluster that has the dual-stack networking feature enabled.
 {{< /note >}}
 
@@ -134,10 +134,10 @@ In 1.21 the `IPv6DualStack` feature is Beta and the feature gate is defaulted to
 kubeadm init --feature-gates IPv6DualStack=false
 ```
 
-To make things more clear, here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2) `kubeadm-config.yaml` for the single-stack control plane node.
+To make things more clear, here is an example kubeadm [configuration file](https://pkg.go.dev/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3) `kubeadm-config.yaml` for the single-stack control plane node.
 
 ```yaml
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
 featureGates:
   IPv6DualStack: false

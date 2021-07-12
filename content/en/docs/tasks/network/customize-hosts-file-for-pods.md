@@ -3,7 +3,7 @@ reviewers:
 - rickypai
 - thockin
 title: Adding entries to Pod /etc/hosts with HostAliases
-content_type: concept
+content_type: task
 weight: 60
 min-kubernetes-server-version: 1.7
 ---
@@ -16,7 +16,7 @@ Adding entries to a Pod's `/etc/hosts` file provides Pod-level override of hostn
 Modification not using HostAliases is not suggested because the file is managed by the kubelet and can be overwritten on during Pod creation/restart.
 
 
-<!-- body -->
+<!-- steps -->
 
 ## Default hosts file content
 

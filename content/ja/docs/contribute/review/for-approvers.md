@@ -62,7 +62,7 @@ Prowコマンド | Roleの制限 | 説明
 `/lgtm` | 誰でも。ただし、オートメーションがトリガされるのはReviewerまたはApproverが使用したときのみ。 | PRのレビューが完了し、変更に納得したことを知らせる。
 `/approve` | Approver | PRをマージすることを承認する。
 `/assign` | ReviewerまたはApprover | PRのレビューまたは承認するひとを割り当てる。
-`/close` | ReviewerまたはApprover | issueまたはPRをクローンする。
+`/close` | ReviewerまたはApprover | issueまたはPRをcloseする。
 `/hold` | 誰でも | `do-not-merge/hold`ラベルを追加して、自動的にマージできないPRであることを示す。
 `/hold cancel` | 誰でも | `do-not-merge/hold`ラベルを削除する。
 {{< /table >}}
@@ -133,7 +133,7 @@ SIG Docsでは、対処方法をドキュメントに書いても良いくらい
 
 ### 重服したissue
 
-1つの問題に対して1つ以上のissueがopenしている場合、1つのissueに統合します。あなたはどちらのissueをopenにしておくか(あるいは新しいissueを作成するか)を決断して、すべての関連する情報を移動し、関連するすべてのissueにリンクしなければなりません。最後に、同じ問題について書かれたすべての他のissueに`triage/duplicate`ラベルを付けて、それらをcloseします。作業対象のissueを1つだけにすることで、混乱を晒し、同じ問題に対して作業が重複することを避けられます。
+1つの問題に対して1つ以上のissueがopenしている場合、1つのissueに統合します。あなたはどちらのissueをopenにしておくか(あるいは新しいissueを作成するか)を決断して、すべての関連する情報を移動し、関連するすべてのissueにリンクしなければなりません。最後に、同じ問題について書かれたすべての他のissueに`triage/duplicate`ラベルを付けて、それらをcloseします。作業対象のissueを1つだけにすることで、混乱を減らし、同じ問題に対して作業が重複することを避けられます。
 
 ### リンク切れに関するissue
 

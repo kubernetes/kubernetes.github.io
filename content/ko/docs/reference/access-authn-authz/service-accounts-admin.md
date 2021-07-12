@@ -53,7 +53,7 @@ weight: 50
 1. 이전 단계는 파드에 참조되는 `ServiceAccount` 가 있도록 하고, 그렇지 않으면 이를 거부한다.
 1. 서비스어카운트 `automountServiceAccountToken` 와 파드의 `automountServiceAccountToken` 중 어느 것도 `false` 로 설정되어 있지 않다면, API 접근을 위한 토큰이 포함된 `volume` 을 파드에 추가한다.
 1. 이전 단계에서 서비스어카운트 토큰을 위한 볼륨이 만들어졌다면, `/var/run/secrets/kubernetes.io/serviceaccount` 에 마운트된 파드의 각 컨테이너에 `volumeSource` 를 추가한다.
-1. 파드에 `ImagePullSecrets` 이 없는 경우, `ServiceAccount` 의 `ImagePullSecrets` 이 파드에 추가된다.
+1. 파드에 `imagePullSecrets` 이 없는 경우, `ServiceAccount` 의 `imagePullSecrets` 이 파드에 추가된다.
 
 #### 바인딩된 서비스 어카운트 토큰 볼륨
 
@@ -86,14 +86,14 @@ weight: 50
 프로젝티드 볼륨은 세 가지로 구성된다.
 
 1. kube-apiserver로부터 TokenRequest API를 통해 얻은 서비스어카운트토큰(ServiceAccountToken). 서비스어카운트토큰은 기본적으로 1시간 뒤에, 또는 파드가 삭제될 때 만료된다. 서비스어카운트토큰은 파드에 연결되며 kube-apiserver를 위해 존재한다.
-1. kube-apiserver에 대한 연결을 확인하는 데 사용되는 CA 번들을 포함하는 컨피그맵(ConfigMap). 이 기능은 모든 네임스페이스에 "kube-root-ca.crt" 컨피그맵을 게시하는 기능 게이트인 `RootCAConfigMap`이 활성화되어 있어야 동작한다. `RootCAConfigMap`은 1.20에서 기본적으로 활성화되어 있으며, 1.21 이상에서는 항상 활성화된 상태이다.
+1. kube-apiserver에 대한 연결을 확인하는 데 사용되는 CA 번들을 포함하는 컨피그맵(ConfigMap). 이 기능은 모든 네임스페이스에 "kube-root-ca.crt" 컨피그맵을 게시하는 기능 게이트인 `RootCAConfigMap`에 의해 동작한다. `RootCAConfigMap` 기능 게이트는 1.21에서 GA로 전환되었으며 기본적으로 활성화되어 있다. (이 플래그는 1.22에서 `--feature-gate` 인자에서 제외될 예정이다.)
 1. 파드의 네임스페이스를 참조하는 DownwardAPI.
 
 상세 사항은 [프로젝티드 볼륨](/docs/tasks/configure-pod-container/configure-projected-volume-storage/)을 참고한다.
 
 `BoundServiceAccountTokenVolume` 기능 게이트가 활성화되어 있지 않은 경우, 
-위의 프로젝티드 볼륨을 파드 스펙에 추가하여 시크릿 기반 서비스 어카운트 볼륨을 프로젝티드 볼륨으로 수동으로 옮길 수 있다.
-그러나, `RootCAConfigMap`은 활성화되어 있어야 한다.
+위의 프로젝티드 볼륨을 파드 스펙에 추가하여 
+시크릿 기반 서비스 어카운트 볼륨을 프로젝티드 볼륨으로 수동으로 옮길 수 있다.
 
 ### 토큰 컨트롤러
 

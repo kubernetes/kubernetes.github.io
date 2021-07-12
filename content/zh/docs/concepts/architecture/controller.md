@@ -285,5 +285,4 @@ Kubernetes 允许你运行一个稳定的控制平面，这样即使某些内置
   的一些基本知识
 * 进一步学习 [Kubernetes API](/zh/docs/concepts/overview/kubernetes-api/)
 * 如果你想编写自己的控制器，请看 Kubernetes 的
-  [扩展模式](/zh/docs/concepts/extend-kubernetes/extend-cluster/#extension-patterns)。
-
+  [扩展模式](/zh/docs/concepts/extend-kubernetes/#extension-patterns)。

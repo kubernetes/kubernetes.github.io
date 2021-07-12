@@ -23,7 +23,7 @@ DNS 변환(DNS resolution) 절차를 사용자 정의하는 방법을 설명한�
 
 ## 소개
 
-DNS는 _애드온 관리자_ 인 [클러스터 애드온](http://releases.k8s.io/{{< param "githubbranch" >}}/cluster/addons/README.md)을
+DNS는 _애드온 관리자_ 인 [클러스터 애드온](https://releases.k8s.io/{{< param "githubbranch" >}}/cluster/addons/README.md)을
 사용하여 자동으로 시작되는 쿠버네티스
 내장 서비스이다.
 

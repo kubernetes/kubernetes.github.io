@@ -183,7 +183,7 @@ curl.exe -LO https://github.com/kubernetes-sigs/sig-windows-tools/releases/lates
 
 ```powershell
 # 예
-.\Install-Containerd.ps1 -ContainerDVersion v1.4.1
+.\Install-Containerd.ps1 -ContainerDVersion 1.4.1
 ```
 
 {{< /note >}}

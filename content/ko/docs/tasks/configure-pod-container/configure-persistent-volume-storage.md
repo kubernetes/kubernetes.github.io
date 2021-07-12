@@ -28,7 +28,7 @@ weight: 60
 * 사용자는 노드가 단 하나만 있는 쿠버네티스 클러스터가 필요하고,
 {{< glossary_tooltip text="kubectl" term_id="kubectl" >}}
 커맨드라인 툴이 사용자의 클러스터와 통신할 수 있도록 설정되어 있어야 한다. 만약 사용자가 
-아직 단일 노드 클러스터를 가지고 있지 않다면, [Minikube](/ko/docs/setup/learning-environment/minikube/)를 
+아직 단일 노드 클러스터를 가지고 있지 않다면, [Minikube](/ko/docs/tasks/tools/#minikube)를 
 사용하여 클러스터 하나를 생성할 수 있다.
 
 * [퍼시스턴트 볼륨](https://minikube.sigs.k8s.io/docs/)의 

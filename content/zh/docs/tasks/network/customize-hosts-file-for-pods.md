@@ -10,7 +10,7 @@ reviewers:
 - rickypai
 - thockin
 title: Adding entries to Pod /etc/hosts with HostAliases
-content_type: concept
+content_type: task
 weight: 60
 min-kubernetes-server-version: 1.7
 -->
@@ -29,7 +29,7 @@ Modification not using HostAliases is not suggested because the file is managed 
 建议通过使用 HostAliases 来进行修改，因为该文件由 Kubelet 管理，并且
 可以在 Pod 创建/重启过程中被重写。
 
-<!-- body -->
+<!-- steps -->
 
 <!--
 ## Default Hosts File Content

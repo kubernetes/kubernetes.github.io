@@ -1,16 +1,19 @@
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
   labels:
-    app.kubernetes.io/name: guestbook
-    app.kubernetes.io/component: frontend
+    app: guestbook
+    tier: frontend
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
   # type: LoadBalancer
+  #type: LoadBalancer
   ports:
+    # the port that this service should serve on
   - port: 80
   selector:
-    app.kubernetes.io/name: guestbook
-    app.kubernetes.io/component: frontend
+    app: guestbook
+    tier: frontend

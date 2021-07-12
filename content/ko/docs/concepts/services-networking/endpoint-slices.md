@@ -154,7 +154,7 @@ v1beta1 API의 `topology` 필드에 있는 `"topology.kubernetes.io/zone"`
 
 ### 관리
 
-대부분의 경우, 컨트롤 플레인(특히, 엔드포인트 슬라이스
+대부분의 경우, 컨트롤 플레인(특히, 엔드포인트슬라이스
 {{< glossary_tooltip text="컨트롤러" term_id="controller" >}})는
 엔드포인트슬라이스 오브젝트를 생성하고 관리한다. 다른 엔티티나 컨트롤러가 추가
 엔드포인트슬라이스 집합을 관리하게 할 수 있는 서비스 메시 구현과 같이
@@ -165,13 +165,13 @@ v1beta1 API의 `topology` 필드에 있는 `"topology.kubernetes.io/zone"`
 엔티티를 나타내는 `endpointslice.kubernetes.io/managed-by`
 {{< glossary_tooltip term_id="label" text="레이블" >}}을
 정의한다.
-엔드포인트 슬라이스 컨트롤러는 관리하는 모든 엔드포인트슬라이스에 레이블의 값으로
+엔드포인트슬라이스 컨트롤러는 관리하는 모든 엔드포인트슬라이스에 레이블의 값으로
 `endpointslice-controller.k8s.io` 를 설정한다. 엔드포인트슬라이스를
 관리하는 다른 엔티티도 이 레이블에 고유한 값을 설정해야 한다.
 
 ### 소유권
 
-대부분의 유스케이스에서, 엔드포인트 슬라이스 오브젝트가 엔드포인트를
+대부분의 유스케이스에서, 엔드포인트슬라이스 오브젝트가 엔드포인트를
 추적하는 서비스가 엔드포인트슬라이스를 소유한다. 이 소유권은 각 엔드포인트슬라이스의 소유자
 참조와 서비스에 속한 모든 엔드포인트슬라이스의 간단한 조회를 가능하게 하는
 `kubernetes.io/service-name` 레이블로 표시된다.
@@ -247,5 +247,4 @@ v1beta1 API의 `topology` 필드에 있는 `"topology.kubernetes.io/zone"`
 
 ## {{% heading "whatsnext" %}}
 
-* [엔드포인트슬라이스 활성화하기](/docs/tasks/administer-cluster/enabling-endpointslices)에 대해 배우기
-* [애플리케이션을 서비스와 함께 연결하기](/ko/docs/concepts/services-networking/connect-applications-service/)를 읽어보기
+* [서비스와 애플리케이션 연결하기](/ko/docs/concepts/services-networking/connect-applications-service/)를 읽어보기

@@ -56,11 +56,11 @@ state for some duration:
 
 * Approved requests: automatically deleted after 1 hour
 * Denied requests: automatically deleted after 1 hour
-* Pending requests: automatically deleted after 1 hour
+* Pending requests: automatically deleted after 24 hours
 
 ## Signers
 
-All signers should provide information about how they work so that clients can predict what will happen to their CSRs.
+Custom signerNames can also be specified. All signers should provide information about how they work so that clients can predict what will happen to their CSRs.
 This includes:
 
 1. **Trust distribution**: how trust (CA bundles) are distributed.

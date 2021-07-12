@@ -2,7 +2,7 @@
 title: kube-scheduler
 id: kube-scheduler
 date: 2018-04-12
-full_link: /docs/reference/generated/kube-scheduler/
+full_link: /docs/reference/command-line-tools-reference/kube-scheduler/
 short_description: >
   노드가 배정되지 않은 새로 생성된 파드를 감지하고, 실행할 노드를 선택하는 컨트롤 플레인 컴포넌트.
 

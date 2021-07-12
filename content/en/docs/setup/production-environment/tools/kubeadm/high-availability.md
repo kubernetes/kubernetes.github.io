@@ -115,7 +115,7 @@ option. Your cluster requirements may need a different configuration.
 
     {{< note >}}
     The `kubeadm init` flags `--config` and `--certificate-key` cannot be mixed, therefore if you want
-    to use the [kubeadm configuration](https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2)
+    to use the [kubeadm configuration](https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3)
     you must add the `certificateKey` field in the appropriate config locations
     (under `InitConfiguration` and `JoinConfiguration: controlPlane`).
     {{< /note >}}
@@ -230,7 +230,7 @@ in the kubeadm config file.
 
 1.  Create a file called `kubeadm-config.yaml` with the following contents:
 
-        apiVersion: kubeadm.k8s.io/v1beta2
+        apiVersion: kubeadm.k8s.io/v1beta3
         kind: ClusterConfiguration
         kubernetesVersion: stable
         controlPlaneEndpoint: "LOAD_BALANCER_DNS:LOAD_BALANCER_PORT"

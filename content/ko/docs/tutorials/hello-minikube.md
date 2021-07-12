@@ -217,7 +217,7 @@ minikube 툴은 활성화하거나 비활성화할 수 있고 로컬 쿠버네�
     storage-provisioner-gluster: disabled
     ```
 
-2. 한 애드온을 활성화 한다. 예를 들어 `metrics-server`
+2. 애드온을 활성화 한다. 여기서는 `metrics-server`를 예시로 사용한다.
 
     ```shell
     minikube addons enable metrics-server
@@ -226,7 +226,7 @@ minikube 툴은 활성화하거나 비활성화할 수 있고 로컬 쿠버네�
     다음과 유사하게 출력된다.
 
     ```
-    metrics-server was successfully enabled
+    The 'metrics-server' addon is enabled
     ```
 
 3. 생성한 파드와 서비스를 확인한다.

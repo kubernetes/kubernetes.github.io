@@ -53,7 +53,7 @@ no_list: true
 관리하여, 사용자 및 워크로드가 접근할 수 있는 자원에 대한 제한을 설정할 수 있다.
 
 쿠버네티스 프로덕션 환경을 직접 구축하기 전에, 이 작업의 일부 또는 전체를 
-[턴키 클라우드 솔루션](/docs/setup/production-environment/turnkey-solutions/) 
+[턴키 클라우드 솔루션](/ko/docs/setup/production-environment/turnkey-solutions/) 
 제공 업체 또는 기타 [쿠버네티스 파트너](/ko/partners/)에게 
 넘기는 것을 고려할 수 있다.
 다음과 같은 옵션이 있다.
@@ -151,7 +151,7 @@ etcd는 클러스터 구성 데이터를 저장하므로
 [kube-controller-manager](/docs/reference/command-line-tools-reference/kube-controller-manager/), 
 [kube-scheduler](/docs/reference/command-line-tools-reference/kube-scheduler/)를 참조한다.
 고가용성 컨트롤 플레인 예제는 
-[고가용성 토폴로지를 위한 옵션](/docs/setup/production-environment/tools/kubeadm/ha-topology/),
+[고가용성 토폴로지를 위한 옵션](/ko/docs/setup/production-environment/tools/kubeadm/ha-topology/),
 [kubeadm을 이용하여 고가용성 클러스터 생성하기](/docs/setup/production-environment/tools/kubeadm/high-availability/),
 [쿠버네티스를 위한 etcd 클러스터 운영하기](/docs/tasks/administer-cluster/configure-upgrade-etcd/)를 참조한다.
 etcd 백업 계획을 세우려면 
@@ -274,8 +274,8 @@ DNS 서비스도 확장할 준비가 되어 있어야 한다.
 ## {{% heading "whatsnext" %}}
 
 - 프로덕션 쿠버네티스를 직접 구축할지, 
-아니면 [턴키 클라우드 솔루션](/docs/setup/production-environment/turnkey-solutions/) 또는 
-[쿠버네티스 파트너](/partners/)가 제공하는 서비스를 이용할지 결정한다.
+아니면 [턴키 클라우드 솔루션](/ko/docs/setup/production-environment/turnkey-solutions/) 또는 
+[쿠버네티스 파트너](/ko/partners/)가 제공하는 서비스를 이용할지 결정한다.
 - 클러스터를 직접 구축한다면, 
 [인증서](/ko/docs/setup/best-practices/certificates/)를 어떻게 관리할지, 
 [etcd](/docs/setup/production-environment/tools/kubeadm/setup-ha-etcd-with-kubeadm/)와 

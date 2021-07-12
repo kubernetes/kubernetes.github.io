@@ -104,6 +104,10 @@ sudo kubeadm init --skip-phases=control-plane,etcd --config=configfile.yaml
 
 What this example would do is write the manifest files for the control plane and etcd in `/etc/kubernetes/manifests` based on the configuration in `configfile.yaml`. This allows you to modify the files and then skip these phases using `--skip-phases`. By calling the last command you will create a control plane node with the custom manifest files.
 
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
+
+Alternatively, you can use the `skipPhases` field under `InitConfiguration`.
+
 ### Using kubeadm init with a configuration file {#config-file}
 
 {{< caution >}}

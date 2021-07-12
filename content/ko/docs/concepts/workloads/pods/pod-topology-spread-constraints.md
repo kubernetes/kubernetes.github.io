@@ -15,7 +15,7 @@ obsolete -->
 {{< note >}}
 v1.18 이전 버전의 쿠버네티스에서는 파드 토폴로지 분배 제약조건을 사용하려면
 [API 서버](/ko/docs/concepts/overview/components/#kube-apiserver)와
-[스케줄러](/docs/reference/generated/kube-scheduler/)에서
+[스케줄러](/docs/reference/command-line-tools-reference/kube-scheduler/)에서
 `EvenPodsSpread`[기능 게이트](/ko/docs/reference/command-line-tools-reference/feature-gates/)를
 활성화해야 한다
 {{< /note >}}

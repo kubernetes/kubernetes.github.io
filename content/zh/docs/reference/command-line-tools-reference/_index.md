@@ -1,4 +1,8 @@
 ---
-title: 命令行工具参考
+title: 组件工具
 weight: 60
 ---
+<!--
+title: Component tools
+weight: 60
+-->

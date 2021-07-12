@@ -192,7 +192,21 @@ For example, if there are 1,253 pods on the cluster and the client wants to rece
    }
    ```
 
-Note that the `resourceVersion` of the list remains constant across each request, indicating the server is showing us a consistent snapshot of the pods. Pods that are created, updated, or deleted after version `10245` would not be shown unless the user makes a list request without the `continue` token.  This allows clients to break large requests into smaller chunks and then perform a watch operation on the full set without missing any updates.
+Note that the `resourceVersion` of the list remains constant across each request, 
+indicating the server is showing us a consistent snapshot of the pods. Pods that 
+are created, updated, or deleted after version `10245` would not be shown unless 
+the user makes a list request without the `continue` token.  This allows clients 
+to break large requests into smaller chunks and then perform a watch operation 
+on the full set without missing any updates. 
+
+`remainingItemCount` is the number of subsequent items in the list which are not 
+included in this list response. If the list request contained label or field selectors, 
+then the number of remaining items is unknown and the API server does not include 
+a `remainingItemCount` field in its response. If the list is complete (either 
+because it is not chunking or because this is the last chunk), then there are no 
+more remaining items and the API server does not include a `remainingItemCount` 
+field in its response. The intended use of the `remainingItemCount` is estimating 
+the size of a collection.
 
 
 ## Receiving resources as Tables

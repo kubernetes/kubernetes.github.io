@@ -5,7 +5,6 @@ weight: 25
 min-kubernetes-server-version: 1.16
 ---
 <!-- 
----
 title: Server-Side Apply
 reviewers:
 - smarterclayton
@@ -15,7 +14,6 @@ reviewers:
 content_type: concept
 weight: 25
 min-kubernetes-server-version: 1.16
----
 -->
 
 <!-- overview -->
@@ -25,15 +23,15 @@ min-kubernetes-server-version: 1.16
 <!-- 
 ## Introduction
 
-Server Side Apply helps users and controllers manage their resources via
-declarative configurations. It allows them to create and/or modify their
+Server Side Apply helps users and controllers manage their resources through
+declarative configurations. Clients can create and/or modify their
 [objects](/docs/concepts/overview/working-with-objects/kubernetes-objects/)
-declaratively, simply by sending their fully specified intent.
+declaratively by sending their fully specified intent.
 -->
 ## 简介 {#introduction}
 
 服务器端应用协助用户、控制器通过声明式配置的方式管理他们的资源。
-它发送完整描述的目标（A fully specified intent），
+客户端可以发送完整描述的目标（A fully specified intent），
 声明式地创建和/或修改
 [对象](/zh/docs/concepts/overview/working-with-objects/kubernetes-objects/)。
 
@@ -84,7 +82,7 @@ Server side apply is meant both as a replacement for the original `kubectl
 apply` and as a simpler mechanism for controllers to enact their changes.
 
 If you have Server Side Apply enabled, the control plane tracks managed fields
-for all newlly created objects.
+for all newly created objects.
 -->
 服务器端应用既是原有 `kubectl apply` 的替代品，
 也是控制器发布自身变化的一个简化机制。
@@ -133,7 +131,7 @@ the appliers, results in a conflict. Shared field owners may give up ownership
 of a field by removing it from their configuration.
 
 Field management is stored in a`managedFields` field that is part of an object's
-[`metadata`](/docs/reference/generated/kubernetes-api/{{< latest-version >}}/#objectmeta-v1-meta).
+[`metadata`](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#objectmeta-v1-meta).
 
 A simple example of an object created by Server Side Apply could look like this:
 -->
@@ -142,7 +140,8 @@ A simple example of an object created by Server Side Apply could look like this:
 共享字段的所有者可以放弃字段的所有权，这只需从配置文件中删除该字段即可。
 
 字段管理的信息存储在 `managedFields` 字段中，该字段是对象的 
-[`metadata`](/docs/reference/generated/kubernetes-api/{{< latest-version >}}/#objectmeta-v1-meta)中的一部分。
+[`metadata`](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#objectmeta-v1-meta)
+中的一部分。
 
 服务器端应用创建对象的简单示例如下：
 
@@ -356,15 +355,14 @@ would have failed due to conflicting ownership.
 
 The merging strategy, implemented with Server Side Apply, provides a generally
 more stable object lifecycle. Server Side Apply tries to merge fields based on
-the fact who manages them instead of overruling just based on values. This way
-it is intended to make it easier and more stable for multiple actors updating
-the same object by causing less unexpected interference.
+the actor who manages them instead of overruling based on values. This way
+multiple actors can update the same object without causing unexpected interference.
 -->
 ## 合并策略 {#merge-strategy}
 
 由服务器端应用实现的合并策略，提供了一个总体更稳定的对象生命周期。
-服务器端应用试图依据谁管理它们来合并字段，而不只是根据值来否决。
-这么做是为了多个参与者可以更简单、更稳定的更新同一个对象，且避免引起意外干扰。
+服务器端应用试图依据负责管理它们的主体来合并字段，而不是根据值来否决。
+这么做是为了多个主体可以更新同一个对象，且不会引起意外的相互干扰。
 
 <!-- 
 When a user sends a "fully-specified intent" object to the Server Side Apply
@@ -387,7 +385,7 @@ merging, see
 A number of markers were added in Kubernetes 1.16 and 1.17, to allow API
 developers to describe the merge strategy supported by lists, maps, and
 structs. These markers can be applied to objects of the respective type,
-in Go files or in the OpenAPI schema definition of the 
+in Go files or in the OpenAPI schema definition of the
 [CRD](/docs/reference/generated/kubernetes-api/{{< param "version" >}}#jsonschemaprops-v1-apiextensions-k8s-io):
 -->
 Kubernetes 1.16 和 1.17 中添加了一些标记，
@@ -399,17 +397,115 @@ Kubernetes 1.16 和 1.17 中添加了一些标记，
 <!-- 
 | Golang marker | OpenAPI extension | Accepted values | Description | Introduced in |
 |---|---|---|---|---|
-| `//+listType` | `x-kubernetes-list-type` | `atomic`/`set`/`map` | Applicable to lists. `atomic` and `set` apply to lists with scalar elements only. `map` applies to lists of nested types only. If configured as `atomic`, the entire list is replaced during merge; a single manager manages the list as a whole at any one time. If `set` or `map`, different managers can manage entries separately. | 1.16          |
-| `//+listMapKey` | `x-kubernetes-list-map-keys` | Slice of map keys that uniquely identify entries for example `["port", "protocol"]` | Only applicable when `+listType=map`. A slice of strings whose values in combination must uniquely identify list entries. While there can be multiple keys, `listMapKey` is singular because keys need to be specified individually in the Go type. | 1.16 |
+| `//+listType` | `x-kubernetes-list-type` | `atomic`/`set`/`map` | Applicable to lists. `set` applies to lists that include only scalar elements. These elements must be unique. `map` applies to lists of nested types only. The key values (see `listMapKey`) must be unique in the list. `atomic` can apply to any list. If configured as `atomic`, the entire list is replaced during merge. At any point in time, a single manager owns the list. If `set` or `map`, different managers can manage entries separately. | 1.16          |
+| `//+listMapKey` | `x-kubernetes-list-map-keys` | List of field names, e.g. `["port", "protocol"]` | Only applicable when `+listType=map`. A list of field names whose values uniquely identify entries in the list. While there can be multiple keys, `listMapKey` is singular because keys need to be specified individually in the Go type. The key fields must be scalars. | 1.16 |
 | `//+mapType` | `x-kubernetes-map-type` | `atomic`/`granular` | Applicable to maps. `atomic` means that the map can only be entirely replaced by a single manager. `granular` means that the map supports separate managers updating individual fields. | 1.17 |
 | `//+structType` | `x-kubernetes-map-type` | `atomic`/`granular` | Applicable to structs; otherwise same usage and OpenAPI annotation as `//+mapType`.| 1.17 |
 -->
 | Golang 标记 | OpenAPI extension | 可接受的值 | 描述 | 引入版本 |
 |---|---|---|---|---|
-| `//+listType` | `x-kubernetes-list-type` | `atomic`/`set`/`map` | 适用于 list。 `atomic` 和 `set` 适用于只包含标量元素的 list。 `map` 适用于只包含嵌套类型的 list。 如果配置为 `atomic`, 合并时整个列表会被替换掉; 任何时候，唯一的管理器都把列表作为一个整体来管理。如果是 `set` 或 `map` ，不同的管理器也可以分开管理条目。 | 1.16          |
-| `//+listMapKey` | `x-kubernetes-list-map-keys` | 用来唯一标识条目的 map keys 切片，例如 `["port", "protocol"]` | 仅当 `+listType=map` 时适用。组合值的字符串切片必须唯一标识列表中的条目。尽管有多个 key，`listMapKey` 是单数的，这是因为 key 需要在 Go 类型中单独的指定。 | 1.16 |
+| `//+listType` | `x-kubernetes-list-type` | `atomic`/`set`/`map` | 适用于 list。`set` 适用于仅包含标量元素的列表。这些元素必须是不重复的。`map` 仅适用于包含嵌套类型的列表。列表中的键（参见 `listMapKey`）不可以重复。`atomic` 适用于任何类型的列表。如果配置为 `atomic`，则合并时整个列表会被替换掉。任何时候，只有一个管理器负责管理指定列表。如果配置为 `set` 或 `map`，不同的管理器也可以分开管理条目。 | 1.16          |
+| `//+listMapKey` | `x-kubernetes-list-map-keys` | 字段名称的列表，例如，`["port", "protocol"]` | 仅当 `+listType=map` 时适用。取值为字段名称的列表，这些字段值的组合能够唯一标识列表中的条目。尽管可以存在多个键，`listMapKey` 是单数的，这是因为键名需要在 Go 类型中各自独立指定。键字段必须是标量。 | 1.16 |
 | `//+mapType` | `x-kubernetes-map-type` | `atomic`/`granular` | 适用于 map。 `atomic` 指 map 只能被单个的管理器整个的替换。 `granular` 指 map 支持多个管理器各自更新自己的字段。 | 1.17 |
 | `//+structType` | `x-kubernetes-map-type` | `atomic`/`granular` | 适用于 structs；否则就像 `//+mapType` 有相同的用法和 openapi 注释.| 1.17 |
+
+<!--
+If `listType` is missing, the API server interprets a
+`patchMergeStrategy=merge` marker as a `listType=map` and the
+corresponding `patchMergeKey` marker as a `listMapKey`.
+
+The `atomic` list type is recursive.
+
+These markers are specified as comments and don't have to be repeated as
+field tags.
+-->
+若未指定 `listType`，API 服务器将 `patchMergeStrategy=merge` 标记解释为
+`listType=map` 并且视对应的 `patchMergeKey` 标记为 `listMapKey` 取值。
+
+`atomic` 列表类型是递归的。
+
+这些标记都是用源代码注释的方式给出的，不必作为字段标签（tag）再重复。
+
+<!--
+### Compatibility across topology changes
+-->
+### 拓扑变化时的兼容性  {#compatibility-across-toplogy-changes}
+
+<!--
+On rare occurences, a CRD or built-in type author may want to change the
+specific topology of a field in their resource without incrementing its
+version. Changing the topology of types, by upgrading the cluster or
+updating the CRD, has different consequences when updating existing
+objects. There are two categories of changes: when a field goes from
+`map`/`set`/`granular` to `atomic` and the other way around.
+-->
+在极少的情况下，CRD 或者内置类型的作者可能希望更改其资源中的某个字段的
+拓扑配置，同时又不提升版本号。
+通过升级集群或者更新 CRD 来更改类型的拓扑信息与更新现有对象的结果不同。
+变更的类型有两种：一种是将字段从 `map`/`set`/`granular` 更改为 `atomic`，
+另一种是做逆向改变。
+
+<!--
+When the `listType`, `mapType`, or `structType` changes from
+`map`/`set`/`granular` to `atomic`, the whole list, map or struct of
+existing objects will end-up being owned by actors who owned an element
+of these types. This means that any further change to these objects
+would cause a conflict.
+-->
+当 `listType`、`mapType` 或 `structType` 从 `map`/`set`/`granular` 改为
+`atomic` 时，现有对象的整个列表、映射或结构的属主都会变为这些类型的
+元素之一的属主。这意味着，对这些对象的进一步变更会引发冲突。
+
+<!--
+When a list, map, or struct changes from `atomic` to
+`map`/`set`/`granular`, the API server won't be able to infer the new
+ownership of these fields. Because of that, no conflict will be produced
+when objects have these fields updated. For that reason, it is not
+recommended to change a type from `atomic` to `map`/`set`/`granular`.
+
+Take for example, the custom resource:
+-->
+当一个列表、映射或结构从 `atomic` 改为 `map`/`set`/`granular` 之一
+时，API 服务器无法推导这些字段的新的属主。因此，当对象的这些字段
+再次被更新时不会引发冲突。出于这一原因，不建议将某类型从 `atomic` 改为
+`map`/`set`/`granular`。
+
+以下面的自定义资源为例：
+
+```yaml
+apiVersion: example.com/v1
+kind: Foo
+metadata:
+  name: foo-sample
+  managedFields:
+  - manager: manager-one
+    operation: Apply
+    apiVersion: example.com/v1
+    fields:
+      f:spec:
+        f:data: {}
+spec:
+  data:
+    key1: val1
+    key2: val2
+```
+
+<!--
+Before `spec.data` gets changed from `atomic` to `granular`,
+`manager-one` owns the field `spec.data`, and all the fields within it
+(`key1` and `key2`). When the CRD gets changed to make `spec.data`
+`granular`, `manager-one` continues to own the top-level field
+`spec.data` (meaning no other managers can delete the map called `data`
+without a conflict), but it no longer owns `key1` and `key2`, so another
+manager can then modify or delete those fields without conflict.
+-->
+在 `spec.data` 从 `atomic` 改为 `granular` 之前，`manager-one` 是
+`spec.data` 字段及其所包含字段（`key1` 和 `key2`）的属主。
+当对应的 CRD 被更改，使得 `spec.data` 变为 `granular` 拓扑时，
+`manager-one` 继续拥有顶层字段 `spec.data`（这意味着其他管理者想
+删除名为 `data` 的映射而不引起冲突是不可能的），但不再拥有
+`key1` 和 `key2`。因此，其他管理者可以在不引起冲突的情况下更改
+或删除这些字段。
 
 <!-- 
 ### Custom Resources
@@ -435,7 +531,7 @@ type.
 这些注解将在合并此类型的对象时使用。
 
 <!-- 
-### Using Server-Side Apply in a controller
+## Using Server-Side Apply in a controller
 
 As a developer of a controller, you can use server-side apply as a way to
 simplify the update logic of your controller. The main differences with a
@@ -450,7 +546,7 @@ read-modify-write and/or patch are the following:
 It is strongly recommended for controllers to always "force" conflicts, since they
 might not be able to resolve or act on these conflicts.
 -->
-### 在控制器中使用服务器端应用 {#using-server-side-apply-in-controller}
+## 在控制器中使用服务器端应用 {#using-server-side-apply-in-controller}
 
 控制器的开发人员可以把服务器端应用作为简化控制器的更新逻辑的方式。
 读-改-写 和/或 patch 的主要区别如下所示：
@@ -463,7 +559,7 @@ might not be able to resolve or act on these conflicts.
 强烈推荐：设置控制器在冲突时强制执行，这是因为冲突发生时，它们没有其他解决方案或措施。
 
 <!-- 
-### Transferring Ownership
+## Transferring Ownership
 
 In addition to the concurrency controls provided by [conflict resolution](#conflicts),
 Server Side Apply provides ways to perform coordinated
@@ -476,7 +572,7 @@ resource and its accompanying controller.
 
 Say a user has defined deployment with `replicas` set to the desired value:
 -->
-### 转移所有权 {#transferring-ownership}
+## 转移所有权 {#transferring-ownership}
 
 除了通过[冲突解决方案](#conflicts)提供的并发控制，
 服务器端应用提供了一些协作方式来将字段所有权从用户转移到控制器。
@@ -526,7 +622,7 @@ is not what the user wants to happen, even temporarily.
 <!-- 
 There are two solutions:
 
-- (easy) Leave `replicas` in the configuration; when HPA eventually writes to that
+- (basic) Leave `replicas` in the configuration; when HPA eventually writes to that
   field, the system gives the user a conflict over it. At that point, it is safe
   to remove from the configuration.
 
@@ -539,9 +635,9 @@ First, the user defines a new configuration containing only the `replicas` field
 -->
 这里有两个解决方案：
 
-- （容易） 把 `replicas` 留在配置文件中；当 HPA 最终写入那个字段，
+- （基本操作）把 `replicas` 留在配置文件中；当 HPA 最终写入那个字段，
   系统基于此事件告诉用户：冲突发生了。在这个时间点，可以安全的删除配置文件。
-- （高级）然而，如果用户不想等待，比如他们想为合作伙伴保持集群清晰，
+- （高级操作）然而，如果用户不想等待，比如他们想为合作伙伴保持集群清晰，
   那他们就可以执行以下步骤，安全的从配置文件中删除 `replicas`。
 
 首先，用户新定义一个只包含 `replicas` 字段的配置文件：
@@ -561,13 +657,13 @@ kubectl apply -f https://k8s.io/examples/application/ssa/nginx-deployment-replic
 
 <!-- 
 If the apply results in a conflict with the HPA controller, then do nothing. The
-conflict just indicates the controller has claimed the field earlier in the
+conflict indicates the controller has claimed the field earlier in the
 process than it sometimes does.
 
 At this point the user may remove the `replicas` field from their configuration.
 -->
 如果应用操作和 HPA 控制器产生冲突，那什么都不做。
-冲突只是表明控制器在更早的流程中已经对字段声明过所有权。
+冲突表明控制器在更早的流程中已经对字段声明过所有权。
 
 在此时间点，用户可以从配置文件中删除 `replicas` 。
 
@@ -583,7 +679,7 @@ automatically deleted. No clean up is required.
 这里不需要执行清理工作。
 
 <!-- 
-## Transferring Ownership Between Users
+### Transferring Ownership Between Users
 
 Users can transfer ownership of a field between each other by setting the field
 to the same value in both of their applied configs, causing them to share
@@ -591,7 +687,7 @@ ownership of the field. Once the users share ownership of the field, one of them
 can remove the field from their applied configuration to give up ownership and
 complete the transfer to the other user.
 -->
-## 在用户之间转移所有权 {#transferring-ownership-between-users}
+### 在用户之间转移所有权 {#transferring-ownership-between-users}
 
 通过在配置文件中把一个字段设置为相同的值，用户可以在他们之间转移字段的所有权，
 从而共享了字段的所有权。
@@ -763,7 +859,7 @@ Data: [{"op": "replace", "path": "/metadata/managedFields", "value": [{}]}]
 <!-- 
 This will overwrite the managedFields with a list containing a single empty
 entry that then results in the managedFields being stripped entirely from the
-object. Note that just setting the managedFields to an empty list will not
+object. Note that setting the managedFields to an empty list will not
 reset the field. This is on purpose, so managedFields never get stripped by
 clients not aware of the field.
 
@@ -772,9 +868,9 @@ than the managedFields, this will result in the managedFields being reset
 first and the other changes being processed afterwards. As a result the
 applier takes ownership of any fields updated in the same request.
 -->
-这一操作将用只包含一个空条目的 list 覆写 managedFields，
+这一操作将用只包含一个空条目的列表覆写 managedFields，
 来实现从对象中整个的去除 managedFields。
-注意，只把 managedFields 设置为空 list 并不会重置字段。
+注意，只把 managedFields 设置为空列表并不会重置字段。
 这么做是有目的的，所以 managedFields 将永远不会被与该字段无关的客户删除。
 
 在重置操作结合 managedFields 以外其他字段更改的场景中，
@@ -804,7 +900,8 @@ should have the same flag setting.
 -->
 ## 禁用此功能 {#disabling-the-feature}
 
-服务器端应用是一个 beta 版特性，默认启用。
+服务器端应用是一个 Beta 版特性，默认启用。
 要关闭此[特性门控](/zh/docs/reference/command-line-tools-reference/feature-gates)，
 你需要在启动 `kube-apiserver` 时包含参数 `--feature-gates ServerSideApply=false`。
-如果你有多个 `kube-apiserver` 副本，他们都应该有相同的标记设置。
+如果你有多个 `kube-apiserver` 副本，它们的标志设置应该都相同。
+

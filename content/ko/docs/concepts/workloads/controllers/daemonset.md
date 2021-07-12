@@ -1,4 +1,10 @@
 ---
+
+
+
+
+
+
 title: 데몬셋
 content_type: concept
 weight: 40
@@ -26,7 +32,8 @@ _데몬셋_ 은 모든(또는 일부) 노드가 파드의 사본을 실행하도
 
 ### 데몬셋 생성
 
-YAML 파일로 데몬셋을 설명 할 수 있다. 예를 들어 아래 `daemonset.yaml` 파일은 fluentd-elasticsearch 도커 이미지를 실행하는 데몬셋을 설명한다.
+YAML 파일에 데몬셋 명세를 작성할 수 있다. 예를 들어 아래 `daemonset.yaml` 파일은 
+fluentd-elasticsearch 도커 이미지를 실행하는 데몬셋을 설명한다.
 
 {{< codenew file="controllers/daemonset.yaml" >}}
 
@@ -40,19 +47,23 @@ kubectl apply -f https://k8s.io/examples/controllers/daemonset.yaml
 
 다른 모든 쿠버네티스 설정과 마찬가지로 데몬셋에는 `apiVersion`, `kind` 그리고 `metadata` 필드가 필요하다.
 일반적인 설정파일 작업에 대한 정보는
-[스테이트리스 애플리케이션 실행하기](/docs/tasks/run-application/run-stateless-application-deployment/),
-[컨테이너 구성하기](/ko/docs/tasks/) 그리고 [kubectl을 사용한 오브젝트 관리](/ko/docs/concepts/overview/working-with-objects/object-management/) 문서를 참고한다.
+[스테이트리스 애플리케이션 실행하기](/docs/tasks/run-application/run-stateless-application-deployment/)와
+ [kubectl을 사용한 오브젝트 관리](/ko/docs/concepts/overview/working-with-objects/object-management/)를 참고한다.
 
 데몬셋 오브젝트의 이름은 유효한
 [DNS 서브도메인 이름](/ko/docs/concepts/overview/working-with-objects/names/#dns-서브도메인-이름)이어야 한다.
 
-데몬셋에는 [`.spec`](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) 섹션도 필요하다.
+데몬셋에는 
+[`.spec`](https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status) 
+섹션도 필요하다.
 
 ### 파드 템플릿
 
 `.spec.template` 는 `.spec` 의 필수 필드 중 하나이다.
 
-`.spec.template` 는 [파드 템플릿](/ko/docs/concepts/workloads/pods/#파드-템플릿)이다. 이것은 중첩되어 있다는 점과 `apiVersion` 또는 `kind` 를 가지지 않는 것을 제외하면 {{< glossary_tooltip text="파드" term_id="pod" >}}와 정확히 같은 스키마를 가진다.
+`.spec.template` 는 [파드 템플릿](/ko/docs/concepts/workloads/pods/#파드-템플릿)이다. 
+이것은 중첩되어 있다는 점과 `apiVersion` 또는 `kind` 를 가지지 않는 것을 제외하면 
+{{< glossary_tooltip text="파드" term_id="pod" >}}와 정확히 같은 스키마를 가진다.
 
 데몬셋의 파드 템플릿에는 파드의 필수 필드 외에도 적절한 레이블이 명시되어야
 한다([파드 셀렉터](#파드-셀렉터)를 본다).
@@ -73,19 +84,22 @@ kubectl apply -f https://k8s.io/examples/controllers/daemonset.yaml
 
 `.spec.selector` 는 다음 2개의 필드로 구성된 오브젝트이다.
 
-* `matchLabels` - [레플리케이션 컨트롤러](/ko/docs/concepts/workloads/controllers/replicationcontroller/)의 `.spec.selector` 와 동일하게 작동한다.
+* `matchLabels` - [레플리케이션 컨트롤러](/ko/docs/concepts/workloads/controllers/replicationcontroller/)의 
+`.spec.selector` 와 동일하게 작동한다.
 * `matchExpressions` - 키, 값 목록 그리고 키 및 값에 관련된 연산자를
   명시해서 보다 정교한 셀렉터를 만들 수 있다.
 
 2개의 필드가 명시되면 두 필드를 모두 만족하는 것(ANDed)이 결과가 된다.
 
-만약 `.spec.selector` 를 명시하면, 이것은 `.spec.template.metadata.labels` 와 일치해야 한다. 일치하지 않는 구성은 API에 의해 거부된다.
+만약 `.spec.selector` 를 명시하면, 이것은 `.spec.template.metadata.labels` 와 일치해야 한다. 
+일치하지 않는 구성은 API에 의해 거부된다.
 
 ### 오직 일부 노드에서만 파드 실행
 
 만약 `.spec.template.spec.nodeSelector` 를 명시하면 데몬셋 컨트롤러는
 [노드 셀렉터](/ko/docs/concepts/scheduling-eviction/assign-pod-node/#노드-셀렉터-nodeselector)와
-일치하는 노드에 파드를 생성한다. 마찬가지로 `.spec.template.spec.affinity` 를 명시하면
+일치하는 노드에 파드를 생성한다. 
+마찬가지로 `.spec.template.spec.affinity` 를 명시하면
 데몬셋 컨트롤러는 [노드 어피니티](/ko/docs/concepts/scheduling-eviction/assign-pod-node/#노드-어피니티)와 일치하는 노드에 파드를 생성한다.
 만약 둘 중 하나를 명시하지 않으면 데몬셋 컨트롤러는 모든 노드에서 파드를 생성한다.
 
@@ -100,18 +114,19 @@ kubectl apply -f https://k8s.io/examples/controllers/daemonset.yaml
 데몬셋 파드는 데몬셋 컨트롤러에 의해 생성되고 스케줄된다.
 이에 대한 이슈를 소개한다.
 
- * 파드 동작의 불일치: 스케줄 되기 위해서 대기 중인 일반 파드는 `Pending` 상태로 생성된다.
-   그러나 데몬셋 파드는 `Pending` 상태로 생성되지 않는다.
-   이것은 사용자에게 혼란을 준다.
- * [파드 선점](/ko/docs/concepts/configuration/pod-priority-preemption/)은
-   기본 스케줄러에서 처리한다. 선점이 활성화되면 데몬셋 컨트롤러는
-   파드 우선순위와 선점을 고려하지 않고 스케줄 한다.
+* 파드 동작의 불일치: 스케줄 되기 위해서 대기 중인 일반 파드는 `Pending` 상태로 생성된다.
+  그러나 데몬셋 파드는 `Pending` 상태로 생성되지 않는다.
+  이것은 사용자에게 혼란을 준다.
+* [파드 선점](/ko/docs/concepts/scheduling-eviction/pod-priority-preemption/)은
+  기본 스케줄러에서 처리한다. 선점이 활성화되면 데몬셋 컨트롤러는
+  파드 우선순위와 선점을 고려하지 않고 스케줄 한다.
 
 `ScheduleDaemonSetPods` 로 데몬셋 파드에 `.spec.nodeName` 용어 대신
 `NodeAffinity` 용어를 추가해서 데몬셋 컨트롤러 대신 기본
 스케줄러를 사용해서 데몬셋을 스케줄할 수 있다. 이후에 기본
 스케줄러를 사용해서 대상 호스트에 파드를 바인딩한다. 만약 데몬셋 파드에
-이미 노드 선호도가 존재한다면 교체한다(대상 호스트를 선택하기 전에 원래 노드의 어피니티가 고려된다). 데몬셋 컨트롤러는
+이미 노드 선호도가 존재한다면 교체한다(대상 호스트를 선택하기 전에 
+원래 노드의 어피니티가 고려된다). 데몬셋 컨트롤러는
 데몬셋 파드를 만들거나 수정할 때만 이런 작업을 수행하며,
 데몬셋의 `spec.template` 은 변경되지 않는다.
 
@@ -152,10 +167,12 @@ nodeAffinity:
 
 - **푸시(Push)**: 데몬셋의 파드는 통계 데이터베이스와 같은 다른 서비스로 업데이트를 보내도록
   구성되어있다. 그들은 클라이언트들을 가지지 않는다.
-- **노드IP와 알려진 포트**: 데몬셋의 파드는 `호스트 포트`를 사용할 수 있으며, 노드IP를 통해 파드에 접근할 수 있다. 클라이언트는 노드IP를 어떻게든지 알고 있으며, 관례에 따라 포트를 알고 있다.
+- **노드IP와 알려진 포트**: 데몬셋의 파드는 `호스트 포트`를 사용할 수 있으며, 
+  노드IP를 통해 파드에 접근할 수 있다. 
+  클라이언트는 노드IP를 어떻게든지 알고 있으며, 관례에 따라 포트를 알고 있다.
 - **DNS**: 동일한 파드 셀렉터로 [헤드리스 서비스](/ko/docs/concepts/services-networking/service/#헤드리스-headless-서비스)를 만들고,
-  그 다음에 `엔드포인트` 리소스를 사용해서 데몬셋을 찾거나 DNS에서 여러 A레코드를
-  검색한다.
+  그 다음에 `엔드포인트` 리소스를 사용해서 데몬셋을 찾거나 
+  DNS에서 여러 A레코드를 검색한다.
 - **서비스**: 동일한 파드 셀렉터로 서비스를 생성하고, 서비스를 사용해서
   임의의 노드의 데몬에 도달한다(특정 노드에 도달할 방법이 없다).
 

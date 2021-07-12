@@ -159,11 +159,11 @@ IP 주소 관리 도구, 스토리지 서비스, 클라우드 제공자의 API �
 또는 쿠버네티스 외부에서 실행할 수 있다. 가장 적합한 것은 특정 컨트롤러의 기능에
 따라 달라진다.
 
-
-
 ## {{% heading "whatsnext" %}}
 
 * [쿠버네티스 컨트롤 플레인](/ko/docs/concepts/overview/components/#컨트롤-플레인-컴포넌트)에 대해 읽기
 * [쿠버네티스 오브젝트](/ko/docs/concepts/overview/working-with-objects/kubernetes-objects/)의 몇 가지 기본 사항을 알아보자.
 * [쿠버네티스 API](/ko/docs/concepts/overview/kubernetes-api/)에 대해 더 배워 보자.
-* 만약 자신만의 컨트롤러를 작성하기 원한다면, 쿠버네티스 확장하기의 [확장 패턴](/ko/docs/concepts/extend-kubernetes/extend-cluster/#익스텐션-패턴)을 본다.
+* 만약 자신만의 컨트롤러를 작성하기 원한다면, 
+  쿠버네티스 확장하기의 [확장 패턴](/ko/docs/concepts/extend-kubernetes/#익스텐션-패턴)을 
+  본다.

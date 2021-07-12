@@ -244,7 +244,7 @@ Finalizers:    [kubernetes.io/pvc-protection]
 You can see that a PV is protected when the PV's status is `Terminating` and the `Finalizers` list includes `kubernetes.io/pv-protection` too:
 -->
 你也可以看到当 PV 对象的状态为 `Terminating` 且其 `Finalizers` 列表中包含
-`kubernetes.io/pvc-protection` 时，PV 对象是处于被保护状态的。
+`kubernetes.io/pv-protection` 时，PV 对象是处于被保护状态的。
 
 ```shell
 kubectl describe pv task-pv-volume

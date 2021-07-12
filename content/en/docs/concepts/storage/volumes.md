@@ -529,6 +529,15 @@ See the [GlusterFS example](https://github.com/kubernetes/examples/tree/{{< para
 
 ### hostPath {#hostpath}
 
+{{< warning >}}
+HostPath volumes present many security risks, and it is a best practice to avoid the use of
+HostPaths when possible. When a HostPath volume must be used, it should be scoped to only the
+required file or directory, and mounted as ReadOnly.
+
+If restricting HostPath access to specific directories through AdmissionPolicy, `volumeMounts` MUST
+be required to use `readOnly` mounts for the policy to be effective.
+{{< /warning >}}
+
 A `hostPath` volume mounts a file or directory from the host node's filesystem
 into your Pod. This is not something that most Pods will need, but it offers a
 powerful escape hatch for some applications.
@@ -558,6 +567,9 @@ The supported values for field `type` are:
 
 Watch out when using this type of volume, because:
 
+* HostPaths can expose privileged system credentials (such as for the Kubelet) or privileged APIs
+  (such as container runtime socket), which can be used for container escape or to attack other
+  parts of the cluster.
 * Pods with identical configuration (such as created from a PodTemplate) may
   behave differently on different nodes due to different files on the nodes
 * The files or directories created on the underlying hosts are only writable by root. You

@@ -69,7 +69,7 @@ To install kubeadm, see the [installation guide](/docs/setup/production-environm
   用于管理 `kubeadm join` 使用的令牌
 * [kubeadm reset](/zh/docs/reference/setup-tools/kubeadm/kubeadm-reset)
   用于恢复通过 `kubeadm init` 或者 `kubeadm join` 命令对节点进行的任何变更
-* [kubeadm certs](/docs/reference/setup-tools/kubeadm/kubeadm-certs)
+* [kubeadm certs](/zh/docs/reference/setup-tools/kubeadm/kubeadm-certs)
   用于管理 Kubernetes 证书
 * [kubeadm kubeconfig](/docs/reference/setup-tools/kubeadm/kubeadm-kubeconfig)
   用于管理 kubeconfig 文件

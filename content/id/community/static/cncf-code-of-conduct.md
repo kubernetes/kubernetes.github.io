@@ -24,7 +24,7 @@ Contoh perilaku kasar, melecehkan, atau tidak dapat diterima di Kubernetes dapat
 
 Kode Etik ini diadaptasi dari Covenant Contributor
 <http://contributor-covenant.org>, versi 1.2.0, tersedia di
-<http://contributor-covenant.org/version/1/2/0/>
+<https://contributor-covenant.org/version/1/2/0/>
 
 ### Pedoman Perilaku Acara CNCF
 

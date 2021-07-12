@@ -83,8 +83,11 @@ As an example, you can find detailed information about how `kube-up.sh` sets
 up logging for COS image on GCP in the corresponding
 [`configure-helper` script](https://github.com/kubernetes/kubernetes/blob/{{< param "githubbranch" >}}/cluster/gce/gci/configure-helper.sh).
 
-When using a **CRI container runtime**, the kubelet is responsible for rotating the logs and managing the logging directory structure. The kubelet
-sends this information to the CRI container runtime and the runtime writes the container logs to the given location. The two kubelet flags `container-log-max-size` and `container-log-max-files` can be used to configure the maximum size for each log file and the maximum number of files allowed for each container respectively.
+When using a **CRI container runtime**, the kubelet is responsible for rotating the logs and managing the logging directory structure.
+The kubelet sends this information to the CRI container runtime and the runtime writes the container logs to the given location.
+The two kubelet parameters [`containerLogMaxSize` and `containerLogMaxFiles`](/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration)
+in [kubelet config file](/docs/tasks/administer-cluster/kubelet-config-file/)
+can be used to configure the maximum size for each log file and the maximum number of files allowed for each container respectively.
 
 When you run [`kubectl logs`](/docs/reference/generated/kubectl/kubectl-commands#logs) as in
 the basic logging example, the kubelet on the node handles the request and

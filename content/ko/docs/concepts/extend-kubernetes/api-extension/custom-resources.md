@@ -128,7 +128,7 @@ CRD를 사용하면 다른 API 서버를 추가하지 않고도 새로운 타입
 
 ## 커스텀리소스데피니션
 
-[커스텀리소스데피니션](/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/)
+[커스텀리소스데피니션](/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)
 API 리소스를 사용하면 커스텀 리소스를 정의할 수 있다.
 CRD 오브젝트를 정의하면 지정한 이름과 스키마를 사용하여 새 커스텀 리소스가 만들어진다.
 쿠버네티스 API는 커스텀 리소스의 스토리지를 제공하고 처리한다.

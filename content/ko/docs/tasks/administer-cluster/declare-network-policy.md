@@ -89,7 +89,7 @@ remote file exists
 {{< codenew file="service/networking/nginx-policy.yaml" >}}
 
 네트워크폴리시 오브젝트의 이름은 유효한
-[DNS 서브도메인 이름](/ko/docs/concepts/overview/working-with-objects/names#dns-subdomain-names)이어야 한다.
+[DNS 서브도메인 이름](/ko/docs/concepts/overview/working-with-objects/names/#dns-서브도메인-이름)이어야 한다.
 
 {{< note >}}
 네트워크폴리시는 정책이 적용되는 파드의 그룹을 선택하는 `podSelector` 를 포함한다. 사용자는 이 정책이 `app=nginx` 레이블을 갖는 파드를 선택하는 것을 볼 수 있다. 레이블은 `nginx` 디플로이먼트에 있는 파드에 자동으로 추가된다. 빈 `podSelector` 는 네임스페이스의 모든 파드를 선택한다.

@@ -52,7 +52,7 @@ The aggregation layer runs in-process with the kube-apiserver. Until an extensio
 <!--
 The most common way to implement the APIService is to run an *extension API server* in Pod(s) that run in your cluster. If you're using the extension API server to manage resources in your cluster, the extension API server (also written as "extension-apiserver") is typically paired with one or more {{< glossary_tooltip text="controllers" term_id="controller" >}}. The apiserver-builder library provides a skeleton for both extension API servers and the associated controller(s).
 -->
-APIService 的最常见实现方式是在集群中某 Pod 内运行 *扩展 API 服务器*。 
+APIService 的最常见实现方式是在集群中某 Pod 内运行 *扩展 API 服务器*。
 如果你在使用扩展 API 服务器来管理集群中的资源，该扩展 API 服务器（也被写成“extension-apiserver”）
 一般需要和一个或多个{{< glossary_tooltip text="控制器" term_id="controller" >}}一起使用。
 apiserver-builder 库同时提供构造扩展 API 服务器和控制器框架代码。
@@ -71,7 +71,7 @@ If your extension API server cannot achieve that latency requirement, consider m
 扩展 API 服务器与 kube-apiserver 之间需要存在低延迟的网络连接。
 发现请求需要在五秒钟或更短的时间内完成到 kube-apiserver 的往返。
 
-如果你的扩展 API 服务器无法满足这一延迟要求，应考虑如何更改配置已满足需要。
+如果你的扩展 API 服务器无法满足这一延迟要求，应考虑如何更改配置以满足需要。
 
 ## {{% heading "whatsnext" %}}
 
@@ -87,4 +87,3 @@ If your extension API server cannot achieve that latency requirement, consider m
   开始使用聚合层。
 * 也可以学习怎样[使用自定义资源定义扩展 Kubernetes API](/zh/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)。
 * 阅读 [APIService](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#apiservice-v1-apiregistration-k8s-io) 的规范
-

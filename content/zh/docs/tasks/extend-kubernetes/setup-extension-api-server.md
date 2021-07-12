@@ -82,12 +82,12 @@ Alternatively, you can use an existing 3rd party solution, such as [apiserver-bu
 1. Create a Kubernetes role binding from the service account in your namespace to the `extension-apiserver-authentication-reader` role. This allows your extension api-server to access the `extension-apiserver-authentication` configmap.
 -->
 8.  确保你的扩展 apiserver 从该卷中加载了那些证书，并在 HTTPS 握手过程中使用它们。
-9.  在你的命令空间中创建一个 Kubernetes 服务账号。
+9.  在你的命名空间中创建一个 Kubernetes 服务账号。
 10. 为资源允许的操作创建 Kubernetes 集群角色。
-11. 用你命令空间中的服务账号创建一个 Kubernetes 集群角色绑定，绑定到你创建的角色上。
-12. 用你命令空间中的服务账号创建一个 Kubernetes 集群角色绑定，绑定到 `system:auth-delegator`
+11. 用你命名空间中的服务账号创建一个 Kubernetes 集群角色绑定，绑定到你创建的角色上。
+12. 用你命名空间中的服务账号创建一个 Kubernetes 集群角色绑定，绑定到 `system:auth-delegator`
     集群角色，以将 auth 决策委派给 Kubernetes 核心 API 服务器。
-13. 以你命令空间中的服务账号创建一个 Kubernetes 集群角色绑定，绑定到
+13. 以你命名空间中的服务账号创建一个 Kubernetes 集群角色绑定，绑定到
     `extension-apiserver-authentication-reader` 角色。
     这将让你的扩展 api-server 能够访问 `extension-apiserver-authentication` configmap。
 
@@ -114,4 +114,3 @@ Alternatively, you can use an existing 3rd party solution, such as [apiserver-bu
   并启用 apiserver 的相关参数。
 * 高级概述，请参阅[使用聚合层扩展 Kubernetes API](/zh/docs/concepts/extend-kubernetes/api-extension/apiserver-aggregation)。
 * 了解如何[使用 Custom Resource Definition 扩展 Kubernetes API](/zh/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/)。
-

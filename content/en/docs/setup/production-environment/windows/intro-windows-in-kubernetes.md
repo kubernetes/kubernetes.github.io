@@ -102,6 +102,8 @@ limitation and compatibility rules will change.
 
 Microsoft maintains a Windows pause infrastructure container at
 `mcr.microsoft.com/oss/kubernetes/pause:3.4.1`.
+Kubernetes maintains a multi-architecture image `k8s.gcr.io/pause:3.5` that
+supports Linux as well as Windows.
 
 #### Compute
 

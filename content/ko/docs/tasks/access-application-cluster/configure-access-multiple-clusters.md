@@ -7,7 +7,6 @@ card:
   weight: 40
 ---
 
-
 <!-- overview -->
 
 이 페이지에서는 구성 파일을 사용하여 다수의 클러스터에 접근할 수 있도록
@@ -21,19 +20,14 @@ card:
 반드시 존재해야 한다는 것을 의미하는 것은 아니다.
 {{< /note >}}
 
-
-
 ## {{% heading "prerequisites" %}}
-
 
 {{< include "task-tutorial-prereqs.md" >}}
 
 {{< glossary_tooltip text="kubectl" term_id="kubectl" >}}이 설치되었는지 확인하려면,
 `kubectl version --client`을 실행한다. kubectl 버전은 클러스터의 API 서버 버전과
-[마이너 버전 하나 차이 이내](/ko/docs/setup/release/version-skew-policy/#kubectl)여야
+[마이너 버전 하나 차이 이내](/ko/releases/version-skew-policy/#kubectl)여야
 한다.
-
-
 
 <!-- steps -->
 
@@ -49,7 +43,7 @@ scratch 클러스터에 접근하려면 사용자네임과 패스워드로 인�
 `config-exercise`라는 디렉터리를 생성한다. `config-exercise` 디렉터리에
 다음 내용을 가진 `config-demo`라는 파일을 생성한다.
 
-```shell
+```yaml
 apiVersion: v1
 kind: Config
 preferences: {}
@@ -114,7 +108,7 @@ kubectl config --kubeconfig=config-demo view
 
 두 클러스터, 두 사용자, 세 컨텍스트들이 출력 결과로 나온다.
 
-```shell
+```yaml
 apiVersion: v1
 clusters:
 - cluster:
@@ -186,7 +180,7 @@ kubectl config --kubeconfig=config-demo view --minify
 
 `dev-frontend` 컨텍스트에 관련된 구성 정보가 출력 결과로 표시될 것이다.
 
-```shell
+```yaml
 apiVersion: v1
 clusters:
 - cluster:
@@ -238,7 +232,6 @@ kubectl config --kubeconfig=config-demo use-context dev-storage
 
 현재 컨텍스트인 `dev-storage`에 관련된 설정을 보자.
 
-
 ```shell
 kubectl config --kubeconfig=config-demo view --minify
 ```
@@ -247,7 +240,7 @@ kubectl config --kubeconfig=config-demo view --minify
 
 `config-exercise` 디렉터리에서 다음 내용으로 `config-demo-2`라는 파일을 생성한다.
 
-```shell
+```yaml
 apiVersion: v1
 kind: Config
 preferences: {}
@@ -269,13 +262,17 @@ contexts:
 예:
 
 ### 리눅스
+
 ```shell
-export  KUBECONFIG_SAVED=$KUBECONFIG
+export KUBECONFIG_SAVED=$KUBECONFIG
 ```
+
 ### 윈도우 PowerShell
-```shell
+
+```powershell
 $Env:KUBECONFIG_SAVED=$ENV:KUBECONFIG
 ```
+
 `KUBECONFIG` 환경 변수는 구성 파일들의 경로의 리스트이다. 이 리스트는
 리눅스와 Mac에서는 콜론으로 구분되며 윈도우에서는 세미콜론으로 구분된다.
 `KUBECONFIG` 환경 변수를 가지고 있다면, 리스트에 포함된 구성 파일들에
@@ -284,11 +281,14 @@ $Env:KUBECONFIG_SAVED=$ENV:KUBECONFIG
 다음 예와 같이 임시로 `KUBECONFIG` 환경 변수에 두 개의 경로들을 덧붙여보자.
 
 ### 리눅스
+
 ```shell
-export  KUBECONFIG=$KUBECONFIG:config-demo:config-demo-2
+export KUBECONFIG=$KUBECONFIG:config-demo:config-demo-2
 ```
+
 ### 윈도우 PowerShell
-```shell
+
+```powershell
 $Env:KUBECONFIG=("config-demo;config-demo-2")
 ```
 
@@ -303,7 +303,7 @@ kubectl config view
 컨텍스트와 `config-demo` 파일의 세 개의 컨텍스트들을
 가지고 있다는 것에 주목하길 바란다.
 
-```shell
+```yaml
 contexts:
 - context:
     cluster: development
@@ -347,12 +347,15 @@ kubeconfig 파일들을 어떻게 병합하는지에 대한 상세정보는
 예:
 
 ### 리눅스
+
 ```shell
 export KUBECONFIG=$KUBECONFIG:$HOME/.kube/config
 ```
+
 ### 윈도우 Powershell
-```shell
- $Env:KUBECONFIG="$Env:KUBECONFIG;$HOME\.kube\config"
+
+```powershell
+$Env:KUBECONFIG="$Env:KUBECONFIG;$HOME\.kube\config"
 ```
 
 이제 `KUBECONFIG` 환경 변수에 리스트에 포함된 모든 파일들이 합쳐진 구성 정보를 보자.
@@ -367,19 +370,18 @@ kubectl config view
 `KUBECONFIG` 환경 변수를 원래 값으로 되돌려 놓자. 예를 들면:<br>
 
 ### 리눅스
+
 ```shell
 export KUBECONFIG=$KUBECONFIG_SAVED
 ```
 
 ### 윈도우 PowerShell
-```shell
- $Env:KUBECONFIG=$ENV:KUBECONFIG_SAVED
+
+```powershell
+$Env:KUBECONFIG=$ENV:KUBECONFIG_SAVED
 ```
 
-
-
 ## {{% heading "whatsnext" %}}
-
 
 * [kubeconfig 파일을 사용하여 클러스터 접근 구성하기](/ko/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 * [kubectl config](/docs/reference/generated/kubectl/kubectl-commands#config)

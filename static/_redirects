@@ -130,6 +130,7 @@
 /docs/concepts/scheduling-eviction/eviction-policy/     /docs/concepts/scheduling-eviction/node-pressure-eviction/ 301
 /docs/concepts/service-catalog/     /docs/concepts/extend-kubernetes/service-catalog/ 301
 /docs/concepts/services-networking/networkpolicies/     /docs/concepts/services-networking/network-policies/ 301
+/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/     /docs/tasks/network/customize-hosts-file-for-pods/ 301
 /docs/concepts/storage/etcd-store-api-object/     /docs/tasks/administer-cluster/configure-upgrade-etcd/ 301
 /docs/concepts/storage/volumes/emptyDirapiVersion/     /docs/concepts/storage/volumes/#emptydir/ 301
 /docs/concepts/tools/kubectl/object-management-overview/     /docs/concepts/overview/object-management-kubectl/overview/ 301

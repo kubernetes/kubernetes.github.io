@@ -21,7 +21,7 @@ _서비스 내부 트래픽 정책_ 을 사용하면 내부 트래픽 제한이 
 ## 서비스 내부 트래픽 정책 사용
 
 
-[기능 게이트](/docs/reference/command-line-tools-reference/feature-gates/)에서 
+[기능 게이트](/ko/docs/reference/command-line-tools-reference/feature-gates/)에서 
 `ServiceInternalTrafficPolicy`를 활성화한 후에 
 {{< glossary_tooltip text="서비스" term_id="service" >}}의 
 `.spec.internalTrafficPolicy`를 `Local`로 설정하여 내부 전용 트래픽 정책을 활성화 할 수 있다.
@@ -57,7 +57,7 @@ kube-proxy는 `spec.internalTrafficPolicy` 의 설정에 따라서 라우팅되�
 엔드포인트를 필터링한다. 
 이것을 `Local`로 설정하면, 노드 내부 엔드포인트만 고려한다. 
 이 설정이 `Cluster`이거나 누락되었다면 모든 엔드포인트를 고려한다.
-[기능 게이트](/docs/reference/command-line-tools-reference/feature-gates/)의 
+[기능 게이트](/ko/docs/reference/command-line-tools-reference/feature-gates/)의 
 `ServiceInternalTrafficPolicy`를 활성화한다면, `spec.internalTrafficPolicy`는 기본값 "Cluster"로 설정된다.
 
 ## 제약조건

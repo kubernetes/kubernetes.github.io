@@ -21,7 +21,6 @@ card:
 
 - [윈도우에서 curl을 사용하여 kubectl 바이너리 설치](#install-kubectl-binary-with-curl-on-windows)
 - [Chocolatey 또는 Scoop을 사용하여 윈도우에 설치](#install-on-windows-using-chocolatey-or-scoop)
-- [윈도우에서 Google Cloud SDK를 사용하여 설치](#install-on-windows-as-part-of-the-google-cloud-sdk)
 
 
 ### 윈도우에서 curl을 사용하여 kubectl 바이너리 설치 {#install-kubectl-binary-with-curl-on-windows}
@@ -126,10 +125,6 @@ card:
 {{< note >}}
 메모장과 같은 텍스트 편집기를 선택하여 구성 파일을 편집한다.
 {{< /note >}}
-
-### 윈도우에서 Google Cloud SDK를 사용하여 설치 {#install-on-windows-as-part-of-the-google-cloud-sdk}
-
-{{< include "included/install-kubectl-gcloud.md" >}}
 
 ## kubectl 구성 확인
 

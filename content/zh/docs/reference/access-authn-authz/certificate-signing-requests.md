@@ -126,12 +126,13 @@ state for some duration:
 <!-- 
 ## Signers
 
-All signers should provide information about how they work 
+Custom signerNames can also be specified. All signers should provide information about how they work 
 so that clients can predict what will happen to their CSRs.
 This includes:
 -->
 ## 签名者 {#signers}
 
+也可以指定自定义 signerName。
 所有签名者都应该提供自己工作方式的信息，
 以便客户端可以预期到他们的 CSR 将发生什么。
 此类信息包括：
@@ -423,8 +424,8 @@ O is the group that this user will belong to. You can refer to
 你可以参考 [RBAC](/zh/docs/reference/access-authn-authz/rbac/) 了解标准组的信息。
 
 ```shell
-openssl genrsa -out john.key 2048
-openssl req -new -key john.key -out john.csr
+openssl genrsa -out myuser.key 2048
+openssl req -new -key myuser.key -out myuser.csr
 ```
 
 <!-- 
@@ -443,7 +444,7 @@ cat <<EOF | kubectl apply -f -
 apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest
 metadata:
-  name: john
+  name: myuser
 spec:
   groups:
   - system:authenticated
@@ -459,13 +460,13 @@ Some points to note:
 
 - `usages` has to be '`client auth`'
 - `request` is the base64 encoded value of the CSR file content.
-  You can use this command to get that ```cat john.csr | base64 | tr -d "\n"```
+  You can get the content using this command: ```cat myuser.csr | base64 | tr -d "\n"```
 -->
 需要注意的几点:
 
 - `usage` 字段必须是 '`client auth`'
 - `request` 字段是 CSR 文件内容的 base64 编码值。
-  要得到该值，可以执行命令 `cat john.csr | base64 | tr -d "\n"`。
+  要得到该值，可以执行命令 `cat myuser.csr | base64 | tr -d "\n"`。
 
 <!-- 
 ### Approve certificate signing request
@@ -490,7 +491,7 @@ Approve the CSR:
 批准 CSR：
 
 ```shell
-kubectl certificate approve john
+kubectl certificate approve myuser
 ```
 
 <!-- 
@@ -503,13 +504,22 @@ Retrieve the certificate from the CSR.
 从 CSR 取得证书：
 
 ```shell
-kubectl get csr/john -o yaml
+kubectl get csr/myuser -o yaml
 ```
 
 <!-- 
 The Certificate value is in Base64-encoded format under `status.certificate`.
+
+Export the issued certificate from the CertificateSigningRequest.
+
 -->
 证书的内容使用 base64 编码，存放在字段 `status.certificate`。
+
+从 CertificateSigningRequest 导出颁发的证书。
+
+```
+kubectl get csr myuser -o jsonpath='{.status.certificate}'| base64 -d > myuser.crt
+```
 
 <!--
 ### Create Role and Role Binding
@@ -536,14 +546,13 @@ This is a sample command to create a RoleBinding for this new user:
 下面是为这个新用户创建 RoleBinding 的示例命令：
 
 ```shell
-kubectl create rolebinding developer-binding-john --role=developer --user=john
+kubectl create rolebinding developer-binding-myuser --role=developer --user=myuser
 ```
 
 <!-- 
 ### Add to kubeconfig
 
 The last step is to add this user into the kubeconfig file.
-We assume the key and crt files are located here "/home/vagrant/work/".
 
 First, we need to add new credentials:
 -->
@@ -555,7 +564,7 @@ First, we need to add new credentials:
 首先，我们需要添加新的凭据：
 
 ```shell
-kubectl config set-credentials john --client-key=/home/vagrant/work/john.key --client-certificate=/home/vagrant/work/john.crt --embed-certs=true
+kubectl config set-credentials myuser --client-key=myuser.key --client-certificate=myuser.crt --embed-certs=true
 
 ```
 
@@ -565,16 +574,16 @@ Then, you need to add the context:
 然后，你需要添加上下文：
 
 ```shell
-kubectl config set-context john --cluster=kubernetes --user=john
+kubectl config set-context myuser --cluster=kubernetes --user=myuser
 ```
 
 <!-- 
-To test it, change context to `john`
+To test it, change the context to `myuser`:
 -->
-来测试一下，把上下文切换为 `john`：
+来测试一下，把上下文切换为 `myuser`：
 
 ```shell
-kubectl config use-context john
+kubectl config use-context myuser
 ```
 
 <!-- 
@@ -684,12 +693,12 @@ status:
 <!-- 
 It's usual to set `status.conditions.reason` to a machine-friendly reason
 code using TitleCase; this is a convention but you can set it to anything
-you like. If you want to add a note just for human consumption, use the
+you like. If you want to add a note for human consumption, use the
 `status.conditions.message` field.
 -->
 `status.conditions.reason` 字段通常设置为一个首字母大写的对机器友好的原因码;
 这是一个命名约定，但你也可以随你的个人喜好设置。
-如果你想添加一个仅供人类使用的注释，那就用 `status.conditions.message`  字段。
+如果你想添加一个供人类使用的注释，那就用 `status.conditions.message`  字段。
 
 <!-- 
 ## Signing

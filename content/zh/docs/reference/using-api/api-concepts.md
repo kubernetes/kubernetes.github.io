@@ -463,7 +463,7 @@ Accept: application/json;as=Table;g=meta.k8s.io;v=v1beta1, application/json
 <!--
 ## Alternate representations of resources
 
-By default Kubernetes returns objects serialized to JSON with content type `application/json`. This is the default serialization format for the API. However, clients may request the more efficient Protobuf representation of these objects for better performance at scale. The Kubernetes API implements standard HTTP content type negotiation: passing an `Accept` header with a `GET` call will request that the server return objects in the provided content type, while sending an object in Protobuf to the server for a `PUT` or `POST` call takes the `Content-Type` header. The server will return a `Content-Type` header if the requested format is supported, or the `406 Not acceptable` error if an invalid content type is provided.
+By default, Kubernetes returns objects serialized to JSON with content type `application/json`. This is the default serialization format for the API. However, clients may request the more efficient Protobuf representation of these objects for better performance at scale. The Kubernetes API implements standard HTTP content type negotiation: passing an `Accept` header with a `GET` call will request that the server return objects in the provided content type, while sending an object in Protobuf to the server for a `PUT` or `POST` call takes the `Content-Type` header. The server will return a `Content-Type` header if the requested format is supported, or the `406 Not acceptable` error if an invalid content type is provided.
 
 See the API documentation for a list of supported content types for each API.
 
@@ -983,7 +983,7 @@ The meaning of the get and list semantics are:
 - **Any:** Return data at any resource version. The newest available resource version is preferred,
   but strong consistency is not required; data at any resource version may be served. It is possible
   for the request to return data at a much older resource version that the client has previously
-  observed, particularly in high availabiliy configurations, due to partitions or stale
+  observed, particularly in high availability configurations, due to partitions or stale
   caches. Clients that cannot tolerate this should not use this semantic.
 -->
 GET 和 LIST 操作的语义含义如下：
@@ -1142,7 +1142,7 @@ reply with a `410 Gone` HTTP response.
 <!--
 ### Unavailable resource versions
 
-Servers are not required to serve unrecognized resource versions. List and Get requests for unrecognized resource versions may wait briefly for the resource version to become available, should timeout with a `504 (Gateway Timeout)` if the provided resource versions does not become available in a resonable amount of time, and may respond with a `Retry-After` response header indicating how many seconds a client should wait before retrying the request. Currently the kube-apiserver also identifies these responses with a "Too large resource version" message. Watch requests for a unrecognized resource version may wait indefinitely (until the request timeout) for the resource version to become available.
+Servers are not required to serve unrecognized resource versions. List and Get requests for unrecognized resource versions may wait briefly for the resource version to become available, should timeout with a `504 (Gateway Timeout)` if the provided resource versions does not become available in a reasonable amount of time, and may respond with a `Retry-After` response header indicating how many seconds a client should wait before retrying the request. Currently the kube-apiserver also identifies these responses with a "Too large resource version" message. Watch requests for a unrecognized resource version may wait indefinitely (until the request timeout) for the resource version to become available.
 -->
 ### 不可用的资源版本  {#unavailable-resource-versions}
 

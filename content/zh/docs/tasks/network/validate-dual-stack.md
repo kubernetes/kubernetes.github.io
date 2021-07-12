@@ -64,10 +64,10 @@ There should be one IPv4 block and one IPv6 block allocated.
 应该分配一个 IPv4 块和一个 IPv6 块。
 
 <!--
-Validate that the node has an IPv4 and IPv6 interface detected (replace node name with a valid node from the cluster. In this example the node name is k8s-linuxpool1-34450317-0): 
+Validate that the node has an IPv4 and IPv6 interface detected. Replace node name with a valid node from the cluster. In this example the node name is `k8s-linuxpool1-34450317-0`: 
 -->
-验证节点是否检测到 IPv4 和 IPv6 接口（用集群中的有效节点替换节点名称。
-在此示例中，节点名称为 `k8s-linuxpool1-34450317-0`）：
+验证节点是否检测到 IPv4 和 IPv6 接口。用集群中的有效节点替换节点名称。
+在此示例中，节点名称为 `k8s-linuxpool1-34450317-0`：
 
 ```shell
 kubectl get nodes k8s-linuxpool1-34450317-0 -o go-template --template='{{range .status.addresses}}{{printf "%s: %s \n" .type .address}}{{end}}'
@@ -81,12 +81,12 @@ InternalIP: 2001:1234:5678:9abc::5
 <!--
 ### Validate Pod addressing
 
-Validate that a Pod has an IPv4 and IPv6 address assigned. (replace the Pod name with a valid Pod in your cluster. In this example the Pod name is pod01)
+Validate that a Pod has an IPv4 and IPv6 address assigned. Replace the Pod name with a valid Pod in your cluster. In this example the Pod name is `pod01`.
 -->
 ### 验证 Pod 寻址
 
-验证 Pod 已分配了 IPv4 和 IPv6 地址。（用集群中的有效 Pod 替换 Pod 名称。
-在此示例中，Pod 名称为 pod01）
+验证 Pod 已分配了 IPv4 和 IPv6 地址。用集群中的有效 Pod 替换 Pod 名称。
+在此示例中，Pod 名称为 `pod01`：
 
 ```shell
 kubectl get pods pod01 -o go-template --template='{{range .status.podIPs}}{{printf "%s \n" .ip}}{{end}}'
@@ -209,7 +209,7 @@ Create the following Service that explicitly defines `IPv6` as the first array e
 Kubernetes 将 `service-cluster-ip-range` 配置的 IPv6 地址范围给 Service 分配集群 IP，
 并将 `.spec.ipFamilyPolicy` 设置为 `SingleStack`。
 
-{{< codenew file="service/networking/dual-stack-ipv6-svc.yaml" >}}
+{{< codenew file="service/networking/dual-stack-ipfamilies-ipv6.yaml" >}}
 
 <!-- 
 Use `kubectl` to view the YAML for the Service.
@@ -308,14 +308,24 @@ Events:            <none>
 <!--
 ### Create a dual-stack load balanced Service
 
-If the cloud provider supports the provisioning of IPv6 enabled external load balancer, create the following Service with both the `ipFamily` field set to `IPv6` and the `type` field set to `LoadBalancer`
+If the cloud provider supports the provisioning of IPv6 enabled external load balancers, create the following Service with `PreferDualStack` in `.spec.ipFamilyPolicy`. `IPv6` as the first element of the `.spec.ipFamilies` array and the `type` field set to `LoadBalancer`.
 -->
 ### 创建双协议栈负载均衡服务
 
-如果云提供商支持配置启用 IPv6 的外部负载均衡器，则将 `ipFamily` 字段设置为
-`IPv6` 并将 `type` 字段设置为 `LoadBalancer` 的方式创建以下服务：
+如果云提供商支持配置启用 IPv6 的外部负载均衡器，则创建如下 Service 时将
+`.spec.ipFamilyPolicy` 设置为 `PreferDualStack`, 并将 `spec.ipFamilies` 字段
+的第一个元素设置为 `IPv6`，将 `type` 字段设置为 `LoadBalancer`：
 
-{{< codenew file="service/networking/dual-stack-ipv6-lb-svc.yaml" >}}
+{{< codenew file="service/networking/dual-stack-prefer-ipv6-lb-svc.yaml" >}}
+
+<!--
+Check the Service:
+-->
+检查服务：
+
+```shell
+kubectl get svc -l app=MyApp
+```
 
 <!--
 Validate that the Service receives a `CLUSTER-IP` address from the IPv6 address block along with an `EXTERNAL-IP`. You may then validate access to the service via the IP and port. 
@@ -323,11 +333,8 @@ Validate that the Service receives a `CLUSTER-IP` address from the IPv6 address 
 验证服务是否从 IPv6 地址块中接收到 `CLUSTER-IP` 地址以及 `EXTERNAL-IP`。
 然后，你可以通过 IP 和端口验证对服务的访问。
 
-```shell
-kubectl get svc -l app=MyApp
 ```
-```
-NAME         TYPE        CLUSTER-IP       EXTERNAL-IP                     PORT(S)        AGE
-my-service   ClusterIP   fe80:20d::d06b   2001:db8:f100:4002::9d37:c0d7   80:31868/TCP   30s
+NAME         TYPE           CLUSTER-IP   EXTERNAL-IP        PORT(S)        AGE
+my-service   LoadBalancer   fd00::7ebc   2603:1030:805::5   80:30790/TCP   35s
 ```
 

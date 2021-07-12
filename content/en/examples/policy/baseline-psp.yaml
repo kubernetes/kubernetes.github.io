@@ -6,20 +6,16 @@ metadata:
     # Optional: Allow the default AppArmor profile, requires setting the default.
     apparmor.security.beta.kubernetes.io/allowedProfileNames: 'runtime/default'
     apparmor.security.beta.kubernetes.io/defaultProfileName:  'runtime/default'
-    # Optional: Allow the default seccomp profile, requires setting the default.
-    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default,runtime/default,unconfined'
-    seccomp.security.alpha.kubernetes.io/defaultProfileName:  'unconfined'
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
 spec:
   privileged: false
-  # The moby default capability set, defined here:
-  # https://github.com/moby/moby/blob/0a5cec2833f82a6ad797d70acbf9cbbaf8956017/oci/caps/defaults.go#L6-L19
+  # The moby default capability set, minus NET_RAW
   allowedCapabilities:
     - 'CHOWN'
     - 'DAC_OVERRIDE'
     - 'FSETID'
     - 'FOWNER'
     - 'MKNOD'
-    - 'NET_RAW'
     - 'SETGID'
     - 'SETUID'
     - 'SETFCAP'
@@ -36,15 +32,16 @@ spec:
     - 'projected'
     - 'secret'
     - 'downwardAPI'
-    # Assume that persistentVolumes set up by the cluster admin are safe to use.
+    # Assume that ephemeral CSI drivers & persistentVolumes set up by the cluster admin are safe to use.
+    - 'csi'
     - 'persistentVolumeClaim'
+    - 'ephemeral'
     # Allow all other non-hostpath volume types.
     - 'awsElasticBlockStore'
     - 'azureDisk'
     - 'azureFile'
     - 'cephFS'
     - 'cinder'
-    - 'csi'
     - 'fc'
     - 'flexVolume'
     - 'flocker'
@@ -67,6 +64,9 @@ spec:
   runAsUser:
     rule: 'RunAsAny'
   seLinux:
+    # This policy assumes the nodes are using AppArmor rather than SELinux.
+    # The PSP SELinux API cannot express the SELinux Pod Security Standards,
+    # so if using SELinux, you must choose a more restrictive default.
     rule: 'RunAsAny'
   supplementalGroups:
     rule: 'RunAsAny'

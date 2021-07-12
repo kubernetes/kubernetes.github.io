@@ -2,7 +2,7 @@
 title: Minikube
 id: minikube
 date: 2018-04-12
-full_link: /ko/docs/setup/learning-environment/minikube/
+full_link: /ko/docs/tasks/tools/#minikube
 short_description: >
   로컬에서 쿠버네티스를 실행하기 위한 도구.
 

@@ -1,6 +1,6 @@
 ---
 title: HostAliases로 파드의 /etc/hosts 항목 추가하기
-content_type: concept
+content_type: task
 weight: 60
 min-kubernetes-server-version: 1.7
 ---
@@ -13,7 +13,7 @@ min-kubernetes-server-version: 1.7
 HostAliases를 사용하지 않은 수정은 권장하지 않는데, 이는 호스트 파일이 kubelet에 의해 관리되고, 파드 생성/재시작 중에 덮어쓰여질 수 있기 때문이다.
 
 
-<!-- body -->
+<!-- steps -->
 
 ## 기본 호스트 파일 내용
 

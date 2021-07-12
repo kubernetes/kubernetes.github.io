@@ -266,9 +266,23 @@ This ensures that DaemonSet pods are never evicted due to these problems.
 
 ## Taint Nodes by Condition
 
-The node lifecycle controller automatically creates taints corresponding to
-Node conditions with `NoSchedule` effect.
-Similarly the scheduler does not check Node conditions; instead the scheduler checks taints. This assures that Node conditions don't affect what's scheduled onto the Node. The user can choose to ignore some of the Node's problems (represented as Node conditions) by adding appropriate Pod tolerations.
+The control plane, using the node {{<glossary_tooltip text="controller" term_id="controller">}},
+automatically creates taints with a `NoSchedule` effect for [node conditions](/docs/concepts/scheduling-eviction/pod-eviction#node-conditions).
+
+The scheduler checks taints, not node conditions, when it makes scheduling
+decisions. This ensures that node conditions don't directly affect scheduling.
+For example, if the `DiskPressure` node condition is active, the control plane
+adds the `node.kubernetes.io/disk-pressure` taint and does not schedule new pods
+onto the affected node. If the `MemoryPressure` node condition is active, the
+control plane adds the `node.kubernetes.io/memory-pressure` taint. 
+
+You can ignore node conditions for newly created pods by adding the corresponding
+Pod tolerations. The control plane also adds the `node.kubernetes.io/memory-pressure` 
+toleration on pods that have a {{< glossary_tooltip text="QoS class" term_id="qos-class" >}} 
+other than `BestEffort`. This is because Kubernetes treats pods in the `Guaranteed` 
+or `Burstable` QoS classes (even pods with no memory request set) as if they are
+able to cope with memory pressure, while new `BestEffort` pods are not scheduled
+onto the affected node. 
 
 The DaemonSet controller automatically adds the following `NoSchedule`
 tolerations to all daemons, to prevent DaemonSets from breaking.
@@ -281,7 +295,6 @@ tolerations to all daemons, to prevent DaemonSets from breaking.
 
 Adding these tolerations ensures backward compatibility. You can also add
 arbitrary tolerations to DaemonSets.
-
 
 ## {{% heading "whatsnext" %}}
 

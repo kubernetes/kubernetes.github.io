@@ -16,7 +16,7 @@ Como você pode ver, a maior parte da documentação ainda está disponível ape
 
 <!-- body -->
 
-Se você quiser participar, você pode entrar no canal Slack [#kubernets-docs-pt](http://slack.kubernetes.io/) e fazer parte da equipe por trás da tradução.
+Se você quiser participar, você pode entrar no canal Slack [#kubernetes-docs-pt](http://slack.kubernetes.io/) e fazer parte da equipe por trás da tradução.
 
 Você também pode acessar o canal para solicitar a tradução de uma página específica ou relatar qualquer erro que possa ter sido encontrado. Qualquer contribuição será bem recebida!
 

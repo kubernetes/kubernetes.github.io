@@ -58,7 +58,8 @@ weight: 20
 ## 리소스 쿼터 활성화
 
 많은 쿠버네티스 배포판에 기본적으로 리소스 쿼터 지원이 활성화되어 있다.
-{{< glossary_tooltip text="API 서버" term_id="kube-apiserver" >}} `--enable-admission-plugins=` 플래그의 인수 중 하나로
+{{< glossary_tooltip text="API 서버" term_id="kube-apiserver" >}} 
+`--enable-admission-plugins=` 플래그의 인수 중 하나로
 `ResourceQuota`가 있는 경우 활성화된다.
 
 해당 네임스페이스에 리소스쿼터가 있는 경우 특정 네임스페이스에
@@ -66,7 +67,9 @@ weight: 20
 
 ## 컴퓨트 리소스 쿼터
 
-지정된 네임스페이스에서 요청할 수 있는 총 [컴퓨트 리소스](/ko/docs/concepts/configuration/manage-resources-containers/) 합을 제한할 수 있다.
+지정된 네임스페이스에서 요청할 수 있는 총 
+[컴퓨트 리소스](/ko/docs/concepts/configuration/manage-resources-containers/) 
+합을 제한할 수 있다.
 
 다음과 같은 리소스 유형이 지원된다.
 
@@ -125,7 +128,9 @@ GPU 리소스를 다음과 같이 쿼터를 정의할 수 있다.
 | `ephemeral-storage` | `requests.ephemeral-storage` 와 같음. |
 
 {{< note >}}
-CRI 컨테이너 런타임을 사용할 때, 컨테이너 로그는 임시 스토리지 쿼터에 포함된다. 이로 인해 스토리지 쿼터를 소진한 파드가 예기치 않게 축출될 수 있다. 자세한 내용은 [로깅 아키텍처](/ko/docs/concepts/cluster-administration/logging/)를 참조한다.
+CRI 컨테이너 런타임을 사용할 때, 컨테이너 로그는 임시 스토리지 쿼터에 포함된다. 
+이로 인해 스토리지 쿼터를 소진한 파드가 예기치 않게 축출될 수 있다. 
+자세한 내용은 [로깅 아키텍처](/ko/docs/concepts/cluster-administration/logging/)를 참조한다.
 {{< /note >}}
 
 ## 오브젝트 수 쿼터
@@ -192,7 +197,7 @@ CRI 컨테이너 런타임을 사용할 때, 컨테이너 로그는 임시 스�
 | `NotTerminating` | `.spec.activeDeadlineSeconds is nil`에 일치하는 파드 |
 | `BestEffort` | 최상의 서비스 품질을 제공하는 파드 |
 | `NotBestEffort` | 서비스 품질이 나쁜 파드 |
-| `PriorityClass` | 지정된 [프라이어리티 클래스](/ko/docs/concepts/configuration/pod-priority-preemption)를 참조하여 일치하는 파드. |
+| `PriorityClass` | 지정된 [프라이어리티클래스](/ko/docs/concepts/scheduling-eviction/pod-priority-preemption/)를 참조하여 일치하는 파드. |
 | `CrossNamespacePodAffinity` | 크로스-네임스페이스 파드 [(안티)어피니티 용어]가 있는 파드 |
 
 `BestEffort` 범위는 다음의 리소스를 추적하도록 쿼터를 제한한다.
@@ -248,13 +253,14 @@ CRI 컨테이너 런타임을 사용할 때, 컨테이너 로그는 임시 스�
 
 {{< feature-state for_k8s_version="v1.17" state="stable" >}}
 
-특정 [우선 순위](/ko/docs/concepts/configuration/pod-priority-preemption/#파드-우선순위)로 파드를 생성할 수 있다.
+특정 [우선 순위](/ko/docs/concepts/scheduling-eviction/pod-priority-preemption/#파드-우선순위)로 파드를 생성할 수 있다.
 쿼터 스펙의 `scopeSelector` 필드를 사용하여 파드의 우선 순위에 따라 파드의 시스템 리소스 사용을
 제어할 수 있다.
 
 쿼터 스펙의 `scopeSelector`가 파드를 선택한 경우에만 쿼터가 일치하고 사용된다.
 
-`scopeSelector` 필드를 사용하여 우선 순위 클래스의 쿼터 범위를 지정하면, 쿼터 오브젝트는 다음의 리소스만 추적하도록 제한된다.
+`scopeSelector` 필드를 사용하여 우선 순위 클래스의 쿼터 범위를 지정하면, 
+쿼터 오브젝트는 다음의 리소스만 추적하도록 제한된다.
 
 * `pods`
 * `cpu`
@@ -554,7 +560,7 @@ kubectl create -f ./object-counts.yaml --namespace=myspace
 kubectl get quota --namespace=myspace
 ```
 
-```
+```none
 NAME                    AGE
 compute-resources       30s
 object-counts           32s
@@ -564,7 +570,7 @@ object-counts           32s
 kubectl describe quota compute-resources --namespace=myspace
 ```
 
-```
+```none
 Name:                    compute-resources
 Namespace:               myspace
 Resource                 Used  Hard
@@ -580,7 +586,7 @@ requests.nvidia.com/gpu  0     4
 kubectl describe quota object-counts --namespace=myspace
 ```
 
-```
+```none
 Name:                   object-counts
 Namespace:              myspace
 Resource                Used    Hard
@@ -677,10 +683,10 @@ plugins:
 {{< codenew file="policy/priority-class-resourcequota.yaml" >}}
 
 ```shell
-$ kubectl apply -f https://k8s.io/examples/policy/priority-class-resourcequota.yaml -n kube-system
+kubectl apply -f https://k8s.io/examples/policy/priority-class-resourcequota.yaml -n kube-system
 ```
 
-```
+```none
 resourcequota/pods-cluster-services created
 ```
 

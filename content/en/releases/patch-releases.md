@@ -76,12 +76,11 @@ Timelines may vary with the severity of bug fixes, but for easier planning we
 will target the following monthly release points. Unplanned, critical
 releases may also occur in between these.
 
-| Monthly Patch Release | Target date |
-| --------------------- | ----------- |
-| June 2021             | 2021-06-16  |
-| July 2021             | 2021-07-14  |
-| August 2021           | 2021-08-11  |
-| September 2021        | 2021-09-15  |
+| Monthly Patch Release | Cherry Pick Deadline | Target date |
+| --------------------- | -------------------- | ----------- |
+| July 2021             | 2021-07-10           | 2021-07-14  |
+| August 2021           | 2021-08-07           | 2021-08-11  |
+| September 2021        | 2021-09-11           | 2021-09-15  |
 
 ## Detailed Release History for Active Branches
 
@@ -93,6 +92,7 @@ End of Life for **1.21** is **2022-06-28**
 
 | PATCH RELEASE | CHERRY PICK DEADLINE | TARGET DATE | NOTE                                                                   |
 | ------------- | -------------------- | ----------- | ---------------------------------------------------------------------- |
+| 1.21.3        | 2021-07-10           | 2021-07-14  |                                                                        |
 | 1.21.2        | 2021-06-12           | 2021-06-16  |                                                                        |
 | 1.21.1        | 2021-05-07           | 2021-05-12  | [Regression](https://groups.google.com/g/kubernetes-dev/c/KuF8s2zueFs) |
 
@@ -104,6 +104,7 @@ End of Life for **1.20** is **2022-02-28**
 
 | PATCH RELEASE | CHERRY PICK DEADLINE | TARGET DATE | NOTE                                                                                |
 | ------------- | -------------------- | ----------- | ----------------------------------------------------------------------------------- |
+| 1.20.9        | 2021-07-10           | 2021-07-14  |                                                                                     |
 | 1.20.8        | 2021-06-12           | 2021-06-16  |                                                                                     |
 | 1.20.7        | 2021-05-07           | 2021-05-12  | [Regression](https://groups.google.com/g/kubernetes-dev/c/KuF8s2zueFs)              |
 | 1.20.6        | 2021-04-09           | 2021-04-14  |                                                                                     |
@@ -121,6 +122,7 @@ End of Life for **1.19** is **2021-10-28**
 
 | PATCH RELEASE | CHERRY PICK DEADLINE | TARGET DATE | NOTE                                                                      |
 | ------------- | -------------------- | ----------- | ------------------------------------------------------------------------- |
+| 1.19.13       | 2021-07-10           | 2021-07-14  |                                                                           |
 | 1.19.12       | 2021-06-12           | 2021-06-16  |                                                                           |
 | 1.19.11       | 2021-05-07           | 2021-05-12  | [Regression](https://groups.google.com/g/kubernetes-dev/c/KuF8s2zueFs)    |
 | 1.19.10       | 2021-04-09           | 2021-04-14  |                                                                           |

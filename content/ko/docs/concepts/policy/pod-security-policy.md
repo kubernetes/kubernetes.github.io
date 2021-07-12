@@ -464,12 +464,12 @@ podsecuritypolicy "example" deleted
 예를 들면 다음과 같습니다.
 
 ```yaml
-allowedHostPaths:
-  # 이 정책은 "/foo", "/foo/", "/foo/bar" 등을 허용하지만,
-  # "/fool", "/etc/foo" 등은 허용하지 않는다.
-  # "/foo/../" 는 절대 유효하지 않다.
-  - pathPrefix: "/foo"
-    readOnly: true # 읽기 전용 마운트만 허용
+ allowedHostPaths:
+   # 이 정책은 "/foo", "/foo/", "/foo/bar" 등을 허용하지만,
+   # "/fool", "/etc/foo" 등은 허용하지 않는다.
+   # "/foo/../" 는 절대 유효하지 않다.
+   - pathPrefix: "/foo"
+     readOnly: true # 읽기 전용 마운트만 허용
 ```
 
 {{< warning >}}호스트 파일시스템에 제한없는 접근을 부여하며, 컨테이너가 특권을 에스컬레이션

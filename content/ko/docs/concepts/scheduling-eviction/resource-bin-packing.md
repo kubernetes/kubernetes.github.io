@@ -26,7 +26,7 @@ kube-scheduler를 미세 조정할 수 있다.
 통해 사용자는 적절한 파라미터를 사용해서 확장된 리소스를 빈 팩으로 만들 수 있어
 대규모의 클러스터에서 부족한 리소스의 활용도가 향상된다.
 `RequestedToCapacityRatioResourceAllocation` 우선 순위 기능의
-동작은 `requestedToCapacityRatioArguments`라는
+동작은 `RequestedToCapacityRatioArgs`라는
 구성 옵션으로 제어할 수 있다. 이 인수는 `shape`와 `resources`
 두 개의 파라미터로 구성된다. `shape` 파라미터는 사용자가 `utilization`과
 `score` 값을 기반으로 최소 요청 또는 최대 요청된 대로 기능을
@@ -39,26 +39,28 @@ kube-scheduler를 미세 조정할 수 있다.
 설정하는 구성의 예시이다.
 
 ```yaml
-apiVersion: v1
-kind: Policy
+apiVersion: kubescheduler.config.k8s.io/v1beta1
+kind: KubeSchedulerConfiguration
+profiles:
 # ...
-priorities:
-  # ...
-  - name: RequestedToCapacityRatioPriority
-    weight: 2
-    argument:
-      requestedToCapacityRatioArguments:
-        shape:
-          - utilization: 0
-            score: 0
-          - utilization: 100
-            score: 10
-        resources:
-          - name: intel.com/foo
-            weight: 3
-          - name: intel.com/bar
-            weight: 5
+  pluginConfig:
+  - name: RequestedToCapacityRatio
+    args: 
+      shape:
+      - utilization: 0
+        score: 10
+      - utilization: 100
+        score: 0
+      resources:
+      - name: intel.com/foo
+        weight: 3
+      - name: intel.com/bar
+        weight: 5
 ```
+
+kube-scheduler 플래그 `--config=/path/to/config/file` 을 사용하여 
+`KubeSchedulerConfiguration` 파일을 참조하면 구성이 스케줄러에
+전달된다.
 
 **이 기능은 기본적으로 비활성화되어 있다.**
 

@@ -20,14 +20,14 @@ card:
 쿠버네티스 API를 사용하면 쿠버네티스의 API 오브젝트(예:
 파드(Pod), 네임스페이스(Namespace), 컨피그맵(ConfigMap) 그리고 이벤트(Event))를 질의(query)하고 조작할 수 있다.
 
-대부분의 작업은 [kubectl](/docs/reference/kubectl/overview/)
+대부분의 작업은 [kubectl](/ko/docs/reference/kubectl/overview/)
 커맨드 라인 인터페이스 또는 API를 사용하는
 [kubeadm](/ko/docs/reference/setup-tools/kubeadm/)과
 같은 다른 커맨드 라인 도구를 통해 수행할 수 있다.
 그러나, REST 호출을 사용하여 API에 직접 접근할 수도 있다.
 
 쿠버네티스 API를 사용하여 애플리케이션을 작성하는 경우
-[클라이언트 라이브러리](/docs/reference/using-api/client-libraries/) 중 하나를 사용하는 것이 좋다.
+[클라이언트 라이브러리](/ko/docs/reference/using-api/client-libraries/) 중 하나를 사용하는 것이 좋다.
 
 <!-- body -->
 
@@ -130,7 +130,7 @@ API 리소스는 API 그룹, 리소스 유형, 네임스페이스
 {{< /note >}}
 
 API 버전 수준 정의에 대한 자세한 내용은
-[API 버전 레퍼런스](/ko/docs/reference/using-api/api-overview/#api-버전-규칙)를 참조한다.
+[API 버전 레퍼런스](/ko/docs/reference/using-api/#api-버전-규칙)를 참조한다.
 
 
 

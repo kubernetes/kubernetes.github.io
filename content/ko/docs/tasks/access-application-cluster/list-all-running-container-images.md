@@ -22,7 +22,7 @@ weight: 100
 ## 모든 네임스페이스의 모든 컨테이너 이미지 가져오기
 
 - `kubectl get pods --all-namespaces` 를 사용하여 모든 네임스페이스의 모든 파드 정보를 가져온다.
-- 컨테이너 이미지 이름만 출력하기 위해 `-o jsonpath={..image}` 를 사용한다.
+- 컨테이너 이미지 이름만 출력하기 위해 `-o jsonpath={.items[*].spec.containers[*].image}` 를 사용한다.
   이 명령어는 결과값으로 받은 json을 반복적으로 파싱하여,
   `image` 필드만을 출력한다.
   - jsonpath를 사용하는 방법에 대해 더 많은 정보를 얻고 싶다면
@@ -33,7 +33,7 @@ weight: 100
   - `uniq` 를 사용하여 이미지 개수를 합산한다.
 
 ```shell
-kubectl get pods --all-namespaces -o jsonpath="{..image}" |\
+kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}" |\
 tr -s '[[:space:]]' '\n' |\
 sort |\
 uniq -c
@@ -80,7 +80,7 @@ sort
 명령어 결과값은 `app=nginx` 레이블에 일치하는 파드만 출력한다.
 
 ```shell
-kubectl get pods --all-namespaces -o=jsonpath="{..image}" -l app=nginx
+kubectl get pods --all-namespaces -o=jsonpath="{.items[*].spec.containers[*].image}" -l app=nginx
 ```
 
 ## 파드 네임스페이스로 필터링된 컨테이너 이미지 목록 보기
@@ -89,7 +89,7 @@ kubectl get pods --all-namespaces -o=jsonpath="{..image}" -l app=nginx
 아래의 명령어 결과값은 `kube-system` 네임스페이스에 있는 파드만 출력한다.
 
 ```shell
-kubectl get pods --namespace kube-system -o jsonpath="{..image}"
+kubectl get pods --namespace kube-system -o jsonpath="{.items[*].spec.containers[*].image}"
 ```
 
 ## jsonpath 대신 Go 템플릿을 사용하여 컨테이너 이미지 목록 보기

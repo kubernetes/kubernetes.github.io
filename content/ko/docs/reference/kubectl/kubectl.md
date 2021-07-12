@@ -9,7 +9,7 @@ weight: 30
 
 kubectl은 쿠버네티스 클러스터 관리자를 제어한다.
 
- 자세한 정보는 https://kubernetes.io/docs/reference/kubectl/overview/ 에서 확인한다.
+ 자세한 정보는 [kubectl 개요](/ko/docs/reference/kubectl/overview/)를 확인한다.
 
 ```
 kubectl [flags]

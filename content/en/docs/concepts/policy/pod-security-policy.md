@@ -11,7 +11,8 @@ weight: 30
 
 {{< feature-state for_k8s_version="v1.21" state="deprecated" >}}
 
-PodSecurityPolicy is deprecated as of Kubernetes v1.21, and will be removed in v1.25.
+PodSecurityPolicy is deprecated as of Kubernetes v1.21, and will be removed in v1.25. For more information on the deprecation,
+see [PodSecurityPolicy Deprecation: Past, Present, and Future](/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/).
 
 Pod Security Policies enable fine-grained authorization of pod creation and
 updates.
@@ -48,13 +49,12 @@ administrator to control the following:
 
 ## Enabling Pod Security Policies
 
-Pod security policy control is implemented as an optional (but recommended)
-[admission
-controller](/docs/reference/access-authn-authz/admission-controllers/#podsecuritypolicy). PodSecurityPolicies
-are enforced by [enabling the admission
+Pod security policy control is implemented as an optional [admission
+controller](/docs/reference/access-authn-authz/admission-controllers/#podsecuritypolicy).
+PodSecurityPolicies are enforced by [enabling the admission
 controller](/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-control-plug-in),
-but doing so without authorizing any policies **will prevent any pods from being
-created** in the cluster.
+but doing so without authorizing any policies **will prevent any pods from being created** in the
+cluster.
 
 Since the pod security policy API (`policy/v1beta1/podsecuritypolicy`) is
 enabled independently of the admission controller, for existing clusters it is
@@ -110,7 +110,11 @@ roleRef:
   name: <role name>
   apiGroup: rbac.authorization.k8s.io
 subjects:
-# Authorize specific service accounts:
+# Authorize all service accounts in a namespace (recommended):
+- kind: Group
+  apiGroup: rbac.authorization.k8s.io
+  name: system:serviceaccounts:<authorized namespace>
+# Authorize specific service accounts (not recommended):
 - kind: ServiceAccount
   name: <authorized service account name>
   namespace: <authorized pod namespace>
@@ -139,6 +143,40 @@ Examples](/docs/reference/access-authn-authz/rbac#role-binding-examples).
 For a complete example of authorizing a PodSecurityPolicy, see
 [below](#example).
 
+### Recommended Practice
+
+PodSecurityPolicy is being replaced by a new, simplified `PodSecurity` {{< glossary_tooltip
+text="admission controller" term_id="admission-controller" >}}. For more details on this change, see
+[PodSecurityPolicy Deprecation: Past, Present, and
+Future](/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/). Follow these
+guidelines to simplify migration from PodSecurityPolicy to the new admission controller:
+
+1. Limit your PodSecurityPolicies to the policies defined by the [Pod Security Standards](/docs/concepts/security/pod-security-standards):
+    - {{< example file="policy/privileged-psp.yaml" >}}Privileged{{< /example >}}
+    - {{< example file="policy/baseline-psp.yaml" >}}Baseline{{< /example >}}
+    - {{< example file="policy/restricted-psp.yaml" >}}Restricted{{< /example >}}
+
+2. Only bind PSPs to entire namespaces, by using the `system:serviceaccounts:<namespace>` group
+   (where `<namespace>` is the target namespace). For example:
+
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    # This cluster role binding allows all pods in the "development" namespace to use the baseline PSP.
+    kind: ClusterRoleBinding
+    metadata:
+      name: psp-baseline-namespaces
+    roleRef:
+      kind: ClusterRole
+      name: psp-baseline
+      apiGroup: rbac.authorization.k8s.io
+    subjects:
+    - kind: Group
+      name: system:serviceaccounts:development
+      apiGroup: rbac.authorization.k8s.io
+    - kind: Group
+      name: system:serviceaccounts:canary
+      apiGroup: rbac.authorization.k8s.io
+    ```
 
 ### Troubleshooting
 
@@ -661,8 +699,10 @@ Refer to the [Sysctl documentation](
 
 ## {{% heading "whatsnext" %}}
 
+- See [PodSecurityPolicy Deprecation: Past, Present, and
+  Future](/blog/2021/04/06/podsecuritypolicy-deprecation-past-present-and-future/) to learn about
+  the future of pod security policy.
+
 - See [Pod Security Standards](/docs/concepts/security/pod-security-standards/) for policy recommendations.
 
 - Refer to [Pod Security Policy Reference](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#podsecuritypolicy-v1beta1-policy) for the api details.
-
-

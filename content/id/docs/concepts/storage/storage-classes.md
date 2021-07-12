@@ -595,11 +595,11 @@ metadata:
 provisioner: kubernetes.io/azure-disk
 parameters:
   storageaccounttype: Standard_LRS
-  kind: Shared
+  kind: managed
 ```
 
 * `storageaccounttype`: Akun penyimpanan Azure yang ada pada tingkatan Sku. Nilai _default_-nya adalah kosong.
-* `kind`: Nilai yang mungkin adalah `shared` (default), `dedicated`, dan `managed`.
+* `kind`: Nilai yang mungkin adalah `shared`, `dedicated`, dan `managed` (default).
   Ketika `kind` yang digunakan adalah `shared`, semua disk yang tidak di-_manage_ akan
   dibuat pada beberapa akun penyimpanan yang ada pada grup sumber daya yang sama dengan klaster.
   Ketika `kind` yang digunakan adalah `dedicated`, sebuah akun penyimpanan

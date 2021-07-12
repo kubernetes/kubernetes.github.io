@@ -96,7 +96,8 @@ the host's default interface will be used.
 The map from metric-label to value allow-list of this label. The key's format is &lt;MetricName&gt;,&lt;LabelName&gt;. The value's format is &lt;allowed_value&gt;,&lt;allowed_value&gt;...e.g. metric1,label1='v1,v2,v3', metric1,label2='v1,v2,v3' metric2,label1='v1,v2,v3'.
 -->
 允许使用的指标标签到指标值的映射列表。键的格式为 &lt;MetricName&gt;,&lt;LabelName&gt;.
-值得格式为 &lt;allowed_value&gt;,&lt;allowed_value&gt;...。 例如：<code>metric1,label1='v1,v2,v3', metric1,label2='v1,v2,v3' metric2,label1='v1,v2,v3'</code>。
+值的格式为 &lt;allowed_value&gt;,&lt;allowed_value&gt;...。 
+例如：<code>metric1,label1='v1,v2,v3', metric1,label2='v1,v2,v3' metric2,label1='v1,v2,v3'</code>。
 </p></td>
 </tr>
 
@@ -2251,7 +2252,7 @@ are permanently removed in the release after that.
 -->
 你要显示隐藏指标的先前版本。仅先前的次要版本有意义，不允许其他值。
 格式为 &lt;major&gt;.&lt;minor&gt;，例如："1.16"。
-这种格式的目的是确保您有机会注意到下一个版本是否隐藏了其他指标，
+这种格式的目的是确保你有机会注意到下一个版本是否隐藏了其他指标，
 而不是在此之后将它们从发行版中永久删除时感到惊讶。
 </td>
 </tr>

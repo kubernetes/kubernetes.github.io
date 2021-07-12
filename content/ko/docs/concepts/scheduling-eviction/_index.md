@@ -32,6 +32,6 @@ no_list: true
 
 {{<glossary_definition term_id="pod-disruption" length="all">}}
 
-* [파드 우선순위와 선점](/docs/concepts/scheduling-eviction/pod-priority-preemption/)
+* [파드 우선순위와 선점](/ko/docs/concepts/scheduling-eviction/pod-priority-preemption/)
 * [노드-압박 축출](/docs/concepts/scheduling-eviction/node-pressure-eviction/)
-* [API를 이용한 축출](/docs/concepts/scheduling-eviction/api-eviction/)
+* [API를 이용한 축출](/ko/docs/concepts/scheduling-eviction/api-eviction/)

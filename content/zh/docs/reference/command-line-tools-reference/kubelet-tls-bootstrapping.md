@@ -299,8 +299,7 @@ A kubelet authenticating using bootstrap tokens is authenticated as a user in th
 <!--
 As this feature matures, you
 should ensure tokens are bound to a Role Based Access Control (RBAC) policy
-which limits requests (using the [bootstrap
-token](/docs/reference/access-authn-authz/bootstrap-tokens/)) strictly to client
+which limits requests (using the [bootstrap token](/docs/reference/access-authn-authz/bootstrap-tokens/)) strictly to client
 requests related to certificate provisioning. With RBAC in place, scoping the
 tokens to a group allows for great flexibility. For example, you could disable a
 particular bootstrap group's access when you are done provisioning the nodes.
@@ -335,7 +334,7 @@ The process is two-fold:
 
 <!--
 From the kubelet's perspective, one token is like another and has no special meaning.
-From the kube-apiserver's perspective, however, the bootstrap token is special. Due to its `Type`, `namespace` and `name`, kube-apiserver recognizes it as a special token,
+From the kube-apiserver's perspective, however, the bootstrap token is special. Due to its `type`, `namespace` and `name`, kube-apiserver recognizes it as a special token,
 and grants anyone authenticating with that token special bootstrap rights, notably treating them as a member of the `system:bootstrappers` group. This fulfills a basic requirement
 for TLS bootstrapping.
 -->
@@ -354,7 +353,7 @@ If you want to use bootstrap tokens, you must enable it on kube-apiserver with t
 
 如果你希望使用启动引导令牌，你必须在 kube-apiserver 上使用下面的标志启用之：
 
-```
+```console
 --enable-bootstrap-token-auth=true
 ```
 
@@ -373,7 +372,7 @@ kube-apiserver 能够将令牌视作身份认证依据。
 至少 128 位混沌数据。这里的随机数生成器可以是现代 Linux 系统上的
 `/dev/urandom`。生成令牌的方式有很多种。例如：
 
-```
+```shell
 head -c 16 /dev/urandom | od -An -t x | tr -d ' '
 ```
 
@@ -388,7 +387,7 @@ values can be anything and the quoted group name should be as depicted:
 令牌文件看起来是下面的例子这样，其中前面三个值可以是任何值，用引号括起来
 的组名称则只能用例子中给的值。
 
-```
+```console
 02b50b05283e98dd0fd71db496ef01e8,kubelet-bootstrap,10001,"system:bootstrappers"
 ```
 
@@ -406,9 +405,13 @@ further details.
 <!--
 ### Authorize kubelet to create CSR
 
-Now that the bootstrapping node is _authenticated_ as part of the `system:bootstrappers` group, it needs to be _authorized_ to create a certificate signing request (CSR) as well as retrieve it when done. Fortunately, Kubernetes ships with a `ClusterRole` with precisely these (and just these) permissions, `system:node-bootstrapper`.
+Now that the bootstrapping node is _authenticated_ as part of the
+`system:bootstrappers` group, it needs to be _authorized_ to create a
+certificate signing request (CSR) as well as retrieve it when done.
+Fortunately, Kubernetes ships with a `ClusterRole` with precisely these (and
+only these) permissions, `system:node-bootstrapper`.
 
-To do this, you just need to create a `ClusterRoleBinding` that binds the `system:bootstrappers` group to the cluster role `system:node-bootstrapper`.
+To do this, you only need to create a `ClusterRoleBinding` that binds the `system:bootstrappers` group to the cluster role `system:node-bootstrapper`.
 -->
 ### 授权 kubelet 创建 CSR    {#authorize-kubelet-to-create-csr}
 
@@ -420,7 +423,7 @@ To do this, you just need to create a `ClusterRoleBinding` that binds the `syste
 为了实现这一点，你只需要创建 `ClusterRoleBinding`，将 `system:bootstrappers`
 组绑定到集群角色 `system:node-bootstrapper`。
 
-```
+```yaml
 # 允许启动引导节点创建 CSR
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -495,7 +498,7 @@ kubelet 身份认证，很重要的一点是为控制器管理器所提供的 CA
 
 要将 Kubernetes CA 密钥和证书提供给 kube-controller-manager，可使用以下标志：
 
-```
+```shell
 --cluster-signing-cert-file="/etc/path/to/kubernetes/ca/ca.crt" --cluster-signing-key-file="/etc/path/to/kubernetes/ca/ca.key"
 ```
 
@@ -504,7 +507,7 @@ For example:
 -->
 例如：
 
-```
+```shell
 --cluster-signing-cert-file="/var/lib/kubernetes/ca.pem" --cluster-signing-key-file="/var/lib/kubernetes/ca-key.pem"
 ```
 
@@ -513,7 +516,7 @@ The validity duration of signed certificates can be configured with flag:
 -->
 所签名的证书的合法期限可以通过下面的标志来配置：
 
-```
+```shell
 --cluster-signing-duration
 ```
 
@@ -602,7 +605,7 @@ collection.
 -->
 作为 [kube-controller-manager](/zh/docs/reference/generated/kube-controller-manager/)
 的一部分的 `csrapproving` 控制器是自动被启用的。
-该控制器使用 [`SubjectAccessReview` API](/docs/reference/access-authn-authz/authorization/#checking-api-access)
+该控制器使用 [`SubjectAccessReview` API](/zh/docs/reference/access-authn-authz/authorization/#checking-api-access)
 来确定是否某给定用户被授权请求 CSR，之后基于鉴权结果执行批复操作。
 为了避免与其它批复组件发生冲突，内置的批复组件不会显式地拒绝任何 CSRs。
 该组件仅是忽略未被授权的请求。
@@ -682,7 +685,7 @@ The important elements to note are:
 
 <!--
 The format of the token does not matter, as long as it matches what kube-apiserver expects. In the above example, we used a bootstrap token.
-As stated earlier, _any_ valid authentication method can be used, not just tokens.
+As stated earlier, _any_ valid authentication method can be used, not only tokens.
 
 Because the bootstrap `kubeconfig` _is_ a standard `kubeconfig`, you can use `kubectl` to generate it. To create the above example file:
 -->

@@ -22,7 +22,6 @@ card:
 - [macOS에서 curl을 사용하여 kubectl 바이너리 설치](#install-kubectl-binary-with-curl-on-macos)
 - [macOS에서 Homebrew를 사용하여 설치](#install-with-homebrew-on-macos)
 - [macOS에서 Macports를 사용하여 설치](#install-with-macports-on-macos)
-- [macOS에서 Google Cloud SDK를 사용하여 설치](#install-on-macos-as-part-of-the-google-cloud-sdk)
 
 ### macOS에서 curl을 사용하여 kubectl 바이너리 설치 {#install-kubectl-binary-with-curl-on-macos}
 
@@ -99,9 +98,13 @@ card:
 1. kubectl 바이너리를 시스템 `PATH` 의 파일 위치로 옮긴다.
 
    ```bash
-   sudo mv ./kubectl /usr/local/bin/kubectl && \
+   sudo mv ./kubectl /usr/local/bin/kubectl
    sudo chown root: /usr/local/bin/kubectl
    ```
+
+   {{< note >}}
+   `PATH` 환경 변수 안에 `/usr/local/bin` 이 있는지 확인한다.
+   {{< /note >}}
 
 1. 설치한 버전이 최신 버전인지 확인한다.
 
@@ -147,11 +150,6 @@ macOS에서 [Macports](https://macports.org/) 패키지 관리자를 사용하�
    ```bash
    kubectl version --client
    ```
-
-
-### Google Cloud SDK를 사용하여 설치 {#install-on-macos-as-part-of-the-google-cloud-sdk}
-
-{{< include "included/install-kubectl-gcloud.md" >}}
 
 ## kubectl 구성 확인
 

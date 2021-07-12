@@ -156,8 +156,9 @@ Condizione Notata quando un nodo diventa irraggiungibile (ad esempio, il control
 ricevere heartbeat per qualche motivo, ad es. a causa del fatto che il nodo si trova in basso), e poi in seguito sfratto
 tutti i pod dal nodo (usando una terminazione elegante) se il nodo continua
 essere irraggiungibile. (I timeout predefiniti sono 40 secondi per iniziare la segnalazione
-ConditionUnknown e 5m dopo di ciò per iniziare a sfrattare i pod.) Il controller del nodo
-controlla lo stato di ogni nodo ogni `--node-monitor-period` secondi.
+ConditionUnknown e 5m dopo di ciò per iniziare a sfrattare i pod.) 
+
+Il controller del nodo controlla lo stato di ogni nodo ogni `--node-monitor-period` secondi.
 
 Nelle versioni di Kubernetes precedenti alla 1.13, NodeStatus è l'heartbeat di
 nodo. A partire da Kubernetes 1.13, la funzionalità di lease del nodo viene introdotta come un
@@ -191,8 +192,9 @@ lo stesso tempo. Se la frazione di nodi malsani è almeno
 se il cluster è piccolo (cioè ha meno o uguale a
 `--large-cluster-size-threshold` nodes - default 50) quindi gli sfratti sono
 fermato, altrimenti il ​​tasso di sfratto è ridotto a
-`--secondary-node-eviction-rate` (default 0.01) al secondo. La ragione per cui
-le politiche sono implementate per zona di disponibilità è perché una zona di disponibilità
+`--secondary-node-eviction-rate` (default 0.01) al secondo. 
+
+La ragione per cui le politiche sono implementate per zona di disponibilità è perché una zona di disponibilità
 potrebbe divenire partizionato dal master mentre gli altri rimangono connessi. Se
 il tuo cluster non si estende su più zone di disponibilità del provider cloud, quindi
 c'è solo una zona di disponibilità (l'intero cluster).

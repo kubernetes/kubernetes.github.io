@@ -55,7 +55,7 @@ cat ~/.docker/config.json
 ## 기존의 도커 자격 증명을 기반으로 시크릿 생성하기 {#registry-secret-existing-credentials}
 
 쿠버네티스 클러스터는 프라이빗 이미지를 받아올 때, 컨테이너 레지스트리에 인증하기 위하여 
-`docker-registry` 타입의 시크릿을 사용한다.
+`kubernetes.io/dockerconfigjson` 타입의 시크릿을 사용한다.
 
 만약 이미 `docker login` 을 수행하였다면, 이 때 생성된 자격 증명을 쿠버네티스 클러스터로 복사할 수 있다.
 

@@ -133,7 +133,7 @@ weight: 10
 ### API 오브젝트 용어 한글화 방침
 
 일반적으로 `kubectl api-resources` 결과의 `kind` 에 해당하는 API 오브젝트는
-[국립국어원 외래어 표기법](http://kornorms.korean.go.kr/regltn/regltnView.do?regltn_code=0003#a)에
+[국립국어원 외래어 표기법](https://kornorms.korean.go.kr/regltn/regltnView.do?regltn_code=0003#a)에
 따라 한글로 표기하고 영문을 병기한다. 예를 들면 다음과 같다.
 
 API 오브젝트(kind)      | 한글화(외래어 표기 및 영문 병기)

@@ -2,11 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-service
+  labels:
+    app: MyApp
 spec:
-  ipFamily: IPv4
+  ipFamilies:
+  - IPv6
   selector:
     app: MyApp
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 9376

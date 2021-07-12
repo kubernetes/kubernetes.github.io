@@ -220,4 +220,4 @@ kubectl delete deployment frontend backend
 
 * [서비스](/ko/docs/concepts/services-networking/service/)에 대해 더 알아본다.
 * [컨피그맵](/docs/tasks/configure-pod-container/configure-pod-configmap/)에 대해 더 알아본다.
-* [서비스와 파드용 DNS](/docs/concepts/services-networking/dns-pod-service/)에 대해 더 알아본다.
+* [서비스와 파드용 DNS](/ko/docs/concepts/services-networking/dns-pod-service/)에 대해 더 알아본다.

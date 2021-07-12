@@ -653,11 +653,11 @@ metadata:
 provisioner: kubernetes.io/azure-disk
 parameters:
   storageaccounttype: Standard_LRS
-  kind: Shared
+  kind: managed
 ```
 
 * `storageaccounttype`: Azure 스토리지 계정 Sku 계층. 기본값은 없음.
-* `kind`: 가능한 값은 `shared` (기본값), `dedicated`, 그리고 `managed` 이다.
+* `kind`: 가능한 값은 `shared`, `dedicated`, 그리고 `managed` (기본값) 이다.
   `kind` 가 `shared` 인 경우, 모든 비관리 디스크는 클러스터와
   동일한 리소스 그룹에 있는 몇 개의 공유 스토리지 계정에 생성된다. `kind` 가
   `dedicated` 인 경우, 클러스터와 동일한 리소스 그룹에서 새로운

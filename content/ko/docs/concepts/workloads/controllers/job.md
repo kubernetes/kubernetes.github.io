@@ -304,7 +304,7 @@ spec:
 
 ### 완료된 잡을 위한 TTL 메커니즘
 
-{{< feature-state for_k8s_version="v1.12" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.21" state="beta" >}}
 
 완료된 잡 (`Complete` 또는 `Failed`)을 자동으로 정리하는 또 다른 방법은
 잡의 `.spec.ttlSecondsAfterFinished` 필드를 지정해서 완료된 리소스에 대해
@@ -341,11 +341,6 @@ spec:
 만약 필드를 `0` 으로 설정하면, 잡이 완료된 직후에 자동으로
 삭제되도록 할 수 있다. 만약 필드를 설정하지 않으면, 이 잡이 완료된
 후에 TTL 컨트롤러에 의해 정리되지 않는다.
-
-이 TTL 메커니즘은 기능 게이트 `TTLAfterFinished`와 함께 알파 단계이다. 더
-자세한 정보는 완료된 리소스를 위한
-[TTL 컨트롤러](/ko/docs/concepts/workloads/controllers/ttlafterfinished/)
-문서를 본다.
 
 ## 잡 패턴
 

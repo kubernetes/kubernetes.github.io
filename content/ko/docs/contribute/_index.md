@@ -46,7 +46,7 @@ card:
 1. CNCF [Contributor License Agreement](https://github.com/kubernetes/community/blob/master/CLA.md)에 서명합니다.
 1. [문서 리포지터리](https://github.com/kubernetes/website)와 웹사이트의
    [정적 사이트 생성기](https://gohugo.io)를 숙지합니다.
-1. [풀 리퀘스트 열기](/ko/docs/contribute/new-content/new-content/)와
+1. [풀 리퀘스트 열기](/ko/docs/contribute/new-content/open-a-pr/)와
    [변경 검토](/ko/docs/contribute/review/reviewing-prs/)의
    기본 프로세스를 이해하도록 합니다.
 
@@ -60,7 +60,7 @@ card:
   기여할 수 있는 다양한 방법에 대해 알아봅니다.
 - [`kubernetes/website` 이슈 목록](https://github.com/kubernetes/website/issues/)을
   확인하여 좋은 진입점이 되는 이슈를 찾을 수 있습니다.
-- 기존 문서에 대해 [GitHub을 사용해서 풀 리퀘스트 열거나](/ko/docs/contribute/new-content/new-content/#github을-사용하여-변경하기)
+- 기존 문서에 대해 [GitHub을 사용해서 풀 리퀘스트 열거나](/ko/docs/contribute/new-content/open-a-pr/#github을-사용하여-변경하기)
   GitHub에서의 이슈 제기에 대해 자세히 알아봅니다.
 - 정확성과 언어에 대해 다른 쿠버네티스 커뮤니티 맴버의
   [풀 리퀘스트 검토](/ko/docs/contribute/review/reviewing-prs/)를 합니다.
@@ -71,7 +71,7 @@ card:
 
 ## 다음 단계
 
-- 리포지터리의 [로컬 복제본에서 작업](/ko/docs/contribute/new-content/new-content/#fork-the-repo)하는
+- 리포지터리의 [로컬 복제본에서 작업](/ko/docs/contribute/new-content/open-a-pr/#fork-the-repo)하는
   방법을 배워봅니다.
 - [릴리스된 기능](/docs/contribute/new-content/new-features/)을 문서화 합니다.
 - [SIG Docs](/ko/docs/contribute/participate/)에 참여하고,
@@ -96,6 +96,6 @@ SIG Docs는 여러가지 방법으로 의견을 나누고 있습니다.
 
 ## 다른 기여 방법들
 
-- [쿠버네티스 커뮤니티 사이트](/community/)를 방문하십시오. 트위터 또는 스택 오버플로우에 참여하고, 현지 쿠버네티스 모임과 이벤트 등에 대해 알아봅니다.
+- [쿠버네티스 커뮤니티 사이트](/ko/community/)를 방문하십시오. 트위터 또는 스택 오버플로우에 참여하고, 현지 쿠버네티스 모임과 이벤트 등에 대해 알아봅니다.
 - [기여자 치트시트](https://github.com/kubernetes/community/tree/master/contributors/guide/contributor-cheatsheet)를 읽고 쿠버네티스 기능 개발에 참여합니다.
 - [블로그 게시물 또는 사례 연구](/docs/contribute/new-content/blogs-case-studies/)를 제출합니다.

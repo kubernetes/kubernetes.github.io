@@ -55,7 +55,7 @@ The team has made progress in the last few months that is well worth celebrating
 
 - The K8s-Infrastructure Working Group released an automated billing report that they start every meeting off by reviewing as a group. 
 - DNS for k8s.io and kubernetes.io are also fully [community-owned](https://groups.google.com/g/kubernetes-dev/c/LZTYJorGh7c/m/u-ydk-yNEgAJ), with community members able to [file issues](https://github.com/kubernetes/k8s.io/issues/new?assignees=&labels=wg%2Fk8s-infra&template=dns-request.md&title=DNS+REQUEST%3A+%3Cyour-dns-record%3E) to manage records.
-- The container registry [k8s.gcr.io](https://github.com/kubernetes/k8s.io/tree/master/k8s.gcr.io) is also fully community-owned and available for all Kubernetes subprojects to use. 
+- The container registry [k8s.gcr.io](https://github.com/kubernetes/k8s.io/tree/main/k8s.gcr.io) is also fully community-owned and available for all Kubernetes subprojects to use. 
 - The Kubernetes [publishing-bot](https://github.com/kubernetes/publishing-bot) responsible for keeping k8s.io/kubernetes/staging repositories published to their own top-level repos (For example: [kubernetes/api](https://github.com/kubernetes/api)) runs on a community-owned cluster.
 - The gcsweb.k8s.io service used to provide anonymous access to GCS buckets for kubernetes artifacts runs on a community-owned cluster.
 - There is also an automated process of promoting all our container images. This includes a fully documented infrastructure, managed by the Kubernetes community, with automated processes for provisioning permissions. 

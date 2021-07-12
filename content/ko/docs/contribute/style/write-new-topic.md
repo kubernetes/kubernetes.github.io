@@ -172,4 +172,4 @@ kubectl create -f https://k8s.io/examples/pods/storage/gce-volume.yaml
 ## {{% heading "whatsnext" %}}
 
 * [페이지 콘텐츠 타입 사용](/docs/contribute/style/page-content-types/)에 대해 알아보기.
-* [풀 리퀘스트 작성](/ko/docs/contribute/new-content/new-content/)에 대해 알아보기.
+* [풀 리퀘스트 작성](/ko/docs/contribute/new-content/open-a-pr/)에 대해 알아보기.

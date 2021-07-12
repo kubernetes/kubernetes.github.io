@@ -146,7 +146,7 @@ Semua modifikasi pada sebuah CronJob, terutama `.spec`, akan diterapkan pada pro
 `.spec.schedule` adalah _field_ yang wajib diisi dari sebuah `.spec`
 Dibutuhkan sebuah format string [Cron](https://en.wikipedia.org/wiki/Cron), misalnya `0 * * * *` atau `@hourly`, sebagai jadwal Job untuk dibuat dan dieksekusi.
 
-Format ini juga mencakup nilai langkah `Vixie cron`. Seperti penjelasan di [FreeBSD manual](https://www.freebsd.org/cgi/man.cgi?crontab%285%29):
+Format ini juga mencakup nilai langkah "Vixie cron". Seperti penjelasan di [FreeBSD manual](https://www.freebsd.org/cgi/man.cgi?crontab%285%29):
 
 > Nilai langkah dapat digunakan bersama dengan rentang. Sebuah rentang diikuti dengan
 > `/<number>` menentukan lompatan angka melalui rentang. 

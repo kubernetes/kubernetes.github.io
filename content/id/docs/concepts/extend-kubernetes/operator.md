@@ -132,7 +132,7 @@ menggunakan bahasa / _runtime_ yang dapat bertindak sebagai
 * Menggunakan perangkat yang ada untuk menulis Operator kamu sendiri, misalnya:
   * menggunakan [KUDO](https://kudo.dev/) (Kubernetes Universal Declarative Operator)
   * menggunakan [kubebuilder](https://book.kubebuilder.io/)
-  * menggunakan [Metacontroller](https://metacontroller.app/) bersama dengan
+  * menggunakan [Metacontroller](https://metacontroller.github.io/metacontroller/intro.html) bersama dengan
     `WebHooks` yang kamu implementasikan sendiri
   * menggunakan the [Operator _Framework_](https://github.com/operator-framework/getting-started)
 * [Terbitkan](https://operatorhub.io/) Operator kamu agar dapat digunakan oleh 

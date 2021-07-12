@@ -1349,7 +1349,7 @@ Each feature gate is designed for enabling/disabling a specific feature:
 - `ValidateProxyRedirects`: This flag controls whether the API server should
   validate that redirects are only followed to the same host. Only used if the
   `StreamingProxyRedirects` flag is enabled.
-- 'VolumeCapacityPriority`: Enable support for prioritizing nodes in different
+- `VolumeCapacityPriority`: Enable support for prioritizing nodes in different
   topologies based on available PV capacity.
 - `VolumePVCDataSource`: Enable support for specifying an existing PVC as a DataSource.
 - `VolumeScheduling`: Enable volume topology aware scheduling and make the
@@ -1361,7 +1361,7 @@ Each feature gate is designed for enabling/disabling a specific feature:
 -->
 - `ValidateProxyRedirects`： 这个标志控制 API 服务器是否应该验证只跟随到相同的主机的重定向。
   仅在启用 `StreamingProxyRedirects` 标志时被使用。
-- 'VolumeCapacityPriority`: 基于可用 PV 容量的拓扑，启用对不同节点的优先级支持。
+- `VolumeCapacityPriority`: 基于可用 PV 容量的拓扑，启用对不同节点的优先级支持。
 - `VolumePVCDataSource`：启用对将现有 PVC 指定数据源的支持。
 - `VolumeScheduling`：启用卷拓扑感知调度，并使 PersistentVolumeClaim（PVC）
   绑定能够了解调度决策；当与 PersistentLocalVolumes 特性门控一起使用时，

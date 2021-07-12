@@ -82,6 +82,7 @@ For example, to download version {{< param "fullversion" >}} on Linux, type:
    If you do not have root access on the target system, you can still install kubectl to the `~/.local/bin` directory:
 
    ```bash
+   chmod +x kubectl
    mkdir -p ~/.local/bin/kubectl
    mv ./kubectl ~/.local/bin/kubectl
    # and then add ~/.local/bin/kubectl to $PATH

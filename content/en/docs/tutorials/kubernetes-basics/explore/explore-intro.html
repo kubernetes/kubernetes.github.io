@@ -74,11 +74,11 @@ weight: 10
         <div class="row">
             <div class="col-md-8">
                 <h2>Nodes</h2>
-                <p>A Pod always runs on a <b>Node</b>. A Node is a worker machine in Kubernetes and may be either a virtual or a physical machine, depending on the cluster. Each Node is managed by the Master. A Node can have multiple pods, and the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster. The Master's automatic scheduling takes into account the available resources on each Node.</p>
+                <p>A Pod always runs on a <b>Node</b>. A Node is a worker machine in Kubernetes and may be either a virtual or a physical machine, depending on the cluster. Each Node is managed by the control plane. A Node can have multiple pods, and the Kubernetes control plane automatically handles scheduling the pods across the Nodes in the cluster. The control plane's automatic scheduling takes into account the available resources on each Node.</p>
 
                 <p>Every Kubernetes Node runs at least:</p>
                 <ul>
-                    <li>Kubelet, a process responsible for communication between the Kubernetes Master and the Node; it manages the Pods and the containers running on a machine.</li>
+                    <li>Kubelet, a process responsible for communication between the Kubernetes control plane and the Node; it manages the Pods and the containers running on a machine.</li>
                     <li>A container runtime (like Docker) responsible for pulling the container image from a registry, unpacking the container, and running the application.</li>
                 </ul>
 

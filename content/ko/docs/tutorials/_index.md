@@ -35,7 +35,7 @@ content_type: concept
 
 * [외부 IP 주소를 노출하여 클러스터의 애플리케이션에 접속하기](/ko/docs/tutorials/stateless-application/expose-external-ip-address/)
 
-* [예시: MongoDB를 사용한 PHP 방명록 애플리케이션 배포하기](/ko/docs/tutorials/stateless-application/guestbook/)
+* [예시: Redis를 사용한 PHP 방명록 애플리케이션 배포하기](/ko/docs/tutorials/stateless-application/guestbook/)
 
 ## 상태 유지가 필요한(stateful) 애플리케이션
 

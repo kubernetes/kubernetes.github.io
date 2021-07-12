@@ -482,7 +482,7 @@ replication controllers, replica sets or stateful sets that the Pod belongs to.
 
 An example configuration might look like follows:
 -->
-你可以在 [调度方案（Schedulingg Profile）](/zh/docs/reference/scheduling/config/#profiles)
+你可以在 [调度方案（Scheduling Profile）](/zh/docs/reference/scheduling/config/#profiles)
 中将默认约束作为 `PodTopologySpread` 插件参数的一部分来设置。
 约束的设置采用[如前所述的 API](#api)，只是 `labelSelector` 必须为空。
 选择算符是根据 Pod 所属的服务、副本控制器、ReplicaSet 或 StatefulSet 来设置的。

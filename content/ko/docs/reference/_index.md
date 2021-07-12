@@ -37,7 +37,7 @@ no_list: true
 - [쿠버네티스 Python 클라이언트 라이브러리](https://github.com/kubernetes-client/python)
 - [쿠버네티스 Java 클라이언트 라이브러리](https://github.com/kubernetes-client/java)
 - [쿠버네티스 JavaScript 클라이언트 라이브러리](https://github.com/kubernetes-client/javascript)
-- [쿠버네티스 Dotnet 클라이언트 라이브러리](https://github.com/kubernetes-client/csharp)
+- [쿠버네티스 C# 클라이언트 라이브러리](https://github.com/kubernetes-client/csharp)
 - [쿠버네티스 Haskell 클라이언트 라이브러리](https://github.com/kubernetes-client/haskell)
 
 ## CLI
@@ -55,7 +55,7 @@ no_list: true
 파드, 서비스, 레플리케이션 컨트롤러와 같은 API 오브젝트에 대한 검증과 구성을 
 수행하는 REST API.
 * [kube-controller-manager](/docs/reference/command-line-tools-reference/kube-controller-manager/) - 쿠버네티스에 탑재된 핵심 제어 루프를 포함하는 데몬.
-* [kube-proxy](/docs/reference/command-line-tools-reference/kube-proxy/) - 간단한 
+* [kube-proxy](/ko/docs/reference/command-line-tools-reference/kube-proxy/) - 간단한 
 TCP/UDP 스트림 포워딩이나 백-엔드 집합에 걸쳐서 라운드-로빈 TCP/UDP 포워딩을 
 할 수 있다.
 * [kube-scheduler](/docs/reference/command-line-tools-reference/kube-scheduler/) - 가용성, 성능 및 용량을 관리하는 스케줄러.

@@ -68,7 +68,7 @@ handler: myconfiguration  # 상응하는 CRI 설정의 이름임
 ```
 
 런타임클래스 오브젝트의 이름은 유효한
-[DNS 서브도메인 이름](/ko/docs/concepts/overview/working-with-objects/names/#dns-서브도메인-이름)어이야 한다.
+[DNS 레이블 이름](/ko/docs/concepts/overview/working-with-objects/names/#dns-레이블-이름)어이야 한다.
 
 {{< note >}}
 런타임클래스 쓰기 작업(create/update/patch/delete)은
@@ -132,7 +132,7 @@ https://github.com/containerd/cri/blob/master/docs/config.md
   runtime_path = "${PATH_TO_BINARY}"
 ```
 
-더 자세한 것은 CRI-O의 [설정 문서](https://raw.githubusercontent.com/cri-o/cri-o/9f11d1d/docs/crio.conf.5.md)를 본다.
+더 자세한 것은 CRI-O의 [설정 문서](https://github.com/cri-o/cri-o/blob/master/docs/crio.conf.5.md)를 본다.
 
 ## 스케줄
 
@@ -175,5 +175,5 @@ PodOverhead를 사용하려면, PodOverhead [기능 게이트](/ko/docs/referenc
 
 - [런타임클래스 설계](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.md)
 - [런타임클래스 스케줄링 설계](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/585-runtime-class/README.md#runtimeclass-scheduling)
-- [파드 오버헤드](/ko/docs/concepts/configuration/pod-overhead/) 개념에 대해 읽기
-- [파드 오버헤드 기능 설계](https://github.com/kubernetes/enhancements/blob/master/keps/sig-node/20190226-pod-overhead.md)
+- [파드 오버헤드](/ko/docs/concepts/scheduling-eviction/pod-overhead/) 개념에 대해 읽기
+- [파드 오버헤드 기능 설계](https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/688-pod-overhead)

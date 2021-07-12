@@ -8,13 +8,15 @@ weight: 28
 
 
 <!--
-The kubelet is the primary "node agent" that runs on each node. It can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider.
+The kubelet is the primary "node agent" that runs on each
+node. It can register the node with the apiserver using one of: the hostname; a flag to override the hostname; or specific logic for a cloud provider.
 -->
 kubelet 是在每个 Node 节点上运行的主要 “节点代理”。它可以使用以下之一向 apiserver 注册：
 主机名（hostname）；覆盖主机名的参数；某云驱动的特定逻辑。
 
 <!--
-The kubelet works in terms of a PodSpec. A PodSpec is a YAML or JSON object that describes a pod. The kubelet takes a set of PodSpecs that are provided through various mechanisms (primarily through the apiserver) and ensures that the containers described in those PodSpecs are running and healthy. The kubelet doesn't manage containers which were not created by Kubernetes.
+The kubelet works in terms of a PodSpec. A PodSpec is a YAML or JSON object
+that describes a pod. The kubelet takes a set of PodSpecs that are provided through various mechanisms (primarily through the apiserver) and ensures that the containers described in those PodSpecs are running and healthy. The kubelet doesn't manage containers which were not created by Kubernetes.
 -->
 kubelet 是基于 PodSpec 来工作的。每个 PodSpec 是一个描述 Pod 的 YAML 或 JSON 对象。
 kubelet 接受通过各种机制（主要是通过 apiserver）提供的一组 PodSpec，并确保这些
@@ -431,9 +433,9 @@ kubelet 将从此标志所指的文件中加载其初始配置。此路径可以
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-&lt;Warning: Beta feature&gt; Set the maximum number of container log files that can be present for a container. The number must be &ge; 2. This flag can only be used with `--container-runtime=remote`. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
+Set the maximum number of container log files that can be present for a container. The number must be &ge; 2. This flag can only be used with `--container-runtime=remote`. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
 -->
-&lt;警告：beta 特性&gt; 设置容器的日志文件个数上限。此值必须不小于 2。
+设置容器的日志文件个数上限。此值必须不小于 2。
 此标志只能与 <code>--container-runtime=remote</code> 标志一起使用。
 已弃用：应在 <code>--config</code> 所给的配置文件中进行设置。
 （<a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubelet-config-file/">进一步了解</a>）
@@ -446,10 +448,9 @@ kubelet 将从此标志所指的文件中加载其初始配置。此路径可以
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-&lt;Warning: Beta feature&gt; Set the maximum size (e.g. 10Mi) of container log file before it is rotated. This flag can only be used with `--container-runtime=remote`.  (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
+Set the maximum size (e.g. 10Mi) of container log file before it is rotated. This flag can only be used with `--container-runtime=remote`.  (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
 -->
-&lt;警告：beta 特性&gt; 设置容器日志文件在轮换生成新文件时之前的最大值
-（例如，<code>10Mi</code>）。
+设置容器日志文件在轮换生成新文件时之前的最大值（例如，<code>10Mi</code>）。
 此标志只能与 <code>--container-runtime=remote</code> 标志一起使用。
 已弃用：应在 <code>--config</code> 所给的配置文件中进行设置。
 （<a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubelet-config-file/">进一步了解</a>）
@@ -892,7 +893,6 @@ AppArmor=true|false (BETA - default=true)<br/>
 BalanceAttachedNodeVolumes=true|false (ALPHA - default=false)<br/>
 BoundServiceAccountTokenVolume=true|false (ALPHA - default=false)<br/>
 CPUManager=true|false (BETA - default=true)<br/>
-CRIContainerLogRotation=true|false (BETA - default=true)<br/>
 CSIInlineVolume=true|false (BETA - default=true)<br/>
 CSIMigration=true|false (BETA - default=true)<br/>
 CSIMigrationAWS=true|false (BETA - default=false)<br/>
@@ -984,7 +984,6 @@ AppArmor=true|false (BETA - 默认值为 true)<br/>
 BalanceAttachedNodeVolumes=true|false (ALPHA - 默认值为 false)<br/>
 BoundServiceAccountTokenVolume=true|false (ALPHA - 默认值为 false)<br/>
 CPUManager=true|false (BETA - 默认值为 true)<br/>
-CRIContainerLogRotation=true|false (BETA - 默认值为 true)<br/>
 CSIInlineVolume=true|false (BETA - 默认值为 true)<br/>
 CSIMigration=true|false (BETA - 默认值为 true)<br/>
 CSIMigrationAWS=true|false (BETA - 默认值为 false)<br/>
@@ -1814,10 +1813,12 @@ The CIDR to use for pod IP addresses, only used in standalone mode. In cluster m
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-The image whose network/IPC namespaces containers in each pod will use. This docker-specific flag only works when container-runtime is set to `docker`.
+ Specified image will not be pruned by the image garbage collector. When container-runtime is set to `docker`, all containers in each pod will use the network/ipc namespaces from this image. Other CRI implementations have their own configuration to set this image.
 -->
-指定基础设施镜像，Pod 内所有容器与其共享网络和 IPC 命名空间。
-仅当容器运行环境设置为 <code>docker</code> 时，此特定于 docker 的参数才有效。
+所指定的镜像不会被镜像垃圾收集器删除。
+当容器运行环境设置为 <code>docker</code> 时，各个 Pod 中的所有容器都会
+使用此镜像中的网络和 IPC 名字空间。
+其他 CRI 实现有自己的配置来设置此镜像。
 </td>
 </tr>
 

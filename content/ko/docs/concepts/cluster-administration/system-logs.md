@@ -20,7 +20,7 @@ weight: 60
 klog는 쿠버네티스의 로깅 라이브러리다. [klog](https://github.com/kubernetes/klog)
 는 쿠버네티스 시스템 컴포넌트의 로그 메시지를 생성한다.
 
-klog 설정에 대한 더 많은 정보는, [커맨드라인 툴](/docs/reference/command-line-tools-reference/)을 참고한다.
+klog 설정에 대한 더 많은 정보는, [커맨드라인 툴](/ko/docs/reference/command-line-tools-reference/)을 참고한다.
 
 klog 네이티브 형식 예 : 
 ```
@@ -61,7 +61,7 @@ I1025 00:15:15.525108       1 controller_utils.go:116] "Pod status updated" pod=
 
 {{<warning >}}
 
-JSON 출력은 많은 표준 klog 플래그를 지원하지 않는다. 지원하지 않는 klog 플래그 목록은, [커맨드라인 툴](/docs/reference/command-line-tools-reference/)을 참고한다.
+JSON 출력은 많은 표준 klog 플래그를 지원하지 않는다. 지원하지 않는 klog 플래그 목록은, [커맨드라인 툴](/ko/docs/reference/command-line-tools-reference/)을 참고한다.
 
 모든 로그가 JSON 형식으로 작성되는 것은 아니다(예: 프로세스 시작 중). 로그를 파싱하려는 경우
 JSON 형식이 아닌 로그 행을 처리할 수 있는지 확인해야 한다.
@@ -143,6 +143,6 @@ systemd를 사용하는 시스템에서는, kubelet과 컨테이너 런타임은
 
 ## {{% heading "whatsnext" %}}
 
-* [쿠버네티스 로깅 아키텍처](/docs/concepts/cluster-administration/logging/) 알아보기
+* [쿠버네티스 로깅 아키텍처](/ko/docs/concepts/cluster-administration/logging/) 알아보기
 * [구조화된 로깅](https://github.com/kubernetes/enhancements/tree/master/keps/sig-instrumentation/1602-structured-logging) 알아보기
 * [로깅 심각도(serverity) 규칙](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md) 알아보기

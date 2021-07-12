@@ -140,7 +140,7 @@ The local persistent volume beta feature is not complete by far. Some notable en
 
 ## Complementary features
 
-[Pod priority and preemption](/docs/concepts/configuration/pod-priority-preemption/) is another Kubernetes feature that is complementary to local persistent volumes. When your application uses local storage, it must be scheduled to the specific node where the local volume resides. You can give your local storage workload high priority so if that node ran out of room to run your workload, Kubernetes can preempt lower priority workloads to make room for it.
+[Pod priority and preemption](/docs/concepts/scheduling-eviction/pod-priority-preemption/) is another Kubernetes feature that is complementary to local persistent volumes. When your application uses local storage, it must be scheduled to the specific node where the local volume resides. You can give your local storage workload high priority so if that node ran out of room to run your workload, Kubernetes can preempt lower priority workloads to make room for it.
 
 [Pod disruption budget](/docs/concepts/workloads/pods/disruptions/) is also very important for those workloads that must maintain quorum. Setting a disruption budget for your workload ensures that it does not drop below quorum due to voluntary disruption events, such as node drains during upgrade.
 

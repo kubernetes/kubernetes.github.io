@@ -5,7 +5,7 @@ min-kubernetes-server-version: v1.21
 weight: 30
 ---
 
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
 <!-- overview -->
 
@@ -37,11 +37,6 @@ You should already be familiar with the basic,
 non-parallel, use of [Job](/docs/concepts/workloads/controllers/job/).
 
 {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
-
-To be able to create Indexed Jobs, make sure to enable the `IndexedJob`
-[feature gate](/docs/reference/command-line-tools-reference/feature-gates/)
-on the [API server](/docs/reference/command-line-tools-reference/kube-apiserver/)
-and the [controller manager](/docs/reference/command-line-tools-reference/kube-controller-manager/).
 
 <!-- steps -->
 

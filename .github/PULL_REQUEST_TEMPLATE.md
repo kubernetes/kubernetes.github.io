@@ -11,7 +11,7 @@
  For overall help on editing and submitting pull requests, visit:
   https://kubernetes.io/docs/contribute/start/#improve-existing-content
 
- Use the default base branch, “master”, if you're documenting existing
+ Use the default base branch, “main”, if you're documenting existing
  features in the English localization.
 
  If you're working on a different localization (not English), see

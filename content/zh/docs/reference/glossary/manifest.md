@@ -29,4 +29,4 @@ tags:
 <!-- 
 A manifest specifies the desired state of an object that Kubernetes will maintain when you apply the manifest. Each configuration file can contain multiple manifests.
  -->
-清单指定了在应用该清单时 Kubrenetes 将维护的对象的期望状态。每个配置文件可包含多个清单。
+清单指定了在应用该清单时 kubernetes 将维护的对象的期望状态。每个配置文件可包含多个清单。

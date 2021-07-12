@@ -19,14 +19,15 @@ Each stage is exposed in a extension point. Plugins provide scheduling behaviors
 by implementing one or more of these extension points.
 
 You can specify scheduling profiles by running `kube-scheduler --config <filename>`,
-using the 
-[KubeSchedulerConfiguration (v1beta1)](/docs/reference/config-api/kube-scheduler-config.v1beta1/)
+using the
+KubeSchedulerConfiguration ([v1beta1](/docs/reference/config-api/kube-scheduler-config.v1beta1/)
+or [v1beta2](/docs/reference/config-api/kube-scheduler-config.v1beta2/)).
 struct.
 
 A minimal configuration looks as follows:
 
 ```yaml
-apiVersion: kubescheduler.config.k8s.io/v1beta1
+apiVersion: kubescheduler.config.k8s.io/v1beta2
 kind: KubeSchedulerConfiguration
 clientConnection:
   kubeconfig: /etc/srv/kubernetes/kube-scheduler/kubeconfig
@@ -48,38 +49,41 @@ You can configure a single instance of `kube-scheduler` to run
 Scheduling happens in a series of stages that are exposed through the following
 extension points:
 
-1. `QueueSort`: These plugins provide an ordering function that is used to
+1. `queueSort`: These plugins provide an ordering function that is used to
    sort pending Pods in the scheduling queue. Exactly one queue sort plugin
    may be enabled at a time.
-1. `PreFilter`: These plugins are used to pre-process or check information
+1. `preFilter`: These plugins are used to pre-process or check information
    about a Pod or the cluster before filtering. They can mark a pod as
    unschedulable.
-1. `Filter`: These plugins are the equivalent of Predicates in a scheduling
+1. `filter`: These plugins are the equivalent of Predicates in a scheduling
    Policy and are used to filter out nodes that can not run the Pod. Filters
    are called in the configured order. A pod is marked as unschedulable if no
    nodes pass all the filters.
-1. `PreScore`: This is an informational extension point that can be used
+1. `postFilter`: These plugins are called in their configured order when no
+   feasible nodes were found for the pod. If any `postFilter` plugin marks the
+   Pod _schedulable_, the remaining plugins are not called.
+1. `preScore`: This is an informational extension point that can be used
    for doing pre-scoring work.
-1. `Score`: These plugins provide a score to each node that has passed the
+1. `score`: These plugins provide a score to each node that has passed the
    filtering phase. The scheduler will then select the node with the highest
    weighted scores sum.
-1. `Reserve`: This is an informational extension point that notifies plugins
+1. `reserve`: This is an informational extension point that notifies plugins
    when resources have been reserved for a given Pod. Plugins also implement an
    `Unreserve` call that gets called in the case of failure during or after
    `Reserve`.
-1. `Permit`: These plugins can prevent or delay the binding of a Pod.
-1. `PreBind`: These plugins perform any work required before a Pod is bound.
-1. `Bind`: The plugins bind a Pod to a Node. Bind plugins are called in order
+1. `permit`: These plugins can prevent or delay the binding of a Pod.
+1. `preBind`: These plugins perform any work required before a Pod is bound.
+1. `bind`: The plugins bind a Pod to a Node. `bind` plugins are called in order
    and once one has done the binding, the remaining plugins are skipped. At
    least one bind plugin is required.
-1. `PostBind`: This is an informational extension point that is called after
+1. `postBind`: This is an informational extension point that is called after
    a Pod has been bound.
 
 For each extension point, you could disable specific [default plugins](#scheduling-plugins)
 or enable your own. For example:
 
 ```yaml
-apiVersion: kubescheduler.config.k8s.io/v1beta1
+apiVersion: kubescheduler.config.k8s.io/v1beta2
 kind: KubeSchedulerConfiguration
 profiles:
   - plugins:
@@ -99,106 +103,109 @@ desired.
    
 ### Scheduling plugins
 
-1. `UnReserve`: This is an informational extension point that is called if
-   a Pod is rejected after being reserved and put on hold by a `Permit` plugin.
-
-## Scheduling plugins
-
 The following plugins, enabled by default, implement one or more of these
 extension points:
 
-- `SelectorSpread`: Favors spreading across nodes for Pods that belong to
-  {{< glossary_tooltip text="Services" term_id="service" >}},
-  {{< glossary_tooltip text="ReplicaSets" term_id="replica-set" >}} and
-  {{< glossary_tooltip text="StatefulSets" term_id="statefulset" >}}.
-  Extension points: `PreScore`, `Score`.
 - `ImageLocality`: Favors nodes that already have the container images that the
   Pod runs.
-  Extension points: `Score`.
+  Extension points: `score`.
 - `TaintToleration`: Implements
   [taints and tolerations](/docs/concepts/scheduling-eviction/taint-and-toleration/).
-  Implements extension points: `Filter`, `Prescore`, `Score`.
+  Implements extension points: `filter`, `preScore`, `score`.
 - `NodeName`: Checks if a Pod spec node name matches the current node.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `NodePorts`: Checks if a node has free ports for the requested Pod ports.
-  Extension points: `PreFilter`, `Filter`.
+  Extension points: `preFilter`, `filter`.
 - `NodePreferAvoidPods`: Scores nodes according to the node
   {{< glossary_tooltip text="annotation" term_id="annotation" >}}
   `scheduler.alpha.kubernetes.io/preferAvoidPods`.
-  Extension points: `Score`.
+  Extension points: `score`.
 - `NodeAffinity`: Implements
   [node selectors](/docs/concepts/scheduling-eviction/assign-pod-node/#nodeselector)
   and [node affinity](/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity).
-  Extension points: `Filter`, `Score`.
+  Extension points: `filter`, `score`.
 - `PodTopologySpread`: Implements
   [Pod topology spread](/docs/concepts/workloads/pods/pod-topology-spread-constraints/).
-  Extension points: `PreFilter`, `Filter`, `PreScore`, `Score`.
+  Extension points: `preFilter`, `filter`, `preScore`, `score`.
 - `NodeUnschedulable`: Filters out nodes that have `.spec.unschedulable` set to
   true.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `NodeResourcesFit`: Checks if the node has all the resources that the Pod is
-  requesting.
-  Extension points: `PreFilter`, `Filter`.
+  requesting. The score can use one of three strategies: `LeastAllocated`
+  (default), `MostAllocated` and `RequestedToCapacityRatio`.
+  Extension points: `preFilter`, `filter`, `score`.
 - `NodeResourcesBalancedAllocation`: Favors nodes that would obtain a more
   balanced resource usage if the Pod is scheduled there.
-  Extension points: `Score`.
-- `NodeResourcesLeastAllocated`: Favors nodes that have a low allocation of
-  resources.
-  Extension points: `Score`.
+  Extension points: `score`.
 - `VolumeBinding`: Checks if the node has or if it can bind the requested
   {{< glossary_tooltip text="volumes" term_id="volume" >}}.
-  Extension points: `PreFilter`, `Filter`, `Reserve`, `PreBind`, `Score`.
+  Extension points: `preFilter`, `filter`, `reserve`, `preBind`, `score`.
   {{< note >}}
-  `Score` extension point is enabled when `VolumeCapacityPriority` feature is
+  `score` extension point is enabled when `VolumeCapacityPriority` feature is
   enabled. It prioritizes the smallest PVs that can fit the requested volume
   size.
   {{< /note >}}
 - `VolumeRestrictions`: Checks that volumes mounted in the node satisfy
   restrictions that are specific to the volume provider.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `VolumeZone`: Checks that volumes requested satisfy any zone requirements they
   might have.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `NodeVolumeLimits`: Checks that CSI volume limits can be satisfied for the
   node.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `EBSLimits`: Checks that AWS EBS volume limits can be satisfied for the node.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `GCEPDLimits`: Checks that GCP-PD volume limits can be satisfied for the node.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `AzureDiskLimits`: Checks that Azure disk volume limits can be satisfied for
   the node.
-  Extension points: `Filter`.
+  Extension points: `filter`.
 - `InterPodAffinity`: Implements
   [inter-Pod affinity and anti-affinity](/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity).
-  Extension points: `PreFilter`, `Filter`, `PreScore`, `Score`.
+  Extension points: `preFilter`, `filter`, `preScore`, `score`.
 - `PrioritySort`: Provides the default priority based sorting.
-  Extension points: `QueueSort`.
+  Extension points: `queueSort`.
 - `DefaultBinder`: Provides the default binding mechanism.
-  Extension points: `Bind`.
+  Extension points: `bind`.
 - `DefaultPreemption`: Provides the default preemption mechanism.
-  Extension points: `PostFilter`.
+  Extension points: `postFilter`.
   
 You can also enable the following plugins, through the component config APIs,
 that are not enabled by default:
 
+- `SelectorSpread`: Favors spreading across nodes for Pods that belong to
+  {{< glossary_tooltip text="Services" term_id="service" >}},
+  {{< glossary_tooltip text="ReplicaSets" term_id="replica-set" >}} and
+  {{< glossary_tooltip text="StatefulSets" term_id="statefulset" >}}.
+  Extension points: `preScore`, `score`.
+- `CinderLimits`: Checks that [OpenStack Cinder](https://docs.openstack.org/cinder/)
+  volume limits can be satisfied for the node.
+  Extension points: `filter`.
+  
+The following plugins are deprecated and can only be enabled in a `v1beta1`
+configuration:
+
+- `NodeResourcesLeastAllocated`: Favors nodes that have a low allocation of
+  resources.
+  Extension points: `score`.
 - `NodeResourcesMostAllocated`: Favors nodes that have a high allocation of
   resources.
-  Extension points: `Score`.
+  Extension points: `score`.
 - `RequestedToCapacityRatio`: Favor nodes according to a configured function of
   the allocated resources.
-  Extension points: `Score`.
-- `CinderVolume`: Checks that OpenStack Cinder volume limits can be satisfied
-  for the node.
-  Extension points: `Filter`.
+  Extension points: `score`.
 - `NodeLabel`: Filters and / or scores a node according to configured
   {{< glossary_tooltip text="label(s)" term_id="label" >}}.
-  Extension points: `Filter`, `Score`.
+  Extension points: `filter`, `score`.
 - `ServiceAffinity`: Checks that Pods that belong to a
   {{< glossary_tooltip term_id="service" >}} fit in a set of nodes defined by
   configured labels. This plugin also favors spreading the Pods belonging to a
   Service across nodes.
-  Extension points: `PreFilter`, `Filter`, `Score`.
+  Extension points: `preFilter`, `filter`, `score`.
+- `NodePreferAvoidPods`: Prioritizes nodes according to the node annotation
+  `scheduler.alpha.kubernetes.io/preferAvoidPods`.
+  Extension points: `score`.
   
 ### Multiple profiles
 
@@ -211,7 +218,7 @@ profiles: one with the default plugins and one with all scoring plugins
 disabled.
 
 ```yaml
-apiVersion: kubescheduler.config.k8s.io/v1beta1
+apiVersion: kubescheduler.config.k8s.io/v1beta2
 kind: KubeSchedulerConfiguration
 profiles:
   - schedulerName: default-scheduler
@@ -243,7 +250,7 @@ list.
 {{< /note >}}
 
 {{< note >}}
-All profiles must use the same plugin in the QueueSort extension point and have
+All profiles must use the same plugin in the `queueSort` extension point and have
 the same configuration parameters (if applicable). This is because the scheduler
 only has one pending pods queue.
 {{< /note >}}
@@ -252,5 +259,6 @@ only has one pending pods queue.
 
 * Read the [kube-scheduler reference](/docs/reference/command-line-tools-reference/kube-scheduler/)
 * Learn about [scheduling](/docs/concepts/scheduling-eviction/kube-scheduler/)
+* Read the [kube-scheduler configuration (v1beta2)](/docs/reference/config-api/kube-scheduler-config.v1beta2/) reference
 * Read the [kube-scheduler configuration (v1beta1)](/docs/reference/config-api/kube-scheduler-config.v1beta1/) reference
 

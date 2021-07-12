@@ -22,7 +22,7 @@ To learn how to install and use Node Problem Detector, see
 [Node Problem Detector project documentation](https://github.com/kubernetes/node-problem-detector).
 -->
 
-*节点问题检测器（Node Problem Detector）*是一个守护程序，用于监视和报告节点的健康状况。
+*节点问题检测器（Node Problem Detector）* 是一个守护程序，用于监视和报告节点的健康状况。
 你可以将节点问题探测器以 `DaemonSet` 或独立守护程序运行。
 节点问题检测器从各种守护进程收集节点问题，并以
 [NodeCondition](/zh/docs/concepts/architecture/nodes/#condition) 和
@@ -203,7 +203,7 @@ Kernel monitor watches the kernel log and detects known kernel issues following 
 -->
 ## 内核监视器
 
-*内核监视器（Kernel Monitor）*是节点问题检测器中支持的系统日志监视器守护进程。
+*内核监视器（Kernel Monitor）* 是节点问题检测器中支持的系统日志监视器守护进程。
 内核监视器观察内核日志并根据预定义规则检测已知的内核问题。
 
 <!-- 

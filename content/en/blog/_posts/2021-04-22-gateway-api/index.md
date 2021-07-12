@@ -186,7 +186,7 @@ metadata:
 
 ### Role Oriented Design
 
-When you put it all together, you have a single load balancing infrastructure that can be safely shared by multiple teams. The Gateway API not only a more expressive API for advanced routing, but is also a role-oriented API, designed for multi-tenant infrastructure. Its extensibility ensures that it will evolve for future use-cases while preserving portability. Ultimately these characteristics will allow Gateway API to adapt to different organizational models and implementations well into the future.
+When you put it all together, you have a single load balancing infrastructure that can be safely shared by multiple teams. The Gateway API is not only a more expressive API for advanced routing, but is also a role-oriented API, designed for multi-tenant infrastructure. Its extensibility ensures that it will evolve for future use-cases while preserving portability. Ultimately these characteristics will allow the Gateway API to adapt to different organizational models and implementations well into the future.
 
 ### Try it out and get involved
 

@@ -29,7 +29,7 @@ GitHub 계정을 가진 누구나 쿠버네티스에 기여할 수 있다. SIG D
   이슈를 올린다.
 - 풀 리퀘스트에 대해 구속력 없는 피드백을 제공한다.
 - 현지화에 기여한다.
-- [슬랙](http://slack.k8s.io/) 또는
+- [슬랙](https://slack.k8s.io/) 또는
   [SIG docs 메일링 리스트](https://groups.google.com/forum/#!forum/kubernetes-sig-docs)에 개선을 제안한다.
 
 [CLA에 서명](/ko/docs/contribute/new-content/overview/#sign-the-cla) 후에 누구나 다음을 할 수 있다.
@@ -203,7 +203,7 @@ PR은 자동으로 병합된다. SIG Docs 승인자는 추가적인 기술 리�
 - 주간 로테이션을 위해
   [PR Wrangler 로테이션 스케줄](https://github.com/kubernetes/website/wiki/PR-Wranglers)에
   참여한다. SIG Docs는 모든 승인자들이 이 로테이션에 참여할 것으로 기대한다. 자세한 내용은
-  [PR 랭글러(PR wrangler)](/ko/docs/contribute/participating/pr-wranglers/)를
+  [PR 랭글러(PR wrangler)](/ko/docs/contribute/participate/pr-wranglers/)를
   참고한다.
 
 ## 승인자 되기
@@ -231,4 +231,4 @@ PR은 자동으로 병합된다. SIG Docs 승인자는 추가적인 기술 리�
 
 ## {{% heading "whatsnext" %}}
 
-- 모든 승인자가 교대로 수행하는 역할인 [PR 랭글러](/ko/docs/contribute/participating/pr-wranglers)에 대해 읽어보기
+- 모든 승인자가 교대로 수행하는 역할인 [PR 랭글러](/ko/docs/contribute/participate/pr-wranglers)에 대해 읽어보기

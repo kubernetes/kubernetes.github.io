@@ -281,5 +281,5 @@ tolerations:
 
 ## {{% heading "whatsnext" %}}
 
-* [리소스 부족 다루기](/docs/tasks/administer-cluster/out-of-resource/)와 어떻게 구성하는지에 대해 알아보기
-* [파드 우선순위](/ko/docs/concepts/configuration/pod-priority-preemption/)에 대해 알아보기
+* [리소스 부족 다루기](/docs/concepts/scheduling-eviction/node-pressure-eviction/)와 어떻게 구성하는지에 대해 알아보기
+* [파드 우선순위](/ko/docs/concepts/scheduling-eviction/pod-priority-preemption/)에 대해 알아보기

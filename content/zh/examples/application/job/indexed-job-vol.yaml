@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 'indexed-job'
+spec:
+  completions: 5
+  parallelism: 3
+  completionMode: Indexed
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: 'worker'
+        image: 'docker.io/library/busybox'
+        command:
+        - "rev"
+        - "/input/data.txt"
+        volumeMounts:
+        - mountPath: /input
+          name: input
+      volumes:
+      - name: input
+        downwardAPI:
+          items:
+          - path: "data.txt"
+            fieldRef:
+              fieldPath: metadata.annotations['batch.kubernetes.io/job-completion-index']

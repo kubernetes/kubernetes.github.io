@@ -12,7 +12,7 @@ content_type: concept
 <!-- body -->
 ## Kubectl
 
-[`kubectl`](/ko/docs/tasks/tools/install-kubectl/)은 쿠버네티스를 위한 커맨드라인 툴이며, 쿠버네티스 클러스터 매니저을 제어한다.
+[`kubectl`](/ko/docs/tasks/tools/#kubectl)은 쿠버네티스를 위한 커맨드라인 툴이며, 쿠버네티스 클러스터 매니저을 제어한다.
 
 ## Kubeadm
 

@@ -89,7 +89,7 @@ kubectl edit SampleDB/example-database # 手動でいくつかの設定を変更
 * 自前のオペレーターを書くために既存のツールを使います、例:
   * [KUDO](https://kudo.dev/)（Kubernetes Universal Declarative Operator）を使います
   * [kubebuilder](https://book.kubebuilder.io/)を使います
-  * [Metacontroller](https://metacontroller.app/)を自分で実装したWebHooksと一緒に使います
+  * [Metacontroller](https://metacontroller.github.io/metacontroller/intro.html)を自分で実装したWebHooksと一緒に使います
   * [Operator Framework](https://operatorframework.io)を使います
 * 自前のオペレーターを他のユーザーのために[公開](https://operatorhub.io/)します
 * オペレーターパターンを紹介している[CoreOSオリジナル記事](https://coreos.com/blog/introducing-operators.html)を読みます

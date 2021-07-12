@@ -1038,12 +1038,12 @@ metadata:
 provisioner: kubernetes.io/azure-disk
 parameters:
   storageaccounttype: Standard_LRS
-  kind: Shared
+  kind: managed
 ```
 
 <!--
 * `storageaccounttype`: Azure storage account Sku tier. Default is empty.
-* `kind`: Possible values are `shared` (default), `dedicated`, and `managed`.
+* `kind`: Possible values are `shared`, `dedicated`, and `managed` (default).
   When `kind` is `shared`, all unmanaged disks are created in a few shared
   storage accounts in the same resource group as the cluster. When `kind` is
   `dedicated`, a new dedicated storage account will be created for the new
@@ -1055,7 +1055,7 @@ parameters:
    placed in the same resource group as the current Kubernetes cluster.
 -->
 * `storageaccounttype`：Azure 存储帐户 Sku 层。默认为空。
-* `kind`：可能的值是 `shared`（默认）、`dedicated` 和 `managed`。
+* `kind`：可能的值是 `shared`、`dedicated` 和 `managed`（默认）。
   当 `kind` 的值是 `shared` 时，所有非托管磁盘都在集群的同一个资源组中的几个共享存储帐户中创建。
   当 `kind` 的值是 `dedicated` 时，将为在集群的同一个资源组中新的非托管磁盘创建新的专用存储帐户。
 * `resourceGroup`: 指定要创建 Azure 磁盘所属的资源组。必须是已存在的资源组名称。

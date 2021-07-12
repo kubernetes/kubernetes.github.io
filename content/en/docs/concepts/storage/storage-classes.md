@@ -189,7 +189,7 @@ and pre-created PVs, but you'll need to look at the documentation for a specific
 to see its supported topology keys and examples.
 
 {{< note >}}
-   If you choose to use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec
+   If you choose to use `WaitForFirstConsumer`, do not use `nodeName` in the Pod spec
    to specify node affinity. If `nodeName` is used in this case, the scheduler will be bypassed and PVC will remain in `pending` state.
 
    Instead, you can use node selector for hostname in this case as shown below.
@@ -658,11 +658,11 @@ metadata:
 provisioner: kubernetes.io/azure-disk
 parameters:
   storageaccounttype: Standard_LRS
-  kind: Shared
+  kind: managed
 ```
 
 * `storageaccounttype`: Azure storage account Sku tier. Default is empty.
-* `kind`: Possible values are `shared` (default), `dedicated`, and `managed`.
+* `kind`: Possible values are `shared`, `dedicated`, and `managed` (default).
   When `kind` is `shared`, all unmanaged disks are created in a few shared
   storage accounts in the same resource group as the cluster. When `kind` is
   `dedicated`, a new dedicated storage account will be created for the new

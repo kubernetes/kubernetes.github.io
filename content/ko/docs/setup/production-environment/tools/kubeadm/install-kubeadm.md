@@ -169,7 +169,7 @@ kubeadm은 `kubelet` 또는 `kubectl` 을 설치하거나 관리하지 **않으�
 
 버전 차이에 대한 자세한 내용은 다음을 참고한다.
 
-* 쿠버네티스 [버전 및 버전-차이 정책](/docs/setup/release/version-skew-policy/)
+* 쿠버네티스 [버전 및 버전-차이 정책](/ko/releases/version-skew-policy/)
 * Kubeadm 관련 [버전 차이 정책](/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#version-skew-policy)
 
 {{< tabs name="k8s_install" >}}
