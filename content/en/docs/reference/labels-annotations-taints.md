@@ -323,3 +323,63 @@ Sets this taint on a node to mark it as unusable, when kubelet is started with t
 Example: `node.cloudprovider.kubernetes.io/shutdown:NoSchedule`
 
 If a Node is in a cloud provider specified shutdown state, the Node gets tainted accordingly with `node.cloudprovider.kubernetes.io/shutdown` and the taint effect of `NoSchedule`.
+
+## pod-security.kubernetes.io/enforce
+
+Example: `pod-security.kubernetes.io/enforce: baseline`
+
+Used on: Namespace
+
+Value MUST be one of `privileged`, `baseline`, or `restricted` which correspond to [Pod Security Standard](/docs/concepts/security/pod-security-standards) levels. Specifically, the `enforce` label _prohibits_ the creation of any Pod in the labeled Namespace which does not meet the requirements outlined in the indicated level.
+
+See [Enforcing Pod Security at the Namespace Level](/docs/concepts/security/namespace-controls-pod-security) for more information.
+
+## pod-security.kubernetes.io/enforce-version
+
+Example: `pod-security.kubernetes.io/enforce-version: latest`
+
+Used on: Namespace
+
+Value MUST be a valid Kubernetes version label, such as `latest` or `v<MAJOR>.<MINOR>`. This determines the version of the [Pod Security Standard](/docs/concepts/security/pod-security-standards) policies to apply when validating a submitted Pod.
+
+See [Enforcing Pod Security at the Namespace Level](/docs/concepts/security/namespace-controls-pod-security) for more information.
+
+## pod-security.kubernetes.io/audit
+
+Example: `pod-security.kubernetes.io/audit: baseline`
+
+Used on: Namespace
+
+Value MUST be one of `privileged`, `baseline`, or `restricted` which correspond to [Pod Security Standard](/docs/concepts/security/pod-security-standards) levels. Specifically, the `audit` label _allows_ the creation of a Pod in the labeled Namespace which does not meet the requirements outlined in the indicated level, but adds an audit annotation to that Pod.
+
+See [Enforcing Pod Security at the Namespace Level](/docs/concepts/security/namespace-controls-pod-security) for more information.
+
+## pod-security.kubernetes.io/audit-version
+
+Example: `pod-security.kubernetes.io/audit-version: latest`
+
+Used on: Namespace
+
+Value MUST be a valid Kubernetes version label, such as `latest` or `v<MAJOR>.<MINOR>`. This determines the version of the [Pod Security Standard](/docs/concepts/security/pod-security-standards) policies to apply when validating a submitted Pod.
+
+See [Enforcing Pod Security at the Namespace Level](/docs/concepts/security/namespace-controls-pod-security) for more information.
+
+## pod-security.kubernetes.io/warn
+
+Example: `pod-security.kubernetes.io/warn: baseline`
+
+Used on: Namespace
+
+Value MUST be one of `privileged`, `baseline`, or `restricted` which correspond to [Pod Security Standard](/docs/concepts/security/pod-security-standards) levels. Specifically, the `warn` label _allows_ the creation of a Pod in the labeled Namespace which does not meet the requirements outlined in the indicated level, but returns a warning to the user after doing so.
+
+See [Enforcing Pod Security at the Namespace Level](/docs/concepts/security/namespace-controls-pod-security) for more information.
+
+## pod-security.kubernetes.io/warn-version
+
+Example: `pod-security.kubernetes.io/warn-version: latest`
+
+Used on: Namespace
+
+Value MUST be a valid Kubernetes version label, such as `latest` or `v<MAJOR>.<MINOR>`. This determines the version of the [Pod Security Standard](/docs/concepts/security/pod-security-standards) policies to apply when validating a submitted Pod.
+
+See [Enforcing Pod Security at the Namespace Level](/docs/concepts/security/namespace-controls-pod-security) for more information.
