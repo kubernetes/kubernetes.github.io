@@ -228,6 +228,16 @@ and Ready or completely terminated prior to launching or terminating another
 Pod. This option only affects the behavior for scaling operations. Updates are not
 affected.
 
+#### Minimum Ready Seconds
+
+{{< feature-state for_k8s_version="v1.22" state="alpha" >}}
+
+`.spec.minReadySeconds` is an optional field that specifies the minimum number of seconds for which a newly
+created Pod should be ready without any of its containers crashing, for it to be considered available.
+This defaults to 0 (the Pod will be considered available as soon as it is ready). To learn more about when
+a Pod is considered ready, see [Container Probes](/docs/concepts/workloads/pods/pod-lifecycle/#container-probes).
+
+Please note that this field only works if you enable the `StatefulSetMinReadySeconds` featuregate
 ## Update Strategies
 
 In Kubernetes 1.7 and later, StatefulSet's `.spec.updateStrategy` field allows you to configure
