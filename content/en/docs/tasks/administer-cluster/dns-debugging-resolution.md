@@ -288,6 +288,13 @@ This should probably be implemented eventually.
 
 Linux's libc (a.k.a. glibc) has a limit for the DNS `nameserver` records to 3 by default. What's more, for the glibc versions which are older than glibc-2.17-222 ([the new versions update see this issue](https://access.redhat.com/solutions/58028)), the allowed number of DNS `search` records has been limited to 6 ([see this bug from 2005](https://bugzilla.redhat.com/show_bug.cgi?id=168253)). Kubernetes needs to consume 1 `nameserver` record and 3 `search` records. This means that if a local installation already uses 3 `nameserver`s or uses more than 3 `search`es while your glibc version is in the affected list, some of those settings will be lost. To work around the DNS `nameserver` records limit, the node can run `dnsmasq`, which will provide more `nameserver` entries. You can also use kubelet's `--resolv-conf` flag. To fix the DNS `search` records limit, consider upgrading your linux distribution or upgrading to an unaffected version of glibc.
 
+{{< note >}}
+
+With [Expanded DNS Configuration](/docs/concepts/services-networking/dns-pod-service/#expanded-dns-configuration),
+Kubernetes allows more DNS `search` records.
+
+{{< /note >}}
+
 If you are using Alpine version 3.3 or earlier as your base image, DNS may not
 work properly due to a known issue with Alpine.
 Kubernetes [issue 30215](https://github.com/kubernetes/kubernetes/issues/30215)

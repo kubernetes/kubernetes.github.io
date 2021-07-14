@@ -268,6 +268,14 @@ Used on: Endpoints
 
 In Kubernetes clusters v1.21 (or later), the Endpoints controller adds this annotation to an Endpoints resource if it has more than 1000 endpoints. The annotation indicates that the Endpoints resource is over capacity.
 
+## scheduler.alpha.kubernetes.io/preferAvoidPods (deprecated) {#scheduleralphakubernetesio-preferavoidpods}
+
+Used on: Nodes
+
+This annotation requires the [NodePreferAvoidPods scheduling plugin](/docs/reference/scheduling/config/#scheduling-plugins)
+to be enabled. The plugin is deprecated since Kubernetes 1.22.
+Use [Taints and Tolerations](/docs/concepts/scheduling-eviction/taint-and-toleration/) instead.
+
 **The taints listed below are always used on Nodes**
 
 ## node.kubernetes.io/not-ready

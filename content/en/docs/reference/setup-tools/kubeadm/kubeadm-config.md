@@ -10,7 +10,7 @@ weight: 50
 <!-- overview -->
 During `kubeadm init`, kubeadm uploads the `ClusterConfiguration` object to your cluster
 in a ConfigMap called `kubeadm-config` in the `kube-system` namespace. This configuration is then read during
-`kubeadm join`, `kubeadm reset` and `kubeadm upgrade`. To view this ConfigMap call `kubeadm config view`.
+`kubeadm join`, `kubeadm reset` and `kubeadm upgrade`.
 
 You can use `kubeadm config print` to print the default configuration and `kubeadm config migrate` to
 convert your old configuration files to a newer version. `kubeadm config images list` and
@@ -20,7 +20,7 @@ For more information navigate to
 [Using kubeadm init with a configuration file](/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file)
 or [Using kubeadm join with a configuration file](/docs/reference/setup-tools/kubeadm/kubeadm-join/#config-file).
 
-You can also configure several kubelet-configuration options with `kubeadm init`. These options will be the same on any node in your cluster. 
+You can also configure several kubelet-configuration options with `kubeadm init`. These options will be the same on any node in your cluster.
 See [Configuring each kubelet in your cluster using kubeadm](/docs/setup/production-environment/tools/kubeadm/kubelet-integration/) for details.
 
 In Kubernetes v1.13.0 and later to list/pull kube-dns images instead of the CoreDNS image
@@ -28,7 +28,7 @@ the `--config` method described [here](/docs/reference/setup-tools/kubeadm/kubea
 has to be used.
 
 <!-- body -->
-## kubeadm config print {#cmd-config-view}
+## kubeadm config print {#cmd-config-print}
 
 {{< include "generated/kubeadm_config_print.md" >}}
 

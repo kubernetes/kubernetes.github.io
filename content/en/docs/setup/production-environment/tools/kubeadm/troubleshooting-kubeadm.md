@@ -355,23 +355,6 @@ kubectl -n kube-system patch ds kube-proxy -p='{ "spec": { "template": { "spec":
 
 The tracking issue for this problem is [here](https://github.com/kubernetes/kubeadm/issues/1027).
 
-## The NodeRegistration.Taints field is omitted when marshalling kubeadm configuration
-
-*Note: This [issue](https://github.com/kubernetes/kubeadm/issues/1358) only applies to tools that marshal kubeadm types (e.g. to a YAML configuration file). It will be fixed in kubeadm API v1beta2.*
-
-By default, kubeadm applies the `node-role.kubernetes.io/master:NoSchedule` taint to control-plane nodes.
-If you prefer kubeadm to not taint the control-plane node, and set `InitConfiguration.NodeRegistration.Taints` to an empty slice,
-the field will be omitted when marshalling. When the field is omitted, kubeadm applies the default taint.
-
-There are at least two workarounds:
-
-1. Use the `node-role.kubernetes.io/master:PreferNoSchedule` taint instead of an empty slice. [Pods will get scheduled on masters](/docs/concepts/scheduling-eviction/taint-and-toleration/), unless other nodes have capacity.
-
-2. Remove the taint after kubeadm init exits:
-```bash
-kubectl taint nodes NODE_NAME node-role.kubernetes.io/master:NoSchedule-
-```
-
 ## `/usr` is mounted read-only on nodes {#usr-mounted-read-only}
 
 On Linux distributions such as Fedora CoreOS or Flatcar Container Linux, the directory `/usr` is mounted as a read-only filesystem.
@@ -381,19 +364,19 @@ Kubernetes components like the kubelet and kube-controller-manager use the defau
 for the feature to work.
 
 To workaround this issue you can configure the flex-volume directory using the kubeadm
-[configuration file](https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2).
+[configuration file](https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3).
 
 On the primary control-plane Node (created using `kubeadm init`) pass the following
 file using `--config`:
 
 ```yaml
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: InitConfiguration
 nodeRegistration:
   kubeletExtraArgs:
     volume-plugin-dir: "/opt/libexec/kubernetes/kubelet-plugins/volume/exec/"
 ---
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
 controllerManager:
   extraArgs:
@@ -403,7 +386,7 @@ controllerManager:
 On joining Nodes:
 
 ```yaml
-apiVersion: kubeadm.k8s.io/v1beta2
+apiVersion: kubeadm.k8s.io/v1beta3
 kind: JoinConfiguration
 nodeRegistration:
   kubeletExtraArgs:

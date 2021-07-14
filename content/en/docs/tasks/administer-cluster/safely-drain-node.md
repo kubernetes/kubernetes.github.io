@@ -109,6 +109,28 @@ Pod can be thought of as a kind of policy-controlled DELETE operation on the Pod
 itself. To attempt an eviction (more precisely: to attempt to
 *create* an Eviction), you POST an attempted operation. Here's an example:
 
+{{< tabs name="Eviction_example" >}}
+{{% tab name="policy/v1" %}}
+{{< note >}}
+`policy/v1` Eviction is available in v1.22+. Use `policy/v1beta1` with prior releases.
+{{< /note >}}
+
+```json
+{
+  "apiVersion": "policy/v1",
+  "kind": "Eviction",
+  "metadata": {
+    "name": "quux",
+    "namespace": "default"
+  }
+}
+```
+{{% /tab %}}
+{{% tab name="policy/v1beta1" %}}
+{{< note >}}
+Deprecated in v1.22 in favor of `policy/v1`
+{{< /note >}}
+
 ```json
 {
   "apiVersion": "policy/v1beta1",
@@ -119,6 +141,8 @@ itself. To attempt an eviction (more precisely: to attempt to
   }
 }
 ```
+{{% /tab %}}
+{{< /tabs >}}
 
 You can attempt an eviction using `curl`:
 

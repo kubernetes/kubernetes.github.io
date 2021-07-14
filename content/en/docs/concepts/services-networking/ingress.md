@@ -224,13 +224,18 @@ reference additional implementation-specific configuration for this class.
 
 #### Namespace-scoped parameters
 
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
 `Parameters` field has a `scope` and `namespace` field that can be used to
 reference a namespace-specific resource for configuration of an Ingress class.
 `Scope` field defaults to `Cluster`, meaning, the default is cluster-scoped
 resource. Setting `Scope` to `Namespace` and setting the `Namespace` field
 will reference a parameters resource in a specific namespace:
+
+Namespace-scoped parameters avoid the need for a cluster-scoped CustomResourceDefinition
+for a parameters resource. This further avoids RBAC-related resources
+that would otherwise be required to grant permissions to cluster-scoped
+resources.
 
 {{< codenew file="service/networking/namespaced-params.yaml" >}}
 

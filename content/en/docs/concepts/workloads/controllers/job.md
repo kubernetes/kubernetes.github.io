@@ -187,14 +187,7 @@ parallelism, for a variety of reasons:
 
 ### Completion mode
 
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
-
-{{< note >}}
-To be able to create Indexed Jobs, make sure to enable the `IndexedJob`
-[feature gate](/docs/reference/command-line-tools-reference/feature-gates/)
-on the [API server](/docs/reference/command-line-tools-reference/kube-apiserver/)
-and the [controller manager](/docs/reference/command-line-tools-reference/kube-controller-manager/).
-{{< /note >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
 Jobs with _fixed completion count_ - that is, jobs that have non null
 `.spec.completions` - can have a completion mode that is specified in `.spec.completionMode`:

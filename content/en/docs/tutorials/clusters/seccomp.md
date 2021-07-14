@@ -3,9 +3,10 @@ reviewers:
 - hasheddan
 - pjbgf
 - saschagrunert
-title: Restrict a Container's Syscalls with Seccomp
+title: Restrict a Container's Syscalls with seccomp
 content_type: tutorial
 weight: 20
+min-kubernetes-server-version: v1.22
 ---
 
 <!-- overview -->
@@ -13,7 +14,7 @@ weight: 20
 {{< feature-state for_k8s_version="v1.19" state="stable" >}}
 
 Seccomp stands for secure computing mode and has been a feature of the Linux
-kernel since version 2.6.12.  It can be used to sandbox the privileges of a
+kernel since version 2.6.12. It can be used to sandbox the privileges of a
 process, restricting the calls it is able to make from userspace into the
 kernel. Kubernetes lets you automatically apply seccomp profiles loaded onto a
 Node to your Pods and containers.
@@ -35,15 +36,65 @@ profiles that give only the necessary privileges to your container processes.
 
 ## {{% heading "prerequisites" %}}
 
+{{< version-check >}}
+
 In order to complete all steps in this tutorial, you must install
 [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) and
 [kubectl](/docs/tasks/tools/). This tutorial will show examples
-with both alpha (pre-v1.19) and generally available seccomp functionality, so
+both alpha (new in v1.22) and generally available seccomp functionality. You should
 make sure that your cluster is [configured
 correctly](https://kind.sigs.k8s.io/docs/user/quick-start/#setting-kubernetes-version)
 for the version you are using.
 
 <!-- steps -->
+
+## Enable the use of `RuntimeDefault` as the default seccomp profile for all workloads
+
+{{< feature-state state="alpha" for_k8s_version="v1.22" >}}
+
+`SeccompDefault` is an optional kubelet
+[feature gate](/docs/reference/command-line-tools-reference/feature-gates) as
+well as corresponding `--seccomp-default`
+[command line flag](/docs/reference/command-line-tools-reference/kubelet).
+Both have to be enabled simultaneously to use the feature.
+
+If enabled, the kubelet will use the `RuntimeDefault` seccomp profile by default, which is 
+defined by the container runtime, instead of using the `Unconfined` (seccomp disabled) mode. 
+The default profiles aim to provide a strong set
+of security defaults while preserving the functionality of the workload. It is
+possible that the default profiles differ between container runtimes and their
+release versions, for example when comparing those from CRI-O and containerd.
+
+Some workloads may require a lower amount of syscall restrictions than others.
+This means that they can fail during runtime even with the `RuntimeDefault`
+profile. To mitigate such a failure, you can:
+
+- Run the workload explicitly as `Unconfined`.
+- Disable the `SeccompDefault` feature for the nodes. Also making sure that
+  workloads get scheduled on nodes where the feature is disabled.
+- Create a custom seccomp profile for the workload.
+
+If you were introducing this feature into production-like cluster, the Kubernetes project
+recommends that you enable this feature gate on a subset of your nodes and then
+test workload execution before rolling the change out cluster-wide.
+
+More detailed information about a possible upgrade and downgrade strategy can be
+found in the [related Kubernetes Enhancement Proposal (KEP)](https://github.com/kubernetes/enhancements/tree/a70cc18/keps/sig-node/2413-seccomp-by-default#upgrade--downgrade-strategy).
+
+Since the feature is in alpha state it is disabled per default. To enable it,
+pass the flags `--feature-gates=SeccompDefault=true --seccomp-default` to the
+`kubelet` CLI or enable it via the [kubelet configuration
+file](/docs/tasks/administer-cluster/kubelet-config-file/). To enable the
+feature gate in [kind](https://kind.sigs.k8s.io), ensure that `kind` provides
+the minimum required Kubernetes version and enables the `SeccompDefault` feature
+[in the kind configuration](https://kind.sigs.k8s.io/docs/user/quick-start/#enable-feature-gates-in-your-cluster):
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+featureGates:
+  SeccompDefault: true
+```
 
 ## Create Seccomp Profiles
 
@@ -108,7 +159,7 @@ docker exec -it 6a96207fed4b ls /var/lib/kubelet/seccomp/profiles
 audit.json  fine-grained.json  violation.json
 ```
 
-## Create a Pod with a Seccomp profile for syscall auditing
+## Create a Pod with a seccomp profile for syscall auditing
 
 To start off, apply the `audit.json` profile, which will log all syscalls of the
 process, to a new Pod.
@@ -208,7 +259,7 @@ kubectl delete pod/audit-pod
 kubectl delete svc/audit-pod
 ```
 
-## Create Pod with Seccomp Profile that Causes Violation
+## Create Pod with seccomp Profile that Causes Violation
 
 For demonstration, apply a profile to the Pod that does not allow for any
 syscalls.
@@ -255,7 +306,7 @@ kubectl delete pod/violation-pod
 kubectl delete svc/violation-pod
 ```
 
-## Create Pod with Seccomp Profile that Only Allows Necessary Syscalls
+## Create Pod with seccomp Profile that Only Allows Necessary Syscalls
 
 If you take a look at the `fine-pod.json`, you will notice some of the syscalls
 seen in the first example where the profile set `"defaultAction":
@@ -339,7 +390,7 @@ kubectl delete pod/fine-pod
 kubectl delete svc/fine-pod
 ```
 
-## Create Pod that uses the Container Runtime Default Seccomp Profile
+## Create Pod that uses the Container Runtime Default seccomp Profile
 
 Most container runtimes provide a sane set of default syscalls that are allowed
 or not. The defaults can easily be applied in Kubernetes by using the
@@ -364,5 +415,5 @@ The default seccomp profile should provide adequate access for most workloads.
 
 Additional resources:
 
-* [A Seccomp Overview](https://lwn.net/Articles/656307/)
+* [A seccomp Overview](https://lwn.net/Articles/656307/)
 * [Seccomp Security Profiles for Docker](https://docs.docker.com/engine/security/seccomp/)

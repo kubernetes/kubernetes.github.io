@@ -271,14 +271,14 @@ All `matchExpressions` associated with `requiredDuringSchedulingIgnoredDuringExe
 must be satisfied for the pod to be scheduled onto a node.
 
 #### Namespace selector
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
 Users can also select matching namespaces using `namespaceSelector`, which is a label query over the set of namespaces.
 The affinity term is applied to the union of the namespaces selected by `namespaceSelector` and the ones listed in the `namespaces` field.
 Note that an empty `namespaceSelector` ({}) matches all namespaces, while a null or empty `namespaces` list and 
 null `namespaceSelector` means "this pod's namespace".
 
-This feature is alpha and disabled by default. You can enable it by setting the
+This feature is beta and enabled by default. You can disable it via the
 [feature gate](/docs/reference/command-line-tools-reference/feature-gates/)
 `PodAffinityNamespaceSelector` in both kube-apiserver and kube-scheduler.
 

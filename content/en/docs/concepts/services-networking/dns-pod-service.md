@@ -197,7 +197,7 @@ record unless `publishNotReadyAddresses=True` is set on the Service.
 
 ### Pod's setHostnameAsFQDN field {#pod-sethostnameasfqdn-field}
 
-{{< feature-state for_k8s_version="v1.20" state="beta" >}}
+{{< feature-state for_k8s_version="v1.22" state="stable" >}}
 
 When a Pod is configured to have fully qualified domain name (FQDN), its hostname is the short hostname. For example, if you have a Pod with the fully qualified domain name `busybox-1.default-subdomain.my-namespace.svc.cluster-domain.example`, then by default the `hostname` command inside that Pod returns `busybox-1` and  the `hostname --fqdn` command returns the FQDN.
 
@@ -312,6 +312,28 @@ nameserver fd00:79:30::a
 search default.svc.cluster-domain.example svc.cluster-domain.example cluster-domain.example
 options ndots:5
 ```
+
+#### Expanded DNS Configuration
+
+{{< feature-state for_k8s_version="1.22" state="alpha" >}}
+
+By default, for Pod's DNS Config, Kubernetes allows at most 6 search domains and
+a list of search domains of up to 256 characters.
+
+If the feature gate `ExpandedDNSConfig` is enabled for the kube-apiserver and
+the kubelet, it is allowed for Kubernetes to have at most 32 search domains and
+a list of search domains of up to 2048 characters.
+
+### Feature availability
+
+The availability of Pod DNS Config and DNS Policy "`None`" is shown as below.
+
+| k8s version | Feature support |
+| :---------: |:-----------:|
+| 1.14 | Stable |
+| 1.10 | Beta (on by default)|
+| 1.9 | Alpha |
+
 
 ## {{% heading "whatsnext" %}}
 

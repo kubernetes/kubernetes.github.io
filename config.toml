@@ -138,10 +138,10 @@ time_format_default = "January 02, 2006 at 3:04 PM PST"
 description = "Production-Grade Container Orchestration"
 showedit = true
 
-latest = "v1.21"
+latest = "v1.22"
 
-fullversion = "v1.21.0"
-version = "v1.21"
+fullversion = "v1.22.0"
+version = "v1.22"
 githubbranch = "master"
 docsbranch = "master"
 deprecated = false
@@ -178,40 +178,32 @@ js = [
 ]
 
 [[params.versions]]
-fullversion = "v1.21.0"
-version = "v1.21"
-githubbranch = "v1.21.0"
+fullversion = "v1.22.0"
+version = "v1.22"
+githubbranch = "v1.22.0"
 docsbranch = "master"
 url = "https://kubernetes.io"
 
 [[params.versions]]
-fullversion = "v1.20.5"
+fullversion = "v1.21.1"
+version = "v1.21"
+githubbranch = "v1.21.1"
+docsbranch = "release-1.21"
+url = "https://v1-21.docs.kubernetes.io"
+
+[[params.versions]]
+fullversion = "v1.20.7"
 version = "v1.20"
-githubbranch = "v1.20.5"
+githubbranch = "v1.20.7"
 docsbranch = "release-1.20"
 url = "https://v1-20.docs.kubernetes.io"
 
 [[params.versions]]
-fullversion = "v1.19.9"
+fullversion = "v1.19.11"
 version = "v1.19"
-githubbranch = "v1.19.9"
+githubbranch = "v1.19.11"
 docsbranch = "release-1.19"
 url = "https://v1-19.docs.kubernetes.io"
-
-[[params.versions]]
-fullversion = "v1.18.17"
-version = "v1.18"
-githubbranch = "v1.18.17"
-docsbranch = "release-1.18"
-url = "https://v1-18.docs.kubernetes.io"
-
-[[params.versions]]
-fullversion = "v1.17.17"
-version = "v1.17"
-githubbranch = "v1.17.17"
-docsbranch = "release-1.17"
-url = "https://v1-17.docs.kubernetes.io"
-
 
 # User interface configuration
 [params.ui]

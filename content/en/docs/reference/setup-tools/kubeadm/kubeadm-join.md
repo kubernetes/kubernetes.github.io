@@ -66,6 +66,10 @@ For example:
 sudo kubeadm join --skip-phases=preflight --config=config.yaml
 ```
 
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
+
+Alternatively, you can use the `skipPhases` field in `JoinConfiguration`.
+
 ### Discovering what cluster CA to trust
 
 The kubeadm discovery has several options, each with security tradeoffs.
