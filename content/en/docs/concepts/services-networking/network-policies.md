@@ -262,6 +262,8 @@ The following restrictions apply when using this field:
 {{< note >}}
 Your cluster must be using a {{< glossary_tooltip text="CNI" term_id="cni" >}} plugin that
 supports the `endPort` field in NetworkPolicy specifications.
+If your CNI does not support the `endPort` field and you specify a NetworkPolicy with that,
+the policy will be applied only for the single `port` field.
 {{< /note >}}
 
 ## Targeting a Namespace by its name
