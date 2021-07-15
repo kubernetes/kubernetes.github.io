@@ -97,6 +97,8 @@ workloads, et plus encore.
 
 * [Platform9](https://platform9.com/products/kubernetes/) offre des Kubernetes gérés on-premises ou sur n'importe quel cloud public, et fournit une surveillance et des alertes de santé 24h/24 et 7j/7. (Kube2go, une plate-forme de service de déploiement de cluster Kubernetes pour le déploiement de l'interface utilisateur Web9, a été intégrée à Platform9 Sandbox.)
 
+* [Scaleway Kapsule](https://www.scaleway.com/fr/kubernetes-kapsule/) fournit des clusters Kubernetes gérés, évolutifs, avec un large choix d'instances (CPU, mémoire, GPU, etc...) basé sur le cloud public Scaleway et propose aussi les services associés tel que les répartiteurs de charge et registre de conteneurs.
+
 * [Stackpoint.io](https://stackpoint.io) fournit l'automatisation et la gestion de l'infrastructure Kubernetes pour plusieurs clouds publics.
 
 * [SysEleven MetaKube](https://www.syseleven.io/products-services/managed-kubernetes/) offre un Kubernetes-as-a-Service sur un cloud public OpenStack. Il inclut la gestion du cycle de vie, les tableaux de bord d'administration, la surveillance, la mise à l'échelle automatique et bien plus encore.
