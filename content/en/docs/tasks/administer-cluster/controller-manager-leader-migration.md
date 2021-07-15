@@ -30,7 +30,7 @@ It is assumed that the control plane is running Kubernetes version N and to be u
 
 The control plane nodes should run `kube-controller-manager` with Leader Election enabled through `--leader-elect=true`. As of version N, an in-tree cloud privider must be set with `--cloud-provider` flag and `cloud-controller-manager` should not yet be deployed.
 
-The out-of-tree cloud provider must have built a `cloud-controller-manager` with Leader Migration implmentation. If the cloud provider imports `k8s.io/cloud-provider` and `k8s.io/controller-manager` of version v0.21.0 or later, Leader Migration will be avaliable.
+The out-of-tree cloud provider must have built a `cloud-controller-manager` with Leader Migration implmentation. If the cloud provider imports `k8s.io/cloud-provider` and `k8s.io/controller-manager` of version v0.21.0 or later, Leader Migration will be available.
 
 This guide assumes that kubelet of each control plane node starts `kube-controller-manager` and `cloud-controller-manager` as static pods defined by their manifests. If the components run in a different setting, please adjust the steps accordingly.
 

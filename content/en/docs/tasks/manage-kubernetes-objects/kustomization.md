@@ -299,7 +299,7 @@ metadata:
 type: Opaque
 ```
 
-Like ConfigMaps, generated Secrets can be used in Deployments by refering to the name of the secretGenerator:
+Like ConfigMaps, generated Secrets can be used in Deployments by referring to the name of the secretGenerator:
 
 ```shell
 # Create a password.txt file
