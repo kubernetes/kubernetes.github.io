@@ -236,6 +236,22 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				</ul>
 			</td>
 		</tr>
+		<tr>
+			<td style="white-space: nowrap">Windows HostProcess</td>
+			<td>
+				<p>Windows pods offer the ability to run <a href="/docs/tasks/configure-pod-container/create-hostprocess-container">HostProcess containers</a> which enables privileged access to the Windows node. As is similar to  privileged containers this must be disallowed in the baseline policy. </p>
+				<p><strong>Restricted Fields</strong></p>
+				<ul>
+					<li><code>spec.securityContext.windowsOptions.hostProcess</code></li>
+					<li><code>spec.containers[*].securityContext.windowsOptions.hostProcess</code></li>
+				</ul>
+				<p><strong>Allowed Values</strong></p>
+				<ul>
+					<li>Undefined/nil</li>
+					<li><code>false</code></li>
+				</ul>
+			</td>
+		</tr>
 	</tbody>
 </table>
 
