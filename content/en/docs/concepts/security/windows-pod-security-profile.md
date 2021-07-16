@@ -1,7 +1,7 @@
 ---
 reviewers:
 - tallclair
-title: Windows Pod Security Policy Relevance
+title: Windows Pod Security Policy
 description: >
   Clarification of which pod security policies apply to Windows pods
 content_type: concept
@@ -10,10 +10,10 @@ weight: 10
 
 <!-- overview -->
 
-Windows in Kubernetes has some differentiators from standard Linux-based workloads. For example, the Pod SecurityContext fields [have no effect on
-Windows](/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#v1-podsecuritycontext). Windows HostProcess containers also differ from traditional privileged containers, which causes some policies to lose their applicability. 
+Windows in Kubernetes has some differentiators from standard Linux-based workloads. Many of the Pod SecurityContext fields [have no effect on
+Windows](/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#v1-podsecuritycontext). Windows HostProcess containers also differ from traditional privileged containers, which causes some additional policies to lose their applicability for Windows.
 
-This guide outlines the _policies_ for Windows Pod Security Standards and can be summarized as follows:
+This guide outlines the applicable _policies_ for Windows Pod Security Standards and redefines the [existing profiles](/docs/concepts/security/pod-security-standards) for the Windows context.
 
 | Profile | Description |
 | ------ | ----------- |
@@ -24,7 +24,7 @@ This guide outlines the _policies_ for Windows Pod Security Standards and can be
 <!-- body -->
 
 ## Profile Details
-Each of the profiles below detail which policies must be explicitly set. Any policy not detailed in the profile which is also not in the list of policies ignored by Windows can assume supported configuration on a Windows node.
+Each of the profiles below detail which policies must be explicitly set. Any policy **not** in the profile which is also not in the [list of policies](./#policies-ignored-on-windows) ignored by Windows can assume supported configuration on a Windows node.
 
 ### Privileged
 
@@ -211,7 +211,7 @@ Several policies in the Pod Security Standards do not apply to Windows nodes due
 		<tr>
 			<td style="white-space: nowrap">Sysctls</td>
 			<td>
-				<p>Sysctls are not supported on Windows nodes.</p>
+				<p>These are part of the Linux sysctl interface, which has no equivalent on Windows.</p>
 				<p><strong>Unsupported Fields</strong></p>
 				<ul>
 					<li><code>spec.securityContext.sysctls</code></li>
