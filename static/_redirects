@@ -26,7 +26,6 @@
 /docs/admin/addons/     /docs/concepts/cluster-administration/addons/ 301
 /docs/admin/apparmor/     /docs/tutorials/clusters/apparmor/ 301
 /docs/admin/audit/     /docs/tasks/debug-application-cluster/audit/ 301
-/docs/admin/authorization/rbac.md     /docs/admin/authorization/rbac/ 301
 /docs/admin/cluster-components/     /docs/concepts/overview/components/ 301
 /docs/admin/cluster-management/     /docs/tasks/administer-cluster/ 302
 /id/docs/admin/cluster-management/     /id/docs/tasks/administer-cluster/ 302
@@ -36,10 +35,8 @@
 /docs/admin/dns/     /docs/concepts/services-networking/dns-pod-service/ 301
 /docs/admin/etcd/     /docs/tasks/administer-cluster/configure-upgrade-etcd/ 301
 /docs/admin/etcd_upgrade/     /docs/tasks/administer-cluster/configure-upgrade-etcd/ 301
-/docs/admin/extensible-admission-controllers.md     /docs/reference/access-authn-authz/extensible-admission-controllers/ 301
 /docs/admin/garbage-collection/     /docs/concepts/cluster-administration/kubelet-garbage-collection/ 301
-/docs/admin/ha-master-gce/     /docs/tasks/administer-cluster/highly-available-master/ 301
-/docs/admin/ha-master-gce.md/     /docs/tasks/administer-cluster/highly-available-master/ 301
+/docs/admin/ha-master-gce/     /docs/tasks/administer-cluster/highly-available-control-plane/ 301
 /docs/admin/high-availability/      /docs/setup/production-environment/tools/kubeadm/high-availability/   301
 /docs/admin/kubelet-authentication-authorization/     /docs/reference/command-line-tools-reference/kubelet-authentication-authorization/ 301
 /docs/admin/kubelet-tls-bootstrapping/     /docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping/ 301
@@ -53,8 +50,6 @@
 /docs/admin/networking/     /docs/concepts/cluster-administration/networking/ 301
 /docs/admin/node/     /docs/concepts/architecture/nodes/ 301
 /docs/admin/node-allocatable/     /docs/tasks/administer-cluster/reserve-compute-resources/ 301
-/docs/admin/node-allocatable.md     /docs/tasks/administer-cluster/reserve-compute-resources/ 301
-/docs/admin/node-conformance.md     /docs/admin/node-conformance/ 301
 /docs/admin/node-conformance/       /docs/setup/best-practices/node-conformance/ 301
 /docs/admin/node-problem/     /docs/tasks/debug-application-cluster/monitor-node-health/ 301
 /docs/admin/out-of-resource/     /docs/tasks/administer-cluster/out-of-resource/ 301
@@ -149,7 +144,6 @@
 
 /docs/concepts/workloads/controllers/jobs-run-to-completion/ /docs/concepts/workloads/controllers/job/ 301
 /docs/concepts/workloads/controllers/statefulsets/     /docs/concepts/workloads/controllers/statefulset/ 301
-/docs/concepts/workloads/controllers/statefulset.md     /docs/concepts/workloads/controllers/statefulset/ 301!
 /docs/concepts/workloads/pods/pod/     /docs/concepts/workloads/pods/ 301
 /docs/concepts/workloads/pods/pod-overview/     /docs/concepts/workloads/pods/ 301
 /docs/concepts/workloads/pods/init-containers/Kubernetes/     /docs/concepts/workloads/pods/init-containers/ 301
@@ -227,7 +221,6 @@
 /docs/samples/     /docs/tutorials/ 301
 /docs/stable/user-guide/labels/     /docs/concepts/overview/working-with-objects/labels/ 301
 
-/docs/tasks/access-application-cluster/access-cluster.md     /docs/tasks/access-application-cluster/access-cluster/ 301!
 /docs/tasks/access-application-cluster/authenticate-across-clusters-kubeconfig/     /docs/tasks/access-application-cluster/configure-access-multiple-clusters/ 301
 
 /docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/     /docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/ 301
@@ -250,7 +243,6 @@
 /docs/tasks/administer-cluster/cpu-memory-limit/     /docs/tasks/administer-cluster/memory-default-namespace/ 301
 /docs/tasks/administer-cluster/default-cpu-request-limit/     /docs/tasks/configure-pod-container/assign-cpu-resource/#specify-a-cpu-request-and-a-cpu-limit/ 301
 /docs/tasks/administer-cluster/default-memory-request-limit/     /docs/tasks/configure-pod-container/assign-memory-resource/#specify-a-memory-request-and-a-memory-limit/ 301
-/docs/tasks/administer-cluster/developing-cloud-controller-manager.md     /docs/tasks/administer-cluster/developing-cloud-controller-manager/ 301
 /docs/tasks/administer-cluster/enabling-endpointslices/ /docs/concepts/services-networking/endpoint-slices/ 301
 /docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade-1-13     /docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/ 301
 /docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade-ha-1-13     /docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/ 301
@@ -264,10 +256,9 @@
 /docs/tasks/administer-cluster/overview/     /docs/concepts/cluster-administration/ 301
 /docs/tasks/administer-cluster/quota-memory-cpu-namespace/     /docs/tasks/administer-cluster/manage-resources/quota-memory-cpu-namespace/ 301
 /docs/tasks/administer-cluster/quota-pod-namespace/     /docs/tasks/administer-cluster/manage-resources/quota-pod-namespace/ 301
-/docs/tasks/administer-cluster/reserve-compute-resources/out-of-resource.md     /docs/tasks/administer-cluster/out-of-resource/ 301
+/docs/tasks/administer-cluster/reserve-compute-resources/out-of-resource/     /docs/concepts/scheduling-eviction/node-pressure-eviction/ 301
 /docs/tasks/administer-cluster/out-of-resource/     /docs/concepts/scheduling-eviction/node-pressure-eviction/ 301
 /docs/tasks/administer-cluster/romana-network-policy/     /docs/tasks/administer-cluster/network-policy-provider/romana-network-policy/ 301
-/docs/tasks/administer-cluster/running-cloud-controller.md     /docs/tasks/administer-cluster/running-cloud-controller/ 301
 /docs/tasks/administer-cluster/share-configuration/     /docs/tasks/access-application-cluster/configure-access-multiple-clusters/ 301
 /docs/tasks/administer-cluster/static-pod/ /docs/tasks/configure-pod-container/static-pod/ 301
 /docs/tasks/administer-cluster/weave-network-policy/     /docs/tasks/administer-cluster/network-policy-provider/weave-network-policy/ 301
@@ -376,11 +367,9 @@
 /docs/user-guide/horizontal-pod-autoscaler/*     /docs/tasks/run-application/horizontal-pod-autoscale/ 301
 /docs/user-guide/horizontal-pod-autoscaling/     /docs/tasks/run-application/horizontal-pod-autoscale/ 301
 /docs/user-guide/horizontal-pod-autoscaling/walkthrough/     /docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/ 301
-/docs/user-guide/horizontal-pod-autoscaling/walkthrough.md     /docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/ 301
 /docs/user-guide/identifiers/     /docs/concepts/overview/working-with-objects/names/ 301
 /docs/user-guide/images/     /docs/concepts/containers/images/ 301
 /docs/user-guide/ingress/     /docs/concepts/services-networking/ingress/ 301
-/docs/user-guide/ingress.md     /docs/concepts/services-networking/ingress/ 301
 /docs/user-guide/introspection-and-debugging/     /docs/tasks/debug-application-cluster/debug-application-introspection/ 301
 /docs/user-guide/jsonpath/     /docs/reference/kubectl/jsonpath/
 /docs/user-guide/jobs/     /docs/concepts/workloads/controllers/job/ 301
@@ -407,8 +396,6 @@
 /docs/user-guide/node-selection/README     /docs/concepts/scheduling-eviction/assign-pod-node/ 301
 /docs/user-guide/overview/     /docs/concepts/overview/what-is-kubernetes/ 301
 /docs/user-guide/persistent-volumes/     /docs/concepts/storage/persistent-volumes/ 301
-/docs/user-guide/persistent-volumes/index     /docs/concepts/storage/persistent-volumes/ 301
-/docs/user-guide/persistent-volumes/index.md     /docs/concepts/storage/persistent-volumes/ 301
 /docs/user-guide/persistent-volumes/walkthrough/     /docs/tasks/configure-pod-container/configure-persistent-volume-storage/ 301
 /docs/user-guide/pod-security-policy/     /docs/concepts/policy/pod-security-policy/ 301
 /docs/user-guide/pod-states/     /docs/concepts/workloads/pods/pod-lifecycle/ 301
