@@ -63,6 +63,9 @@ cd "${ROOT}"
 RES=0
 echo "Checking spelling..."
 ERROR_LOG="${TMP_DIR}/errors.log"
+
+# NOTE we usually don't correct old blog articles, so we ignore them in
+# this file.
 skipping_file="${KUBE_ROOT}/scripts/.spelling_failures"
 failing_packages=$(sed "s| | -e |g" "${skipping_file}")
 git ls-files | grep content/${LANGUAGE} | grep -v -e "${failing_packages}" | xargs misspell > "${ERROR_LOG}"
