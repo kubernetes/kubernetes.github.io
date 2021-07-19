@@ -173,7 +173,7 @@ Cluster Domain will be set to `cluster.local` unless
 
 ### Stable Storage
 
-Per each StatefulSet triggered pod Kubernetes creates a PersistentVolumeClaim object for each VolumeClaimTemplates entry defined in the StatefulSet object.In the nginx example above, each Pod will receive a single PersistentVolume
+Per each StatefulSet triggered Pod Kubernetes creates a PersistentVolumeClaim object for each VolumeClaimTemplates entry defined in the StatefulSet object. In the nginx example above, each Pod will receive a single PersistentVolume
 with a StorageClass of `my-storage-class` and 1 Gib of provisioned storage. If no StorageClass
 is specified, then the default StorageClass will be used. When a Pod is (re)scheduled
 onto a node, its `volumeMounts` mount the PersistentVolumes associated with its
