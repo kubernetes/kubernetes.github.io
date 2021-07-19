@@ -696,6 +696,16 @@ PodNodeSelector allows forcing pods to run on specifically labeled nodes. Also s
 admission plugin, which allows preventing pods from running on specifically tainted nodes.
 {{< /note >}}
 
+### PodSecurity {#podsecurity}
+
+{{< feature-state for_k8s_version="v1.22" state="alpha" >}}
+
+This admission controller acts on creation and modification of the pod and determines if it should be admitted
+based on the requested security context and the [Pod Security Standards](/docs/concepts/security/pod-security-standards/).
+
+See the [Pod Security Admission documentation](/docs/concepts/security/pod-security-admission/)
+for more information.
+
 ### PodSecurityPolicy {#podsecuritypolicy}
 
 {{< feature-state for_k8s_version="v1.21" state="deprecated" >}}

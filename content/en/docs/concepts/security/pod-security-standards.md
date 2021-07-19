@@ -10,7 +10,9 @@ weight: 10
 
 <!-- overview -->
 
-The Pod Security Standards define three different _policies_ to broadly cover the security spectrum. These policies are _cumulative_ and range from highly-permissive to highly-restrictive. This guide outlines the requirements of each policy.
+The Pod Security Standards define three different _policies_ to broadly cover the security
+spectrum. These policies are _cumulative_ and range from highly-permissive to highly-restrictive.
+This guide outlines the requirements of each policy.
 
 | Profile | Description |
 | ------ | ----------- |
@@ -24,16 +26,26 @@ The Pod Security Standards define three different _policies_ to broadly cover th
 
 ### Privileged
 
-**The _Privileged_ policy is purposely-open, and entirely unrestricted.** This type of policy is typically aimed at system- and infrastructure-level workloads managed by privileged, trusted users.
+**The _Privileged_ policy is purposely-open, and entirely unrestricted.** This type of policy is
+typically aimed at system- and infrastructure-level workloads managed by privileged, trusted users.
 
-The Privileged policy is defined by an absence of restrictions. For allow-by-default enforcement mechanisms (such as gatekeeper), the Privileged policy may be an absence of applied constraints rather than an instantiated profile. In contrast, for a deny-by-default mechanism (such as Pod Security Policy) the Privileged policy should enable all controls (disable all restrictions).
+The Privileged policy is defined by an absence of restrictions. For allow-by-default enforcement
+mechanisms (such as gatekeeper), the Privileged policy may be an absence of applied constraints
+rather than an instantiated profile. In contrast, for a deny-by-default mechanism (such as Pod
+Security Policy) the Privileged policy should enable all controls (disable all restrictions).
 
 ### Baseline
 
-**The _Baseline_ policy is aimed at ease of adoption for common containerized workloads while preventing known privilege escalations.** This policy is targeted at application operators and developers of non-critical applications. The following listed controls should be enforced/disallowed:
+**The _Baseline_ policy is aimed at ease of adoption for common containerized workloads while
+preventing known privilege escalations.** This policy is targeted at application operators and
+developers of non-critical applications. The following listed controls should be
+enforced/disallowed:
 
 {{< note >}}
-In this table, wildcards (`*`) incidate all elements in a list. For example, `spec.containers[*].securityContext` refers to the Security Context object for _all defined containers_. If any of the listed containers fails to meet the requirements, the entire pod will fail validation.
+In this table, wildcards (`*`) indicate all elements in a list. For example,
+`spec.containers[*].securityContext` refers to the Security Context object for _all defined
+containers_. If any of the listed containers fails to meet the requirements, the entire pod will
+fail validation.
 {{< /note >}}
 
 <table>
@@ -55,6 +67,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
+					<li>Undefined/nil</li>
 					<li><code>false</code></li>
 				</ul>
 			</td>
@@ -67,6 +80,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				<ul>
 					<li><code>spec.containers[*].securityContext.privileged</code></li>
 					<li><code>spec.initContainers[*].securityContext.privileged</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.privileged</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -78,11 +92,12 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 		<tr>
 			<td style="white-space: nowrap">Capabilities</td>
 			<td>
-				<p>Adding additional capabilities beyond the <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities">default set</a> must be disallowed.</p>
+				<p>Adding additional capabilities beyond those listed below must be disallowed.</p>
 				<p><strong>Restricted Fields</strong></p>
 				<ul>
 					<li><code>spec.containers[*].securityContext.capabilities.add</code></li>
 					<li><code>spec.initContainers[*].securityContext.capabilities.add</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.capabilities.add</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -125,6 +140,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				<ul>
 					<li><code>spec.containers[*].ports[*].hostPort</code></li>
 					<li><code>spec.initContainers[*].ports[*].hostPort</code></li>
+					<li><code>spec.ephemeralContainers[*].ports[*].hostPort</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -146,6 +162,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				<ul>
 					<li>Undefined/nil</li>
 					<li><code>runtime/default</code></li>
+					<li><code>localhost/*</code></li>
 				</ul>
 			</td>
 		</tr>
@@ -158,10 +175,11 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.securityContext.seLinuxOptions.type</code></li>
 					<li><code>spec.containers[*].securityContext.seLinuxOptions.type</code></li>
 					<li><code>spec.initContainers[*].securityContext.seLinuxOptions.type</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.seLinuxOptions.type</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
-					<li>Undefined/nil</li>
+					<li>Undefined/""</li>
 					<li><code>container_t</code></li>
 					<li><code>container_init_t</code></li>
 					<li><code>container_kvm_t</code></li>
@@ -172,13 +190,15 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.securityContext.seLinuxOptions.user</code></li>
 					<li><code>spec.containers[*].securityContext.seLinuxOptions.user</code></li>
 					<li><code>spec.initContainers[*].securityContext.seLinuxOptions.user</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.seLinuxOptions.user</code></li>
 					<li><code>spec.securityContext.seLinuxOptions.role</code></li>
 					<li><code>spec.containers[*].securityContext.seLinuxOptions.role</code></li>
 					<li><code>spec.initContainers[*].securityContext.seLinuxOptions.role</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.seLinuxOptions.role</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
-					<li>Undefined/nil</li>
+					<li>Undefined/""</li>
 				</ul>
 			</td>
 		</tr>
@@ -190,6 +210,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				<ul>
 					<li><code>spec.containers[*].securityContext.procMount</code></li>
 					<li><code>spec.initContainers[*].securityContext.procMount</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.procMount</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -207,6 +228,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.securityContext.seccompProfile.type</code></li>
 					<li><code>spec.containers[*].securityContext.seccompProfile.type</code></li>
 					<li><code>spec.initContainers[*].securityContext.seccompProfile.type</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.seccompProfile.type</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -214,7 +236,6 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>RuntimeDefault</code></li>
 					<li><code>Localhost</code>*</li>
 				</ul>
-  				<small>* must also set <code>securityContext.SeccompProfile.localhostProfile</code></small>
   			</td>
   		</tr>
 		<tr>
@@ -223,7 +244,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 				<p>Sysctls can disable security mechanisms or affect all containers on a host, and should be disallowed except for an allowed "safe" subset. A sysctl is considered safe if it is namespaced in the container or the Pod, and it is isolated from other Pods or processes on the same Node.</p>
 				<p><strong>Restricted Fields</strong></p>
 				<ul>
-					<li><code>spec.securityContext.sysctls</code></li>
+					<li><code>spec.securityContext.sysctls[*].name</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -257,10 +278,16 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 
 ### Restricted
 
-**The _Restricted_ policy is aimed at enforcing current Pod hardening best practices, at the expense ofsome compatibility.** It is targeted at operators and developers of security-critical applications, as well as lower-trust users. The following listed controls should be enforced/disallowed:
+**The _Restricted_ policy is aimed at enforcing current Pod hardening best practices, at the
+expense of some compatibility.** It is targeted at operators and developers of security-critical
+applications, as well as lower-trust users. The following listed controls should be
+enforced/disallowed:
 
 {{< note >}}
-In this table, wildcards (`*`) incidate all elements in a list. For example, `spec.containers[*].securityContext` refers to the Security Context object for _all defined containers_. If any of the listed containers fails to meet the requirements, the entire pod will fail validation.
+In this table, wildcards (`*`) indicate all elements in a list. For example, 
+`spec.containers[*].securityContext` refers to the Security Context object for _all defined
+containers_. If any of the listed containers fails to meet the requirements, the entire pod will
+fail validation.
 {{< /note >}}
 
 <table>
@@ -299,7 +326,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.volumes[*].portworxVolume</code></li>
 					<li><code>spec.volumes[*].scaleIO</code></li>
 					<li><code>spec.volumes[*].storageos</code></li>
-					<li><code>spec.volumes[*].csi</code></li>
+					<li><code>spec.volumes[*].photonPersistentDisk</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -308,13 +335,14 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 			</td>
 		</tr>
 		<tr>
-			<td style="white-space: nowrap">Privilege Escalation</td>
+			<td style="white-space: nowrap">Privilege Escalation (v1.8+)</td>
 			<td>
 				<p>Privilege escalation (such as via set-user-ID or set-group-ID file mode) should not be allowed.</p>
 				<p><strong>Restricted Fields</strong></p>
 				<ul>
 					<li><code>spec.containers[*].securityContext.allowPrivilegeEscalation</code></li>
 					<li><code>spec.initContainers[*].securityContext.allowPrivilegeEscalation</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.allowPrivilegeEscalation</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -331,11 +359,16 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.securityContext.runAsNonRoot</code></li>
 					<li><code>spec.containers[*].securityContext.runAsNonRoot</code></li>
 					<li><code>spec.initContainers[*].securityContext.runAsNonRoot</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.runAsNonRoot</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
 					<li><code>true</code></li>
 				</ul>
+				<small>
+					The container fields may be undefined/<code>nil</code> if the pod-level
+					<code>spec.SecurityContext.runAsNonRoot</code> is set to <code>true</code>.
+				</small>
 			</td>
 		</tr>
 		<tr>
@@ -349,6 +382,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.securityContext.fsGroup</code></li>
 					<li><code>spec.containers[*].securityContext.runAsGroup</code></li>
 					<li><code>spec.initContainers[*].securityContext.runAsGroup</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.runAsGroup</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
@@ -358,7 +392,7 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 			</td>
 		</tr>
 		<tr>
-  			<td>Seccomp</td>
+  			<td style="white-space: nowrap">Seccomp (v1.19+)</td>
   			<td>
   				<p>Seccomp profile must be explicitly set to one of the allowed values. Both the <code>Unconfined</code> profile and the <em>absence</em> of a profile are prohibited.</p>
   				<p><strong>Restricted Fields</strong></p>
@@ -366,15 +400,52 @@ In this table, wildcards (`*`) incidate all elements in a list. For example, `sp
 					<li><code>spec.securityContext.seccompProfile.type</code></li>
 					<li><code>spec.containers[*].securityContext.seccompProfile.type</code></li>
 					<li><code>spec.initContainers[*].securityContext.seccompProfile.type</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.seccompProfile.type</code></li>
 				</ul>
 				<p><strong>Allowed Values</strong></p>
 				<ul>
 					<li><code>RuntimeDefault</code></li>
 					<li><code>Localhost</code>*</li>
 				</ul>
-  				<small>* must also set <code>securityContext.SeccompProfile.localhostProfile</code></small>
+				<small>
+					The container fields may be undefined/<code>nil</code> if the pod-level
+					<code>spec.securityContext.seccompProfile.type</code> field is set appropriately.
+					Conversely, the pod-level field may be undefined/<code>nil</code> if _all_ container-
+					level fields are set.
+				</small>
   			</td>
   		</tr>
+		  <tr>
+			<td style="white-space: nowrap">Capabilities (v1.22+)</td>
+			<td>
+				<p>
+					Containers must drop ALL capabilities, and are only permitted to add back
+					the <code>NET_BIND_SERVICE</code> capability.
+				</p>
+				<p><strong>Restricted Fields</strong></p>
+				<ul>
+					<li><code>spec.containers[*].securityContext.capabilities.drop</code></li>
+					<li><code>spec.initContainers[*].securityContext.capabilities.drop</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.capabilities.drop</code></li>
+				</ul>
+				<p><strong>Allowed Values</strong></p>
+				<ul>
+					<li><code>ALL</code></li>
+				</ul>
+				<hr />
+				<p><strong>Restricted Fields</strong></p>
+				<ul>
+					<li><code>spec.containers[*].securityContext.capabilities.add</code></li>
+					<li><code>spec.initContainers[*].securityContext.capabilities.add</code></li>
+					<li><code>spec.ephemeralContainers[*].securityContext.capabilities.add</code></li>
+				</ul>
+				<p><strong>Allowed Values</strong></p>
+				<ul>
+					<li>Undefined/nil</li>
+					<li><code>NET_BIND_SERVICE</code></li>
+				</ul>
+			</td>
+		</tr>
 	</tbody>
 </table>
 
@@ -387,44 +458,50 @@ mechanism.
 As mechanisms mature, they will be defined below on a per-policy basis. The methods of enforcement
 of individual policies are not defined here.
 
-[**PodSecurityPolicy**](/docs/concepts/profile/pod-security-profile/)
+[**Pod Security Admission Controller**](/docs/concepts/security/pod-security-admission/)
 
-- {{< example file="profile/privileged-psp.yaml" >}}Privileged{{< /example >}}
-- {{< example file="profile/baseline-psp.yaml" >}}Baseline{{< /example >}}
-- {{< example file="profile/restricted-psp.yaml" >}}Restricted{{< /example >}}
+- {{< example file="security/podsecurity-privileged.yaml" >}}Privileged namespace{{< /example >}}
+- {{< example file="security/podsecurity-baseline.yaml" >}}Baseline namespace{{< /example >}}
+- {{< example file="security/podsecurity-restricted.yaml" >}}Restricted namespace{{< /example >}}
+
+[**PodSecurityPolicy**](/docs/concepts/profile/pod-security-profile/) (Deprecated)
+
+- {{< example file="policy/privileged-psp.yaml" >}}Privileged{{< /example >}}
+- {{< example file="policy/baseline-psp.yaml" >}}Baseline{{< /example >}}
+- {{< example file="policy/restricted-psp.yaml" >}}Restricted{{< /example >}}
 
 ## FAQ
 
-### Why isn't there a policy between privileged and baseline?
+### Why isn't there a profile between privileged and baseline?
 
 The three profiles defined here have a clear linear progression from most secure (restricted) to least
 secure (privileged), and cover a broad set of workloads. Privileges required above the baseline
-policy are typically very application specific, so we do not offer a standard policy in this
-niche. This is not to say that the privileged policy should always be used in this case, but that
+policy are typically very application specific, so we do not offer a standard profile in this
+niche. This is not to say that the privileged profile should always be used in this case, but that
 policies in this space need to be defined on a case-by-case basis.
 
 SIG Auth may reconsider this position in the future, should a clear need for other profiles arise.
 
-### What's the difference between a security policy and a security context?
+### What's the difference between a security profile and a security context?
 
 [Security Contexts](/docs/tasks/configure-pod-container/security-context/) configure Pods and
 Containers at runtime. Security contexts are defined as part of the Pod and container specifications
 in the Pod manifest, and represent parameters to the container runtime.
 
-Security policies are control plane mechanisms to enforce specific settings in the Security Context,
-as well as other parameters outside the Security Context. As of February 2020, the current native
-solution for enforcing these security policies is [Pod Security
-Policy](/docs/concepts/profile/pod-security-profile/) - a mechanism for centrally enforcing security
-profile on Pods across a cluster. Other alternatives for enforcing security profile are being
-developed in the Kubernetes ecosystem, such as [OPA
-Gatekeeper](https://github.com/open-profile-agent/gatekeeper).
+Security profiles are control plane mechanisms to enforce specific settings in the Security Context,
+as well as other related parameters outside the Security Context. As of July 2021, 
+[Pod Security Policies](/docs/concepts/profile/pod-security-profile/) are deprecated in favor of the
+built-in [Pod Security Admission Controller](/docs/concepts/security/pod-security-admission/). 
+
+Other alternatives for enforcing security profiles are being developed in the Kubernetes
+ecosystem, such as [OPA Gatekeeper](https://github.com/open-profile-agent/gatekeeper).
 
 ### What profiles should I apply to my Windows Pods?
 
 Windows in Kubernetes has some limitations and differentiators from standard Linux-based
 workloads. Specifically, the Pod SecurityContext fields [have no effect on
 Windows](/docs/setup/production-environment/windows/intro-windows-in-kubernetes/#v1-podsecuritycontext). As
-such, no standardized Pod Security profiles currently exists.
+such, no standardized Pod Security profiles currently exist.
 
 ### What about sandboxed Pods?
 
