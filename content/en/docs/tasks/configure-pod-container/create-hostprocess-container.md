@@ -30,7 +30,7 @@ Administrative tasks such as installation of security patches, event log collect
 - Volume mounts are supported and are mounted under the container volume.
 - [todo] Skipping host file mounting
 
-## {{% heading "prerequisites" %}}
+<!-- ## {{% heading "prerequisites" %}} //TODO, might have to wait for beta implementation completion
 [todo] Enabling the feature
 
 [todo] Version requirements
@@ -49,4 +49,4 @@ Administrative tasks such as installation of security patches, event log collect
 
 ## Example Specs
 
-[todo] example specs
+[todo] example specs -->
