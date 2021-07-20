@@ -13,16 +13,18 @@ Server-side Apply (SSA) has been promoted to GA in the Kubernetes v1.22 release.
 
 The GA milestone indicates that Kubernetes users may depend on the feature and its API without fear of backwards incompatible changes in future causing regressions. GA features are protected by the [Kubernetes deprecation policy](https://kubernetes.io/docs/reference/using-api/deprecation-policy/).
 
-What is Server-side Apply?
+## What is Server-side Apply?
 
 Server-side Apply helps users and controllers manage their resources through declarative configurations. Server-side Apply replaces the client side apply feature implemented by “kubectl apply” with a server-side implementation, permitting use by tools/clients other than kubectl. To learn more about why Server-side Apply is important, or to learn how to use Server-side Apply from `kubectl`, see the [Beta 2 release announcement](https://kubernetes.io/blog/2020/04/01/kubernetes-1.18-feature-server-side-apply-beta-2/).
 
-What’s new since Beta?
+## What’s new since Beta?
 
 Since the [Beta 2 release](https://kubernetes.io/blog/2020/04/01/kubernetes-1.18-feature-server-side-apply-beta-2/) subresources support has been added, and both client-go and Kubebuilder have added comprehensive support for Server-side Apply. This completes the Server-side Apply functionality required to make controller development practical.
-Subresource Support
-Server-side Apply now fully supports subresources like status and scale. This is particularly important for controllers, which are often responsible for writing to subresources.
-Server-side Apply support in client-go
+
+### Support for subresources
+
+Server-side Apply now fully supports subresources like `status` and `scale`. This is particularly important for [controllers](/docs/concepts/architecture/controller/), which are often responsible for writing to subresources.
+## Server-side Apply support in client-go
 Previously, Server-side Apply could only be called from the client-go typed client using the `Patch` function, with `PatchType` set to `ApplyPatchType`.  Now, `Apply` functions are included in the client to allow for a more direct and typesafe way of calling Server-side Apply. Each `Apply` function takes an "apply configuration" type as an argument, which is a structured representation of an Apply request. For example:
 
 ```go
@@ -89,7 +91,9 @@ spec:
 Which, among other things, contains `spec.maxReplicas` set to `0`. This is almost certainly not what the caller intended (the intended apply configuration says nothing about the `maxReplicas` field), and could have serious consequences on a production system: it directs the autoscaler to downscale to zero pods. The problem here originates from the fact that the go structs contain required fields that are zero valued if not set explicitly. The go structs work as intended for create and update operations, but are fundamentally incompatible with apply, which is why we have introduced the generated "apply configuration" types.
 
 The "apply configurations" also have convenience `With<FieldName>` functions that make it easier to build apply requests. This allows developers to set fields without having to deal with the fact that all the fields in the "apply configuration" types are pointers, and are inconvenient to set using go. For example `MinReplicas: &0` is not legal go code, so without the `With` functions, developers would work around this problem by using a library, .e.g. `MinReplicas: pointer.Int32Ptr(0)`, but string enumerations like `corev1.Protocol` are still a problem since they cannot be supported by a general purpose library. In addition to the convenience, the `With` functions also isolate developers from the underlying representation, which makes it safer for the underlying representation to be changed to support additional features in the future.
-How to use Server-side Apply in a controller?
+
+## Using Server-side Apply in a controller
+
 The new client-go support makes it much easier to use Server-side Apply in controllers.
 
 When authoring new controllers to use Server-side Apply, a good approach is to have the controller recreate the apply configuration for an object each time it reconciles that object.  This ensures that the controller fully reconciles all the fields that it is responsible for. Controllers typically should unconditionally set all the fields they own by setting `Force: true` in the `ApplyOptions`. Controllers must also provide a `FieldManager` name that is unique to the reconciliation loop that apply is called from.
@@ -123,7 +127,7 @@ applied, err := deploymentClient.Apply(ctx, extractedDeployment, metav1.ApplyOpt
 ```
 
 For developers using Custom Resource Definitions (CRDs), the Kubebuilder apply support provides the same capabilities. <TODO: explain how to use Kubebuilder in more detail?>.
-How to Use Server-side Apply with CRDs
+## Server-side Apply and CustomResourceDefinitions
 
 It is strongly recommended that all CRDs have a schema. Custom Resource Definitions (CRDs) without a schema are treated as unstructured data by Server-side Apply. Keys are treated as fields in a struct and lists are assumed to be atomic.
 
@@ -133,7 +137,7 @@ New annotations since beta:
 
 Defaulting: Values for fields that appliers do not express explicit interest in should be defaulted. This prevents an applier from unintentionally owning a defaulted field that might cause conflicts with other appliers. If unspecified, the default value is nil or the nil equivalent for the corresponding type.
 
-- Usage: see the [Defaulting Documentation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#defaulting) for more details.
+- Usage: see the [CRD Defaulting](/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#defaulting)  documentation for more details.
 - Golang: `+default=<value>`,
 - OpenAPI extension: `default: <value>`
 
