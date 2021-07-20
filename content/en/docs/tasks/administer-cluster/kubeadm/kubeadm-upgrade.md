@@ -9,17 +9,17 @@ weight: 20
 <!-- overview -->
 
 This page explains how to upgrade a Kubernetes cluster created with kubeadm from version
-{{< skew latestVersionAddMinor -1 >}}.x to version {{< skew latestVersion >}}.x, and from version
-{{< skew latestVersion >}}.x to {{< skew latestVersion >}}.y (where `y > x`). Skipping MINOR versions
+{{< skew currentVersionAddMinor -1 >}}.x to version {{< skew currentVersion >}}.x, and from version
+{{< skew currentVersion >}}.x to {{< skew currentVersion >}}.y (where `y > x`). Skipping MINOR versions
 when upgrading is unsupported.
 
 To see information about upgrading clusters created using older versions of kubeadm,
 please refer to following pages instead:
 
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -2 >}} to {{< skew latestVersionAddMinor -1 >}}](https://v{{< skew latestVersionAddMinor -1 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -3 >}} to {{< skew latestVersionAddMinor -2 >}}](https://v{{< skew latestVersionAddMinor -2 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -4 >}} to {{< skew latestVersionAddMinor -3 >}}](https://v{{< skew latestVersionAddMinor -3 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
-- [Upgrading a kubeadm cluster from {{< skew latestVersionAddMinor -5 >}} to {{< skew latestVersionAddMinor -4 >}}](https://v{{< skew latestVersionAddMinor -4 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -2 >}} to {{< skew currentVersionAddMinor -1 >}}](https://v{{< skew currentVersionAddMinor -1 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -3 >}} to {{< skew currentVersionAddMinor -2 >}}](https://v{{< skew currentVersionAddMinor -2 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -4 >}} to {{< skew currentVersionAddMinor -3 >}}](https://v{{< skew currentVersionAddMinor -3 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
+- [Upgrading a kubeadm cluster from {{< skew currentVersionAddMinor -5 >}} to {{< skew currentVersionAddMinor -4 >}}](https://v{{< skew currentVersionAddMinor -4 "-" >}}.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/)
 
 The upgrade workflow at high level is the following:
 
@@ -45,19 +45,19 @@ The upgrade workflow at high level is the following:
 
 ## Determine which version to upgrade to
 
-Find the latest stable {{< skew latestVersion >}} version using the OS package manager:
+Find the latest stable {{< skew currentVersion >}} version using the OS package manager:
 
 {{< tabs name="k8s_install_versions" >}}
 {{% tab name="Ubuntu, Debian or HypriotOS" %}}
     apt update
     apt-cache madison kubeadm
-    # find the latest {{< skew latestVersion >}} version in the list
-    # it should look like {{< skew latestVersion >}}.x-00, where x is the latest patch
+    # find the latest {{< skew currentVersion >}} version in the list
+    # it should look like {{< skew currentVersion >}}.x-00, where x is the latest patch
 {{% /tab %}}
 {{% tab name="CentOS, RHEL or Fedora" %}}
     yum list --showduplicates kubeadm --disableexcludes=kubernetes
-    # find the latest {{< skew latestVersion >}} version in the list
-    # it should look like {{< skew latestVersion >}}.x-0, where x is the latest patch
+    # find the latest {{< skew currentVersion >}} version in the list
+    # it should look like {{< skew currentVersion >}}.x-0, where x is the latest patch
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -74,18 +74,18 @@ Pick a control plane node that you wish to upgrade first. It must have the `/etc
 
 {{< tabs name="k8s_install_kubeadm_first_cp" >}}
 {{% tab name="Ubuntu, Debian or HypriotOS" %}}
-    # replace x in {{< skew latestVersion >}}.x-00 with the latest patch version
+    # replace x in {{< skew currentVersion >}}.x-00 with the latest patch version
     apt-mark unhold kubeadm && \
-    apt-get update && apt-get install -y kubeadm={{< skew latestVersion >}}.x-00 && \
+    apt-get update && apt-get install -y kubeadm={{< skew currentVersion >}}.x-00 && \
     apt-mark hold kubeadm
     -
     # since apt-get version 1.1 you can also use the following method
     apt-get update && \
-    apt-get install -y --allow-change-held-packages kubeadm={{< skew latestVersion >}}.x-00
+    apt-get install -y --allow-change-held-packages kubeadm={{< skew currentVersion >}}.x-00
 {{% /tab %}}
 {{% tab name="CentOS, RHEL or Fedora" %}}
-    # replace x in {{< skew latestVersion >}}.x-0 with the latest patch version
-    yum install -y kubeadm-{{< skew latestVersion >}}.x-0 --disableexcludes=kubernetes
+    # replace x in {{< skew currentVersion >}}.x-0 with the latest patch version
+    yum install -y kubeadm-{{< skew currentVersion >}}.x-0 --disableexcludes=kubernetes
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -120,13 +120,13 @@ Failing to do so will cause `kubeadm upgrade apply` to exit with an error and no
 
     ```shell
     # replace x with the patch version you picked for this upgrade
-    sudo kubeadm upgrade apply v{{< skew latestVersion >}}.x
+    sudo kubeadm upgrade apply v{{< skew currentVersion >}}.x
     ```
 
     Once the command finishes you should see:
 
     ```
-    [upgrade/successful] SUCCESS! Your cluster was upgraded to "v{{< skew latestVersion >}}.x". Enjoy!
+    [upgrade/successful] SUCCESS! Your cluster was upgraded to "v{{< skew currentVersion >}}.x". Enjoy!
 
     [upgrade/kubelet] Now that your control plane is upgraded, please proceed with upgrading your kubelets if you haven't already done so.
     ```
@@ -171,20 +171,20 @@ Also calling `kubeadm upgrade plan` and upgrading the CNI provider plugin is no 
 {{< tabs name="k8s_install_kubelet" >}}
 {{< tab name="Ubuntu, Debian or HypriotOS" >}}
     <pre>
-    # replace x in {{< skew latestVersion >}}.x-00 with the latest patch version
+    # replace x in {{< skew currentVersion >}}.x-00 with the latest patch version
     apt-mark unhold kubelet kubectl && \
-    apt-get update && apt-get install -y kubelet={{< skew latestVersion >}}.x-00 kubectl={{< skew latestVersion >}}.x-00 && \
+    apt-get update && apt-get install -y kubelet={{< skew currentVersion >}}.x-00 kubectl={{< skew currentVersion >}}.x-00 && \
     apt-mark hold kubelet kubectl
     -
     # since apt-get version 1.1 you can also use the following method
     apt-get update && \
-    apt-get install -y --allow-change-held-packages kubelet={{< skew latestVersion >}}.x-00 kubectl={{< skew latestVersion >}}.x-00
+    apt-get install -y --allow-change-held-packages kubelet={{< skew currentVersion >}}.x-00 kubectl={{< skew currentVersion >}}.x-00
     </pre>
 {{< /tab >}}
 {{< tab name="CentOS, RHEL or Fedora" >}}
     <pre>
-    # replace x in {{< skew latestVersion >}}.x-0 with the latest patch version
-    yum install -y kubelet-{{< skew latestVersion >}}.x-0 kubectl-{{< skew latestVersion >}}.x-0 --disableexcludes=kubernetes
+    # replace x in {{< skew currentVersion >}}.x-0 with the latest patch version
+    yum install -y kubelet-{{< skew currentVersion >}}.x-0 kubectl-{{< skew currentVersion >}}.x-0 --disableexcludes=kubernetes
     </pre>
 {{< /tab >}}
 {{< /tabs >}}
@@ -216,18 +216,18 @@ without compromising the minimum required capacity for running your workloads.
 
 {{< tabs name="k8s_install_kubeadm_worker_nodes" >}}
 {{% tab name="Ubuntu, Debian or HypriotOS" %}}
-    # replace x in {{< skew latestVersion >}}.x-00 with the latest patch version
+    # replace x in {{< skew currentVersion >}}.x-00 with the latest patch version
     apt-mark unhold kubeadm && \
-    apt-get update && apt-get install -y kubeadm={{< skew latestVersion >}}.x-00 && \
+    apt-get update && apt-get install -y kubeadm={{< skew currentVersion >}}.x-00 && \
     apt-mark hold kubeadm
     -
     # since apt-get version 1.1 you can also use the following method
     apt-get update && \
-    apt-get install -y --allow-change-held-packages kubeadm={{< skew latestVersion >}}.x-00
+    apt-get install -y --allow-change-held-packages kubeadm={{< skew currentVersion >}}.x-00
 {{% /tab %}}
 {{% tab name="CentOS, RHEL or Fedora" %}}
-    # replace x in {{< skew latestVersion >}}.x-0 with the latest patch version
-    yum install -y kubeadm-{{< skew latestVersion >}}.x-0 --disableexcludes=kubernetes
+    # replace x in {{< skew currentVersion >}}.x-0 with the latest patch version
+    yum install -y kubeadm-{{< skew currentVersion >}}.x-0 --disableexcludes=kubernetes
 {{% /tab %}}
 {{< /tabs >}}
 
@@ -254,18 +254,18 @@ without compromising the minimum required capacity for running your workloads.
 
 {{< tabs name="k8s_kubelet_and_kubectl" >}}
 {{% tab name="Ubuntu, Debian or HypriotOS" %}}
-    # replace x in {{< skew latestVersion >}}.x-00 with the latest patch version
+    # replace x in {{< skew currentVersion >}}.x-00 with the latest patch version
     apt-mark unhold kubelet kubectl && \
-    apt-get update && apt-get install -y kubelet={{< skew latestVersion >}}.x-00 kubectl={{< skew latestVersion >}}.x-00 && \
+    apt-get update && apt-get install -y kubelet={{< skew currentVersion >}}.x-00 kubectl={{< skew currentVersion >}}.x-00 && \
     apt-mark hold kubelet kubectl
     -
     # since apt-get version 1.1 you can also use the following method
     apt-get update && \
-    apt-get install -y --allow-change-held-packages kubelet={{< skew latestVersion >}}.x-00 kubectl={{< skew latestVersion >}}.x-00
+    apt-get install -y --allow-change-held-packages kubelet={{< skew currentVersion >}}.x-00 kubectl={{< skew currentVersion >}}.x-00
 {{% /tab %}}
 {{% tab name="CentOS, RHEL or Fedora" %}}
-    # replace x in {{< skew latestVersion >}}.x-0 with the latest patch version
-    yum install -y kubelet-{{< skew latestVersion >}}.x-0 kubectl-{{< skew latestVersion >}}.x-0 --disableexcludes=kubernetes
+    # replace x in {{< skew currentVersion >}}.x-0 with the latest patch version
+    yum install -y kubelet-{{< skew currentVersion >}}.x-0 kubectl-{{< skew currentVersion >}}.x-0 --disableexcludes=kubernetes
 {{% /tab %}}
 {{< /tabs >}}
 

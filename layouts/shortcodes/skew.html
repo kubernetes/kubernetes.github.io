@@ -54,11 +54,36 @@
     {{- $latestVersionAddMinor = printf "%s%s%d" (index $versionArray 0) $seperator $latestVersionAddMinor -}}
     {{- $latestVersionAddMinor -}}
 {{- end -}}
+
+{{- $currentVersion := site.Params.version -}}
+{{- $currentVersion := (replace $currentVersion "v" "") -}}
+{{- $currentVersionArray := split $currentVersion "." -}}
+{{- $currentMinorVersion := int (index $currentVersionArray 1) -}}
+
+<!-- output latestVersion based on captured arg -->
+{{- if eq $version "currentVersion" -}}
+    {{- $currentVersion -}}
+{{- end -}}
+
+<!-- output currentVersionAddMinor based on captured args -->
+{{- if eq $version "currentVersionAddMinor" -}}
+    {{- $seperator := .Get 2 -}}
+    {{- if eq $seperator "" -}}
+        {{- $seperator = "." -}}
+    {{- end -}}
+    {{- $currentVersionAddMinor := int (.Get 1) -}}
+    {{- $currentVersionAddMinor = add $currentMinorVersion $currentVersionAddMinor -}}
+    {{- $currentVersionAddMinor = printf "%s%s%d" (index $versionArray 0) $seperator $currentVersionAddMinor -}}
+    {{- $currentVersionAddMinor -}}
+{{- end -}}
+
 <!--
 example shortcode use:
 - skew nextMinorVersion
 - skew latestVersion
+- skew currentVersion
 - skew prevMinorVersion
 - skew oldestMinorVersion
 - skew latestVersionAddMinor -1 "-"
+- skew currentVersionAddMinor -1 "-"
 -->
