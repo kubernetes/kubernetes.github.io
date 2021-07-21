@@ -1260,7 +1260,7 @@ contributors. Follow the instructions in the SIG-Windows
   to accommodate worker containers crashing or restarting without losing any of
   the networking configuration.
 
-  The "pause" (infrastructure) image can be found at `k8s.gcr.io/pause:3.5`
+  The "pause" (infrastructure) image can be found at `k8s.gcr.io/pause:3.5`.
   For more details, see the
   [DOCKERFILE](https://github.com/kubernetes/kubernetes/blob/master/build/pause/Dockerfile_windows).
 
@@ -1331,4 +1331,3 @@ guide is available
 [here](/docs/tasks/administer-cluster/kubeadm/adding-windows-nodes/). We are
 also making investments in cluster API to ensure Windows nodes are properly
 provisioned.
-
