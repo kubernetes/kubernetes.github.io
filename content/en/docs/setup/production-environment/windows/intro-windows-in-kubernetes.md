@@ -102,8 +102,7 @@ limitation and compatibility rules will change.
 Kubernetes maintains a multi-architecture image `k8s.gcr.io/pause:3.5` that
 supports Linux as well as Windows.
 
-Microsoft maintains a Windows pause infrastructure container at
-`mcr.microsoft.com/oss/kubernetes/pause:3.5`.
+Microsoft maintains a Windows pause infrastructure container with Linux and Windows amd64 images at `mcr.microsoft.com/oss/kubernetes/pause:3.5`.
 This image is built from the same source as the Kubernetes maintained image but all of the Windows binaries are (authenticode signed)[https://docs.microsoft.com/en-us/windows-hardware/drivers/install/authenticode] by Microsoft.
 
 #### Compute
@@ -1065,9 +1064,8 @@ contributors. Follow the instructions in the SIG-Windows
     Register kubelet.exe:
 
     ```powershell
-    # Microsoft releases the pause infrastructure container at mcr.microsoft.com/oss/kubernetes/pause:3.4.1
     nssm install kubelet C:\k\kubelet.exe
-    nssm set kubelet AppParameters --hostname-override=<hostname> --v=6 --pod-infra-container-image=mcr.microsoft.com/oss/kubernetes/pause:3.4.1 --resolv-conf="" --allow-privileged=true --enable-debugging-handlers --cluster-dns=<DNS-service-IP> --cluster-domain=cluster.local --kubeconfig=c:\k\config --hairpin-mode=promiscuous-bridge --image-pull-progress-deadline=20m --cgroups-per-qos=false  --log-dir=<log directory> --logtostderr=false --enforce-node-allocatable="" --network-plugin=cni --cni-bin-dir=c:\k\cni --cni-conf-dir=c:\k\cni\config
+    nssm set kubelet AppParameters --hostname-override=<hostname> --v=6 --pod-infra-container-image=k8s.gcr.io/pause:3.5 --resolv-conf="" --allow-privileged=true --enable-debugging-handlers --cluster-dns=<DNS-service-IP> --cluster-domain=cluster.local --kubeconfig=c:\k\config --hairpin-mode=promiscuous-bridge --image-pull-progress-deadline=20m --cgroups-per-qos=false  --log-dir=<log directory> --logtostderr=false --enforce-node-allocatable="" --network-plugin=cni --cni-bin-dir=c:\k\cni --cni-conf-dir=c:\k\cni\config
     nssm set kubelet AppDirectory C:\k
     nssm start kubelet
     ```
@@ -1237,7 +1235,7 @@ contributors. Follow the instructions in the SIG-Windows
 * `kubectl port-forward` fails with "unable to do port forwarding: wincat not found"
 
   This was implemented in Kubernetes 1.15 by including wincat.exe in the
-  pause infrastructure container `mcr.microsoft.com/oss/kubernetes/pause:3.4.1`.
+  pause infrastructure container `k8s.gcr.io/pause:3.5`.
   Be sure to use these versions or newer ones.  If you would like to build your
   own pause infrastructure container be sure to include
   [wincat](https://github.com/kubernetes-sigs/sig-windows-tools/tree/master/cmd/wincat).
@@ -1262,10 +1260,9 @@ contributors. Follow the instructions in the SIG-Windows
   to accommodate worker containers crashing or restarting without losing any of
   the networking configuration.
 
-  The "pause" (infrastructure) image is hosted on Microsoft Container Registry
-  (MCR). You can access it using `mcr.microsoft.com/oss/kubernetes/pause:3.4.1`.
+  The "pause" (infrastructure) image can be found at `k8s.gcr.io/pause:3.5`
   For more details, see the
-  [DOCKERFILE](https://github.com/kubernetes-sigs/windows-testing/blob/master/images/pause/Dockerfile).
+  [DOCKERFILE](https://github.com/kubernetes/kubernetes/blob/master/build/pause/Dockerfile_windows).
 
 ### Further investigation
 
