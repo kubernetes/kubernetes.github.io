@@ -99,10 +99,12 @@ limitation and compatibility rules will change.
 
 #### Pause Image
 
-Microsoft maintains a Windows pause infrastructure container at
-`mcr.microsoft.com/oss/kubernetes/pause:3.4.1`.
 Kubernetes maintains a multi-architecture image `k8s.gcr.io/pause:3.5` that
 supports Linux as well as Windows.
+
+Microsoft maintains a Windows pause infrastructure container at
+`mcr.microsoft.com/oss/kubernetes/pause:3.5`.
+This image is built from the same source as the Kubernetes maintained image but all of the Windows binaries are (authenticode signed)[https://docs.microsoft.com/en-us/windows-hardware/drivers/install/authenticode] by Microsoft.
 
 #### Compute
 
