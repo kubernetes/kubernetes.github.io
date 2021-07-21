@@ -236,3 +236,39 @@ other = "Warning:"
 
 [whatsnext_heading]
 other = "What's next"
+
+[feature_omitted]
+other = "-"
+
+[feature_disabled]
+other = "false"
+
+[feature_enabled]
+other = "true"
+
+[feature_stage_alpha]
+other = "Alpha"
+
+[feature_stage_beta]
+other = "Beta"
+
+[feature_stage_stable]
+other = "GA" # general availability
+
+[feature_stage_deprecated]
+other = "Deprecated"
+
+[feature_heading_name]
+other = "Feature name"
+
+[feature_heading_default]
+other = "Default value"
+
+[feature_heading_stage]
+other = "Stage"
+
+[feature_heading_since]
+other = "Since"
+
+[feature_heading_until]
+other = "Until"
