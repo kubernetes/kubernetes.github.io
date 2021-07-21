@@ -425,6 +425,22 @@ parameters:
 
 ### NFS
 
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: example-nfs
+provisioner: example.com/external-nfs
+parameters:
+  server: nfs-server.example.com
+  path: /share
+  readOnly: false
+```
+
+* `server`: Server is the hostname or IP address of the NFS server.
+* `path`: Path that is exported by the NFS server.
+* `readOnly`: A flag indicating whether the storage will be mounted as read only (default false).
+
 NFS doesn't provide an internal provisioner. You need to use an external provisioner to create a StorageClass for NFS.
 Here are some examples:
 * [NFS Ganesha server and external provisioner](https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner)
