@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+spec:
+  containers:
+    - name: test
+      image: nginx
+      volumeMounts:
+        - name: site-data
+          mountPath: /usr/share/nginx/html
+          subPath: html
+        - name: config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+  volumes:
+    - name: config
+      persistentVolumeClaim:
+        claimName: test-nfs-claim
