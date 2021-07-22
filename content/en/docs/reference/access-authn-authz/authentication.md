@@ -734,21 +734,32 @@ The following HTTP headers can be used to performing an impersonation request:
 * `Impersonate-User`: The username to act as.
 * `Impersonate-Group`: A group name to act as. Can be provided multiple times to set multiple groups. Optional. Requires "Impersonate-User".
 * `Impersonate-Extra-( extra name )`: A dynamic header used to associate extra fields with the user. Optional. Requires "Impersonate-User". In order to be preserved consistently, `( extra name )` should be lower-case, and any characters which aren't [legal in HTTP header labels](https://tools.ietf.org/html/rfc7230#section-3.2.6) MUST be utf8 and [percent-encoded](https://tools.ietf.org/html/rfc3986#section-2.1).
+* `Impersonate-Uid`: A unique identifier that represents the user being impersonated. Optional. Requires "Impersonate-User". Kubernetes does not impose any format requirements on this string.
 
 {{< note >}}
 Prior to 1.11.3 (and 1.10.7, 1.9.11), `( extra name )` could only contain characters which were [legal in HTTP header labels](https://tools.ietf.org/html/rfc7230#section-3.2.6).
 {{< /note >}}
 
-An example set of headers:
+{{< note >}}
+`Impersonate-Uid` is only available in versions 1.22.0 and higher.
+{{< /note >}}
 
+An example of the impersonation headers used when impersonating a user with groups:
 ```http
 Impersonate-User: jane.doe@example.com
 Impersonate-Group: developers
 Impersonate-Group: admins
+```
+
+An example of the impersonation headers used when impersonating a user with a UID and
+extra fields:
+```http
+Impersonate-User: jane.doe@example.com
 Impersonate-Extra-dn: cn=jane,ou=engineers,dc=example,dc=com
 Impersonate-Extra-acme.com%2Fproject: some-project
 Impersonate-Extra-scopes: view
 Impersonate-Extra-scopes: development
+Impersonate-Uid: 06f6ce97-e2c5-4ab8-7ba5-7654dd08d52b
 ```
 
 When using `kubectl` set the `--as` flag to configure the `Impersonate-User`
@@ -773,9 +784,13 @@ node/mynode cordoned
 node/mynode drained
 ```
 
-To impersonate a user, group, or set extra fields, the impersonating user must
+{{< note >}}
+`kubectl` cannot impersonate extra fields or UIDs.
+{{< /note >}}
+
+To impersonate a user, group, user identifier (UID) or extra fields, the impersonating user must
 have the ability to perform the "impersonate" verb on the kind of attribute
-being impersonated ("user", "group", etc.). For clusters that enable the RBAC
+being impersonated ("user", "group", "uid", etc.). For clusters that enable the RBAC
 authorization plugin, the following ClusterRole encompasses the rules needed to
 set user and group impersonation headers:
 
@@ -790,19 +805,20 @@ rules:
   verbs: ["impersonate"]
 ```
 
+For impersonation, extra fields and impersonated UIDs are both under the "authentication.k8s.io" `apiGroup`.
 Extra fields are evaluated as sub-resources of the resource "userextras". To
-allow a user to use impersonation headers for the extra field "scopes", a user
-should be granted the following role:
+allow a user to use impersonation headers for the extra field "scopes" and
+for UIDs, a user should be granted the following role:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: scopes-impersonator
+  name: scopes-and-uid-impersonator
 rules:
-# Can set "Impersonate-Extra-scopes" header.
+# Can set "Impersonate-Extra-scopes" header and the "Impersonate-Uid" header.
 - apiGroups: ["authentication.k8s.io"]
-  resources: ["userextras/scopes"]
+  resources: ["userextras/scopes", "uids"]
   verbs: ["impersonate"]
 ```
 
@@ -832,6 +848,12 @@ rules:
   resources: ["userextras/scopes"]
   verbs: ["impersonate"]
   resourceNames: ["view", "development"]
+
+# Can impersonate the uid "06f6ce97-e2c5-4ab8-7ba5-7654dd08d52b"
+- apiGroups: ["authentication.k8s.io"]
+  resources: ["uids"]
+  verbs: ["impersonate"]
+  resourceNames: ["06f6ce97-e2c5-4ab8-7ba5-7654dd08d52b"]
 ```
 
 ## client-go credential plugins
