@@ -8,7 +8,7 @@ weight: 90
 
 <!-- overview -->
 
-{{< feature-state for_k8s_version="v1.15" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.19" state="stable" >}}
 
 The scheduling framework is a pluggable architecture for the Kubernetes scheduler.
 It adds a new set of "plugin" APIs to the existing scheduler. Plugins are compiled into the scheduler. The APIs allow most scheduling features to be implemented as plugins, while keeping the
