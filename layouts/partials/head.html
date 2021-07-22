@@ -19,11 +19,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{ hugo.Generator }}
-{{ if eq (getenv "HUGO_ENV") "production" }}
+{{- $outputFormat := partial "outputformat.html" . -}}
+{{ if and (eq (getenv "HUGO_ENV") "production") (ne $outputFormat "print") -}}
 <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-{{ else }}
+{{ else -}}
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-{{ end }}
+{{ end -}}
 {{ range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
