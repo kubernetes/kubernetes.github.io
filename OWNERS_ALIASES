@@ -157,6 +157,7 @@ aliases:
     # zhangxiaoyu-zidif
   sig-docs-zh-reviews: # PR reviews for Chinese content
     - chenrui333
+    - chenxuc
     - howieyuen
     - idealhack
     - pigletfly
