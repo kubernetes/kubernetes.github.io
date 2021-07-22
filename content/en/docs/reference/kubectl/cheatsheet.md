@@ -138,6 +138,8 @@ data:
   username: $(echo -n "jane" | base64 -w0)
 EOF
 
+# Create a secret with several keys using create and automatic base64 encoding
+kubectl create secret generic mysecret --from-literal='password=s33msi4' --from-literal='username=jane' --dry-run -o yaml
 ```
 
 ## Viewing, finding resources
@@ -419,6 +421,32 @@ Verbosity | Description
 `--v=7` | Display HTTP request headers.
 `--v=8` | Display HTTP request contents.
 `--v=9` | Display HTTP request contents without truncation of contents.
+
+## Linux Tool Improvements
+
+### Working with YAML files
+
+Here are some sane .vimrc setting to match what YAML outputs from `--dry-run=client -o yaml`.
+```
+set ts=2 sw=2 expandtab foldmethod=indent foldlevelstart=99
+syntax on 
+filetype indent plugin on
+```
+
+### Working on Tmux
+
+Tmux is as great tool to use for being able to watch and work without having to switch tabs.  It's best in 256 colors and a mouse.
+
+.bashrc
+```
+TERM=xterm-256color
+```
+
+.tmux.conf
+```
+set -g mouse on
+```
+
 
 ## {{% heading "whatsnext" %}}
 
