@@ -123,7 +123,7 @@ the hostname of the pod. For example, given a Pod with `hostname` set to
 The Pod spec also has an optional `subdomain` field which can be used to specify
 its subdomain. For example, a Pod with `hostname` set to "`foo`", and `subdomain`
 set to "`bar`", in namespace "`my-namespace`", will have the fully qualified
-domain name (FQDN) "`foo.bar.my-namespace.svc.cluster-domain.example`".
+domain name (FQDN) "`foo.bar.my-namespace.pod.cluster-domain.example`".
 
 Example:
 
