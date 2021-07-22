@@ -99,7 +99,7 @@ Kubernetes卷插件系统已经提供了功能强大的抽象用于自动配置�
 The Kubernetes volume plugin system already provides a powerful abstraction that automates the provisioning, attaching, and mounting of block and file storage.
 -->
 
-支持所有这些特性是Kubernets负载可移植的目标：Kubernetes旨在分布式系统应用和底层集群之间创建一个抽象层,使得应用可以不感知其运行集群的具体信息并且部署也不需特定集群的知识。
+支持所有这些特性是Kubernetes负载可移植的目标：Kubernetes旨在分布式系统应用和底层集群之间创建一个抽象层,使得应用可以不感知其运行集群的具体信息并且部署也不需特定集群的知识。
 <!--
 Underpinning all these features is the Kubernetes goal of workload portability: Kubernetes aims to create an abstraction layer between distributed systems applications and underlying clusters so that applications can be agnostic to the specifics of the cluster they run on and application deployment requires no “cluster specific” knowledge.
 -->

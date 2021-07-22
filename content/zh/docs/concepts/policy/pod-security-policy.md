@@ -1186,7 +1186,7 @@ Seccomp 是 Kubernetes 的一项 alpha 阶段特性。
   `-seccomp-profile-root` flag on the Kubelet.
 -->
 - `unconfined` - 如果没有指定其他替代方案，Seccomp 不会被应用到容器进程上
-  （Kubernets 中的默认设置）。
+  （Kubernetes 中的默认设置）。
 - `runtime/default` - 使用默认的容器运行时模版。
 - `docker/default` - 使用 Docker 的默认 seccomp 模版。自 1.11 版本废弃。
   应改为使用 `runtime/default`。

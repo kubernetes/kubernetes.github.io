@@ -141,7 +141,7 @@ at `https://104.197.5.247/api/v1/namespaces/kube-system/services/elasticsearch-l
 See [Access Clusters Using the Kubernetes API](/docs/tasks/administer-cluster/access-cluster-api/#accessing-the-cluster-api) for how to pass credentials or use kubectl proxy.
 -->
 {{< note >}}
-请参阅[使用 Kubernets API 访问集群](/zh/docs/tasks/administer-cluster/access-cluster-api/#accessing-the-cluster-api)
+请参阅[使用 Kubernetes API 访问集群](/zh/docs/tasks/administer-cluster/access-cluster-api/#accessing-the-cluster-api)
 了解如何传递凭据或如何使用 `kubectl proxy`。
 {{< /note >}}
 
