@@ -106,8 +106,6 @@ different Kubernetes components.
 | `DownwardAPIHugePages` | `false` | Beta | 1.21 | |
 | `EfficientWatchResumption` | `false` | Alpha | 1.20 | 1.20 |
 | `EfficientWatchResumption` | `true` | Beta | 1.21 | |
-| `EndpointSliceProxying` | `false` | Alpha | 1.18 | 1.18 |
-| `EndpointSliceProxying` | `true` | Beta | 1.19 | |
 | `EndpointSliceTerminatingCondition` | `false` | Alpha | 1.20 | |
 | `EphemeralContainers` | `false` | Alpha | 1.16 | |
 | `ExpandCSIVolumes` | `false` | Alpha | 1.14 | 1.15 |
@@ -189,8 +187,6 @@ different Kubernetes components.
 | `WinDSR` | `false` | Alpha | 1.14 | |
 | `WinOverlay` | `false` | Alpha | 1.14 | 1.19 |
 | `WinOverlay` | `true` | Beta | 1.20 | |
-| `WindowsEndpointSliceProxying` | `false` | Alpha | 1.19 | 1.20 |
-| `WindowsEndpointSliceProxying` | `true` | Beta | 1.21 | |
 | `WindowsHostProcessContainers` | `false` | Alpha | 1.22 | |
 {{< /table >}}
 
@@ -282,6 +278,9 @@ different Kubernetes components.
 | `EndpointSlice` | `true` | GA | 1.21 | -  |
 | `EndpointSliceNodeName` | `false` | Alpha | 1.20 | 1.20 |
 | `EndpointSliceNodeName` | `true` | GA | 1.21 | - |
+| `EndpointSliceProxying` | `false` | Alpha | 1.18 | 1.18 |
+| `EndpointSliceProxying` | `true` | Beta | 1.19 | 1.21 |
+| `EndpointSliceProxying` | `true` | GA | 1.22 | - |
 | `ExperimentalCriticalPodAnnotation` | `false` | Alpha | 1.5 | 1.12 |
 | `ExperimentalCriticalPodAnnotation` | `false` | Deprecated | 1.13 | - |
 | `EvenPodsSpread` | `false` | Alpha | 1.16 | 1.17 |
@@ -445,6 +444,9 @@ different Kubernetes components.
 | `WatchBookmark` | `false` | Alpha | 1.15 | 1.15 |
 | `WatchBookmark` | `true` | Beta | 1.16 | 1.16 |
 | `WatchBookmark` | `true` | GA | 1.17 | - |
+| `WindowsEndpointSliceProxying` | `false` | Alpha | 1.19 | 1.20 |
+| `WindowsEndpointSliceProxying` | `true` | Beta | 1.21 | 1.21 |
+| `WindowsEndpointSliceProxying` | `true` | GA | 1.22| - |
 | `WindowsGMSA` | `false` | Alpha | 1.14 | 1.15 |
 | `WindowsGMSA` | `true` | Beta | 1.16 | 1.17 |
 | `WindowsGMSA` | `true` | GA | 1.18 | - |
