@@ -323,7 +323,7 @@ either be a snapshot file from a previous backup operation, or from a remaining
 Here is an example:
 
 ```shell
-ETCDCTL_API=3 etcdctl --endpoints 10.2.0.9:2379 snapshot restore snapshotdb
+ETCDCTL_API=3 etcdctl --endpoints 10.2.0.9:2379 --data-dir <data-dir-location> snapshot restore snapshotdb
 ```
 
 For more information and examples on restoring a cluster from a snapshot file, see
