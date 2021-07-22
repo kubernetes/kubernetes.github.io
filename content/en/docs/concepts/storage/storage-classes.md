@@ -76,7 +76,7 @@ for provisioning PVs. This field must be specified.
 | Glusterfs            | &#x2713;            | [Glusterfs](#glusterfs)              |
 | iSCSI                | -                   | -                                    |
 | Quobyte              | &#x2713;            | [Quobyte](#quobyte)                  |
-| NFS                  | -                   | -                                    |
+| NFS                  | -                   | [NFS](#nfs)       |
 | RBD                  | &#x2713;            | [Ceph RBD](#ceph-rbd)                |
 | VsphereVolume        | &#x2713;            | [vSphere](#vsphere)                  |
 | PortworxVolume       | &#x2713;            | [Portworx Volume](#portworx-volume)  |
@@ -422,6 +422,29 @@ parameters:
     automatically creates an endpoint and a headless service in the name
     `gluster-dynamic-<claimname>`. The dynamic endpoint and service are automatically
     deleted when the persistent volume claim is deleted.
+
+### NFS
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: example-nfs
+provisioner: example.com/external-nfs
+parameters:
+  server: nfs-server.example.com
+  path: /share
+  readOnly: false
+```
+
+* `server`: Server is the hostname or IP address of the NFS server.
+* `path`: Path that is exported by the NFS server.
+* `readOnly`: A flag indicating whether the storage will be mounted as read only (default false).
+
+NFS doesn't provide an internal provisioner. You need to use an external provisioner to create a StorageClass for NFS.
+Here are some examples:
+* [NFS Ganesha server and external provisioner](https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner)
+* [NFS subdir external provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
 
 ### OpenStack Cinder
 
