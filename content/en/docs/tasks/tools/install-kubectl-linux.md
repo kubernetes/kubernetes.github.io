@@ -28,7 +28,7 @@ The following methods exist for installing kubectl on Linux:
 1. Download the latest release with the command:
 
    ```bash
-   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/$([ $(uname -m) = "aarch64" ] && echo "arm64" || echo "amd64" )/kubectl"
    ```
 
    {{< note >}}
@@ -37,7 +37,7 @@ To download a specific version, replace the `$(curl -L -s https://dl.k8s.io/rele
 For example, to download version {{< param "fullversion" >}} on Linux, type:
 
    ```bash
-   curl -LO https://dl.k8s.io/release/{{< param "fullversion" >}}/bin/linux/amd64/kubectl
+   curl -LO https://dl.k8s.io/release/{{< param "fullversion" >}}/bin/linux/$([ $(uname -m) = "aarch64" ] && echo "arm64" || echo "amd64" )/kubectl
    ```
    {{< /note >}}
 
@@ -46,7 +46,7 @@ For example, to download version {{< param "fullversion" >}} on Linux, type:
    Download the kubectl checksum file:
 
    ```bash
-   curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+   curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/$([ $(uname -m) = "aarch64" ] && echo "arm64" || echo "amd64" )/kubectl.sha256"
    ```
 
    Validate the kubectl binary against the checksum file:
