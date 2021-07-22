@@ -230,6 +230,8 @@ storage servers).
 Use a Deployment for stateless services, like frontends, where scaling up and down the
 number of replicas and rolling out updates are more important than controlling exactly which host
 the Pod runs on.  Use a DaemonSet when it is important that a copy of a Pod always run on
-all or certain hosts, and when it needs to start before other Pods.
+all or certain hosts, if the DaemonSet provides node-level functionality that allows other Pods to run correctly on that particular node.
+
+For example, [network plugins](/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/) often include a component that runs as a DaemonSet. The DaemonSet component makes sure that the node where it's running has working cluster networking.
 
 
