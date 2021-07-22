@@ -58,6 +58,9 @@ frequency is set through a new Kubelet configuration value
 `--cpu-manager-reconcile-period`. If not specified, it defaults to the same
 duration as `--node-status-update-frequency`.
 
+The behavior of the static policy can be fine-tuned using the `--cpu-manager-policy-options` flag.
+The flag takes a comma-separated list of `key=value` policy options.
+
 ### None policy
 
 The `none` policy explicitly enables the existing default CPU
@@ -212,4 +215,14 @@ and `requests` are set equal to `limits` when not explicitly specified. And the
 container's resource limit for the CPU resource is an integer greater than or
 equal to one. The `nginx` container is granted 2 exclusive CPUs.
 
+#### Static policy options
 
+If the `full-pcpus-only` policy option is specified, the static policy will always allocate full physical cores.
+You can enable this option by adding `full-pcups-only=true` to the CPUManager policy options.
+By default, without this option, the static policy allocates CPUs using a topology-aware best-fit allocation.
+On SMT enabled systems, the policy can allocate individual virtual cores, which correspond to hardware threads.
+This can lead to different containers sharing the same physical cores; this behaviour in turn contributes
+to the [noisy neighbours problem](https://en.wikipedia.org/wiki/Cloud_computing_issues#Performance_interference_and_noisy_neighbors).
+With the option enabled, the pod will be admitted by the kubelet only if the CPU request of all its containers
+can be fulfilled by allocating full physical cores.
+If the pod does not pass the admission, it will be put in Failed state with the message `SMTAlignmentError`.
