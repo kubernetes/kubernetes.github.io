@@ -412,6 +412,10 @@ poorly-behaved workloads that may be harming system health.
   queue) requests, broken down by the labels `priority_level` and
   `flow_schema`.
 
+* `apiserver_flowcontrol_request_concurrency_in_use` is a gauge vector
+  holding the instantaneous number of occupied seats, broken down by
+  the labels `priority_level` and `flow_schema`.
+
 * `apiserver_flowcontrol_priority_level_request_count_samples` is a
   histogram vector of observations of the then-current number of
   requests broken down by the labels `phase` (which takes on the
