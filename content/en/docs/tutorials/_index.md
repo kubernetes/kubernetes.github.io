@@ -55,6 +55,10 @@ Before walking through each tutorial, you may want to bookmark the
 
 * [Using Source IP](/docs/tutorials/services/source-ip/)
 
+## Migrating to Kubernetes from compose
+
+* [Overview](/docs/tutorials/compose-migration/)
+
 ## {{% heading "whatsnext" %}}
 
 If you would like to write a tutorial, see
