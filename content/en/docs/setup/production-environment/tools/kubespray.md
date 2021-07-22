@@ -56,7 +56,7 @@ After you provision your servers, create an [inventory file for Ansible](https:/
 
 Kubespray provides the ability to customize many aspects of the deployment:
 
-* Choice deployment mode: kubeadm or non-kubeadm
+* Choice deployment mode: kubeadm or non-kubeadm(deprecated non-kubeadm deployment starting from v2.8)
 * CNI (networking) plugins
 * DNS configuration
 * Choice of control plane: native/binary or containerized
