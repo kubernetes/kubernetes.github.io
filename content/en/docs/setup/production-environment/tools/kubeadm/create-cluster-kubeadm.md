@@ -98,11 +98,12 @@ a provider-specific value. See [Installing a Pod network add-on](#pod-network).
 by using a list of well known domain socket paths. To use different container runtime or
 if there are more than one installed on the provisioned node, specify the `--cri-socket`
 argument to `kubeadm init`. See [Installing runtime](/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime).
-1. (Optional) Unless otherwise specified, `kubeadm` uses the network interface associated
-with the default gateway to set the advertise address for this particular control-plane node's API server.
-To use a different network interface, specify the `--apiserver-advertise-address=<ip-address>` argument
-to `kubeadm init`. To deploy an IPv6 Kubernetes cluster using IPv6 addressing, you
-must specify an IPv6 address, for example `--apiserver-advertise-address=fd00::101`
+1. (Optional) Unless otherwise specified, `kubeadm` and the Kubelet
+advertise one or more IP addresses of the network interface associated
+with the default route as the address(es) at which components should
+be contacted.  If this is not the right choice in your setup, see
+[Considerations about network
+addresses](#considerations-about-network-addresses) below.
 1. (Optional) Run `kubeadm config images pull` prior to `kubeadm init` to verify
 connectivity to the gcr.io container image registry.
 
@@ -112,14 +113,73 @@ To initialize the control-plane node run:
 kubeadm init <args>
 ```
 
+### Considerations about network addresses
+
+There are several places where the network address(es) that various
+components advertise to use when contacting them appear, including the
+following.
+1. The Endpoints/EndpointSlices of the kube-apiserver.
+1. The Subject Alternative Name list of the kube-apiserver's X.509 certificate.
+1. The `kubeadm join` command printed by `kubeadm`.
+1. The `InternalIP` type of address of the Node.
+
+You can make your desired address appear in all but the last place by
+using the `--apiserver-advertise-address` command line flag of
+`kubeadm init`.
+
+To make the desired non-default address appear in all the places where
+it needs to, it is best to give `kubeadm init` a config file with
+contents like the following.  In this example, `192.168.56.101` is the
+desired non-default address.
+
+```yaml
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 192.168.56.101
+nodeRegistration:
+  kubeletExtraArgs:
+    node-ip: 192.168.56.101
+```
+
+Of course, if you need additional specializations to your setup then
+you would also include them in your `kubeadm init` config file.
+
+As for the `kubeadm join` side, you would use a configuration file
+like the following.  In this example, `192.168.56.101` continues as
+the desired non-default address of the first control plane node and
+`192.168.56.102` is the desired non-default address of the node
+joining the cluster.  You would substitute the bootstrap token and
+discovery cert hash output by your `kubeadm init` invocation, and
+include any other configuration you need.
+
+```yaml
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: JoinConfiguration
+discovery:
+  bootstrapToken:
+    apiServerEndpoint: 192.168.56.101:6443
+    token: abc123.0123456789abcdef
+    caCertHashes: [ sha256:f2ca1bb6c7e907d06dafe4687e579fce76b37e4e93b7605022da52e6ccc26fd2 ]
+nodeRegistration:
+  kubeletExtraArgs:
+    node-ip: 192.168.56.102
+```
+
 ### Considerations about apiserver-advertise-address and ControlPlaneEndpoint
 
-While `--apiserver-advertise-address` can be used to set the advertise address for this particular
-control-plane node's API server, `--control-plane-endpoint` can be used to set the shared endpoint
-for all control-plane nodes.
+While the techniques above can be used to set the advertise address
+for an individual kube-apiserver, there is an additional consideration
+to make when creating a highly-available cluster with multiple
+kube-apiservers.  You will need to configure their clients go through
+a load balancer.  You can use `--control-plane-endpoint` on the
+`kubeadm init` command line to set that common address.  If instead
+you are giving `kubeadm init` a config file then you would put the
+load balancer address in the `controlPlaneEndpoint` field of a
+`ClusterConfiguration` object.
 
-`--control-plane-endpoint` allows both IP addresses and DNS names that can map to IP addresses.
-Please contact your network administrator to evaluate possible solutions with respect to such mapping.
+You can give either an IP address or a DNS name for the load balancer.
+Please contact your network administrator to evaluate possible ways to make a DNS name map to the desired address(es).
 
 Here is an example mapping:
 
