@@ -170,7 +170,7 @@ manually through `easyrsa`, `openssl` or `cfssl`.
     <!-- 
     1.  Generate the server certificate using the ca.key, ca.crt and server.csr:
     -->
-1.  基于 ca.key、ca.key 和 server.csr 等三个文件生成服务端证书：
+1.  基于 ca.key、ca.crt 和 server.csr 等三个文件生成服务端证书：
 
         openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key \
         -CAcreateserial -out server.crt -days 10000 \
