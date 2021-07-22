@@ -1747,7 +1747,7 @@ Examples:
 `--remove-extra-permissions`，可以删除额外的权限。
 
 已经存在的绑定也会被更新，使之包含输入对象中所给的主体。如果指定了
-`--remove-extra-permissions`，则可以删除多余的主体。
+`--remove-extra-subjects`，则可以删除多余的主体。
 
 例如:
 
