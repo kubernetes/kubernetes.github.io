@@ -81,7 +81,7 @@ Kubernetes unterstützt mehrere Laufzeiten: [Docker](http://www.docker.com), [co
 ## Addons
 
 Addons sind Pods und Dienste, die Clusterfunktionen implementieren. Die Pods können verwaltet werden
-durch Deployments, ReplicationControllers, und so wieter.
+durch Deployments, ReplicationControllers, und so weiter.
 Namespace-Addon-Objekte werden im Namespace `kube-system` erstellt.
 
 Ausgewählte Addons werden unten beschrieben. Eine erweiterte Liste verfügbarer Addons finden Sie unter [Addons](/docs/concepts/cluster-administration/addons/).

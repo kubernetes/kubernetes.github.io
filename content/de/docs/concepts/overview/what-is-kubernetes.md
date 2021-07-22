@@ -79,7 +79,7 @@ Kubernetes:
   Cluster-Speichersysteme (z.B. Ceph) als eingebaute Dienste. Solche Komponenten können
   auf Kubernetes laufen und/oder von Anwendungen, die auf Kubernetes laufen, über
   portable Mechanismen wie den Open Service Broker angesprochen werden.
-* Bietet keine Konfigurationssprache bzw. kein Konfigurationssystem (z.B.[jsonnet](https://github.com/google/jsonnet)).
+* Bietet keine Konfigurationssprache bzw. kein Konfigurationssystem (z.B. [jsonnet](https://github.com/google/jsonnet)).
   Es bietet eine deklarative API, die von beliebigen Formen deklarativer Spezifikationen angesprochen werden kann.
 * Bietet keine umfassenden Systeme zur Maschinenkonfiguration, Wartung, Verwaltung oder Selbstheilung.
 

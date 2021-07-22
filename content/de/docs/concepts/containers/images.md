@@ -118,7 +118,7 @@ Voraussetzungen:
 
 Fehlerbehebung:
 
-- Die oben genannten Voraussetzungen müssen erfüllt sein
+- Die oben genannten Voraussetzungen müssen erfüllt sein.
 - Laden sie die $REGION (z.B. `us-west-2`) Zugriffsdaten auf ihren Arbeitsrechner. Verbinden sie sich per SSH auf den Host und nutzen die Docker mit diesen Daten. Funktioniert es?
 - Prüfen sie ob das Kubelet it dem Parameter `--cloud-provider=aws` läuft.
 - Prüfen sie die Logs des Kubelets (z.B. mit `journalctl -u kubelet`) auf Zeilen wie:
@@ -154,11 +154,11 @@ Weitere Informationen finden sie unter: [Building containers from images](https:
 ### Knoten für die Nutzung einer Private Registry konfigurieren
 
 {{< note >}}
-Wenn sie   Google Kubernetes Engine verwenden, gibt es schon eine `.dockercfg` auf jedem Knoten, die Zugriffsdaten für ihre Google Container Registry beinhaltet. Dann kann die folgende Vorgehensweise nicht angewendet werden.
+Wenn sie  Google Kubernetes Engine verwenden, gibt es schon eine `.dockercfg` auf jedem Knoten, die Zugriffsdaten für ihre Google Container Registry beinhaltet. Dann kann die folgende Vorgehensweise nicht angewendet werden.
 {{< /note >}}
 
 {{< note >}}
-Wenn sie  AWS EC2 verwenden und die EC2 Container Registry (ECR) nutzen, wird das Kubelet auf jedem Knoten die ECR Zugriffsdaten verwalten und aktualisieren. Dann kann die folgende Vorgehensweise nicht angewendet werden.
+Wenn sie AWS EC2 verwenden und die EC2 Container Registry (ECR) nutzen, wird das Kubelet auf jedem Knoten die ECR Zugriffsdaten verwalten und aktualisieren. Dann kann die folgende Vorgehensweise nicht angewendet werden.
 {{< /note >}}
 
 {{< note >}}
@@ -234,7 +234,7 @@ Alle Pods haben Lesezugriff auf jedes Image in ihrer eigenen Registry, sobald di
 ### Im Voraus heruntergeladene Images
 
 {{< note >}}
-Wenn sie  Google Kubernetes Engine verwenden, gibt es schon eine `.dockercfg` auf jedem Knoten die Zugriffsdaten für ihre Google Container Registry beinhaltet. Dann kann die folgende Vorgehensweise nicht angewendet werden.
+Wenn sie Google Kubernetes Engine verwenden, gibt es schon eine `.dockercfg` auf jedem Knoten die Zugriffsdaten für ihre Google Container Registry beinhaltet. Dann kann die folgende Vorgehensweise nicht angewendet werden.
 {{< /note >}}
 
 {{< note >}}
@@ -326,15 +326,15 @@ Es gibt eine Anzahl an Lösungen um eigene Registries zu konfigurieren, hier sin
      - Funktioniert besser mit Cluster - Autoskalierung als mit manueller Knotenkonfiguration.
    - Auf einem Cluster bei dem die Knotenkonfiguration ungünstig ist können `imagePullSecrets` genutzt werden.
 3. Cluster mit proprieritären Images, mit einigen Images die eine erweiterte Zugriffskontrolle erfordern.
-   - Stellen sie sicher das [AlwaysPullImages admission controller](/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) aktiv ist, anderenfalls können alle Pods potenziell Zugriff auf alle Images haben.
+   - Stellen sie sicher, dass [AlwaysPullImages admission controller](/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) aktiv ist, anderenfalls können alle Pods potenziell Zugriff auf alle Images haben.
    - Verschieben sie sensitive Daten in eine "Secret" Ressource statt sie im Image abzulegen.
 4. Ein mandantenfähiger Cluster in dem jeder Mandant eine eigene private Registry benötigt.
-   - Stellen sie dicher das [AlwaysPullImages admission controller](/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) aktiv ist, anderenfalls können alle Pods potenziell Zugriff auf alle Images haben.
+   - Stellen sie sicher, dass [AlwaysPullImages admission controller](/docs/reference/access-authn-authz/admission-controllers/#alwayspullimages) aktiv ist, anderenfalls können alle Pods potenziell Zugriff auf alle Images haben.
    - Nutzen sie eine private Registry die eine Authorisierung erfordert. 
-   - Generieren die Registry - Zugriffsdaten für jeden Mandanten, abgelegt in einem Secret das in jedem Mandanten - Namespace vorhanden ist.
+   - Generieren sie Registry - Zugriffsdaten für jeden Mandanten, abgelegt in einem Secret das in jedem Mandanten - Namespace vorhanden ist.
    - Der Mandant fügt dieses Sercret zu den imagePullSecrets in jedem seiner Namespace hinzu.
 
 
 
-Falls die Zugriff auf mehrere Registries benötigen, können sie ein Secret für jede Registry erstellen, Kubelet wird jedwede `imagePullSecrets` in einer einzelnen `.docker/config.json` zusammenfassen.
+Falls sie Zugriff auf mehrere Registries benötigen, können sie ein Secret für jede Registry erstellen, Kubelet wird jedwede `imagePullSecrets` in einer einzelnen `.docker/config.json` zusammenfassen.
 

@@ -103,7 +103,7 @@ Die Informationen werden von Kubelet vom Node gesammelt.
 ## Management
 
 Im Gegensatz zu [Pods](/docs/concepts/workloads/pods/pod/) und [Services](/docs/concepts/services-networking/service/),
-ein Node wird nicht von Kubernetes erstellt: Er wird extern von Cloud-Anbietern wie Google Compute Engine erstellt oder ist in Ihrem Pool physischer oder virtueller Maschinen vorhanden.
+wird ein Node nicht von Kubernetes erstellt: Er wird extern von Cloud-Anbietern wie Google Compute Engine erstellt oder ist in Ihrem Pool physischer oder virtueller Maschinen vorhanden.
 Wenn Kubernetes also einen Node erstellt, wird ein Objekt erstellt, das den Node darstellt.
 Nach der Erstellung überprüft Kubernetes, ob der Node gültig ist oder nicht.
 

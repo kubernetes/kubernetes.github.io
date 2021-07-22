@@ -15,5 +15,5 @@ tags:
 
 <!--more-->
 
-Es ist für die horizontale Skalierung konzipiert, d. H. Es skaliert durch die Bereitstellung von mehr Instanzen. Mehr informationen finden Sie unter [Cluster mit hoher Verfügbarkeit erstellen](/docs/admin/high-availability/).
+Es ist für die horizontale Skalierung konzipiert, d.h. es skaliert durch die Bereitstellung von mehr Instanzen. Mehr informationen finden Sie unter [Cluster mit hoher Verfügbarkeit erstellen](/docs/admin/high-availability/).
 
