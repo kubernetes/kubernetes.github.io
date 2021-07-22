@@ -870,7 +870,7 @@ Auto-reconciliation is enabled by default if the RBAC authorizer is active.
 ### 自动协商   {#auto-reconciliation}
 
 在每次启动时，API 服务器都会更新默认 ClusterRole 以添加缺失的各种权限，并更新
-默认的 ClusterRoleBinding 以增加缺失的的各类主体。
+默认的 ClusterRoleBinding 以增加缺失的各类主体。
 这种自动协商机制允许集群去修复一些不小心发生的修改，并且有助于保证角色和角色绑定
 在新的发行版本中有权限或主体变更时仍然保持最新。
 
