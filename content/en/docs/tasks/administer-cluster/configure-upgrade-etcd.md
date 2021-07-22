@@ -326,6 +326,12 @@ Here is an example:
 ETCDCTL_API=3 etcdctl --endpoints 10.2.0.9:2379 snapshot restore snapshotdb
 ```
 
+Another example for restoring using etcdctl options:
+```shell
+ETCDCTL_API=3 etcdctl --data-dir=<Directory location to restore> snapshot restore <backup-file-location>
+```
+In this case, you need to update the appropriate option (for example the path in the volume) within the etcd specification with the restored directory location. 
+
 For more information and examples on restoring a cluster from a snapshot file, see
 [etcd disaster recovery documentation](https://etcd.io/docs/current/op-guide/recovery/#restoring-a-cluster).
 
