@@ -31,3 +31,8 @@ Kubernetes, or for daily development work.
 You can follow the official
 [Get Started!](https://minikube.sigs.k8s.io/docs/start/) guide if your focus is
 on getting the tool installed.
+
+
+{{< note >}}
+For creating a production-quality Kubernetes cluster, look for documentation here [Production environment](/docs/setup/#production-environment)
+{{< /note >}}
