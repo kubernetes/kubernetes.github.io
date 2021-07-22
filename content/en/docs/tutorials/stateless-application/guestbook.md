@@ -19,7 +19,7 @@ ready)_, multi-tier web application using Kubernetes and
 [Docker](https://www.docker.com/). This example consists of the following
 components:
 
-* A single-instance [Redis](https://www.redis.com/) to store guestbook entries
+* A single-instance [Redis](https://www.redis.io/) to store guestbook entries
 * Multiple web frontend instances
 
 ## {{% heading "objectives" %}}
