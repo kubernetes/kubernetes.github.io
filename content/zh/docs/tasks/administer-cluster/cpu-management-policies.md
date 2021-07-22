@@ -94,7 +94,8 @@ CPU 管理器定期通过 CRI 写入资源更新，以保证内存中 CPU 分配
 The `none` policy explicitly enables the existing default CPU
 affinity scheme, providing no affinity beyond what the OS scheduler does
 automatically.  Limits on CPU usage for
-[Guaranteed pods](/docs/tasks/configure-pod-container/quality-service-pod/)
+[Guaranteed pods](/docs/tasks/configure-pod-container/quality-service-pod/) and
+[Burstable pods](/docs/tasks/configure-pod-container/quality-service-pod/)
 are enforced using CFS quota.
 -->
 ### none 策略
