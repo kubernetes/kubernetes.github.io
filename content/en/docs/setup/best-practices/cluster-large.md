@@ -124,3 +124,6 @@ components, including cluster-critical addons.
 The [cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#readme)
 integrates with a number of cloud providers to help you run the right number of
 nodes for the level of resource demand in your cluster.
+
+The [addon resizer](https://github.com/kubernetes/autoscaler/tree/master/addon-resizer#readme)
+helps you in resizing the addons automatically as your cluster's scale changes.
