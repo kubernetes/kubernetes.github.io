@@ -206,12 +206,12 @@
 /docs/reference/generated/kube-scheduler/     /docs/reference/command-line-tools-reference/kube-scheduler/ 301
 /docs/reference/generated/kubectl/kubectl-options/     /docs/reference/kubectl/kubectl/ 301
 /docs/reference/generated/kubectl/kubectl/     /docs/reference/generated/kubectl/kubectl-commands/ 301
-/docs/reference/generated/kubectl/kubectl/kubectl_*.md    /docs/reference/generated/kubectl/kubectl-commands#:splat 301
+/docs/reference/generated/kubectl/kubectl/kubectl_*    /docs/reference/generated/kubectl/kubectl-commands#:splat 301
 
 /docs/reference/glossary/maintainer/    /docs/reference/glossary/approver/ 301
 
 /docs/reference/kubectl/kubectl-cmds/     /docs/reference/generated/kubectl/kubectl-commands/ 301!
-/docs/reference/kubectl/kubectl/kubectl_*.md    /docs/reference/generated/kubectl/kubectl-commands#:splat 301
+/docs/reference/kubectl/kubectl/kubectl_*    /docs/reference/generated/kubectl/kubectl-commands#:splat 301
 /docs/reference/scheduling/profiles/    /docs/reference/scheduling/config/#profiles 301
 
 /docs/reference/generated/kubernetes-api/v1.15/    https://v1-15.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.15/  301
@@ -395,7 +395,7 @@
 /docs/user-guide/kubectl-conventions/     /docs/reference/kubectl/conventions/
 /docs/user-guide/kubectl-cheatsheet/     /docs/reference/kubectl/cheatsheet/
 /cheatsheet /docs/reference/kubectl/cheatsheet/ 302
-/docs/user-guide/kubectl/kubectl_*/     /docs/reference/generated/kubectl/kubectl-commands#:splat 301
+/docs/user-guide/kubectl/kubectl_*     /docs/reference/generated/kubectl/kubectl-commands#:splat 301
 /docs/user-guide/labels/     /docs/concepts/overview/working-with-objects/labels/ 301
 /docs/user-guide/liveness/     /docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/ 301
 /docs/user-guide/load-balancer/     /docs/tasks/access-application-cluster/create-external-load-balancer/ 301

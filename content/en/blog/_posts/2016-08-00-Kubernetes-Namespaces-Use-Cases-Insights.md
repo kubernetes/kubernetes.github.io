@@ -125,7 +125,7 @@ You may wish to, but you cannot create a hierarchy of namespaces. Namespaces can
 
 
 
-Namespaces are easy to create and use but it’s also easy to deploy code inadvertently into the wrong namespace. Good DevOps hygiene suggests documenting and automating processes where possible and this will help. The other way to avoid using the wrong namespace is to set a [kubectl context](/docs/user-guide/kubectl/kubectl_config_set-context/).&nbsp;
+Namespaces are easy to create and use but it’s also easy to deploy code inadvertently into the wrong namespace. Good DevOps hygiene suggests documenting and automating processes where possible and this will help. The other way to avoid using the wrong namespace is to set a [kubectl context](/docs/reference/generated/kubectl/kubectl-commands#-em-set-context-em-).&nbsp;
 
 
 
