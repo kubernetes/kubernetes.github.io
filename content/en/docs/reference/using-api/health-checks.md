@@ -25,7 +25,7 @@ The more verbose options shown below are intended to be used by human operators 
 The following examples will show how you can interact with the health API endpoints.
 
 For all endpoints you can use the `verbose` parameter to print out the checks and their status.
-This can be useful for a human operator to debug the current status of the Api server, it is not intended to be consumed by a machine:
+This can be useful for a human operator to debug the current status of the API server, it is not intended to be consumed by a machine:
 
 ```shell
 curl -k https://localhost:6443/livez?verbose
@@ -93,7 +93,7 @@ The output show that the `etcd` check is excluded:
 
 {{< feature-state state="alpha" >}}
 
-Each individual health check exposes an http endpoint and could can be checked individually.
+Each individual health check exposes an HTTP endpoint and could can be checked individually.
 The schema for the individual health checks is `/livez/<healthcheck-name>` where `livez` and `readyz` and be used to indicate if you want to check the liveness or the readiness of the API server.
 The `<healthcheck-name>` path can be discovered using the `verbose` flag from above and take the path between `[+]` and `ok`.
 These individual health checks should not be consumed by machines but can be helpful for a human operator to debug a system:
