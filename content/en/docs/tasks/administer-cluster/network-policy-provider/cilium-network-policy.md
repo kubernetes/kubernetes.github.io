@@ -24,45 +24,59 @@ For background on Cilium, read the [Introduction to Cilium](https://docs.cilium.
 ## Deploying Cilium on Minikube for Basic Testing
 
 To get familiar with Cilium easily you can follow the
-[Cilium Kubernetes Getting Started Guide](https://docs.cilium.io/en/stable/gettingstarted/minikube/)
+[Cilium Kubernetes Getting Started Guide](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/)
 to perform a basic DaemonSet installation of Cilium in minikube.
 
-To start minikube, minimal version required is >= v1.3.1, run the with the
+To start minikube, minimal version required is >= v1.5.2, run the with the
 following arguments:
 
 ```shell
 minikube version
 ```
 ```
-minikube version: v1.3.1
+minikube version: v1.5.2
 ```
 
 ```shell
-minikube start --network-plugin=cni --memory=4096
+minikube start --network-plugin=cni
 ```
 
-Mount the BPF filesystem:
-
-```shell
-minikube ssh -- sudo mount bpffs -t bpf /sys/fs/bpf
-```
-
-For minikube you can deploy this simple ''all-in-one'' YAML file that includes
-DaemonSet configurations for Cilium as well as appropriate RBAC settings:
+For minikube you can install Cilium using its CLI tool. Cilium will
+automatically detect the cluster configuration and will install the appropriate
+components for a successful installation:
 
 ```shell
-kubectl create -f https://raw.githubusercontent.com/cilium/cilium/v1.8/install/kubernetes/quick-install.yaml
+curl -LO https://github.com/cilium/cilium-cli/releases/latest/download/cilium-linux-amd64.tar.gz
+sudo tar xzvfC cilium-linux-amd64.tar.gz /usr/local/bin
+rm cilium-linux-amd64.tar.gz
+cilium install
 ```
 ```
-configmap/cilium-config created
-serviceaccount/cilium created
-serviceaccount/cilium-operator created
-clusterrole.rbac.authorization.k8s.io/cilium created
-clusterrole.rbac.authorization.k8s.io/cilium-operator created
-clusterrolebinding.rbac.authorization.k8s.io/cilium created
-clusterrolebinding.rbac.authorization.k8s.io/cilium-operator created
-daemonset.apps/cilium create
-deployment.apps/cilium-operator created
+🔮 Auto-detected Kubernetes kind: minikube
+✨ Running "minikube" validation checks
+✅ Detected minikube version "1.20.0"
+ℹ️  Cilium version not set, using default version "v1.10.0"
+🔮 Auto-detected cluster name: minikube
+🔮 Auto-detected IPAM mode: cluster-pool
+🔮 Auto-detected datapath mode: tunnel
+🔑 Generating CA...
+2021/05/27 02:54:44 [INFO] generate received request
+2021/05/27 02:54:44 [INFO] received CSR
+2021/05/27 02:54:44 [INFO] generating key: ecdsa-256
+2021/05/27 02:54:44 [INFO] encoded CSR
+2021/05/27 02:54:44 [INFO] signed certificate with serial number 48713764918856674401136471229482703021230538642
+🔑 Generating certificates for Hubble...
+2021/05/27 02:54:44 [INFO] generate received request
+2021/05/27 02:54:44 [INFO] received CSR
+2021/05/27 02:54:44 [INFO] generating key: ecdsa-256
+2021/05/27 02:54:44 [INFO] encoded CSR
+2021/05/27 02:54:44 [INFO] signed certificate with serial number 3514109734025784310086389188421560613333279574
+🚀 Creating Service accounts...
+🚀 Creating Cluster roles...
+🚀 Creating ConfigMap...
+🚀 Creating Agent DaemonSet...
+🚀 Creating Operator Deployment...
+⌛ Waiting for Cilium to be installed...
 ```
 
 The remainder of the Getting Started Guide explains how to enforce both L3/L4
@@ -85,14 +99,14 @@ Deploying a cluster with Cilium adds Pods to the `kube-system` namespace. To see
 this list of Pods run:
 
 ```shell
-kubectl get pods --namespace=kube-system
+kubectl get pods --namespace=kube-system -l k8s-app=cilium
 ```
 
 You'll see a list of Pods similar to this:
 
 ```console
-NAME            READY   STATUS    RESTARTS   AGE
-cilium-6rxbd    1/1     Running   0          1m
+NAME           READY   STATUS    RESTARTS   AGE
+cilium-kkdhz   1/1     Running   0          3m23s
 ...
 ```
 
