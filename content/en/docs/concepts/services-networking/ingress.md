@@ -202,6 +202,13 @@ example “`*.foo.com`”). Precise matches require that the HTTP `host` header
 matches the `host` field. Wildcard matches require the HTTP `host` header is
 equal to the suffix of the wildcard rule.
 
+
+With respect to Wildcards and Top-level-domains (eg. .com, .ca, .org, .edu), there is
+currently no support for specifying a wildcard in the format of `subdomain.domain.*`.
+This would assume that the domain owner has access to and purchased all 
+Top-level-domains for their domain in order for this to be supported.
+
+
 | Host        | Host header       | Match?                                            |
 | ----------- |-------------------| --------------------------------------------------|
 | `*.foo.com` | `bar.foo.com`     | Matches based on shared suffix                    |
