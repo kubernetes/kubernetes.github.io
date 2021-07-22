@@ -130,10 +130,6 @@ This page shows you how to set up a simple Ingress which routes requests to Serv
 
 The following file is an Ingress resource that sends traffic to your Service via hello-world.info.
 
-1. Create `example-ingress.yaml` from the following file:
-
-  {{< codenew file="service/networking/example-ingress.yaml" >}}
-
 1. Create the Ingress resource by running the following command:
 
     ```shell
