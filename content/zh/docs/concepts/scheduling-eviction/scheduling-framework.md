@@ -267,7 +267,7 @@ happens before the scheduler actually binds the Pod to the Node, and it exists
 to prevent race conditions while the scheduler waits for the bind to succeed.
 -->
 Reserve 是一个信息性的扩展点。
-管理运行时状态的插件（也成为“有状态插件”）应该使用此扩展点，以便
+管理运行时状态的插件（也称为“有状态插件”）应该使用此扩展点，以便
 调度器在节点给指定 Pod 预留了资源时能够通知该插件。
 这是在调度器真正将 Pod 绑定到节点之前发生的，并且它存在是为了防止
 在调度器等待绑定成功时发生竞争情况。
