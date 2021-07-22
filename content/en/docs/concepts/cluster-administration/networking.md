@@ -39,30 +39,36 @@ model where `Pods` can be treated much like VMs or physical hosts from the
 perspectives of port allocation, naming, service discovery, load balancing,
 application configuration, and migration.
 
-Kubernetes imposes the following fundamental requirements on any networking
-implementation (barring any intentional network segmentation policies):
-
-   * pods on a node can communicate with all pods on all nodes without NAT
-   * agents on a node (e.g. system daemons, kubelet) can communicate with all
-     pods on that node
-
-Note: For those platforms that support `Pods` running in the host network (e.g.
-Linux):
-
-   * pods in the host network of a node can communicate with all pods on all
-     nodes without NAT
-
-This model is not only less complex overall, but it is principally compatible
-with the desire for Kubernetes to enable low-friction porting of apps from VMs
-to containers.  If your job previously ran in a VM, your VM had an IP and could
-talk to other VMs in your project.  This is the same basic model.
-
 Kubernetes IP addresses exist at the `Pod` scope - containers within a `Pod`
 share their network namespaces - including their IP address and MAC address.
 This means that containers within a `Pod` can all reach each other's ports on
 `localhost`. This also means that containers within a `Pod` must coordinate port
 usage, but this is no different from processes in a VM.  This is called the
 "IP-per-pod" model.
+
+In every cluster, there exists an abstract pod-network to which pods
+are connected by default, unless explicitly configured to use the
+host-network (which is an optional capability). Even if a host have
+multiple IPs, host-network pods only have one Kubernetes IP address at
+the `Pod` scope, so the "IP-per-pod" model is guaranteed.
+
+Kubernetes imposes the following fundamental requirements on any networking
+implementation (barring any intentional network segmentation policies):
+
+   * pod-network pods on a node can communicate with all pod-network pods on
+     all nodes without NAT
+   * non-pod processes on a node (e.g. system daemons, kubelet) can communicate
+     with all pods on that node
+
+Note: For those platforms that support `Pods` running in the host network (e.g.Linux):
+
+   * host-network pods of a node can connect directly with all pods IPs
+     on all nodes, with source NAT if required
+
+This model is not only less complex overall, but it is principally compatible
+with the desire for Kubernetes to enable low-friction porting of apps from VMs
+to containers.  If your job previously ran in a VM, your VM had an IP and could
+talk to other VMs in your project.  This is the same basic model.
 
 How this is implemented is a detail of the particular container runtime in use.
 
