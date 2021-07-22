@@ -39,7 +39,7 @@ client libraries:
 - [Kubernetes Java client library](https://github.com/kubernetes-client/java)
 - [Kubernetes JavaScript client library](https://github.com/kubernetes-client/javascript)
 - [Kubernetes C# client library](https://github.com/kubernetes-client/csharp)
-- [Kubernetes Haskell Client library](https://github.com/kubernetes-client/haskell)
+- [Kubernetes Haskell client library](https://github.com/kubernetes-client/haskell)
 
 ## CLI
 
