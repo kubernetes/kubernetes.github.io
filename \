@@ -1351,14 +1351,14 @@ PVC/PV 不会被删除。
 
 ### TaintNodesByCondition {#taintnodesbycondition} 
 
-{{< feature-state for_k8s_version="v1.17" state="stable" >}}
+{{< feature-state for_k8s_version="v1.12" state="beta" >}}
 
 <!--
 This admission controller {{< glossary_tooltip text="taints" term_id="taint" >}} newly created Nodes as `NotReady` and `NoSchedule`. That tainting avoids a race condition that could cause Pods to be scheduled on new Nodes before their taints were updated to accurately reflect their reported conditions.
 -->
 该准入控制器为新创建的节点添加 `NotReady` 和 `NoSchedule` 
 {{< glossary_tooltip text="污点" term_id="taint" >}}。
-这些污点能够避免一些竞态条件的发生，这类竞态条件可能导致 Pod 在更新节点污点以准确
+这些污点能够避免一些静态条件的发生，这类静态条件可能导致 Pod 在更新节点污点以准确
 反映其所报告状况之前，就被调度到新节点上。
 
 ### ValidatingAdmissionWebhook {#validatingadmissionwebhook} 
