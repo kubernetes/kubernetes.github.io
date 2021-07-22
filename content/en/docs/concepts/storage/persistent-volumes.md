@@ -785,6 +785,65 @@ spec:
       storage: 10Gi
 ```
 
+## Volume Populators and Data Sources
+
+{{< feature-state for_k8s_version="v1.22" state="alpha" >}}
+
+{{< note >}}
+Volume populars are available as alpha since Kubernetes 1.18, are redesigned in Kubernetes 1.22. The `AnyVolumeDataSource` feature must be enabled. Refer to the [feature gate](/docs/reference/command-line-tools-reference/feature-gates/) documentation for more information.
+{{< /note >}}
+
+Volume populators take advantage of a new PVC spec field called `dataSourceRef`. Unlike the
+`dataSource` field, which can only contain either a reference to another PersistentVolumeClaim
+or to a VolumeSnapshot, the `dataSourceRef` field can contain a reference to any object in the
+same namespace, except for core objects other than PVCs.
+
+### Data Source Field Semantics
+
+Use of the `dataSourceRef` field is nearly identical to the `dataSource` field, in that filling
+in either one causes the other to be filled in with the same value, and neither can be changed
+after creation. The two fields will thus always have the same contents. The two differences that
+matter are:
+* The `dataSource` field ignores invalid values (as if the field was blank) while the
+  `dataSourceRef` field never ignores values and will cause an error if an invalid value is
+  used.
+* The `dataSourceRef` field many different types of objects, while the `dataSource` field only
+  allows PVCs and VolumeSnapshots.
+
+Attempting to specify different values for the two fields is always an error.
+
+### Using Volume Populators
+
+Volume populators are controllers that can create non-empty volumes, where the contents of the
+volume are determined by a Custom Resource. Users create a populated volume by referring to a
+Custom Resource using the `dataSourceRef` field:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: populated-pvc
+spec:
+  dataSourceRef:
+    name: example-name
+    kind: ExampleDataSource
+    apiGroup: example.storage.k8s.io
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+```
+
+### Volume Populators Errors
+
+Because Volume Populators are external components, attempts to create a PVC that uses one
+can fail if not all the correct components are installed. There is a data-source-validator
+controller that will generate warning events on the PVC in the case that no populator
+is registered to handle that kind of data source. If a populator is installed, any errors
+related to creation of the volume will reported by the populator controller itself as
+events on the PVC.
+
 ## Writing Portable Configuration
 
 If you're writing configuration templates or examples that run on a wide range of clusters
