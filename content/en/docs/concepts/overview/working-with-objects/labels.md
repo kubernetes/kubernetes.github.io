@@ -42,7 +42,7 @@ Example labels:
    * `"partition" : "customerA"`, `"partition" : "customerB"`
    * `"track" : "daily"`, `"track" : "weekly"`
 
-These are examples of commonly used labels; you are free to develop your own conventions. Keep in mind that label Key must be unique for a given object.
+These are examples of [commonly used labels](/docs/concepts/overview/working-with-objects/common-labels/); you are free to develop your own conventions. Keep in mind that label Key must be unique for a given object.
 
 ## Syntax and character set
 
@@ -50,7 +50,7 @@ _Labels_ are key/value pairs. Valid label keys have two segments: an optional pr
 
 If the prefix is omitted, the label Key is presumed to be private to the user. Automated system components (e.g. `kube-scheduler`, `kube-controller-manager`, `kube-apiserver`, `kubectl`, or other third-party automation) which add labels to end-user objects must specify a prefix.
 
-The `kubernetes.io/` and `k8s.io/` prefixes are reserved for Kubernetes core components.
+The `kubernetes.io/` and `k8s.io/` prefixes are [reserved](/docs/reference/labels-annotations-taints/) for Kubernetes core components.
 
 Valid label value:
 * must be 63 characters or less (can be empty),
