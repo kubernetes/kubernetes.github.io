@@ -140,7 +140,7 @@ kubeadm init <args>
 ### Plus d'information
 
 Pour plus d'informations sur les arguments de `kubeadm init`, voir le
-[guide de référence kubeadm](/docs/reference/setup-tools/kubeadm/kubeadm/).
+[guide de référence kubeadm](/docs/reference/setup-tools/kubeadm/).
 
 Pour une liste complète des options de configuration, voir la
 [documentation du fichier de configuration](/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file).
