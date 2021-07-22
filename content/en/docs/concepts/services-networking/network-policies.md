@@ -152,6 +152,33 @@ contains a single `from` element allowing connections from Pods with the label `
 
 contains two elements in the `from` array, and allows connections from Pods in the local Namespace with the label `role=client`, *or* from any Pod in any namespace with the label `user=alice`.
 
+```yaml
+  ...
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          user: alice
+      podSelector:
+        matchLabels:
+          role: client
+    ports:
+     - protocol: TCP
+       port: 6379   
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          user: alice
+      podSelector:
+        matchLabels:
+          role: second-client
+    ports:
+     - protocol: TCP
+       port: 6808         
+  ...
+```
+contains two different ingress rules the `client` podSelector uses an configuration similar to an `AND` operator and `second-client` podSelector is akin to an `OR`. Also this illustrate on how to configure a full set of ingress rules when we have a different ports.
+
 When in doubt, use `kubectl describe` to see how Kubernetes has interpreted the policy.
 
 __ipBlock__: This selects particular IP CIDR ranges to allow as ingress sources or egress destinations. These should be cluster-external IPs, since Pod IPs are ephemeral and unpredictable.
