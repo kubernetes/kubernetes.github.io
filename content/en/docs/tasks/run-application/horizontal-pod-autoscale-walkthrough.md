@@ -189,7 +189,7 @@ by making use of the `autoscaling/v2beta2` API version.
 First, get the YAML of your HorizontalPodAutoscaler in the `autoscaling/v2beta2` form:
 
 ```shell
-kubectl get hpa.v2beta2.autoscaling -o yaml > /tmp/hpa-v2.yaml
+kubectl get hpa php-apache -o yaml > /tmp/hpa-v2.yaml
 ```
 
 Open the `/tmp/hpa-v2.yaml` file in an editor, and you should see YAML which looks like this:
