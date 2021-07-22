@@ -390,10 +390,12 @@ The feature life cycle matched to its corresponding feature gate is:
 
   * Alpha: the feature gate is disabled by default and can be enabled by the user.
   * Beta: the feature gate is enabled by default and can be disabled by the user.
-  * GA: the feature gate is deprecated (see ["Deprecation"](#deprecation)) and becomes
-  non-operational.
-  * GA, deprecation window complete: the feature gate is removed and calls to it are
-  no longer accepted.
+  * Deprecated: the feature gate is disabled by default and can be enabled
+  by the user for the duration of deprecation window. See ["Deprecation"](#deprecation).
+  * GA: the feature gate is deprecated and becomes non-operational - enabled by
+  default and cannot be disabled by the user.
+  * GA or Deprecated, deprecation window complete: the feature gate is removed
+  and calls to it are no longer accepted.
 
 ### Deprecation
 
@@ -426,7 +428,8 @@ transitions a lifecycle stage as follows. Feature gates must function for no les
 
 **Rule #9: Deprecated feature gates must respond with a warning when used. When a feature gate
 is deprecated it must be documented in both in the release notes and the corresponding CLI help.
-Both warnings and documentation must indicate whether a feature gate is non-operational.**
+Both warnings and documentation must indicate whether a feature gate is non-operational.
+Throughout the deprecation period, the feature gate must be disabled by default.**
 
 ## Deprecating a metric
 
