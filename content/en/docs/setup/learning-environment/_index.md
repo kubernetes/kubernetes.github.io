@@ -11,7 +11,7 @@ weight: 20
 {{/* If you're localizing this page, you only need to copy the front matter */}}
 {{/* and add a redirect into "/static/_redirects", for YOUR localization. */}}
 -->
-
+<!--
 ## kind
 
 [`kind`](https://kind.sigs.k8s.io/docs/) lets you run Kubernetes on
@@ -31,3 +31,5 @@ Kubernetes, or for daily development work.
 You can follow the official
 [Get Started!](https://minikube.sigs.k8s.io/docs/start/) guide if your focus is
 on getting the tool installed.
+-->
+
