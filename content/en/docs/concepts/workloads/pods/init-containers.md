@@ -291,7 +291,8 @@ Given the ordering and execution for init containers, the following rules
 for resource usage apply:
 
 * The highest of any particular resource request or limit defined on all init
-  containers is the *effective init request/limit*
+  containers is the *effective init request/limit*. If any resource has no
+  resource limit specified this is considered as the highest limit.
 * The Pod's *effective request/limit* for a resource is the higher of:
   * the sum of all app containers request/limit for a resource
   * the effective init request/limit for a resource
