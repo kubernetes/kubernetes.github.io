@@ -63,7 +63,7 @@ weight: 10
 <!--
         <p>Pods are the atomic unit on the Kubernetes platform. When we create a Deployment on Kubernetes, that Deployment creates Pods with containers inside them (as opposed to creating containers directly). Each Pod is tied to the Node where it is scheduled, and remains there until termination (according to restart policy) or deletion. In case of a Node failure, identical Pods are scheduled on other available Nodes in the cluster.</p>
 -->
-        <p>Pod是 Kubernetes 平台上的原子单元。 当我们在 Kubernetes 上创建 Deployment 时，该 Deployment 会在其中创建包含容器的 Pod （而不是直接创建容器）。每个 Pod 都与调度它的工作节点绑定，并保持在那里直到终止（根据重启策略）或删除。 如果工作节点发生故障，则会在群集中的其他可用工作节点上调度相同的 Pod。</p>
+        <p>Pod是 Kubernetes 平台上的原子单元。 当我们在 Kubernetes 上创建 Deployment 时，该 Deployment 会在其中创建包含容器的 Pod （而不是直接创建容器）。每个 Pod 都与调度它的工作节点绑定，并保持在那里直到终止（根据重启策略）或删除。 如果工作节点发生故障，则会在集群中的其他可用工作节点上调度相同的 Pod。</p>
 
       </div>
       <div class="col-md-4">
@@ -124,7 +124,7 @@ weight: 10
         </ul>
 -->
         <h2>工作节点</h2>
-        <p>一个 pod 总是运行在 <b>工作节点</b>。工作节点是 Kubernetes 中的参与计算的机器，可以是虚拟机或物理计算机，具体取决于集群。每个工作节点由主节点管理。工作节点可以有多个 pod ，Kubernetes 主节点会自动处理在群集中的工作节点上调度 pod 。 主节点的自动调度考量了每个工作节点上的可用资源。</p>
+        <p>一个 pod 总是运行在 <b>工作节点</b>。工作节点是 Kubernetes 中的参与计算的机器，可以是虚拟机或物理计算机，具体取决于集群。每个工作节点由主节点管理。工作节点可以有多个 pod ，Kubernetes 主节点会自动处理在集群中的工作节点上调度 pod 。 主节点的自动调度考量了每个工作节点上的可用资源。</p>
 
         <p>每个 Kubernetes 工作节点至少运行:</p>
         <ul>
@@ -199,7 +199,7 @@ weight: 10
 <!--
           <p><i> A node is a worker machine in Kubernetes and may be a VM or physical machine, depending on the cluster. Multiple Pods can run on one Node. </i></p>
 -->
-          <p><i>工作节点是 Kubernetes 中的负责计算的机器，可能是VM或物理计算机，具体取决于群集。多个 Pod 可以在一个工作节点上运行。 </i></p>
+          <p><i>工作节点是 Kubernetes 中的负责计算的机器，可能是VM或物理计算机，具体取决于集群。多个 Pod 可以在一个工作节点上运行。 </i></p>
         </div>
       </div>
     </div>
