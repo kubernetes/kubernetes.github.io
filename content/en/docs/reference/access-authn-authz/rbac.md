@@ -86,7 +86,7 @@ Because ClusterRoles are cluster-scoped, you can also use them to grant access t
 * cluster-scoped resources (like {{< glossary_tooltip text="nodes" term_id="node" >}})
 * non-resource endpoints (like `/healthz`)
 * namespaced resources (like Pods), across all namespaces
-  
+
   For example: you can use a ClusterRole to allow a particular user to run
   `kubectl get pods --all-namespaces`
 
@@ -685,7 +685,10 @@ When used in a <b>RoleBinding</b>, it gives full control over every resource in 
 <td>Allows admin access, intended to be granted within a namespace using a <b>RoleBinding</b>.
 If used in a <b>RoleBinding</b>, allows read/write access to most resources in a namespace,
 including the ability to create roles and role bindings within the namespace.
-This role does not allow write access to resource quota or to the namespace itself.</td>
+This role does not allow write access to resource quota or to the namespace itself.
+This role also does not allow write access to Endpoints in clusters created
+using Kubernetes v1.22+. More information is available in the ["Write Access for
+Endpoints" section](#write-access-for-endpoints).</td>
 </tr>
 <tr>
 <td><b>edit</b></td>
@@ -695,7 +698,9 @@ This role does not allow write access to resource quota or to the namespace itse
 This role does not allow viewing or modifying roles or role bindings.
 However, this role allows accessing Secrets and running Pods as any ServiceAccount in
 the namespace, so it can be used to gain the API access levels of any ServiceAccount in
-the namespace.</td>
+the namespace. This role also does not allow write access to Endpoints in
+clusters created using Kubernetes v1.22+. More information is available in the
+["Write Access for Endpoints" section](#write-access-for-endpoints).</td>
 </tr>
 <tr>
 <td><b>view</b></td>
@@ -1184,6 +1189,26 @@ In order from most secure to least secure, the approaches are:
       --clusterrole=cluster-admin \
       --group=system:serviceaccounts
     ```
+
+## Write access for Endpoints
+
+Kubernetes clusters created before Kubernetes v1.22 include write access to
+Endpoints in the aggregated "edit" and "admin" roles. As a mitigation for
+[CVE-2021-25740](https://github.com/kubernetes/kubernetes/issues/103675), this
+access is not part of the aggregated roles in clusters that you create using
+Kubernetes v1.22 or later.
+
+Existing clusters that have been upgraded to Kubernetes v1.22 will not be
+subject to this change. The [CVE
+announcement](https://github.com/kubernetes/kubernetes/issues/103675) includes
+guidance for restricting this access in existing clusters.
+
+If you want new clusters to retain this level of access in the aggregated roles,
+you can create the following ClusterRole:
+
+```none
+{{< codenew file="access/endpoints-aggregated.yaml" >}}
+```
 
 ## Upgrading from ABAC
 
