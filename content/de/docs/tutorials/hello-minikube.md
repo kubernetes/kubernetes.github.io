@@ -15,14 +15,8 @@ card:
 
 <!-- overview -->
 
-Dieses Tutorial zeigt Ihnen, wie Sie eine einfache "Hallo Welt" Node.js-Anwendung auf Kubernetes mit [Minikube](/docs/getting-started-guides/minikube) und Katacoda ausführen.
+Dieses Tutorial zeigt Ihnen, wie Sie eine einfache "Hallo Welt" Node.js-Anwendung auf Kubernetes mit [Minikube](https://minikube.sigs.k8s.io/docs/start/) und Katacoda ausführen.
 Katacoda bietet eine kostenlose Kubernetes-Umgebung im Browser.
-
-{{< note >}}
-Sie können dieses Tutorial auch verwenden, wenn Sie [Minikube lokal](/docs/tasks/tools/install-minikube/) installiert haben.
-{{< /note >}}
-
-
 
 ## {{% heading "objectives" %}}
 

@@ -8,21 +8,10 @@ Kubernetes enthält mehrere integrierte Tools, die Ihnen bei der Arbeit mit dem 
 
 
 <!-- body -->
-## Kubectl
-
-[`kubectl`](/docs/tasks/tools/install-kubectl/) ist ein Kommandozeilenprogramm für Kubernetes. Es steuert den Kubernetes Clustermanager.
-
-## Kubeadm
-
-[`kubeadm`](/docs/setup/independent/install-kubeadm/)  ist ein Kommandozeilenprogramm zur einfachen Bereitstellung eines sicheren Kubernetes-Clusters auf physischen oder Cloud-Servern oder virtuellen Maschinen (derzeit in alpha).
-
-## Kubefed
-
-[`kubefed`](/docs/tasks/federation/set-up-cluster-federation-kubefed/) ist ein Kommandozeilenprogramm um Ihnen bei der Verwaltung Ihrer Verbundcluster zu helfen.
 
 ## Minikube
 
-[`minikube`](/docs/tasks/tools/install-minikube/) ist ein Tool, das es Ihnen einfach macht, einen Kubernetes-Cluster mit einem einzigen Knoten lokal auf Ihrer Workstation für Entwicklungs- und Testzwecke auszuführen.
+[`minikube`](https://minikube.sigs.k8s.io/docs/) ist ein Tool, das es Ihnen einfach macht, einen Kubernetes-Cluster mit einem einzigen Knoten lokal auf Ihrer Workstation für Entwicklungs- und Testzwecke auszuführen.
 
 ## Dashboard
 
@@ -42,7 +31,7 @@ Verwenden Sie Helm um:
 
 ## Kompose
 
-[`Kompose`](https://github.com/kubernetes-incubator/kompose) ist ein Tool, das Docker Compose Benutzern hilft, nach Kubernetes zu wechseln.
+[`Kompose`](https://github.com/kubernetes/kompose) ist ein Tool, das Docker Compose Benutzern hilft, nach Kubernetes zu wechseln.
 
 Verwenden Sie Kompose um:
 
