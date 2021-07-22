@@ -266,7 +266,7 @@ to also be deleted. Never assume you'll be able to access data if its volume cla
 
 The Pods in this tutorial use the [`gcr.io/google-samples/cassandra:v13`](https://github.com/kubernetes/examples/blob/master/cassandra/image/Dockerfile)
 image from Google's [container registry](https://cloud.google.com/container-registry/docs/).
-The Docker image above is based on [debian-base](https://github.com/kubernetes/kubernetes/tree/master/build/debian-base)
+The Docker image above is based on [debian-base](https://github.com/kubernetes/release/tree/master/images/build/debian-base)
 and includes OpenJDK 8.
 
 This image includes a standard Cassandra installation from the Apache Debian repo.
