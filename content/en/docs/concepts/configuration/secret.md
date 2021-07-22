@@ -201,7 +201,8 @@ to create a Docker registry Secret, you can do:
 kubectl create secret docker-registry secret-tiger-docker \
   --docker-username=tiger \
   --docker-password=pass113 \
-  --docker-email=tiger@acme.com
+  --docker-email=tiger@acme.com \
+  --docker-server=my-registry.example:5000
 ```
 
 This command creates a Secret of type `kubernetes.io/dockerconfigjson`.
@@ -211,15 +212,21 @@ on the fly:
 
 ```json
 {
-  "auths": {
-    "https://index.docker.io/v1/": {
-      "username": "tiger",
-      "password": "pass113",
-      "email": "tiger@acme.com",
-      "auth": "dGlnZXI6cGFzczExMw=="
-    }
-  }
+    "apiVersion": "v1",
+    "data": {
+        ".dockerconfigjson": "eyJhdXRocyI6eyJteS1yZWdpc3RyeTo1MDAwIjp7InVzZXJuYW1lIjoidGlnZXIiLCJwYXNzd29yZCI6InBhc3MxMTMiLCJlbWFpbCI6InRpZ2VyQGFjbWUuY29tIiwiYXV0aCI6ImRHbG5aWEk2Y0dGemN6RXhNdz09In19fQ=="
+    },
+    "kind": "Secret",
+    "metadata": {
+        "creationTimestamp": "2021-07-01T07:30:59Z",
+        "name": "secret-tiger-docker",
+        "namespace": "default",
+        "resourceVersion": "566718",
+        "uid": "e15c1d7b-9071-4100-8681-f3a7a2ce89ca"
+    },
+    "type": "kubernetes.io/dockerconfigjson"
 }
+
 ```
 
 ### Basic authentication Secret
