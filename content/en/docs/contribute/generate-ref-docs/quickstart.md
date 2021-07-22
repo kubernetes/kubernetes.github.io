@@ -156,13 +156,15 @@ You can run the `update-imported-docs` tool as follows:
 
 ```shell
 cd <web-base>/update-imported-docs
-./update-imported-docs <configuration-file.yml> <release-version>
+export GO111MODULE=auto
+./update-imported-docs.py <configuration-file.yml> <release-version>
 ```
 
 For example:
 
 ```shell
-./update-imported-docs reference.yml 1.17
+export GO111MODULE=auto
+./update-imported-docs.py reference.yml 1.17
 ```
 
 <!-- Revisit: is the release configuration used -->
