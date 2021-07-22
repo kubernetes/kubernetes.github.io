@@ -8,7 +8,7 @@ no_list: true
 ---
 
 <!-- overview -->
-Kubernetes contains several built-in tools to help you work with the Kubernetes system.
+Kubernetes contains several built-in tools and external tools that are commonly used or relevant that may as well be seen as required for Kubernetes to function.
 
 
 <!-- body -->
