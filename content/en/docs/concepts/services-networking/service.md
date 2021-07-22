@@ -241,9 +241,18 @@ There are a few reasons for using proxying for Services:
   on the DNS records could impose a high load on DNS that then becomes
   difficult to manage.
 
+Below we'll describe how various kube-proxy implementations work.  In general
+you should note that, when running `kube-proxy`, kernel level rules may be
+modified (for example, iptables rules might get created), which won't get cleaned up, 
+in some cases until you reboot.  Thus, running kube-proxy is something that should
+only be done by an administrator which understands the consequences of having a
+low leve, priveliged network proxying service on a machine.  Although the `kube-proxy`
+executable supports a `cleanup` function, this function is not an official feature and
+thus is only available to use as-is.
+
 ### User space proxy mode {#proxy-mode-userspace}
 
-In this mode, kube-proxy watches the Kubernetes control plane for the addition and
+In this (legacy) mode, kube-proxy watches the Kubernetes control plane for the addition and
 removal of Service and Endpoint objects. For each Service it opens a
 port (randomly chosen) on the local node.  Any connections to this "proxy port"
 are proxied to one of the Service's backend Pods (as reported via
