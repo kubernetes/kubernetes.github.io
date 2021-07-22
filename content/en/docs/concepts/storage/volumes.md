@@ -931,7 +931,7 @@ A container using a projected volume source as a [`subPath`](#using-subpath) vol
 receive updates for those volume sources.
 {{< /note >}}
 
-### quobyte
+### quobyte (deprecated) {#quobyte}
 
 A `quobyte` volume allows an existing [Quobyte](https://www.quobyte.com) volume to
 be mounted into your Pod.
@@ -967,49 +967,6 @@ Simultaneous writers are not allowed.
 See the [RBD example](https://github.com/kubernetes/examples/tree/{{< param "githubbranch" >}}/volumes/rbd)
 for more details.
 
-### scaleIO (deprecated) {#scaleio}
-
-ScaleIO is a software-based storage platform that uses existing hardware to
-create clusters of scalable shared block networked storage. The `scaleIO` volume
-plugin allows deployed pods to access existing ScaleIO
-volumes. For information about dynamically provisioning new volumes for
-persistent volume claims, see
-[ScaleIO persistent volumes](/docs/concepts/storage/persistent-volumes/#scaleio).
-
-{{< note >}}
-You must have an existing ScaleIO cluster already setup and
-running with the volumes created before you can use them.
-{{< /note >}}
-
-The following example is a Pod configuration with ScaleIO:
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pod-0
-spec:
-  containers:
-  - image: k8s.gcr.io/test-webserver
-    name: pod-0
-    volumeMounts:
-    - mountPath: /test-pd
-      name: vol-0
-  volumes:
-  - name: vol-0
-    scaleIO:
-      gateway: https://localhost:443/api
-      system: scaleio
-      protectionDomain: sd0
-      storagePool: sp1
-      volumeName: vol-0
-      secretRef:
-        name: sio-secret
-      fsType: xfs
-```
-
-For further details, see the [ScaleIO](https://github.com/kubernetes/examples/tree/{{< param "githubbranch" >}}/staging/volumes/scaleio) examples.
-
 ### secret
 
 A `secret` volume is used to pass sensitive information, such as passwords, to
@@ -1029,7 +986,7 @@ receive Secret updates.
 
 For more details, see [Configuring Secrets](/docs/concepts/configuration/secret/).
 
-### storageOS {#storageos}
+### storageOS (deprecated) {#storageos}
 
 A `storageos` volume allows an existing [StorageOS](https://www.storageos.com)
 volume to mount into your Pod.
