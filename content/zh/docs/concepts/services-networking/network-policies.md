@@ -285,7 +285,7 @@ contains a single `from` element allowing connections from Pods with the label `
 contains two elements in the `from` array, and allows connections from Pods in the local Namespace with the label `role=client`, *or* from any Pod in any namespace with the label `user=alice`.
 -->
 在 `from` 数组中包含两个元素，允许来自本地名字空间中标有 `role=client` 的
-Pod 的连接，*或* 来自任何名字空间中标有 `user=alice` 的任何 Pod 的连接。
+Pod 的连接，*或* 来自任何标有 `user=alice`的名字空间中的任何 Pod 的连接。
 
 <!--
 When in doubt, use `kubectl describe` to see how Kubernetes has interpreted the policy.
