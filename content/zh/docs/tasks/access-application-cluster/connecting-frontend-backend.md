@@ -82,7 +82,7 @@ View information about the backend Deployment:
 查看后端的 Deployment 信息：
 
 ```shell
-kubectl describe deployment hello
+kubectl describe deployment backend
 ```
 
 <!--
