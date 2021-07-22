@@ -1,0 +1,41 @@
+   <table>
+  <caption>{{ .Inner }}</caption>
+  <colgroup>
+     <col class="feature-name" width="50%">
+     <col span="5" class="feature-multi-details">
+  </colgroup>
+  <thead>
+   <tr>
+     <th>Name</th>
+     <th>Alpha</th>
+     <th>Beta</th>
+     <th>Stable</th>
+     <th>Deprecated</th>
+   </tr>
+  </thead>
+  <tbody>
+  {{- range $featureGate := sort $.Site.Data.features.featureList.featureGateList "name" -}}
+
+  <tr class="feature-stage-row" data-featurestage="alpha">
+   <td><tt>{{ $featureGate.name }}</tt></td>
+
+   {{- with $featureGate.alpha -}}
+   <td>{{ $featureGate.alpha.from }}</td>
+   {{- end -}}
+
+   {{- with $featureGate.beta -}}
+   <td>{{ $featureGate.beta.from }}</td>
+   {{- end -}}
+
+   {{- with $featureGate.stable -}}
+   <td>{{ $featureGate.stable.from }}</td>
+   {{- end -}}
+
+   {{- with $featureGate.deprecated -}}
+   <td>{{ $featureGate.deprecated.from }}</td>
+   {{- end -}}
+  </tr>
+  {{- end -}}
+
+  </tbody>
+</table>

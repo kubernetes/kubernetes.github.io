@@ -1,0 +1,855 @@
+featureGateList:
+# Sorted alphabetically
+- name: Accelerators
+  alpha:
+    from: "1.6"
+  deprecated:
+    from: "1.11"
+- name: AdvancedAuditing
+  alpha:
+    from: "1.7"
+  beta:
+    from: "1.8"
+  stable:
+    from: "1.12"
+- name: AffinityInAnnotations
+  alpha:
+    from:  "1.6"
+  deprecated:
+    from:  "1.8"
+- name: AllowExtTrafficLocalEndpoints
+  beta:
+    from:  "1.4"
+    state: false
+  stable:
+    from:  "1.7"
+- name: AnyVolumeDataSource
+  alpha:
+    from:  "1.18"
+- name: APIListChunking
+  alpha:
+    from: "1.8"
+  beta:
+    from: "1.9"
+- name: APIPriorityAndFairness
+  alpha:
+    from: "1.17"
+  beta:
+    from: "1.20"
+- name: APIResponseCompression
+  alpha:
+    from: "1.7"
+  beta:
+    from: "1.16"
+- name: APIServerIdentity
+  alpha:
+    from: "1.20"
+- name: AppArmor
+  beta:
+    from: "1.4"
+- name: AttachVolumeLimit
+  alpha:
+    from: "1.11"
+  beta:
+    from: "1.12"
+  stable:
+    from: "1.17"
+- name: BalanceAttachedNodeVolumes
+  alpha:
+    from: "1.11"
+- name: BlockVolume
+  alpha:
+    from: "1.9"
+  beta:
+    from: "1.13"
+  stable:
+    from: "1.18"
+- name: BoundServiceAccountTokenVolume
+  alpha:
+    from: "1.13"
+  beta:
+    from: "1.21"
+- name: ConfigurableFSGroupPolicy
+  alpha:
+    from: "1.18"
+  beta:
+    from: "1.20"
+- name: CPUManager
+  alpha:
+    from: "1.8"
+  beta:
+    from: "1.10"
+- name: CRIContainerLogRotation
+  alpha:
+    from: "1.10"
+  beta:
+    from: "1.11"
+  stable:
+    from: "1.21"
+- name: CronJobControllerV2
+  alpha:
+    from: "1.20"
+  beta:
+    from: "1.21"
+- name: CSIBlockVolume
+  alpha:
+    from: "1.11"
+  beta:
+    from: "1.14"
+  stable:
+    from: "1.18"
+- name: CSIDriverRegistry
+  alpha:
+    from: "1.12"
+  beta:
+    from: "1.14"
+  stable:
+    from: "1.18"
+- name: CSIInlineVolume
+  alpha:
+    from: "1.15"
+  beta:
+    from: "1.16"
+- name: CSIMigration
+  alpha:
+    from: "1.14"
+  beta:
+    from: "1.17"
+- name: CSIMigrationAWS
+  alpha:
+    from: "1.14"
+  beta:
+    from: "1.17"
+    state: false
+- name: CSIMigrationAWSComplete
+  alpha:
+    from: "1.17"
+- name: CSIMigrationAzureDisk
+  alpha:
+    from: "1.15"
+  beta:
+    from: "1.19"
+    state: false
+- name: CSIMigrationAzureDiskComplete
+  alpha:
+    from: "1.17"
+- name: CSIMigrationAzureFile
+  alpha:
+    from: "1.15"
+  beta:
+    from: "1.21"
+    state: false
+- name: CSIMigrationAzureFileComplete
+  alpha:
+    from: "1.17"
+- name: CSIMigrationGCE
+  alpha:
+    from: "1.14"
+  beta:
+    from: "1.17"
+    state: false
+- name: CSIMigrationGCEComplete
+  alpha:
+    from: "1.17"
+- name: CSIMigrationOpenStack
+  alpha:
+    from: "1.14"
+  beta:
+    from: 1.18
+- name: CSIMigrationOpenStackComplete
+  alpha:
+    from: 1.17
+- name: CSIMigrationvSphere
+  beta:
+    from: 1.19
+    state: false
+- name: CSIMigrationvSphereComplete
+  beta:
+    from: 1.19
+    state: false
+- name: CSINodeInfo
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.14
+  stable:
+    from: 1.17
+- name: CSIPersistentVolume
+  alpha:
+    from: 1.9
+  beta:
+    from: "1.10"
+  stable:
+    from: 1.13
+- name: CSIServiceAccountToken
+  alpha:
+    from: 1.20
+  beta:
+    from: 1.21
+- name: CSIStorageCapacity
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.21
+- name: CSIVolumeFSGroupPolicy
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.20
+- name: CSIVolumeHealth
+  alpha:
+    from: 1.21
+- name: CustomCPUCFSQuotaPeriod
+  alpha:
+    from: 1.12
+- name: CustomPodDNS
+  alpha:
+    from: 1.9
+  beta:
+    from: 1.10
+  stable:
+    from: 1.14
+- name: CustomResourceDefaulting
+  alpha:
+    from: 1.15
+  beta:
+    from: 1.16
+  stable:
+    from: 1.17
+- name: CustomResourcePublishOpenAPI
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.15
+  stable:
+    from: 1.16
+- name: CustomResourceSubresources
+  alpha:
+    from: 1.10
+  beta:
+    from: 1.11
+  stable:
+    from: 1.16
+- name: CustomResourceValidation
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.9
+  stable:
+    from: 1.16
+- name: CustomResourceWebhookConversion
+  alpha:
+    from: 1.13
+  beta:
+    from: 1.15
+  stable:
+    from: 1.16
+- name: DefaultPodTopologySpread
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.20
+- name: DevicePlugins
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.10
+- name: DisableAcceleratorUsageMetrics
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.20
+- name: DownwardAPIHugePages
+  alpha:
+    from: 1.20
+  beta:
+    from: 1.21
+    state: false
+- name: DryRun
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.13
+  stable:
+    from: 1.19
+- name: DynamicAuditing
+  alpha:
+    from: 1.13
+  deprecated:
+    from: 1.19
+- name: DynamicKubeletConfig
+  alpha:
+    from: 1.4
+  beta:
+    from: 1.11
+- name: DynamicProvisioningScheduling
+  alpha:
+    from: 1.11
+  deprecated:
+    from: 1.15
+- name: DynamicVolumeProvisioning
+  alpha:
+    from: 1.3
+    state: true
+  stable:
+    from: 1.8
+- name: EfficientWatchResumption
+  alpha:
+    from: 1.20
+- name: EnableAggregatedDiscoveryTimeout
+  deprecated:
+    from: 1.16
+- name: EnableEquivalenceClassCache
+  alpha:
+    from: 1.8
+  deprecated:
+    from: 1.15
+- name: EndpointSlice
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.17
+    state: false # see next line!
+    enabledfrom: 1.18
+  stable:
+    from: 1.21
+- name: EndpointSliceNodeName
+  alpha:
+    from: 1.20
+  stable:
+    from: 1.21
+- name: EndpointSliceProxying
+  alpha:
+    from: 1.18
+  beta:
+    from: 1.19
+- name: EndpointSliceTerminatingCondition
+  alpha:
+    from: 1.20
+- name: EphemeralContainers
+  alpha:
+    from: 1.16
+- name: EvenPodsSpread
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.18
+  stable:
+    from: 1.19
+- name: ExpandCSIVolumes
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.16
+- name: ExpandInUsePersistentVolumes
+  alpha:
+    from: 1.11
+  beta:
+    from: 1.15
+- name: ExpandPersistentVolumes
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.11
+- name: ExperimentalCriticalPodAnnotation
+  alpha:
+    from: 1.5
+  deprecated:
+    from: 1.13
+- name: ExperimentalHostUserNamespaceDefaulting
+  beta:
+    from: 1.5
+    state: false
+- name: GenericEphemeralVolume
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.21
+- name: GracefulNodeShutdown
+  alpha:
+    from: 1.20
+  beta:
+    from: 1.21
+- name: HPAContainerMetrics
+  alpha:
+    from: 1.20
+- name: HPAScaleToZero
+  alpha:
+    from: 1.16
+- name: HugePages
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.10
+  stable:
+    from: 1.14
+- name: HugePageStorageMediumSize
+  alpha:
+    from: 1.18
+  beta:
+    from: 1.19
+- name: HyperVContainer
+  alpha:
+    from: 1.10
+  deprecated:
+    from: 1.20
+- name: ImmutableEphemeralVolumes
+  alpha:
+    from: 1.18
+  beta:
+    from: 1.19
+  stable:
+    from: 1.21
+- name: IndexedJob
+  alpha:
+    from: 1.21
+- name: IngressClassNamespacedParams
+  alpha:
+    from: 1.21
+- name: Initializers
+  alpha:
+    from: 1.7
+  deprecated:
+    from: 1.14
+- name: IPv6DualStack
+  alpha:
+    from: 1.15
+  beta:
+    from: 1.21
+- name: KubeletConfigFile
+  alpha:
+    from: 1.8
+  deprecated:
+    from: 1.10
+- name: KubeletCredentialProviders
+  alpha:
+    from: 1.20
+- name: KubeletPluginsWatcher
+  alpha:
+    from: 1.11
+  beta:
+    from: 1.12
+  stable:
+    from: 1.13
+- name: KubeletPodResources
+  alpha:
+    from: 1.13
+  beta:
+    from: 1.15
+  stable:
+    from: 1.20
+- name: KubeletPodResourcesGetAllocatable
+  alpha:
+    from: 1.21
+- name: LegacyNodeRoleBehavior
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.19
+  stable:
+    from: 1.21
+- name: LocalStorageCapacityIsolation
+  alpha:
+    from: 1.7
+  beta:
+    from: 1.10
+- name: LocalStorageCapacityIsolationFSQuotaMonitoring
+  alpha:
+    from: 1.15
+- name: LogarithmicScaleDown
+  alpha:
+    from: 1.21
+- name: MixedProtocolLBService
+  alpha:
+    from: 1.20
+- name: MountContainers
+  alpha:
+    from: 1.9
+  deprecated:
+    from: 1.17
+- name: MountPropagation
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.10
+  stable:
+    from: 1.12
+- name: NamespaceDefaultLabelName
+  beta:
+    from: 1.21
+- name: NetworkPolicyEndPort
+  alpha:
+    from: 1.21
+- name: NodeDisruptionExclusion
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.19
+  stable:
+    from: 1.21
+- name: NodeLease
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.14
+  stable:
+    from: 1.17
+- name: NonPreemptingPriority
+  alpha:
+    from: 1.15
+  beta:
+    from: 1.19
+- name: PersistentLocalVolumes
+  alpha:
+    from: 1.7
+  beta:
+    from: 1.10
+  stable:
+    from: 1.14
+- name: PodAffinityNamespaceSelector
+  alpha:
+    from: 1.21
+- name: PodDeletionCost
+  alpha:
+    from: 1.21
+- name: PodDisruptionBudget
+  alpha:
+    from: 1.3
+  beta:
+    from: 1.5
+  stable:
+    from: 1.21
+- name: PodOverhead
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.18
+- name: PodPriority
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.11
+  stable:
+    from: 1.14
+- name: PodReadinessGates
+  alpha:
+    from: 1.11
+  beta:
+    from: 1.12
+  stable:
+    from: 1.14
+- name: PodShareProcessNamespace
+  alpha:
+    from: 1.10
+  beta:
+    from: 1.12
+  stable:
+    from: 1.17
+- name: ProbeTerminationGracePeriod
+  alpha:
+    from: 1.21
+- name: ProcMountType
+  alpha:
+    from: 1.12
+- name: PVCProtection
+  alpha:
+    from: 1.9
+  deprecated:
+    from: 1.10
+- name: QOSReserved
+  alpha:
+    from: 1.11
+- name: RemainingItemCount
+  alpha:
+    from: 1.15
+- name: RemoveSelfLink
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.20
+- name: RequestManagement
+  alpha:
+    from: 1.15
+  deprecated:
+    from: 1.17
+- name: ResourceLimitsPriorityFunction
+  alpha:
+    from: 1.9
+  deprecated:
+    from: 1.19
+- name: ResourceQuotaScopeSelectors
+  alpha:
+    from: 1.11
+  beta:
+    from: 1.12
+  stable:
+    from: 1.17
+- name: RootCAConfigMap
+  alpha:
+    from: 1.13
+  beta:
+    from: 1.20
+  stable:
+    from: 1.21
+- name: RotateKubeletClientCertificate
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.19
+- name: RotateKubeletServerCertificate
+  alpha:
+    from: 1.7
+  stable:
+    from: 1.12
+- name: RunAsGroup
+  beta:
+    from: 1.14
+- name: RuntimeClass
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.14
+  stable:
+    from: 1.20
+- name: ScheduleDaemonSetPods
+  alpha:
+    from: 1.11
+  beta:
+    from: 1.12
+  stable:
+    from: 1.17
+- name: SCTPSupport
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.19
+  stable:
+    from: 1.20
+- name: ServerSideApply
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.16
+- name: ServiceAccountIssuerDiscovery
+  alpha:
+    from: 1.18
+  beta:
+    from: 1.20
+  stable:
+    from: 1.21
+- name: ServiceAppProtocol
+  alpha:
+    from: 1.18
+  beta:
+    from: 1.19
+  stable:
+    from: 1.20
+- name: ServiceInternalTrafficPolicy
+  alpha:
+    from: 1.21
+- name: ServiceLBNodePortControl
+  alpha:
+    from: 1.20
+- name: ServiceLoadBalancerClass
+  alpha:
+    from: 1.21
+- name: ServiceLoadBalancerFinalizer
+  alpha:
+    from: 1.15
+  beta:
+    from: 1.16
+  stable:
+    from: 1.17
+- name: ServiceNodeExclusion
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.19
+  stable:
+    from: 1.21
+- name: ServiceTopology
+  alpha:
+    from: 1.17
+- name: SetHostnameAsFQDN
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.20
+- name: SizeMemoryBackedVolumes
+  alpha:
+    from: 1.20
+- name: StartupProbe
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.18
+  stable:
+    from: 1.20
+- name: StorageObjectInUseProtection
+  beta:
+    from: 1.10
+  stable:
+    from: 1.11
+- name: StorageVersionAPI
+  alpha:
+    from: 1.20
+- name: StorageVersionHash
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.15
+- name: StreamingProxyRedirects
+  beta:
+    from: 1.5
+    state: false # see next line!
+    enabledfrom: 1.6
+  stable:
+    from: 1.19
+- name: SupportIPVSProxyMode
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.9
+    state: false # see next line!
+    enabledfrom: 1.10
+  stable:
+    from: 1.11
+- name: SupportNodePidsLimit
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.15
+  stable:
+    from: 1.20
+- name: SupportPodPidsLimit
+  alpha:
+    from: 1.10
+  beta:
+    from: 1.14
+  stable:
+    from: 1.20
+- name: SuspendJob
+  alpha:
+    from: 1.21
+- name: Sysctls
+  beta:
+    from: 1.11
+  stable:
+    from: 1.21
+- name: TaintBasedEvictions
+  alpha:
+    from: 1.6
+  beta:
+    from: 1.13
+  stable:
+    from: 1.18
+- name: TaintNodesByCondition
+  alpha:
+    from: 1.8
+  beta:
+    from: 1.12
+  stable:
+    from: 1.17
+- name: TokenRequest
+  alpha:
+    from: 1.10
+  beta:
+    from: 1.12
+  stable:
+    from: 1.20
+- name: TokenRequestProjection
+  alpha:
+    from: 1.11
+  beta:
+    from: 1.12
+  stable:
+    from: 1.20
+- name: TopologyAwareHints
+  alpha:
+    from: 1.21
+- name: TopologyManager
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.18
+- name: TTLAfterFinished
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.21
+- name: ValidateProxyRedirects
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.14
+- name: VolumeCapacityPriority
+  alpha:
+    from: 1.21
+- name: VolumePVCDataSource
+  alpha:
+    from: 1.15
+  beta:
+    from: 1.16
+  stable:
+    from: 1.18
+- name: VolumeScheduling
+  alpha:
+    from: 1.9
+  beta:
+    from: 1.10
+  stable:
+    from: 1.13
+- name: VolumeSnapshotDataSource
+  alpha:
+    from: 1.12
+  beta:
+    from: 1.17
+  stable:
+    from: 1.20
+- name: VolumeSubPath
+  stable:
+    from: 1.10
+- name: VolumeSubpathEnvExpansion
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.15
+  stable:
+    from: 1.17
+- name: WarningHeaders
+  beta:
+    from: 1.19
+- name: WatchBookmark
+  alpha:
+    from: 1.15
+  beta:
+    from: 1.16
+  stable:
+    from: 1.17
+- name: WindowsEndpointSliceProxying
+  alpha:
+    from: 1.19
+  beta:
+    from: 1.21
+- name: WindowsGMSA
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.16
+  stable:
+    from: 1.18
+- name: WindowsRunAsUserName
+  alpha:
+    from: 1.16
+  beta:
+    from: 1.17
+  stable:
+    from: 1.18
+- name: WinDSR
+  alpha:
+    from: 1.14
+- name: WinOverlay
+  alpha:
+    from: 1.14
+  beta:
+    from: 1.20
