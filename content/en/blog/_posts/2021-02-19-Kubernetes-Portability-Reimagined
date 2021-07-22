@@ -1,0 +1,213 @@
+---
+layout: blog
+title: Kubernetes Portability Reimagined
+date:  2021-02-19
+slug:  Kubernetes-Portability-Reimagined
+slug:  kubernetes-portability-reimagined
+---
+
+Kubernetes: Portability Reimagined
+
+Kubernetes when installed results into a cluster.  Kubernetes resources are  expressed in a descriptive language, yaml to deploy into the cluster. Pod, Service, Deployment, Job, Replicaset are a subset of resources available in the cluster.  These resource types may contain collection of objects in  replicas or differ in behaviour and are associated to a namespace.
+
+Pod, a basic execution unit encapsulates one or more containers of an application, resource descriptions and governing policies.  A pod object runs on a worker node of the cluster with a unique dynamic IP address, optionally contains storage references, memory limits, CPU limits, application configuration data, application policies such as restart and fault-tolerance.  Kubernetes thus establishes a portable application architecture.
+
+The Twelve-Factor App
+
+The Twelve-Factor App methodology outlines qualities for building software-as-a-service apps.  Kubernetes aptly fits into the model and maximises the portability of application in the clustered setup.  
+
+This article leads into detailing of portability and qualities of Kubernetes as seen by the author in reference to The Twelve-Factor App methodology.  Cluster and application administration, Application contracts, service exposure, environment configurations when operating in a scaled out manner is being called out in the perspective of portability.
+
+Application Configurations
+
+ConfigMap and Secrets are Kubernetes API object to store configuration and sensitive data.  Data is stored in key-value pairs and made available to the Pod Container as configuration files or environment variables.  Timeout, log-level are examples of non-confidential data typically stored in ConfigMap file.  Certificates, Username, Password, Token may be classified as sensitive data and stored in base64 format in Secrets file.  These objects help achieve decoupling of configurations and make containers portable.
+
+Configurations are likely to differ between deployments such as test and production environment. These configuration parameters may be independently managed and scaled with the help of ConfigMap and Secrets resources, thus achieving separation of code from configuration data. The ConfigMap and Secrets data is made available to nodes and Pods on need basis for the lifecycle of the Pod but not otherwise, although declared in the cluster.
+
+In order to understand the capabilities applicable to portability and practices involved in Kubernetes cluster we discuss the use cases of
+
+Kubernetes cluster configuration and Admin Tool, Kubeadm
+Kubernetes Services
+Application configuration
+Custom Resources
+Serverless platform, Kubeless and functions
+
+Kubernetes cluster configuration and Admin Tool, Kubeadm
+
+Kubernetes cluster is secured, flexible to configurations and provides a trusted platform.  Admin tool, kubeadm, may be used to create Kubernetes cluster and perform other lifecycle functions.  Cluster configuration objects are created by kubeadm tool in different phases of its internal operations.  To name a few, 
+
+kube-public namespace is populated with a ConfigMap, cluster-info
+kube-system namespace is populated with a ConfigMap, kubeadm-config
+
+Certificates, API Server URL, Namespaces, Pod subnet, Service subnet, Port number, tokens are a subset of cluster configuration data.  Sensitive data is stored as part of Secrets file.
+
+Kubernetes Services
+
+Pods are member of pod subnet and each pod contain a unique IP address.  IP addresses vary with each runtime interval.  Policy based Pod replications are permitted to achieve scale out behaviour.  Kubernetes Services are abstractions to decouple logical group of Pods.
+
+Kubernetes Services are part of Services subnet, can be configured to expose cluster traffic at L3 or L7 level.  This is achieved by using NodePort, Load Balancer or Ingress technologies.
+
+Kubernetes Services in combination with Pod infrastructure delivers a scalable, secured and portable infrastructure using declarative approach.
+
+Application configuration
+
+Application startup options for MySQL is stored in mysql.ini and mysql.cnf files.  A typical options file includes data directory, port number, username, password, etc., MySQL package when installed using bitnami Helm chart, stores configuration information in ConfigMap and Secrets file in the default namespace.
+
+Application specific configurations such as mysql.cnf when encapsulated into a Pod makes it pod specific. ConfigMap and Secrets file makes it shareable across Pods, brings in flexibility and to maximise portability.
+
+Custom Resources
+
+A custom resource is an extension to Kubernetes API.  Structured data may be stored and retrieved from a custom resource.  Custom Resource may be seen as an alternative to ConfigMap.
+
+Custom Resource are in use in Kubernetes to introduce Kubernetes functions.  Kubeless is one such application developed using Custom Resource.
+
+Serverless platform, Kubeless and functions
+
+Kubeless, a Kubernetes Native Serverless Framework provides support for  runtimes - python, nodejs, go, ruby, etc.,  Runtime variants are also supported. Each runtime is encapsulated in a container image.  The reference to these images are injected in configuration file, kubeless-config in kubeless namespace.
+
+Kubeless makes use of custom resource definition (CRD), ‘function’. A function specific ConfigMap is created in the default namespace with function code and dependencies using the CRD contents.  Kubeless creates Service, Deployment and Pod objects specific to a function.  Function specific ConfigMap is used by the corresponding Pod when executing.
+
+Commands
+
+ConfigMap and Secrets may be listed and viewed using the following command sets.  The ‘data:’ section typically contains key-value pairs belonging to environment variables.
+
+```
+{
+
+$ kubectl get cm --all-namespaces
+$ kubectl get cm cluster-info -n kube-public -o yaml
+$ kubectl get secrets —all-namespaces
+$ kubectl get secrets default-token-hlh9z -n kube-public -o yaml
+$ kubectl get services --all-namespaces
+
+}
+```
+Sample Application with ConfigMap & Secrets
+
+```
+{
+
+$ cat kube-configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-configmap
+data:
+  counter: "5" 
+  sleep_interval: "2"
+
+$ kubectl apply -f kube-configmap.yaml
+
+}
+```
+
+```
+{
+
+$ cat kube-secrets.yaml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kube-secrets
+type: Opaque
+data:
+  password: a3ViZXJuZXRlcwo=
+stringData:
+  username: admin
+
+$ kubectl apply -f kube-secrets.yaml
+
+}
+```
+
+```
+{
+
+$ cat kube-pod-env.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-pod-env
+spec: 
+  restartPolicy: Never
+  containers:
+  - name: kube-container-1
+    image: "ubuntu"
+    command: ["/bin/bash", "-c"]
+    args: 
+    - echo "";
+      echo "counter:" $counter;
+      echo "sleep interval:" $sleep_interval;
+      echo "";
+      for ((i=1; i<=$counter; i++)); 
+      do 
+        echo "Looping count ... $i"; 
+        date +'%T'; echo "Going to sleep"; sleep $sleep_interval; date +'%T'; 
+      done;
+      echo "";
+      echo "Username:" $(</tmp/secrets/username);
+      echo "Password:" $(</tmp/secrets/password);
+    envFrom:
+    - configMapRef:
+        name: kube-configmap
+    volumeMounts:
+    - name: kube-secrets-volume
+      mountPath: "/tmp/secrets"
+  volumes:
+    - name: kube-secrets-volume
+      secret:
+        secretName: "kube-secrets"
+
+$ kubectl apply -f kube-pod-env.yaml
+
+}
+```
+
+```
+{
+
+$ kubectl logs kube-pod-env
+counter: 5
+sleep interval: 2
+Looping count ... 1
+07:47:30
+Going to sleep
+07:47:32
+Looping count ... 2
+07:47:32
+Going to sleep
+07:47:34
+Looping count ... 3
+07:47:34
+Going to sleep
+07:47:36
+Looping count ... 4
+07:47:36
+Going to sleep
+07:47:38
+Looping count ... 5
+07:47:38
+Going to sleep
+07:47:40
+Username: admin
+Password: kubernetes
+
+}
+```
+
+Summary
+
+We have discussed an infrastructure capabilities, tools and applications that demonstrates portability and having flattened configuration services.  Leveraging the best practices as observed in Kubernetes components, Helm chart and a Kubernetes Native application is shared for optimal Kubernetes application deployment.
+
+References
+
+Kubernetes - ConfigMaps
+Kubernetes - Secrets
+The Twelve-Factor App
+Wikipedia - ConfigMaps and Secrets
+Design-Proposals - Secrets
+Kubernetes - Custom Resources
+Kubeless
