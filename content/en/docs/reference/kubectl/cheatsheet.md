@@ -420,6 +420,188 @@ Verbosity | Description
 `--v=8` | Display HTTP request contents.
 `--v=9` | Display HTTP request contents without truncation of contents.
 
+# Yaml Files
+
+A. Create PV
+---------------------------
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+ name: drupal-pv
+ labels:
+  type: local
+spec:
+ capacity:
+  storage: 5Gi
+ accessModes:
+ - ReadWriteOnce
+ hostPath:
+  path: "/web"
+----------------------------
+B. Create PVC
+-----------------------------
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: drupal-mysql-pvc
+spec:
+ accessModes:
+ - ReadWriteOnce
+ resources:
+  requests:
+   storage: 5Gi
+  volumeName: drupal-pv
+
+----------------------------------------
+C. Create Service - Noce Port/ Cluster IP
+-----------------------------------------
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: drupal-mysql-service 
+ labels:
+  app: drupal-mysql
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3306
+    protocol: TCP
+  selector:
+    app: drupal-mysql
+    type: Database
+
+---------------------------------
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: drupal-service 
+  labels:
+    app: drupal
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    nodePort: 30095
+  selector:
+    app: drupal
+    type: frontend
+  
+
+-------------------------------------------------------
+D. Create Deployment - Single Container
+--------------------------------------------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: drupal-mysql
+ labels:
+  app: drupal-mysql
+  type: Database
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: drupal-mysql
+   type: Database
+ template:
+  metadata:
+    labels:
+      app: drupal-mysql
+      type: Database
+  spec:
+   containers:
+   - name: drupal-mysql
+     image: mysql:5.7
+     ports:
+     - containerPort: 3306
+       protocol: TCP
+     env:
+     - name: MYSQL_ROOT_PASSWORD
+       valueFrom:
+        secretKeyRef:
+         name: drupal-mysql-secret
+         key: MYSQL_ROOT_PASSWORD
+     - name: MYSQL_DATABASE
+       valueFrom:
+        secretKeyRef:
+         name: drupal-mysql-secret
+         key: MYSQL_DATABASE
+     - name: MYSQL_USER
+       valueFrom:
+        secretKeyRef:
+         name: drupal-mysql-secret
+         key: MYSQL_USER
+     volumeMounts:
+     - mountPath: /var/lib/mysql
+       subPath: dbdata
+       name: vol
+   volumes:
+   - name: vol
+     persistentVolumeClaim:
+      claimName: drupal-mysql-pvc
+
+
+-------------------------------------------------------
+E. Create Deployment - Single Container
+--------------------------------------------------------
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: drupal
+ labels:
+  app: drupal
+  type: frontend
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: drupal
+   type: frontend
+ template:
+  metadata:
+    labels:
+      app: drupal
+      type: frontend
+  spec:
+   initContainers:
+   - name: init-sites-volume
+     image: drupal:8.6
+     Command: [ "/bin/bash", "-c" ]
+     Args: [ 'cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R' ]
+     volumeMounts:
+     - mountPath: /data
+       name: vol   
+   containers:
+   - name: drupal
+     image: drupal:8.6
+     ports:
+     - containerPort: 80
+       protocol: TCP
+     volumeMounts:
+     - mountPath: /var/www/html/modules
+       subPath: module
+       name: vol
+     - mountPath: /var/www/html/profiles
+       subPath: profiles
+       name: vol
+     - mountPath: /var/www/html/sites
+       subPath: sites
+       name: vol
+     - mountPath: /var/www/html/themes
+       subPath: themes
+       name: vol
+   volumes:
+   - name: vol
+     persistentVolumeClaim:
+      claimName: drupal-pvc
+
 ## {{% heading "whatsnext" %}}
 
 * Read the [kubectl overview](/docs/reference/kubectl/overview/) and learn about [JsonPath](/docs/reference/kubectl/jsonpath).
