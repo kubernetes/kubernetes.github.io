@@ -130,12 +130,12 @@ kubectl delete pod memory-demo --namespace=mem-example
 ## Exceed a Container's memory limit
 
 A Container can exceed its memory request if the Node has memory available. But a Container
-is not allowed to use more than its memory limit. If a Container allocates more memory than
+is not allowed to use more than its memory limit. If a Container consumes more memory than
 its limit, the Container becomes a candidate for termination. If the Container continues to
 consume memory beyond its limit, the Container is terminated. If a terminated Container can be
 restarted, the kubelet restarts it, as with any other type of runtime failure.
 
-In this exercise, you create a Pod that attempts to allocate more memory than its limit.
+In this exercise, you create a Pod that attempts to consume more memory than its limit.
 Here is the configuration file for a Pod that has one Container with a
 memory request of 50 MiB and a memory limit of 100 MiB:
 
