@@ -39,9 +39,11 @@ as are any environment variables specified statically in the Docker image.
 
 ### Cluster information
 
-A list of all services that were running when a Container was created is available to that Container as environment variables.
-This list is limited to services within the same namespace as the new Container's Pod and Kubernetes control plane services.
-Those environment variables match the syntax of Docker links.
+When the [Pod spec](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#pod-v1-core) field `enableServiceLinks` is `true` (the default),
+a list of services are available to the Pod's Containers as environment variables.
+This list is limited to services within the same namespace as the new Container's Pod and Kubernetes control plane services, which existed at the time the Container was created.
+
+These environment variables match the syntax of Docker links.
 
 For a service named *foo* that maps to a Container named *bar*,
 the following variables are defined:
@@ -52,7 +54,8 @@ FOO_SERVICE_PORT=<the port the service is running on>
 ```
 
 Services have dedicated IP addresses and are available to the Container via DNS,
-if [DNS addon](https://releases.k8s.io/{{< param "githubbranch" >}}/cluster/addons/dns/) is enabled. 
+if [DNS addon](https://releases.k8s.io/{{< param "githubbranch" >}}/cluster/addons/dns/) is enabled.
+Read [Connecting Applications with Services](/docs/concepts/services-networking/connect-applications-service/).
 
 
 
