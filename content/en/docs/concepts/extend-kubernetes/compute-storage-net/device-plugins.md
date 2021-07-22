@@ -219,6 +219,14 @@ message ContainerResources {
     string name = 1;
     repeated ContainerDevices devices = 2;
     repeated int64 cpu_ids = 3;
+    repeated ContainerMemory memory = 4;
+}
+
+// ContainerMemory contains information about memory and hugepages assigned to a container
+message ContainerMemory {
+    string memory_type = 1;
+    uint64 size = 2;
+    TopologyInfo topology = 3;
 }
 
 // Topology describes hardware topology of the resource
@@ -247,6 +255,7 @@ It provides more information than kubelet exports to APIServer.
 message AllocatableResourcesResponse {
     repeated ContainerDevices devices = 1;
     repeated int64 cpu_ids = 2;
+    repeated ContainerMemory memory = 3;
 }
 
 ```
