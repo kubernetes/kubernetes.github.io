@@ -140,6 +140,7 @@ different Kubernetes components.
 | `KubeletPodResourcesGetAllocatable` | `false` | Alpha | 1.21 | |
 | `MemoryManager` | `false` | Alpha | 1.21 | 1.21 |
 | `MemoryManager` | `true` | Beta | 1.22 | |
+| `MemoryQoS` | `false` | Alpha | 1.22 | |
 | `MixedProtocolLBService` | `false` | Alpha | 1.20 | |
 | `NetworkPolicyEndPort` | `false` | Alpha | 1.21 | 1.21 |
 | `NetworkPolicyEndPort` | `true` | Beta | 1.22 |  |
@@ -779,6 +780,7 @@ Each feature gate is designed for enabling/disabling a specific feature:
   based on logarithmic bucketing of pod timestamps.
 - `MemoryManager`: Allows setting memory affinity for a container based on
   NUMA topology.
+- `MemoryQoS`: Enable memory protection and usage throttle on pod / container using cgroup v2 memory controller.
 - `MixedProtocolLBService`: Enable using different protocols in the same `LoadBalancer` type
   Service instance.
 - `MountContainers`: Enable using utility containers on host as the volume mounter.
