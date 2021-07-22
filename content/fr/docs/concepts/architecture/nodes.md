@@ -141,6 +141,7 @@ Sinon, le contrôleur de nœud supprime le nœud de sa liste de nœuds.
 La troisième est la surveillance de la santé des nœuds.
 Le contrôleur de noeud est responsable de la mise à jour de la condition NodeReady de NodeStatus vers ConditionUnknown lorsqu'un noeud devient inaccessible (le contrôleur de noeud cesse de recevoir des heartbeats pour une raison quelconque, par exemple en raison d'une panne du noeud), puis de l'éviction ultérieure de tous les pods du noeud. (en utilisant une terminaison propre) si le nœud continue d’être inaccessible.
 (Les délais d'attente par défaut sont de 40 secondes pour commencer à signaler ConditionUnknown et de 5 minutes après cela pour commencer à expulser les pods.)
+
 Le contrôleur de nœud vérifie l'état de chaque nœud toutes les `--node-monitor-period` secondes.
 
 Dans les versions de Kubernetes antérieures à 1.13, NodeStatus correspond au heartbeat du nœud.
@@ -157,6 +158,7 @@ Dans la plupart des cas, le contrôleur de noeud limite le taux d’expulsion à
 Le comportement d'éviction de noeud change lorsqu'un noeud d'une zone de disponibilité donnée devient défaillant.
 Le contrôleur de nœud vérifie quel pourcentage de nœuds de la zone est défaillant (la condition NodeReady est ConditionUnknown ou ConditionFalse) en même temps.
 Si la fraction de nœuds défaillant est au moins `--unhealthy-zone-threshold` (valeur par défaut de 0,55), le taux d'expulsion est réduit: si le cluster est petit (c'est-à-dire inférieur ou égal à ` --large-cluster-size-threshold` noeuds - valeur par défaut 50) puis les expulsions sont arrêtées, sinon le taux d'expulsion est réduit à `--secondary-node-eviction-rate` (valeur par défaut de 0,01) par seconde.
+
 Ces stratégies sont implémentées par zone de disponibilité car une zone de disponibilité peut être partitionnée à partir du master, tandis que les autres restent connectées.
 Si votre cluster ne s'étend pas sur plusieurs zones de disponibilité de fournisseur de cloud, il n'existe qu'une seule zone de disponibilité (la totalité du cluster).
 
