@@ -1,0 +1,35 @@
+name: Run Link Checker
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  initialize:
+    name: Clone Theme
+    runs-on: ubuntu-latest
+    steps:
+    - name: Initialize Theme
+      run: |
+        sudo apt-get update && sudo apt-get install -y git
+  build:
+    name: Build Website
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        export HUGO_VERSION=$(grep ^HUGO_VERSION netlify.toml | tail -n 1 | cut -d '=' -f 2 | tr -d " \"\n")
+        git submodule update --init --recursive --depth 1
+        sudo apt-get update && sudo apt-get install -y curl \
+                                                           git \
+                                                           openssh-client \
+                                                           rsync \
+                                                           npm && \
+                                                           npm install -G autoprefixer postcss-cli
+        curl -L https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz | tar -xz && \
+            sudo mv hugo /usr/local/bin/hugo
+        curl https://htmltest.wjdp.uk | sudo bash -s -- -b /usr/local/bin
+        hugo --config config.toml,linkcheck-config.toml --buildFuture
+        htmltest
