@@ -46,7 +46,7 @@ This tutorial provides a container image that uses NGINX to echo back all the re
     {{< kat-button >}}
 
 {{< note >}}
-If you installed minikube locally, run `minikube start`. Before you run `minikube dashboard`, you should open a new terminal, start `minikube dashboard` there, and then switch back to the main terminal.
+If you installed minikube locally, run `minikube start`. Before you run `minikube dashboard`, you should open a new terminal, start `minikube start` there, and then switch back to the main terminal.
 {{< /note >}}
 
 2. Open the Kubernetes dashboard in a browser:
