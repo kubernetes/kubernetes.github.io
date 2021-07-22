@@ -44,13 +44,23 @@ This page shows you how to set up a simple Ingress which routes requests to Serv
 
 1. Verify that the NGINX Ingress controller is running
 
+    minikube version 1.18.1 or earlier
+    
     ```shell
     kubectl get pods -n kube-system
+    ```
+
+    minikube version 1.19.0 or later
+
+    ```shell
+    kubectl get pods -n ingress-nginx
     ```
 
     {{< note >}}This can take up to a minute.{{< /note >}}
 
     Output:
+    
+    minikube version 1.18.1 or earlier
 
     ```shell
     NAME                                        READY     STATUS    RESTARTS   AGE
@@ -60,6 +70,15 @@ This page shows you how to set up a simple Ingress which routes requests to Serv
     kubernetes-dashboard-5498ccf677-b8p5h       1/1       Running   0          2m
     nginx-ingress-controller-5984b97644-rnkrg   1/1       Running   0          1m
     storage-provisioner                         1/1       Running   0          2m
+    ```
+    
+    minikube version 1.19.0 or later
+
+    ```shell
+    NAME                                        READY   STATUS      RESTARTS   AGE
+    ingress-nginx-admission-create-ckgpj        0/1     Completed   0          15m
+    ingress-nginx-admission-patch-585xt         0/1     Completed   0          15m
+    ingress-nginx-controller-5d88495688-b4s8m   1/1     Running     0          15m
     ```
 
 ## Deploy a hello, world app
