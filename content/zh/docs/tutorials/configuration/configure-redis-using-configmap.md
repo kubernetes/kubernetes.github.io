@@ -97,7 +97,7 @@ ConfigMap above as `/redis-master/redis.conf` inside the Pod.
 
 * 由 `spec.volumes[1]` 创建一个名为 `config` 的卷。
 * `spec.volumes[1].items[0]` 下的 `key` 和 `path` 会将来自 `example-redis-config`
-  ConfigMap 中的 `redis-config` 密钥公开在 `config` 卷上一个名为 `redis-config` 的文件中。
+  ConfigMap 中的 `redis-config` 密钥公开在 `config` 卷上一个名为 `redis.conf` 的文件中。
 * 然后 `config` 卷被 `spec.containers[0].volumeMounts[1]` 挂载在 `/redis-master`。
 
 这样做的最终效果是将上面 `example-redis-config` 配置中 `data.redis-config` 的数据作为 Pod 中的 `/redis-master/redis.conf` 公开。
