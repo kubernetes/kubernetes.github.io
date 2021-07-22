@@ -43,7 +43,7 @@ If you set `percentageOfNodesToScore` above 100, kube-scheduler acts as if you
 had set a value of 100.
 
 To change the value, edit the
-[kube-scheduler configuration file](/docs/reference/config-api/kube-scheduler-config.v1beta1/)
+[kube-scheduler configuration file](/docs/reference/config-api/kube-scheduler-config.v1beta2/)
 and then restart the scheduler.
 In many cases, the configuration file can be found at `/etc/kubernetes/config/kube-scheduler.yaml`.
 
@@ -161,5 +161,5 @@ After going over all the Nodes, it goes back to Node 1.
 
 ## {{% heading "whatsnext" %}}
 
-* Check the [kube-scheduler configuration reference (v1beta1)](/docs/reference/config-api/kube-scheduler-config.v1beta1/)
+* Check the [kube-scheduler configuration reference (v1beta2)](/docs/reference/config-api/kube-scheduler-config.v1beta2/)
 
