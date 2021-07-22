@@ -144,7 +144,7 @@ Kubespray 能够自定义部署的许多方面：
   * {{< glossary_tooltip term_id="cri-o" >}}
 * Certificate generation methods
 -->
-* 选择部署模式： kubeadm 或非 kubeadm
+* 选择部署模式： kubeadm 或非 kubeadm （该方式在v2.8版本以后不再支持）
 * CNI（网络）插件
 * DNS 配置
 * 控制平面的选择：本机/可执行文件或容器化
