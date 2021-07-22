@@ -14,7 +14,7 @@ weight: 20
 
 <!-- overview -->
 
-<!-- 
+<!--
 You need to install a
 {{< glossary_tooltip text="container runtime" term_id="container-runtime" >}}
 into each node in the cluster so that Pods can run there. This page outlines
@@ -26,17 +26,17 @@ what is involved and describes related tasks for setting up nodes.
 
 <!-- body -->
 
-<!-- 
+<!--
 This page lists details for using several common container runtimes with
 Kubernetes, on Linux:
  -->
-本文列出了在 Linux 上结合 Kubernetes 使用的几种通用容器运行时的详细信息： 
+本文列出了在 Linux 上结合 Kubernetes 使用的几种通用容器运行时的详细信息：
 
 - [containerd](#containerd)
 - [CRI-O](#cri-o)
 - [Docker](#docker)
 
-<!-- 
+<!--
 {{< note >}}
 For other operating systems, look for documentation specific to your platform.
 {{< /note >}}
@@ -90,7 +90,7 @@ stabilized the system. To configure this for Docker, set `native.cgroupdriver=sy
 
 <!--
 {{< caution >}}
-Changing the cgroup driver of a Node that has joined a cluster is a sensitive operation. 
+Changing the cgroup driver of a Node that has joined a cluster is a sensitive operation.
 If the kubelet has created Pods using the semantics of one cgroup driver, changing the container
 runtime to another cgroup driver can cause errors when trying to re-create the Pod sandbox
 for such existing Pods. Restarting the kubelet may not solve such errors.
@@ -100,25 +100,25 @@ configuration, or reinstall it using automation.
 {{< /caution >}}
 -->
 注意：更改已加入集群的节点的 cgroup 驱动是一项敏感的操作。
-如果 kubelet 已经使用某 cgroup 驱动的语义创建了 pod，更改运行时以使用
-别的 cgroup 驱动，当为现有 Pods 重新创建 PodSandbox 时会产生错误。
+如果 kubelet 已经使用某 cgroup 驱动的语义创建了 pod，那么更改运行时使用
+别的 cgroup 驱动时，在为现有 Pods 重新创建 PodSandbox 时会产生错误。
 重启 kubelet 也可能无法解决此类问题。
-如果你有切实可行的自动化方案，使用其他已更新配置的节点来替换该节点，
+如果你有切实可行的自动化方案，那么你可以使用其他已更新配置的节点来替换该节点，
 或者使用自动化方案来重新安装。
 
-<!-- 
+<!--
 ### Migrating to the `systemd` driver in kubeadm managed clusters
 -->
 ### 将 kubeadm 托管的集群迁移到 `systemd` 驱动
 
-<!-- 
+<!--
 Follow this [Migration guide](/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver)
 if you wish to migrate to the `systemd` cgroup driver in existing kubeadm managed clusters.
 -->
 如果你想迁移到现有 kubeadm 托管集群中的 `systemd` cgroup 驱动程序，
 遵循此[迁移指南](/zh/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver)。
 
-<!-- 
+<!--
 ## Container runtimes
  -->
 ## 容器运行时
@@ -248,16 +248,16 @@ and then run the following commands:
 {{% /tab %}}
 {{< /tabs >}}
 
-<!-- 
+<!--
 #### Using the `systemd` cgroup driver {#containerd-systemd}
---> 
+-->
 
 #### 使用 `systemd` cgroup 驱动程序 {#containerd-systemd}
 
-<!-- 
+<!--
 To use the `systemd` cgroup driver in `/etc/containerd/config.toml` with `runc`, set
 -->
-结合 `runc` 使用 `systemd` cgroup 驱动，在 `/etc/containerd/config.toml` 中设置 
+结合 `runc` 使用 `systemd` cgroup 驱动，在 `/etc/containerd/config.toml` 中设置
 
 ```
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
@@ -332,7 +332,7 @@ sudo sysctl --system
 {{< tabs name="tab-cri-cri-o-installation" >}}
 {{% tab name="Debian" %}}
 
-<!-- 
+<!--
 To install CRI-O on the following operating systems, set the environment variable `OS`
 to the appropriate value from the following table:
 
@@ -385,7 +385,7 @@ sudo apt-get install cri-o cri-o-runc
 
 {{% tab name="Ubuntu" %}}
 
-<!-- 
+<!--
 To install on the following operating systems, set the environment variable `OS`
 to the appropriate field in the following table:
 
@@ -437,12 +437,12 @@ curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:sta
 sudo apt-get update
 sudo apt-get install cri-o cri-o-runc
 ```
- 
+
 {{% /tab %}}
 
 {{% tab name="CentOS" %}}
 
-<!-- 
+<!--
 To install on the following operating systems, set the environment variable `OS`
 to the appropriate field in the following table:
 
@@ -494,7 +494,7 @@ sudo zypper install cri-o
 {{% /tab %}}
 {{% tab name="Fedora" %}}
 
-<!-- 
+<!--
 Set `$VERSION` to the CRI-O version that matches your Kubernetes version.
 For instance, if you want to install CRI-O 1.20, `VERSION=1.20`.
 
@@ -526,7 +526,7 @@ sudo dnf install cri-o --now
 {{% /tab %}}
 {{< /tabs >}}
 
-<!-- 
+<!--
 Start CRI-O:
 -->
 启动 CRI-O：
@@ -562,7 +562,7 @@ conmon_cgroup = "pod"
 cgroup_manager = "cgroupfs"
 ```
 
-<!-- 
+<!--
 Please also note the changed `conmon_cgroup`, which has to be set to the value
 `pod` when using CRI-O with `cgroupfs`. It is generally necessary to keep the
 cgroup driver configuration of the kubelet (usually done via kubeadm) and CRI-O
@@ -635,4 +635,3 @@ For more information refer to
 - [配置 Docker 守护程序](https://docs.docker.com/config/daemon/)
 - [使用 systemd 控制 Docker](https://docs.docker.com/config/daemon/systemd/)
 {{< /note >}}
-
