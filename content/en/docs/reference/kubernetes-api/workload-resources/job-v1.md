@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "Job represents the configuration of a single job."
 title: "Job"
-weight: 10
+weight: 9
 auto_generated: true
 ---
 
@@ -86,9 +86,9 @@ JobSpec describes how the job execution will look like.
   
   `NonIndexed` means that the Job is considered complete when there have been .spec.completions successfully completed Pods. Each Pod completion is homologous to each other.
   
-  `Indexed` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is `Indexed`, .spec.completions must be specified and `.spec.parallelism` must be less than or equal to 10^5.
+  `Indexed` means that the Pods of a Job get an associated completion index from 0 to (.spec.completions - 1), available in the annotation batch.kubernetes.io/job-completion-index. The Job is considered complete when there is one successfully completed Pod for each index. When value is `Indexed`, .spec.completions must be specified and `.spec.parallelism` must be less than or equal to 10^5. In addition, The Pod name takes the form `$(job-name)-$(index)-$(random-string)`, the Pod hostname takes the form `$(job-name)-$(index)`.
   
-  This field is alpha-level and is only honored by servers that enable the IndexedJob feature gate. More completion modes can be added in the future. If the Job controller observes a mode that it doesn't recognize, the controller skips updates for the Job.
+  This field is beta-level. More completion modes can be added in the future. If the Job controller observes a mode that it doesn't recognize, the controller skips updates for the Job.
 
 - **backoffLimit** (int32)
 
@@ -104,7 +104,9 @@ JobSpec describes how the job execution will look like.
 
 - **suspend** (boolean)
 
-  Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. This is an alpha field and requires the SuspendJob feature gate to be enabled; otherwise this field may not be set to true. Defaults to false.
+  Suspend specifies whether the Job controller should create Pods or not. If a Job is created with suspend set to true, no Pods are created by the Job controller. If a Job is suspended after creation (i.e. the flag goes from false to true), the Job controller will delete all active Pods associated with this Job. Users must design their workload to gracefully handle this. Suspending a Job will reset the StartTime field of the Job, effectively resetting the ActiveDeadlineSeconds timer too. Defaults to false.
+  
+  This field is beta-level, gated by SuspendJob feature flag (enabled by default).
 
 ### Selector
 
@@ -195,6 +197,30 @@ JobStatus represents the current state of a Job.
   - **conditions.reason** (string)
 
     (brief) reason for the condition's last transition.
+
+- **uncountedTerminatedPods** (UncountedTerminatedPods)
+
+  UncountedTerminatedPods holds the UIDs of Pods that have terminated but the job controller hasn't yet accounted for in the status counters.
+  
+  The job controller creates pods with a finalizer. When a pod terminates (succeeded or failed), the controller does three steps to account for it in the job status: (1) Add the pod UID to the arrays in this field. (2) Remove the pod finalizer. (3) Remove the pod UID from the arrays while increasing the corresponding
+      counter.
+  
+  This field is alpha-level. The job controller only makes use of this field when the feature gate PodTrackingWithFinalizers is enabled. Old jobs might not be tracked using this field, in which case the field remains null.
+
+  <a name="UncountedTerminatedPods"></a>
+  *UncountedTerminatedPods holds UIDs of Pods that have terminated but haven't been accounted in Job status counters.*
+
+  - **uncountedTerminatedPods.failed** ([]string)
+
+    *Set: unique values will be kept during a merge*
+    
+    Failed holds UIDs of failed Pods.
+
+  - **uncountedTerminatedPods.succeeded** ([]string)
+
+    *Set: unique values will be kept during a merge*
+    
+    Succeeded holds UIDs of succeeded Pods.
 
 
 
@@ -639,6 +665,8 @@ PATCH /apis/batch/v1/namespaces/{namespace}/jobs/{name}
 
 200 (<a href="{{< ref "../workload-resources/job-v1#Job" >}}">Job</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/job-v1#Job" >}}">Job</a>): Created
+
 401: Unauthorized
 
 
@@ -691,6 +719,8 @@ PATCH /apis/batch/v1/namespaces/{namespace}/jobs/{name}/status
 
 
 200 (<a href="{{< ref "../workload-resources/job-v1#Job" >}}">Job</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/job-v1#Job" >}}">Job</a>): Created
 
 401: Unauthorized
 

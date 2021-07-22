@@ -418,6 +418,8 @@ PATCH /api/v1/namespaces/{namespace}/secrets/{name}
 
 200 (<a href="{{< ref "../config-and-storage-resources/secret-v1#Secret" >}}">Secret</a>): OK
 
+201 (<a href="{{< ref "../config-and-storage-resources/secret-v1#Secret" >}}">Secret</a>): Created
+
 401: Unauthorized
 
 

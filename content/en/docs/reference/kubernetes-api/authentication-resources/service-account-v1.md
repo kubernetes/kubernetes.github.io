@@ -416,6 +416,8 @@ PATCH /api/v1/namespaces/{namespace}/serviceaccounts/{name}
 
 200 (<a href="{{< ref "../authentication-resources/service-account-v1#ServiceAccount" >}}">ServiceAccount</a>): OK
 
+201 (<a href="{{< ref "../authentication-resources/service-account-v1#ServiceAccount" >}}">ServiceAccount</a>): Created
+
 401: Unauthorized
 
 

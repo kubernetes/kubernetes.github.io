@@ -64,9 +64,11 @@ CSIDriverSpec is the specification of a CSIDriver.
 
 - **fsGroupPolicy** (string)
 
-  Defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field is alpha-level, and is only honored by servers that enable the CSIVolumeFSGroupPolicy feature gate.
+  Defines if the underlying volume supports changing ownership and permission of the volume before being mounted. Refer to the specific FSGroupPolicy values for additional details. This field is beta, and is only honored by servers that enable the CSIVolumeFSGroupPolicy feature gate.
   
   This field is immutable.
+  
+  Defaults to ReadWriteOnceWithFSType, which will examine each volume to determine if Kubernetes should modify ownership and permissions of the volume. With the default policy the defined fsGroup will only be applied if a fstype is defined and the volume's access mode contains ReadWriteOnce.
 
 - **podInfoOnMount** (boolean)
 
@@ -82,8 +84,6 @@ CSIDriverSpec is the specification of a CSIDriver.
   RequiresRepublish indicates the CSI driver wants `NodePublishVolume` being periodically called to reflect any possible change in the mounted volume. This field defaults to false.
   
   Note: After a successful initial NodePublishVolume call, subsequent calls to NodePublishVolume should only update the contents of the volume. New mount points will not be seen by a running container.
-  
-  This is a beta feature and only available when the CSIServiceAccountToken feature is enabled.
 
 - **storageCapacity** (boolean)
 
@@ -110,8 +110,6 @@ CSIDriverSpec is the specification of a CSIDriver.
   }
   
   Note: Audience in each TokenRequest should be different and at most one token is empty string. To receive a new token after expiry, RequiresRepublish can be used to trigger NodePublishVolume periodically.
-  
-  This is a beta feature and only available when the CSIServiceAccountToken feature is enabled.
 
   <a name="TokenRequest"></a>
   *TokenRequest contains parameters of a service account token.*
@@ -398,6 +396,8 @@ PATCH /apis/storage.k8s.io/v1/csidrivers/{name}
 
 
 200 (<a href="{{< ref "../config-and-storage-resources/csi-driver-v1#CSIDriver" >}}">CSIDriver</a>): OK
+
+201 (<a href="{{< ref "../config-and-storage-resources/csi-driver-v1#CSIDriver" >}}">CSIDriver</a>): Created
 
 401: Unauthorized
 

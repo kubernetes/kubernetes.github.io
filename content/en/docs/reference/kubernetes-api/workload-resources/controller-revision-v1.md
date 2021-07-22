@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "ControllerRevision implements an immutable snapshot of state data."
 title: "ControllerRevision"
-weight: 8
+weight: 7
 auto_generated: true
 ---
 
@@ -439,6 +439,8 @@ PATCH /apis/apps/v1/namespaces/{namespace}/controllerrevisions/{name}
 
 
 200 (<a href="{{< ref "../workload-resources/controller-revision-v1#ControllerRevision" >}}">ControllerRevision</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/controller-revision-v1#ControllerRevision" >}}">ControllerRevision</a>): Created
 
 401: Unauthorized
 

@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "ReplicationController represents the configuration of a replication controller."
 title: "ReplicationController"
-weight: 4
+weight: 3
 auto_generated: true
 ---
 
@@ -581,6 +581,8 @@ PATCH /api/v1/namespaces/{namespace}/replicationcontrollers/{name}
 
 200 (<a href="{{< ref "../workload-resources/replication-controller-v1#ReplicationController" >}}">ReplicationController</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/replication-controller-v1#ReplicationController" >}}">ReplicationController</a>): Created
+
 401: Unauthorized
 
 
@@ -633,6 +635,8 @@ PATCH /api/v1/namespaces/{namespace}/replicationcontrollers/{name}/status
 
 
 200 (<a href="{{< ref "../workload-resources/replication-controller-v1#ReplicationController" >}}">ReplicationController</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/replication-controller-v1#ReplicationController" >}}">ReplicationController</a>): Created
 
 401: Unauthorized
 

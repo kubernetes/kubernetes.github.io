@@ -40,6 +40,7 @@ CustomResourceDefinition represents a resource that should be exposed on the API
 
 - **metadata** (<a href="{{< ref "../common-definitions/object-meta#ObjectMeta" >}}">ObjectMeta</a>)
 
+  Standard object's metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
 - **spec** (<a href="{{< ref "../extend-resources/custom-resource-definition-v1#CustomResourceDefinitionSpec" >}}">CustomResourceDefinitionSpec</a>), required
 
@@ -590,6 +591,7 @@ CustomResourceDefinitionList is a list of CustomResourceDefinition objects.
 
 - **metadata** (<a href="{{< ref "../common-definitions/list-meta#ListMeta" >}}">ListMeta</a>)
 
+  Standard object's metadata More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
 
 
 
@@ -907,6 +909,8 @@ PATCH /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}
 
 200 (<a href="{{< ref "../extend-resources/custom-resource-definition-v1#CustomResourceDefinition" >}}">CustomResourceDefinition</a>): OK
 
+201 (<a href="{{< ref "../extend-resources/custom-resource-definition-v1#CustomResourceDefinition" >}}">CustomResourceDefinition</a>): Created
+
 401: Unauthorized
 
 
@@ -954,6 +958,8 @@ PATCH /apis/apiextensions.k8s.io/v1/customresourcedefinitions/{name}/status
 
 
 200 (<a href="{{< ref "../extend-resources/custom-resource-definition-v1#CustomResourceDefinition" >}}">CustomResourceDefinition</a>): OK
+
+201 (<a href="{{< ref "../extend-resources/custom-resource-definition-v1#CustomResourceDefinition" >}}">CustomResourceDefinition</a>): Created
 
 401: Unauthorized
 

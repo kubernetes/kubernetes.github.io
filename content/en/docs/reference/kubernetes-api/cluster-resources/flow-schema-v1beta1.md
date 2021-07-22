@@ -106,10 +106,11 @@ FlowSchemaSpec describes how the FlowSchema's specification looks like.
 
     - **rules.subjects.kind** (string), required
 
-      Required
+      `kind` indicates which one of the other fields is non-empty. Required
 
     - **rules.subjects.group** (GroupSubject)
 
+      `group` matches based on user group name.
 
       <a name="GroupSubject"></a>
       *GroupSubject holds detailed information for group-kind subject.*
@@ -120,6 +121,7 @@ FlowSchemaSpec describes how the FlowSchema's specification looks like.
 
     - **rules.subjects.serviceAccount** (ServiceAccountSubject)
 
+      `serviceAccount` matches ServiceAccounts.
 
       <a name="ServiceAccountSubject"></a>
       *ServiceAccountSubject holds detailed information for service-account-kind subject.*
@@ -134,6 +136,7 @@ FlowSchemaSpec describes how the FlowSchema's specification looks like.
 
     - **rules.subjects.user** (UserSubject)
 
+      `user` matches based on username.
 
       <a name="UserSubject"></a>
       *UserSubject holds detailed information for user-kind subject.*
@@ -588,6 +591,8 @@ PATCH /apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}
 
 200 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): Created
+
 401: Unauthorized
 
 
@@ -635,6 +640,8 @@ PATCH /apis/flowcontrol.apiserver.k8s.io/v1beta1/flowschemas/{name}/status
 
 
 200 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): OK
+
+201 (<a href="{{< ref "../cluster-resources/flow-schema-v1beta1#FlowSchema" >}}">FlowSchema</a>): Created
 
 401: Unauthorized
 

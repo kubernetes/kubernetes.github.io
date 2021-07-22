@@ -107,11 +107,7 @@ IngressSpec describes the Ingress the user wishes to exist.
 
         Backend defines the referenced service endpoint to which the traffic will be forwarded to.
 
-      - **rules.http.paths.path** (string)
-
-        Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.
-
-      - **rules.http.paths.pathType** (string)
+      - **rules.http.paths.pathType** (string), required
 
         PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is
           done on a path element by element basis. A path element refers is the
@@ -124,6 +120,10 @@ IngressSpec describes the Ingress the user wishes to exist.
           the IngressClass. Implementations can treat this as a separate PathType
           or treat it identically to Prefix or Exact path types.
         Implementations are required to support all path types.
+
+      - **rules.http.paths.path** (string)
+
+        Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional "path" part of a URL as defined by RFC 3986. Paths must begin with a '/' and must be present when using PathType with value "Exact" or "Prefix".
 
 - **tls** ([]IngressTLS)
 
@@ -685,6 +685,8 @@ PATCH /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}
 
 200 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): OK
 
+201 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): Created
+
 401: Unauthorized
 
 
@@ -737,6 +739,8 @@ PATCH /apis/networking.k8s.io/v1/namespaces/{namespace}/ingresses/{name}/status
 
 
 200 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): OK
+
+201 (<a href="{{< ref "../service-resources/ingress-v1#Ingress" >}}">Ingress</a>): Created
 
 401: Unauthorized
 

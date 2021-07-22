@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "PriorityClass defines mapping from a priority class name to the priority integer value."
 title: "PriorityClass"
-weight: 14
+weight: 13
 auto_generated: true
 ---
 
@@ -324,6 +324,8 @@ PATCH /apis/scheduling.k8s.io/v1/priorityclasses/{name}
 
 
 200 (<a href="{{< ref "../workload-resources/priority-class-v1#PriorityClass" >}}">PriorityClass</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/priority-class-v1#PriorityClass" >}}">PriorityClass</a>): Created
 
 401: Unauthorized
 

@@ -354,6 +354,8 @@ PATCH /apis/networking.k8s.io/v1/ingressclasses/{name}
 
 200 (<a href="{{< ref "../service-resources/ingress-class-v1#IngressClass" >}}">IngressClass</a>): OK
 
+201 (<a href="{{< ref "../service-resources/ingress-class-v1#IngressClass" >}}">IngressClass</a>): Created
+
 401: Unauthorized
 
 

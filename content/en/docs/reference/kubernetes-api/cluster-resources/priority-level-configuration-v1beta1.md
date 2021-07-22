@@ -493,6 +493,8 @@ PATCH /apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{na
 
 200 (<a href="{{< ref "../cluster-resources/priority-level-configuration-v1beta1#PriorityLevelConfiguration" >}}">PriorityLevelConfiguration</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/priority-level-configuration-v1beta1#PriorityLevelConfiguration" >}}">PriorityLevelConfiguration</a>): Created
+
 401: Unauthorized
 
 
@@ -540,6 +542,8 @@ PATCH /apis/flowcontrol.apiserver.k8s.io/v1beta1/prioritylevelconfigurations/{na
 
 
 200 (<a href="{{< ref "../cluster-resources/priority-level-configuration-v1beta1#PriorityLevelConfiguration" >}}">PriorityLevelConfiguration</a>): OK
+
+201 (<a href="{{< ref "../cluster-resources/priority-level-configuration-v1beta1#PriorityLevelConfiguration" >}}">PriorityLevelConfiguration</a>): Created
 
 401: Unauthorized
 

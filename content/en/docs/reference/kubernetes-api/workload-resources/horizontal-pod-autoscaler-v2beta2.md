@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "HorizontalPodAutoscaler is the configuration for a horizontal pod autoscaler, which automatically manages the replica count of any resource implementing the scale subresource based on the metrics specified."
 title: "HorizontalPodAutoscaler v2beta2"
-weight: 13
+weight: 12
 auto_generated: true
 ---
 
@@ -1119,6 +1119,8 @@ PATCH /apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/
 
 200 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v2beta2#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v2beta2#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): Created
+
 401: Unauthorized
 
 
@@ -1171,6 +1173,8 @@ PATCH /apis/autoscaling/v2beta2/namespaces/{namespace}/horizontalpodautoscalers/
 
 
 200 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v2beta2#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/horizontal-pod-autoscaler-v2beta2#HorizontalPodAutoscaler" >}}">HorizontalPodAutoscaler</a>): Created
 
 401: Unauthorized
 

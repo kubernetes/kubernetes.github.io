@@ -414,6 +414,8 @@ PATCH /api/v1/namespaces/{namespace}/configmaps/{name}
 
 200 (<a href="{{< ref "../config-and-storage-resources/config-map-v1#ConfigMap" >}}">ConfigMap</a>): OK
 
+201 (<a href="{{< ref "../config-and-storage-resources/config-map-v1#ConfigMap" >}}">ConfigMap</a>): Created
+
 401: Unauthorized
 
 

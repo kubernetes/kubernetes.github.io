@@ -492,6 +492,8 @@ PATCH /apis/events.k8s.io/v1/namespaces/{namespace}/events/{name}
 
 200 (<a href="{{< ref "../cluster-resources/event-v1#Event" >}}">Event</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/event-v1#Event" >}}">Event</a>): Created
+
 401: Unauthorized
 
 

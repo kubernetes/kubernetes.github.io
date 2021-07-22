@@ -355,6 +355,8 @@ PATCH /apis/storage.k8s.io/v1/csinodes/{name}
 
 200 (<a href="{{< ref "../config-and-storage-resources/csi-node-v1#CSINode" >}}">CSINode</a>): OK
 
+201 (<a href="{{< ref "../config-and-storage-resources/csi-node-v1#CSINode" >}}">CSINode</a>): Created
+
 401: Unauthorized
 
 

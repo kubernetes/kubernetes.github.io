@@ -442,6 +442,8 @@ PATCH /apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}
 
 200 (<a href="{{< ref "../cluster-resources/lease-v1#Lease" >}}">Lease</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/lease-v1#Lease" >}}">Lease</a>): Created
+
 401: Unauthorized
 
 

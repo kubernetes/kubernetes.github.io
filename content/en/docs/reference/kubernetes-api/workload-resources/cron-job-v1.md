@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "CronJob represents the configuration of a single cron job."
 title: "CronJob"
-weight: 11
+weight: 10
 auto_generated: true
 ---
 
@@ -572,6 +572,8 @@ PATCH /apis/batch/v1/namespaces/{namespace}/cronjobs/{name}
 
 200 (<a href="{{< ref "../workload-resources/cron-job-v1#CronJob" >}}">CronJob</a>): OK
 
+201 (<a href="{{< ref "../workload-resources/cron-job-v1#CronJob" >}}">CronJob</a>): Created
+
 401: Unauthorized
 
 
@@ -624,6 +626,8 @@ PATCH /apis/batch/v1/namespaces/{namespace}/cronjobs/{name}/status
 
 
 200 (<a href="{{< ref "../workload-resources/cron-job-v1#CronJob" >}}">CronJob</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/cron-job-v1#CronJob" >}}">CronJob</a>): Created
 
 401: Unauthorized
 

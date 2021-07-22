@@ -1189,6 +1189,8 @@ PATCH /api/v1/persistentvolumes/{name}
 
 200 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-v1#PersistentVolume" >}}">PersistentVolume</a>): OK
 
+201 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-v1#PersistentVolume" >}}">PersistentVolume</a>): Created
+
 401: Unauthorized
 
 
@@ -1236,6 +1238,8 @@ PATCH /api/v1/persistentvolumes/{name}/status
 
 
 200 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-v1#PersistentVolume" >}}">PersistentVolume</a>): OK
+
+201 (<a href="{{< ref "../config-and-storage-resources/persistent-volume-v1#PersistentVolume" >}}">PersistentVolume</a>): Created
 
 401: Unauthorized
 

@@ -351,6 +351,8 @@ PATCH /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/{name}
 
 200 (<a href="{{< ref "../authorization-resources/cluster-role-binding-v1#ClusterRoleBinding" >}}">ClusterRoleBinding</a>): OK
 
+201 (<a href="{{< ref "../authorization-resources/cluster-role-binding-v1#ClusterRoleBinding" >}}">ClusterRoleBinding</a>): Created
+
 401: Unauthorized
 
 

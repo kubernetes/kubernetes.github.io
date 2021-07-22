@@ -447,6 +447,8 @@ PATCH /api/v1/namespaces/{namespace}/limitranges/{name}
 
 200 (<a href="{{< ref "../policy-resources/limit-range-v1#LimitRange" >}}">LimitRange</a>): OK
 
+201 (<a href="{{< ref "../policy-resources/limit-range-v1#LimitRange" >}}">LimitRange</a>): Created
+
 401: Unauthorized
 
 

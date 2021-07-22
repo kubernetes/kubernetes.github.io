@@ -366,6 +366,8 @@ PATCH /apis/node.k8s.io/v1/runtimeclasses/{name}
 
 200 (<a href="{{< ref "../cluster-resources/runtime-class-v1#RuntimeClass" >}}">RuntimeClass</a>): OK
 
+201 (<a href="{{< ref "../cluster-resources/runtime-class-v1#RuntimeClass" >}}">RuntimeClass</a>): Created
+
 401: Unauthorized
 
 

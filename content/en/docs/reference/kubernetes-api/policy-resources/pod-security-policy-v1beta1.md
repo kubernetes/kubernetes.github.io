@@ -590,6 +590,8 @@ PATCH /apis/policy/v1beta1/podsecuritypolicies/{name}
 
 200 (<a href="{{< ref "../policy-resources/pod-security-policy-v1beta1#PodSecurityPolicy" >}}">PodSecurityPolicy</a>): OK
 
+201 (<a href="{{< ref "../policy-resources/pod-security-policy-v1beta1#PodSecurityPolicy" >}}">PodSecurityPolicy</a>): Created
+
 401: Unauthorized
 
 

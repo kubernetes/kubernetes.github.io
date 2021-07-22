@@ -1,0 +1,267 @@
+# Copyright 2016 The Kubernetes Authors.
+# Copyright 2020 Philippe Martin
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+parts:
+- name: Workload Resources
+  chapters:
+  - name: Pod
+    group: ""
+    version: v1
+    otherDefinitions:
+    - PodSpec
+    - Container
+    - EphemeralContainer
+    - Handler
+    - NodeAffinity
+    - PodAffinity
+    - PodAntiAffinity
+    - Probe
+    - PodStatus
+    - PodList
+  - name: PodTemplate
+    group: ""
+    version: v1
+  - name: ReplicationController
+    group: ""
+    version: v1
+  - name: ReplicaSet
+    group: apps
+    version: v1
+  - name: Deployment
+    group: apps
+    version: v1
+  - name: StatefulSet
+    group: apps
+    version: v1
+  - name: ControllerRevision
+    group: apps
+    version: v1
+  - name: DaemonSet
+    group: apps
+    version: v1
+  - name: Job
+    group: batch
+    version: v1
+  - name: CronJob
+    group: batch
+    version: v1
+  - name: HorizontalPodAutoscaler
+    group: autoscaling
+    version: v1
+  - name: HorizontalPodAutoscaler
+    group: autoscaling
+    version: v2beta2
+  - name: PriorityClass
+    group: scheduling.k8s.io
+    version: v1
+- name: Service Resources
+  chapters:
+  - name: Service
+    group: ""
+    version: v1
+  - name: Endpoints
+    group: ""
+    version: v1
+  - name: EndpointSlice
+    group: discovery.k8s.io
+    version: v1
+  - name: Ingress
+    group: networking.k8s.io
+    version: v1
+    otherDefinitions:
+    - IngressSpec
+    - IngressBackend
+    - IngressStatus
+    - IngressList
+  - name: IngressClass
+    group: networking.k8s.io
+    version: v1
+- name: Config and Storage Resources
+  chapters:
+  - name: ConfigMap
+    group: ""
+    version: v1
+  - name: Secret
+    group: ""
+    version: v1
+  - name: Volume
+    key: io.k8s.api.core.v1.Volume
+    otherDefinitions:
+    - DownwardAPIVolumeFile
+    - KeyToPath
+  - name: PersistentVolumeClaim
+    group: ""
+    version: v1
+  - name: PersistentVolume
+    group: ""
+    version: v1
+  - name: StorageClass
+    group: storage.k8s.io
+    version: v1
+  - name: VolumeAttachment
+    group: storage.k8s.io
+    version: v1
+  - name: CSIDriver
+    group: storage.k8s.io
+    version: v1
+  - name: CSINode
+    group: storage.k8s.io
+    version: v1
+  - name: CSIStorageCapacity
+    group: storage.k8s.io
+    version: v1beta1
+- name: Authentication Resources
+  chapters:
+  - name: ServiceAccount
+    group: ""
+    version: v1
+  - name: TokenRequest
+    group: authentication.k8s.io
+    version: v1
+  - name: TokenReview
+    group: authentication.k8s.io
+    version: v1
+  - name: CertificateSigningRequest
+    group: certificates.k8s.io
+    version: v1
+- name: Authorization Resources
+  chapters:
+  - name: LocalSubjectAccessReview
+    group: authorization.k8s.io
+    version: v1
+  - name: SelfSubjectAccessReview
+    group: authorization.k8s.io
+    version: v1
+  - name: SelfSubjectRulesReview
+    group: authorization.k8s.io
+    version: v1
+  - name: SubjectAccessReview
+    group: authorization.k8s.io
+    version: v1
+  - name: ClusterRole
+    group: rbac.authorization.k8s.io
+    version: v1
+  - name: ClusterRoleBinding
+    group: rbac.authorization.k8s.io
+    version: v1
+  - name: Role
+    group: rbac.authorization.k8s.io
+    version: v1
+  - name: RoleBinding
+    group: rbac.authorization.k8s.io
+    version: v1
+- name: Policy Resources
+  chapters:
+  - name: LimitRange
+    group: ""
+    version: v1
+  - name: ResourceQuota
+    group: ""
+    version: v1
+  - name: NetworkPolicy
+    group: networking.k8s.io
+    version: v1
+  - name: PodDisruptionBudget
+    group: policy
+    version: v1
+  - name: PodSecurityPolicy
+    group: policy
+    version: v1beta1
+- name: Extend Resources
+  chapters:
+  - name: CustomResourceDefinition
+    group: apiextensions.k8s.io
+    version: v1
+    otherDefinitions:
+    - CustomResourceDefinitionSpec
+    - JSONSchemaProps
+    - CustomResourceDefinitionStatus
+    - CustomResourceDefinitionList
+  - name: MutatingWebhookConfiguration
+    group: admissionregistration.k8s.io
+    version: v1
+  - name: ValidatingWebhookConfiguration
+    group: admissionregistration.k8s.io
+    version: v1
+- name: Cluster Resources
+  chapters:
+  - name: Node
+    group: ""
+    version: v1
+  - name: Namespace
+    group: ""
+    version: v1
+  - name: Event
+    group: events.k8s.io
+    version: v1
+  - name: APIService
+    group: apiregistration.k8s.io
+    version: v1
+  - name: Lease
+    group: coordination.k8s.io
+    version: v1
+  - name: RuntimeClass
+    group: node.k8s.io
+    version: v1
+  - name: FlowSchema
+    group: flowcontrol.apiserver.k8s.io
+    version: v1beta1
+  - name: PriorityLevelConfiguration
+    group: flowcontrol.apiserver.k8s.io
+    version: v1beta1
+  - name: Binding
+    group: ""
+    version: v1
+  - name: ComponentStatus
+    group: ""
+    version: v1
+- name: Common Definitions
+  chapters:
+  - name: DeleteOptions
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.DeleteOptions
+  - name: LabelSelector
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.LabelSelector
+  - name: ListMeta
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.ListMeta
+  - name: LocalObjectReference
+    key: io.k8s.api.core.v1.LocalObjectReference
+  - name: NodeSelectorRequirement
+    key: io.k8s.api.core.v1.NodeSelectorRequirement
+  - name: ObjectFieldSelector
+    key: io.k8s.api.core.v1.ObjectFieldSelector
+  - name: ObjectMeta
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.ObjectMeta
+  - name: ObjectReference
+    key: io.k8s.api.core.v1.ObjectReference
+  - name: Patch
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.Patch
+  - name: Quantity
+    key: "io.k8s.apimachinery.pkg.api.resource.Quantity"
+  - name: ResourceFieldSelector
+    key: io.k8s.api.core.v1.ResourceFieldSelector
+  - name: Status
+    key: io.k8s.apimachinery.pkg.apis.meta.v1.Status
+  - name: TypedLocalObjectReference
+    key: io.k8s.api.core.v1.TypedLocalObjectReference
+skippedResources:
+- APIGroup
+- APIGroupList
+- APIResourceList
+- APIVersions
+- Eviction
+- Scale
+- Status
+- StorageVersion
+- StorageVersionList

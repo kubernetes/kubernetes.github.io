@@ -6,7 +6,7 @@ api_metadata:
 content_type: "api_reference"
 description: "PodTemplate describes a template for creating copies of a predefined pod."
 title: "PodTemplate"
-weight: 3
+weight: 2
 auto_generated: true
 ---
 
@@ -423,6 +423,8 @@ PATCH /api/v1/namespaces/{namespace}/podtemplates/{name}
 
 
 200 (<a href="{{< ref "../workload-resources/pod-template-v1#PodTemplate" >}}">PodTemplate</a>): OK
+
+201 (<a href="{{< ref "../workload-resources/pod-template-v1#PodTemplate" >}}">PodTemplate</a>): Created
 
 401: Unauthorized
 
