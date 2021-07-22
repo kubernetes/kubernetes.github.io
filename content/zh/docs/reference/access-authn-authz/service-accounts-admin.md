@@ -115,7 +115,7 @@ It acts synchronously to modify pods as they are created or updated. When this p
 1. 如果该 Pod 没有设置 `ServiceAccount`，将其 `ServiceAccount` 设为 `default`。
 1. 保证 Pod 所引用的 `ServiceAccount` 确实存在，否则拒绝该 Pod。
 1. 如果服务账号的 `automountServiceAccountToken` 或 Pod 的
-   `automountServiceAccountToken` 都为设置为 `false`，则为 Pod 创建一个
+   `automountServiceAccountToken` 都未设置为 `false`，则为 Pod 创建一个
    `volume`，在其中包含用来访问 API 的令牌。
 1. 如果前一步中为服务账号令牌创建了卷，则为 Pod 中的每个容器添加一个
    `volumeSource`，挂载在其 `/var/run/secrets/kubernetes.io/serviceaccount`
