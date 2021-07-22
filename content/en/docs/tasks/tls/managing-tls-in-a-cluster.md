@@ -164,11 +164,11 @@ Events: <none>
 
 Approving the certificate signing request is either done by an automated
 approval process or on a one off basis by a cluster administrator. More
-information on what this involves is covered below.
+information on what this involves is [covered below](#approving-certificate-signing-requests).
 
 ## Download the Certificate and Use It
 
-Once the CSR is signed and approved you should see the following:
+Once the CSR is signed and [approved](#approving-certificate-signing-requests) you should see the following:
 
 ```shell
 kubectl get csr
