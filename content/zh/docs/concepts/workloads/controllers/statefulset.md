@@ -163,7 +163,7 @@ The name of a StatefulSet object must be a valid
 * `volumeClaimTemplates` 将通过 PersistentVolumes 驱动提供的
   [PersistentVolumes](/zh/docs/concepts/storage/persistent-volumes/) 来提供稳定的存储。
 
-StatefulSet 的命名需要遵循[DNS 子域名](zh/docs/concepts/overview/working-with-objects/names#dns-subdomain-names)规范。
+StatefulSet 的命名需要遵循[DNS 子域名](/zh/docs/concepts/overview/working-with-objects/names#dns-subdomain-names)规范。
 
 <!--
 ## Pod Selector
