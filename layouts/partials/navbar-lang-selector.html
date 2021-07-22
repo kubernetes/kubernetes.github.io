@@ -3,7 +3,7 @@
 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	{{ $langPage.Language.LanguageName }}
 </a>
-<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+<div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	{{ range $langPage.Translations }}
 	<a class="dropdown-item" href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>
 	{{ end }}

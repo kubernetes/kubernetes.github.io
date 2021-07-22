@@ -13,7 +13,8 @@
   {{ end }}
 {{- end }}
 
-<link rel="stylesheet" href="{{ "css/feature-states.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/feature-states.css" | relURL }}" />
+<link rel="stylesheet" href="{{ "css/dark-mode.css" | relURL }}" />
 
 {{- if or (eq .Params.class "gridPage") (eq .Params.class "gridPage gridPageHome") }}
   <link rel="stylesheet" href="{{ "css/gridpage.css" | relURL }}">
@@ -34,3 +35,4 @@
     <link rel="stylesheet" href="{{ $url }}"><!-- custom css added -->
   {{- end }}
 {{- end }}
+

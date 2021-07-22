@@ -23,7 +23,13 @@
 			<li class="nav-item dropdown">
 				{{ partial "navbar-lang-selector.html" . }}
 			</li>
-			{{ end }}
+      {{ end }}
+			<li class="nav-item mr-2 mb-lg-0">
+        <div class="custom-control custom-switch pt-2">
+          <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+          <label class="custom-control-label nav-link pt-0 pl-0" for="darkSwitch">Dark</label>
+        </div>
+			</li>
 		</ul>
 	</div>
 	<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>

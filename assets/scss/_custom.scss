@@ -310,16 +310,17 @@ main {
   }
 }
 
-
 // blockquotes and callouts
+
+[data-theme="dark"] .callout {
+    color: #eee;
+}
 
 .td-content, body {
   blockquote.callout {
     padding: 0.4rem 0.4rem 0.4rem 1rem;
     border: 1px solid #eee;
     border-left-width: 0.5em;
-    background: #fff;
-    color: #000;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
