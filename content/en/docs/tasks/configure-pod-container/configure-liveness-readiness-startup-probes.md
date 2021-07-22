@@ -429,7 +429,7 @@ to resolve it.
 
 ### Probe-level `terminationGracePeriodSeconds`
 
-{{< feature-state for_k8s_version="v1.21" state="alpha" >}}
+{{< feature-state for_k8s_version="v1.22" state="beta" >}}
 
 Prior to release 1.21, the pod-level `terminationGracePeriodSeconds` was used
 for terminating a container that failed its liveness or startup probe. This
@@ -437,11 +437,26 @@ coupling was unintended and may have resulted in failed containers taking an
 unusually long time to restart when a pod-level `terminationGracePeriodSeconds`
 was set.
 
-In 1.21, when the feature flag `ProbeTerminationGracePeriod` is enabled, users
-can specify a probe-level `terminationGracePeriodSeconds` as part of the probe
-specification. When the feature flag is enabled, and both a pod- and
-probe-level `terminationGracePeriodSeconds` are set, the kubelet will use the
-probe-level value.
+In 1.21 and beyond, when the feature gate `ProbeTerminationGracePeriod` is
+enabled, users can specify a probe-level `terminationGracePeriodSeconds` as
+part of the probe specification. When the feature gate is enabled, and both a
+pod- and probe-level `terminationGracePeriodSeconds` are set, the kubelet will
+use the probe-level value.
+
+{{< note >}}
+As of Kubernetes 1.22, the `ProbeTerminationGracePeriod` feature gate is only
+available on the API Server. The kubelet always honors the probe-level
+`terminationGracePeriodSeconds` field if it is present on a Pod.
+
+If you have existing Pods where the `terminationGracePeriodSeconds` field is set and
+you no longer wish to use per-probe termination grace periods, you must delete
+those existing Pods.
+
+When you (or the control plane, or some other component) create replacement
+Pods, and the feature gate `ProbeTerminationGracePeriod` is disabled, then the
+API server ignores the Pod-level `terminationGracePeriodSeconds` field, even if
+a Pod or pod template specifies it.
+{{< /note >}}
 
 For example,
 
