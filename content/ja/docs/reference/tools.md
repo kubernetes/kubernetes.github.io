@@ -11,7 +11,7 @@ Kubernetesには、Kubernetesシステムの操作に役立ついくつかの組
 [`kubectl`](/docs/tasks/tools/install-kubectl/)は、Kubernetesのためのコマンドラインツールです。このコマンドはKubernetes cluster managerを操作します。
 
 ## Kubeadm
-[`kubeadm`](docs/setup/production-environment/tools/kubeadm/install-kubeadm/)は、物理サーバやクラウドサーバ、仮想マシン上にKubenetesクラスタを容易にプロビジョニングするためのコマンドラインツールです(現在はアルファ版です)。
+[`kubeadm`](docs/setup/production-environment/tools/kubeadm/install-kubeadm/)は、物理サーバやクラウドサーバ、仮想マシン上にKubernetesクラスタを容易にプロビジョニングするためのコマンドラインツールです(現在はアルファ版です)。
 
 ## Minikube
 [`minikube`](https://minikube.sigs.k8s.io/docs/)は、開発やテストのためにワークステーション上でシングルノードのKubernetesクラスタをローカルで実行するツールです。

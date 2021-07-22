@@ -342,7 +342,7 @@ Could not read CA certificate "/etc/docker/ca.pem": open /etc/docker/ca.pem: no 
 
 ### Kubernetesの設定
 
-Minikubeにはユーザーが任意の値でKubenetesコンポーネントを設定することを可能にする "configurator" 機能があります。
+Minikubeにはユーザーが任意の値でKubernetesコンポーネントを設定することを可能にする "configurator" 機能があります。
 この機能を使うには、`minikube start` コマンドに `--extra-config` フラグを使うことができます。
 
 このフラグは繰り返されるので、複数のオプションを設定するためにいくつかの異なる値を使って何度も渡すことができます。
