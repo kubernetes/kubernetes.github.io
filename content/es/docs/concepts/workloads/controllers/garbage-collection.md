@@ -151,7 +151,7 @@ es true.
 Aquí se muestra un ejemplo de huérfanos de subordinados de un ReplicaSet:
 
 ```shell
-kubectl delete replicaset my-repset --cascade=false
+kubectl delete replicaset my-repset --cascade=orphan
 ```
 
 ### Nota adicional sobre los Deployments

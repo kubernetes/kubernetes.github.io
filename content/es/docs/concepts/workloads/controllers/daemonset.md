@@ -188,7 +188,7 @@ los Pods de aquellos nuevos nodos donde no coincidan.
 Puedes modificar los Pods que crea un DaemonSet. Sin embargo, no se permite actualizar todos los campos de los Pods. 
  Además, el controlador del DaemonSet utilizará la plantilla original la próxima vez que se cree un nodo (incluso con el mismo nombre).
 
-Puedes eliminar un DaemonSet. Si indicas el parámetro `--cascade=false` al usar `kubectl`, 
+Puedes eliminar un DaemonSet. Si indicas el parámetro `--cascade=orphan` al usar `kubectl`, 
 entonces los Pods continuarán ejecutándose en los nodos. Así, puedes crear entonces un nuevo DaemonSet con una plantilla diferente.
 El nuevo DaemonSet con la plantilla diferente reconocerá a todos los Pods existentes que tengan etiquetas coincidentes y
 no modificará o eliminará ningún Pod aunque la plantilla no coincida con los Pods desplegados.

@@ -335,14 +335,14 @@ time a node (even with the same name) is created.
 下次当某节点（即使具有相同的名称）被创建时，DaemonSet 控制器还会使用最初的模板。
 
 <!--
-You can delete a DaemonSet.  If you specify `-cascade=false` with `kubectl`, then the Pods
+You can delete a DaemonSet.  If you specify `-cascade=orphan` with `kubectl`, then the Pods
 will be left on the nodes.  If you subsequently create a new DaemonSet with the same selector,
 the new DaemonSet adopts the existing Pods. If any Pods need replacing the DaemonSet replaces
 them according to its `updateStrategy`.
 
 You can [perform a rolling update](/docs/tasks/manage-daemon/update-daemon-set/) on a DaemonSet.
 -->
-您可以删除一个 DaemonSet。如果使用 `kubectl` 并指定 `--cascade=false` 选项，
+您可以删除一个 DaemonSet。如果使用 `kubectl` 并指定 `--cascade=orphan` 选项，
 则 Pod 将被保留在节点上。接下来如果创建使用相同选择算符的新 DaemonSet，
 新的 DaemonSet 会收养已有的 Pod。
 如果有 Pod 需要被替换，DaemonSet 会根据其 `updateStrategy` 来替换。

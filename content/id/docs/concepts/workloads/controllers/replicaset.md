@@ -232,7 +232,7 @@ curl -X DELETE  'localhost:8080/apis/extensions/v1beta1/namespaces/default/repli
 
 ### Menghapus hanya ReplicaSet
 
-Kamu dapat menghapus ReplicaSet tanpa memengaruhi Pod-nya menggunakan [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete) dengan menggunakan opsi `--cascade=false`.
+Kamu dapat menghapus ReplicaSet tanpa memengaruhi Pod-nya menggunakan [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete) dengan menggunakan opsi `--cascade=orphan`.
 Ketika menggunakan REST API atau _library_ `client-go`, kamu harus mengatur nilai `propagationPolicy` menjadi `Orphan`.
 Sebagai contoh:
 ```shell

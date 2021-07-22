@@ -37,13 +37,13 @@ StatefulSet自体が削除された後で、関連するヘッドレスサービ
 kubectl delete service <service-name>
 ```
 
-kubectlを使ってStatefulSetを削除すると0にスケールダウンされ、すべてのPodが削除されます。PodではなくStatefulSetだけを削除したい場合は、`--cascade=false`を使用してください。
+kubectlを使ってStatefulSetを削除すると0にスケールダウンされ、すべてのPodが削除されます。PodではなくStatefulSetだけを削除したい場合は、`--cascade=orphan`を使用してください。
 
 ```shell
-kubectl delete -f <file.yaml> --cascade=false
+kubectl delete -f <file.yaml> --cascade=orphan
 ```
 
-`--cascade=false`を`kubectl delete`に渡すことで、StatefulSetオブジェクト自身が削除された後でも、StatefulSetによって管理されていたPodは残ります。Podに`app=myapp`というラベルが付いている場合は、次のようにして削除できます:
+`--cascade=orphan`を`kubectl delete`に渡すことで、StatefulSetオブジェクト自身が削除された後でも、StatefulSetによって管理されていたPodは残ります。Podに`app=myapp`というラベルが付いている場合は、次のようにして削除できます:
 
 ```shell
 kubectl delete pods -l app=myapp

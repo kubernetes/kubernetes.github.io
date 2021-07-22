@@ -420,7 +420,7 @@ Dan kamu ingin Pod yang sudah dijalankan untuk tetap berada pada state tersebut,
 tapi kamu juga ingin Pod selanjutnya yang dibuat untuk menggunakan templat Pod yang berbeda dan agar 
 Job tersebut memiliki nama yang berbeda. Kamu tidak dapat mengubah Job karena _field_ ini 
 merupakan nilai yang tidak bisa diubah. Dengan demikian, kamu menghapus Job `old` 
-tetapi tetap membiarkan Pod yang ada untuk jalan, menggunakan perintah `kubectl delete jobs/old --cascade=false`.
+tetapi tetap membiarkan Pod yang ada untuk jalan, menggunakan perintah `kubectl delete jobs/old --cascade=orphan`.
 Sebelum menghapus Job tadi, kamu mencatat selektor yang digunakan oleh Job tadi:
 
 ```

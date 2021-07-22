@@ -193,7 +193,7 @@ REST API나 Go 클라이언트 라이브러리를 사용하는 경우 명시적�
 
 해당 파드에 영향을 주지 않고 레플리케이션 컨트롤러를 삭제할 수 있다.
 
-kubectl을 사용하여, [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete)에 옵션으로 `--cascade=false`를 지정하라.
+kubectl을 사용하여, [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete)에 옵션으로 `--cascade=orphan`를 지정하라.
 
 REST API나 Go 클라이언트 라이브러리를 사용하는 경우 레플리케이션 컨트롤러 오브젝트를 삭제하라.
 

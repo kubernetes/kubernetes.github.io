@@ -920,7 +920,7 @@ to keep running, but you want the rest of the Pods it creates
 to use a different pod template and for the Job to have a new name.
 You cannot update the Job because these fields are not updatable.
 Therefore, you delete Job `old` but _leave its pods
-running_, using `kubectl delete jobs/old -cascade=false`.
+running_, using `kubectl delete jobs/old -cascade=orphan`.
 Before deleting it, you make a note of what selector it uses:
 -->
 下面是一个示例场景，在这种场景下你可能会使用刚刚讲述的特性。
@@ -930,7 +930,7 @@ Before deleting it, you make a note of what selector it uses:
 使用一个不同的 Pod 模版，甚至希望 Job 的名字也发生变化。
 你无法更新现有的 Job，因为这些字段都是不可更新的。
 因此，你会删除 `old` Job，但 _允许该 Job 的 Pod 集合继续运行_。
-这是通过 `kubectl delete jobs/old --cascade=false` 实现的。
+这是通过 `kubectl delete jobs/old --cascade=orphan` 实现的。
 在删除之前，我们先记下该 Job 所使用的选择算符。
 
 ```shell

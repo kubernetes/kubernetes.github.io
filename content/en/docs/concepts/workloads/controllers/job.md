@@ -525,7 +525,7 @@ to keep running, but you want the rest of the Pods it creates
 to use a different pod template and for the Job to have a new name.
 You cannot update the Job because these fields are not updatable.
 Therefore, you delete Job `old` but _leave its pods
-running_, using `kubectl delete jobs/old --cascade=false`.
+running_, using `kubectl delete jobs/old --cascade=orphan`.
 Before deleting it, you make a note of what selector it uses:
 
 ```shell

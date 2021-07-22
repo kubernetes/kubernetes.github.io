@@ -124,7 +124,7 @@ ketika menggunakan REST API. Untuk mengaktifkannya, ubah nilai dari opsi
 `DeleteOptions.orphanDependents=false` ketika kamu menghapus sebuah _resource_
 dari _control plane_ _federation_ dengan menggunakan REST API.
 Penggunaan `kubectl delete`mengaktifkan penhapusan berantai secara _default_.
-Kamu dapat menonaktifkannya dengan menggunakan `kubectl delete --cascade=false`
+Kamu dapat menonaktifkannya dengan menggunakan `kubectl delete --cascade=orphan`
 
 Catatan: Kubernetes versi 1.5 menyediakan penghapusan berantai
 untuk sebagian _resource_ _federation_.

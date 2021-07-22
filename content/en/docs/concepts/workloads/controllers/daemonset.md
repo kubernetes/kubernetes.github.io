@@ -185,7 +185,7 @@ You can modify the Pods that a DaemonSet creates.  However, Pods do not allow al
 fields to be updated.  Also, the DaemonSet controller will use the original template the next
 time a node (even with the same name) is created.
 
-You can delete a DaemonSet.  If you specify `--cascade=false` with `kubectl`, then the Pods
+You can delete a DaemonSet.  If you specify `--cascade=orphan` with `kubectl`, then the Pods
 will be left on the nodes.  If you subsequently create a new DaemonSet with the same selector,
 the new DaemonSet adopts the existing Pods. If any Pods need replacing the DaemonSet replaces
 them according to its `updateStrategy`.

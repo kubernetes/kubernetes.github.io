@@ -378,7 +378,7 @@ Digamos que el Job `viejo` todavía está ejeuctándose. Quieres que los Pods ex
 sigan corriendo, pero quieres que el resto de los Pods que se creen
 usen una plantilla pod diferente y que el Job tenga un nombre nuevo.
 Como no puedes modificar el Job porque esos campos no son modificables, eliminas el Job `old`,
- pero _dejas sus pods ejecutándose_ mediante el comando `kubectl delete jobs/old --cascade=false`.
+ pero _dejas sus pods ejecutándose_ mediante el comando `kubectl delete jobs/old --cascade=orphan`.
 Antes de eliminarlo, apúntate el selector actual que está usando:
 
 ```

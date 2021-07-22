@@ -186,7 +186,7 @@ esperar a que se eliminen los pods, y entonces eliminar el ReplicationController
 
 Puedes eliminar un ReplicationController sin impactar a ninguno de sus Pods.
 
-Usando kubectl, indica la opción `--cascade=false` en el comando [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete).
+Usando kubectl, indica la opción `--cascade=orphan` en el comando [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete).
 
 Cuando uses la API REST o la librería Go, simplemente elimina objeto ReplicationController.
 

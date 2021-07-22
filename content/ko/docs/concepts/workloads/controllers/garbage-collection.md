@@ -160,7 +160,7 @@ kubectl을 사용해서 포어그라운드의 종속 항목을 삭제하려면 `
 여기에 레플리카셋의 종속 항목을 분리로 만드는 예시가 있다.
 
 ```shell
-kubectl delete replicaset my-repset --cascade=false
+kubectl delete replicaset my-repset --cascade=orphan
 ```
 
 ### 디플로이먼트에 대한 추가 참고

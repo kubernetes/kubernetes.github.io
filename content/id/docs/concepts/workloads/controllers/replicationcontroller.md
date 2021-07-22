@@ -149,7 +149,7 @@ Ketika menggunakan REST API atau _library_ klien go, maka kamu perlu melakukan l
 
 Kamu dapat menghapus ReplicationController tanpa memengaruhi Pod-Pod yang berhubungan dengannya.
 
-Dengan menggunakan kubectl, tentukan opsi `--cascade=false` ke [`kubectl delete`](/docs/reference/generDeated/kubectl/kubectl-commands#delete).
+Dengan menggunakan kubectl, tentukan opsi `--cascade=orphan` ke [`kubectl delete`](/docs/reference/generDeated/kubectl/kubectl-commands#delete).
 
 Ketika menggunakan REST API atau _library_ klien go, cukup hapus objek ReplicationController.
 

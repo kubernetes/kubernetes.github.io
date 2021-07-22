@@ -272,7 +272,7 @@ curl -X DELETE  'localhost:8080/apis/extensions/v1beta1/namespaces/default/repli
 
 ### Eliminar sólo un ReplicaSet
 
-Se puede eliminar un ReplicaSet sin afectar a ninguno de sus Pods usando el comando [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete) con la opción `--cascade=false`.
+Se puede eliminar un ReplicaSet sin afectar a ninguno de sus Pods usando el comando [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete) con la opción `--cascade=orphan`.
 Cuando se usa la API REST o la librería `client-go`, se debe poner `propagationPolicy` a `Orphan`.
 Por ejemplo:
 ```shell

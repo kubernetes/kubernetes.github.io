@@ -114,7 +114,7 @@ kubectl juga mendukung _cascading deletion_. Untuk menghapus dependen secara oto
 Berikut adalah contoh yang membuat dependen ReplicaSet menjadi _orphan_:
 
 ```shell
-kubectl delete replicaset my-repset --cascade=false
+kubectl delete replicaset my-repset --cascade=orphan
 ```
 
 ### Catatan tambahan untuk Deployment

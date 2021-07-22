@@ -242,7 +242,7 @@ curl -X DELETE  'localhost:8080/apis/apps/v1/namespaces/default/replicasets/fron
 
 ### ReplicaSetのみを削除する
 
-ユーザーは[`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete)コマンドで`--cascade=false`オプションを付けることにより、所有するPodに影響を与えることなくReplicaSetを削除できます。
+ユーザーは[`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete)コマンドで`--cascade=orphan`オプションを付けることにより、所有するPodに影響を与えることなくReplicaSetを削除できます。
 REST APIもしくは`client-go`ライブラリーを使用するとき、ユーザーは`-d`オプションで`propagationPolicy`を`Orphan`と指定しなくてはなりません。
 ```shell
 kubectl proxy --port=8080

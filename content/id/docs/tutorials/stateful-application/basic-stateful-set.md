@@ -845,12 +845,12 @@ kubectl get pods -w -l app=nginx
 ```
 
 Gunakan perintah [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands/#delete)
-untuk menghapus StatefulSet. Pastikan kamu menambahkan parameter `--cascade=false` ke
+untuk menghapus StatefulSet. Pastikan kamu menambahkan parameter `--cascade=orphan` ke
 perintah tersebut. Parameter ini memberitahukan Kubernetes untuk hanya menghapus StatefulSet
 dan agar tidak menghapus Pod yang ada padanya.
 
 ```shell
-kubectl delete statefulset web --cascade=false
+kubectl delete statefulset web --cascade=orphan
 ```
 ```
 statefulset.apps "web" deleted
@@ -965,7 +965,7 @@ kubectl get pods -w -l app=nginx
 ```
 
 Pada terminal yang lain, hapus StatefulSet lagi. Kali ini, hilangkan parameter
-`--cascade=false`.
+`--cascade=orphan`.
 
 ```shell
 kubectl delete statefulset web

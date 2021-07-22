@@ -66,21 +66,21 @@ kubectl delete service <服务名称>
 ```
 
 <!--
-When deleting a StatefulSet through `kubectl`, the StatefulSet scales down to 0. All Pods that are part of this workload are also deleted. If you want to delete only the StatefulSet and not the Pods, use `--cascade=false`.
+When deleting a StatefulSet through `kubectl`, the StatefulSet scales down to 0. All Pods that are part of this workload are also deleted. If you want to delete only the StatefulSet and not the Pods, use `--cascade=orphan`.
 For example:
 --->
 当通过 `kubectl` 删除 StatefulSet 时，StatefulSet 会被缩容为 0。
 属于该 StatefulSet 的所有 Pod 也被删除。
-如果你只想删除 StatefulSet 而不删除 Pod，使用 `--cascade=false`。
+如果你只想删除 StatefulSet 而不删除 Pod，使用 `--cascade=orphan`。
 
 ```shell
-kubectl delete -f <file.yaml> --cascade=false
+kubectl delete -f <file.yaml> --cascade=orphan
 ```
 
 <!--
-By passing `--cascade=false` to `kubectl delete`, the Pods managed by the StatefulSet are left behind even after the StatefulSet object itself is deleted. If the pods have a label `app=myapp`, you can then delete them as follows:
+By passing `--cascade=orphan` to `kubectl delete`, the Pods managed by the StatefulSet are left behind even after the StatefulSet object itself is deleted. If the pods have a label `app=myapp`, you can then delete them as follows:
 --->
-通过将 `--cascade=false` 传递给 `kubectl delete`，在删除 StatefulSet 对象之后，
+通过将 `--cascade=orphan` 传递给 `kubectl delete`，在删除 StatefulSet 对象之后，
 StatefulSet 管理的 Pod 会被保留下来。如果 Pod 具有标签 `app=myapp`，则可以按照
 如下方式删除它们：
 

@@ -331,7 +331,7 @@ kubectl 将 ReplicationController 缩放为 0 并等待以便在删除 Replicati
 
 You can delete a ReplicationController without affecting any of its pods.
 
-Using kubectl, specify the `--cascade=false` option to [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete).
+Using kubectl, specify the `--cascade=orphan` option to [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete).
 
 When using the REST API or Go client library, simply delete the ReplicationController object.
 -->
@@ -339,7 +339,7 @@ When using the REST API or Go client library, simply delete the ReplicationContr
 
 你可以删除一个 ReplicationController 而不影响它的任何 Pod。
 
-使用 kubectl，为 [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete) 指定 `--cascade=false` 选项。
+使用 kubectl，为 [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands#delete) 指定 `--cascade=orphan` 选项。
 
 当使用 REST API 或 Go 客户端库时，只需删除 ReplicationController 对象。
 

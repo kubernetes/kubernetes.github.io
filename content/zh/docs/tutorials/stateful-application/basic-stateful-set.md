@@ -1239,16 +1239,16 @@ kubectl get pods -w -l app=nginx
 
 <!--
 Use [`kubectl delete`](/docs/reference/generated/kubectl/kubectl-commands/#delete) to delete the
-StatefulSet. Make sure to supply the `--cascade=false` parameter to the
+StatefulSet. Make sure to supply the `--cascade=orphan` parameter to the
 command. This parameter tells Kubernetes to only delete the StatefulSet, and to
 not delete any of its Pods.
 -->
 
 使用 [`kubectl delete`](/zh/docs/reference/generated/kubectl/kubectl-commands/#delete) 删除 StatefulSet。
-请确保提供了 `--cascade=false` 参数给命令。这个参数告诉 Kubernetes 只删除 StatefulSet 而不要删除它的任何 Pod。
+请确保提供了 `--cascade=orphan` 参数给命令。这个参数告诉 Kubernetes 只删除 StatefulSet 而不要删除它的任何 Pod。
 
 ```shell
-kubectl delete statefulset web --cascade=false
+kubectl delete statefulset web --cascade=orphan
 ```
 ```
 statefulset.apps "web" deleted
@@ -1418,7 +1418,7 @@ kubectl get pods -w -l app=nginx
 In another terminal, delete the StatefulSet again. This time, omit the
 -->
 
-在另一个窗口中再次删除这个 StatefulSet。这次省略 `--cascade=false` 参数。
+在另一个窗口中再次删除这个 StatefulSet。这次省略 `--cascade=orphan` 参数。
 
 ```shell
 kubectl delete statefulset web

@@ -131,7 +131,7 @@ DaemonSet内のPodとのコミュニケーションをする際に考えられ�
 
 ユーザーはDaemonSetが作成したPodを修正可能です。しかし、Podは全てのフィールドの更新を許可していません。また、DaemonSetコントローラーは次のNode(同じ名前でも)が作成されたときにオリジナルのテンプレートを使ってPodを作成します。
 
-ユーザーはDaemonSetを削除可能です。`kubectl`コマンドで`--cascade=false`を指定するとDaemonSetのPodはNode上に残り続けます。その後、同じセレクターで新しいDaemonSetを作成すると、新しいDaemonSetは既存のPodを再利用します。PodでDaemonSetを置き換える必要がある場合は、`updateStrategy`に従ってそれらを置き換えます。
+ユーザーはDaemonSetを削除可能です。`kubectl`コマンドで`--cascade=orphan`を指定するとDaemonSetのPodはNode上に残り続けます。その後、同じセレクターで新しいDaemonSetを作成すると、新しいDaemonSetは既存のPodを再利用します。PodでDaemonSetを置き換える必要がある場合は、`updateStrategy`に従ってそれらを置き換えます。
 
 ユーザーはDaemonSet上で[ローリングアップデートの実施](/docs/tasks/manage-daemon/update-daemon-set/)が可能です。
 

@@ -184,7 +184,7 @@ Kamu bisa mengubah Pod yang dibuat DaemonSet. Namun, Pod tidak membolehkan perub
 Perlu diingat, _controller_ DaemonSet akan menggunakan templat yang asli di waktu selanjutnya 
 Node baru (bahkan dengan nama yang sama) dibuat.
 
-Kamu bisa menghapus DaemonSet. Jika kamu spesifikasikan `--cascade=false` dengan `kubectl`, maka
+Kamu bisa menghapus DaemonSet. Jika kamu spesifikasikan `--cascade=orphan` dengan `kubectl`, maka
 Pod akan dibiarkan pada Node. Jika kamu pada waktu kemudian membuat DaemonSet baru dengan selektor
 yang sama, DaemonSet yang baru akan mengadopsi Pod yang sudah ada. Jika ada Pod yang perlu diganti,
 DaemonSet akan mengganti sesuai dengan `updateStrategy`.

@@ -190,9 +190,9 @@ kubectl get configmap
 No resources found in default namespace.
 ```
 
-To sum things up, when there's an override owner reference from a child to a parent, deleting the parent deletes the children automatically. This is called `cascade`. The default for cascade is `true`, however, you can use the --cascade=false option for `kubectl delete` to delete an object and orphan its children. 
+To sum things up, when there's an override owner reference from a child to a parent, deleting the parent deletes the children automatically. This is called `cascade`. The default for cascade is `true`, however, you can use the --cascade=orphan option for `kubectl delete` to delete an object and orphan its children. 
 
-In the following example, there is a parent and a child. Notice the owner references are still included. If I delete the parent using --cascade=false, the parent is deleted but the child still exists:
+In the following example, there is a parent and a child. Notice the owner references are still included. If I delete the parent using --cascade=orphan, the parent is deleted but the child still exists:
 
 ```
 kubectl get configmap
@@ -200,7 +200,7 @@ NAME           DATA   AGE
 mymap-child    0      13m8s
 mymap-parent   0      13m8s
 
-kubectl delete --cascade=false configmap/mymap-parent
+kubectl delete --cascade=orphan configmap/mymap-parent
 configmap "mymap-parent" deleted
 
 kubectl get configmap

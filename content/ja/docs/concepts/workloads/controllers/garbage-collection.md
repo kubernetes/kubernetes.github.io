@@ -119,7 +119,7 @@ kubectlを使って従属オブジェクトを自動的に削除するために�
 下記のコマンドは、ReplicaSetを削除し、その従属オブジェクトをみなしご状態にします。
 
 ```shell
-kubectl delete replicaset my-repset --cascade=false
+kubectl delete replicaset my-repset --cascade=orphan
 ```
 
 ### Deploymentsに関する追記事項
