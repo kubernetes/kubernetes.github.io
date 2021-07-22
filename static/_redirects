@@ -212,6 +212,7 @@
 
 /docs/reference/kubectl/kubectl-cmds/     /docs/reference/generated/kubectl/kubectl-commands/ 301!
 /docs/reference/kubectl/kubectl/kubectl_*.md    /docs/reference/generated/kubectl/kubectl-commands#:splat 301
+/docs/reference/kubectl/kubectl-cmds/    /docs/reference/generated/kubectl/kubectl-commands/ 301
 /docs/reference/scheduling/profiles/    /docs/reference/scheduling/config/#profiles 301
 
 /docs/reference/generated/kubernetes-api/v1.15/    https://v1-15.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.15/  301
