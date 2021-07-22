@@ -57,6 +57,38 @@ If you have automation that makes it feasible, replace the node with another usi
 configuration, or reinstall it using automation.
 {{< /caution >}}
 
+## Cgroup v2
+
+Cgroup v2 is the next version of the cgroup Linux API.  Differently than cgroup v1, there is a single
+hierarchy instead of a different one for each controller.
+
+The new version offers several improvements over cgroup v1, some of these improvements are:
+
+- cleaner and easier to use API
+- safe sub-tree delegation to containers
+- newer features like Pressure Stall Information
+
+Even if the kernel supports a hybrid configuration where some controllers are managed by cgroup v1
+and some others by cgroup v2, Kubernetes supports only the same cgroup version to manage all the
+controllers.
+
+If systemd doesn't use cgroup v2 by default, you can configure the system to use it by adding
+`systemd.unified_cgroup_hierarchy=1` to the kernel command line.
+
+```shell
+# dnf install -y grubby && \
+  sudo grubby \
+  --update-kernel=ALL \
+  --args=”systemd.unified_cgroup_hierarchy=1"
+```
+
+To apply the configuration, it is necessary to reboot the node.
+
+There should not be any noticeable difference in the user-experience when switching to cgroup v2, unless
+accessing directly the cgroup file system, either on the node or from within the containers.
+
+In order to use it, cgroup v2 must be supported by the CRI runtime as well.
+
 ### Migrating to the `systemd` driver in kubeadm managed clusters
 
 Follow this [Migration guide](/docs/tasks/administer-cluster/kubeadm/configure-cgroup-driver/)
