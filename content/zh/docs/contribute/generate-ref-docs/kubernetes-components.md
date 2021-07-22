@@ -44,7 +44,7 @@ to generate the Kubernetes component and tool reference pages.
 -->
 
 * [生成参考文档快速入门](/zh/docs/contribute/generate-ref-docs/quickstart/) 
-* [为 kubectll 命令生成参考文档](/zh/docs/contribute/generate-ref-docs/kubectl/)
+* [为 kubectl 命令生成参考文档](/zh/docs/contribute/generate-ref-docs/kubectl/)
 * [为 Kubernetes API 生成参考文档](/zh/docs/contribute/generate-ref-docs/kubernetes-api/)
 * [为上游 Kubernetes 项目做贡献以改进文档](/zh/docs/contribute/generate-ref-docs/contribute-upstream/)
 

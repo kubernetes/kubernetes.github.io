@@ -414,7 +414,7 @@ You have several options for connecting to nodes, pods and services from outside
     - Only works for HTTP/HTTPS.
     - Described [here](#manually-constructing-apiserver-proxy-urls).
 -->
-- 使用 proxy 动词访问服务、节点或者 Pod。
+- 使用 proxy 动态访问服务、节点或者 Pod。
   - 在访问远程服务之前进行 apiserver 身份验证和授权。
     如果服务不能够安全地暴露到互联网，或者服务不能获得节点 IP 端口的
     访问权限，或者是为了调试，那么请使用此选项。
