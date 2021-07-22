@@ -102,7 +102,7 @@ kubectl create secret docker-registry regcred --docker-server=<your-registry-ser
 where:
 
 * `<your-registry-server>` is your Private Docker Registry FQDN.
-  Use `https://index.docker.io/v2/` for DockerHub.
+  Use `https://index.docker.io/v1/` for DockerHub.
 * `<your-name>` is your Docker username.
 * `<your-pword>` is your Docker password.
 * `<your-email>` is your Docker email.
