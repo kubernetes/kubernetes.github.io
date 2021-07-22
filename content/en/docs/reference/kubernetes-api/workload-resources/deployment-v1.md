@@ -74,7 +74,7 @@ DeploymentSpec is the specification of the desired behavior of the Deployment.
 
 - **minReadySeconds** (int32)
 
-  Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
+  Minimum number of seconds for which a newly created pod should be [`Ready`](/docs/concepts/workloads/pods/pod-lifecycle/#pod-conditions) without any of its containers crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)
 
 - **strategy** (DeploymentStrategy)
 
@@ -138,11 +138,11 @@ DeploymentStatus is the most recently observed status of the Deployment.
 
 - **availableReplicas** (int32)
 
-  Total number of available pods (ready for at least minReadySeconds) targeted by this deployment.
+  Total number of available pods targeted by this deployment. Pods must be `Ready` for at least `minReadySeconds` to be considered available.
 
 - **readyReplicas** (int32)
 
-  Total number of ready pods targeted by this deployment.
+  Total number of `Ready` pods targeted by this deployment.
 
 - **unavailableReplicas** (int32)
 
