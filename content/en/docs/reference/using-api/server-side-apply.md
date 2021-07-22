@@ -459,7 +459,7 @@ non-default field manager, as seen in the following example. The default field
 manager for kubectl server-side apply is `kubectl`.
 
 ```shell
-kubectl apply --server-side --field-manager=my-manager [--dry-run=server]
+kubectl apply --server-side --field-manager=kubectl [--dry-run=server]
 ```
 
 ## API Endpoint
