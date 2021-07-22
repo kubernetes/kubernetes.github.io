@@ -89,6 +89,7 @@
 /docs/concepts/cluster-administration/device-plugins/     /docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/ 301
 /docs/concepts/cluster-administration/etcd-upgrade/     /docs/tasks/administer-cluster/configure-upgrade-etcd/ 301
 /docs/concepts/cluster-administration/guaranteed-scheduling-critical-addon-pods/     /docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/ 301
+/docs/concepts/cluster-administration/kubelet-garbage-collection/   /docs/concepts/architecture/garbage-collection/#containers-images 301
 /docs/concepts/cluster-administration/master-node-communication/     /docs/concepts/architecture/master-node-communication/ 301
 /docs/concepts/cluster-administration/network-plugins/     /docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/ 301
 /docs/concepts/cluster-administration/out-of-resource/     /docs/concepts/scheduling-eviction/node-pressure-eviction/ 301   
@@ -148,7 +149,7 @@
 /docs/concepts/workloads/controllers/cron-jobs/deployment/     /docs/concepts/workloads/controllers/cron-jobs/ 301
 /docs/concepts/workloads/controllers/daemonset/docs/concepts/workloads/pods/pod/     /docs/concepts/workloads/pods/ 301
 /docs/concepts/workloads/controllers/deployment/docs/concepts/workloads/pods/pod/     /docs/concepts/workloads/pods/ 301
-
+/docs/concepts/workloads/controllers/garbage-collection/    /docs/concepts/architecture/garbage-collection/ 301
 /docs/concepts/workloads/controllers/jobs-run-to-completion/ /docs/concepts/workloads/controllers/job/ 301
 /docs/concepts/workloads/controllers/statefulsets/     /docs/concepts/workloads/controllers/statefulset/ 301
 /docs/concepts/workloads/controllers/statefulset.md     /docs/concepts/workloads/controllers/statefulset/ 301!
