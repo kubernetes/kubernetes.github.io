@@ -323,7 +323,7 @@ schedule the higher priority Pod instead of the preemptor.
 This is expected behavior: the Pod with the higher priority should take the place
 of a Pod with a lower priority.
 
-### Higher priority Pods are preempted before lower priority pods
+### Lower priority Pods are preempted before higher priority Pods
 
 The scheduler tries to find nodes that can run a pending Pod. If no node is
 found, the scheduler tries to remove Pods with lower priority from an arbitrary
