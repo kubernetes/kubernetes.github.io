@@ -178,7 +178,7 @@ enforced/disallowed:
 
 The Restricted policy is aimed at enforcing current Pod hardening best practices, at the expense of
 some compatibility. It is targeted at operators and developers of security-critical applications, as
-well as lower-trust users.The following listed controls should be enforced/disallowed:
+well as lower-trust users. The following listed controls should be enforced/disallowed:
 
 
 <table>
@@ -266,6 +266,18 @@ well as lower-trust users.The following listed controls should be enforced/disal
 				<br><b>Allowed Values:</b><br>
 				'runtime/default'<br>
 				undefined / nil<br>
+			</td>
+		</tr>
+		<tr>
+			<td>Capabilities</td>
+			<td>
+				Some capabilities in the <a href="https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities">default set</a> can enable attacks in certain scenarios and must be dropped.<br>
+				<br><b>Restricted Fields:</b><br>
+				spec.containers[*].securityContext.capabilities.drop<br>
+				spec.initContainers[*].securityContext.capabilities.drop<br>
+				<br><b>Allowed Values:</b><br>
+				all<br>
+				(an array containing "NET_RAW", with or without additional elements)<br>
 			</td>
 		</tr>
 	</tbody>
