@@ -19,16 +19,23 @@ This page explains the certificates that your cluster requires.
 
 ## How certificates are used by your cluster
 
-Kubernetes requires PKI for the following operations:
+Kubernetes requires certificates to allow the following authentication to take place:
 
-* Client certificates for the kubelet to authenticate to the API server
-* Server certificate for the API server endpoint
-* Client certificates for administrators of the cluster to authenticate to the API server
-* Client certificates for the API server to talk to the kubelets
-* Client certificate for the API server to talk to etcd
-* Client certificate/kubeconfig for the controller manager to talk to the API server
-* Client certificate/kubeconfig for the scheduler to talk to the API server.
-* Client and server certificates for the [front-proxy](/docs/tasks/extend-kubernetes/configure-aggregation-layer/)
+### Client certificates authenticate ...
+* the kubelet to the API server
+* cluster administrator users to the API server
+* the API server to the kubelets
+* the API server to etcd
+
+### Server certificate authenticates ...
+* the API server endpoint to connecting clients
+
+### Client certificate/kubeconfig allow ...
+* the controller manager to talk to the API server
+* the scheduler to talk to the API server.
+
+### Client and server certificates for the [front-proxy](/docs/tasks/extend-kubernetes/configure-aggregation-layer/)
+
 
 {{< note >}}
 `front-proxy` certificates are required only if you run kube-proxy to support [an extension API server](/docs/tasks/extend-kubernetes/setup-extension-api-server/).
