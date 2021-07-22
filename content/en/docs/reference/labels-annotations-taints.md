@@ -200,18 +200,6 @@ Used on: Service
 
 The kube-proxy has this label for custom proxy, which delegates service control to custom proxy.
 
-## experimental.windows.kubernetes.io/isolation-type
-
-Example: `experimental.windows.kubernetes.io/isolation-type: "hyperv"`
-
-Used on: Pod
-
-The annotation is used to run Windows containers with Hyper-V isolation. To use Hyper-V isolation feature and create a Hyper-V isolated container, the kubelet should be started with feature gates HyperVContainer=true and the Pod should include the annotation experimental.windows.kubernetes.io/isolation-type=hyperv.
-
-{{< note >}}
-You can only set this annotation on Pods that have a single container.
-{{< /note >}}
-
 ## ingressclass.kubernetes.io/is-default-class
 
 Example: `ingressclass.kubernetes.io/is-default-class: "true"`
