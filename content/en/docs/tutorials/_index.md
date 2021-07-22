@@ -47,6 +47,8 @@ Before walking through each tutorial, you may want to bookmark the
 
 * [Running ZooKeeper, A CP Distributed System](/docs/tutorials/stateful-application/zookeeper/)
 
+* [Building a Search Engine on Kubernetes using Elasticsearch](/docs/tutorials/stateful-application/elasticsearch/)
+
 ## Clusters
 
 * [AppArmor](/docs/tutorials/clusters/apparmor/)
