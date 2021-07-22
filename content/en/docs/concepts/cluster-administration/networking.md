@@ -275,6 +275,18 @@ Multus supports all [reference plugins](https://github.com/containernetworking/p
 
 [OVN4NFV-K8S-Plugin](https://github.com/opnfv/ovn4nfv-k8s-plugin) is OVN based CNI controller plugin to provide cloud native based Service function chaining(SFC), Multiple OVN overlay networking, dynamic subnet creation, dynamic creation of virtual networks, VLAN Provider network, Direct provider network and pluggable with other Multi-network plugins, ideal for edge based cloud native workloads in Multi-cluster networking
 
+### Netris
+
+The [Netris software controller](https://www.netris.ai/kubernetes/) allows NetOps/DevOps administrators to design and operate a physical network for their Kubernetes server infrastructure with a simple web interface or by using a modern REST API.  Netris provides automatic creation of network services based on Kubernetes CRDs:
+
+* Automatically creating L4LB resources for [type: load-balancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer) services
+* [Physical network provisioning (BGP, VLAN/VXLAN, ACLs)](https://github.com/netrisai/netris-operator/tree/master/samples)
+* [Calico integration - automatic BGP peering with kubernetes nodes](https://github.com/netrisai/netris-operator/tree/master/samples#calico-integration)
+
+Netris integrates with Kubernetes via installation of the Netris Operator:
+
+* [Github](https://github.com/netrisai/netris-operator/tree/master/deploy)
+
 ### NSX-T
 
 [VMware NSX-T](https://docs.vmware.com/en/VMware-NSX-T/index.html) is a network virtualization and security platform. NSX-T can provide network virtualization for a multi-cloud and multi-hypervisor environment and is focused on emerging application frameworks and architectures that have heterogeneous endpoints and technology stacks. In addition to vSphere hypervisors, these environments include other hypervisors such as KVM, containers, and bare metal.
