@@ -150,13 +150,12 @@ you need is an existing `docker-compose.yml` file.
    ```
 
    ```bash
-    kubectl apply -f frontend-service.yaml,redis-master-service.yaml,redis-slave-service.yaml,frontend-deployment.yaml,
+    kubectl apply -f frontend-service.yaml,redis-master-service.yaml,redis-slave-service.yaml,frontend-deployment.yaml,redis-master-deployment.yaml,redis-slave-deployment.yaml
    ```
 
    The output is similar to:
 
    ```none
-   redis-master-deployment.yaml,redis-slave-deployment.yaml
    service/frontend created
    service/redis-master created
    service/redis-slave created
