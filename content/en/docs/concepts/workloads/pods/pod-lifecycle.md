@@ -379,7 +379,7 @@ An example flow:
    as terminating (a graceful shutdown duration has been set), the kubelet begins the local Pod
    shutdown process.
    1. If one of the Pod's containers has defined a `preStop`
-      [hook](/docs/concepts/containers/container-lifecycle-hooks/#hook-details), the kubelet
+      [hook](/docs/concepts/containers/container-lifecycle-hooks), the kubelet
       runs that hook inside of the container. If the `preStop` hook is still running after the
       grace period expires, the kubelet requests a small, one-off grace period extension of 2
       seconds.
