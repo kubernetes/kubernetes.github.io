@@ -299,7 +299,7 @@ The simplest way to get involved with Kubernetes is by joining one of the many [
 - 在 Twitter 上关注我们 [@Kubernetesio](https://twitter.com/kubernetesio)，了解最新动态
 - 在 [Discuss](https://discuss.kubernetes.io/) 上参与社区讨论 
 - 加入 [Slack](http://slack.k8s.io/) 上的社区
--  在[Stack Overflow](http://stackoverflow.com/questions/tagged/kubernetes)提问（或回答）
+-  在[Stack Overflow](https://stackoverflow.com/questions/tagged/kubernetes)提问（或回答）
 - 分享您的 Kubernetes [故事](https://docs.google.com/a/linuxfoundation.org/forms/d/e/1FAIpQLScuI7Ye3VQHQTwBASrgkjQDSS5TP0g3AXfFhwSM9YpHgxRKFA/viewform)
 - 通过 [blog](https://kubernetes.io/blog/)了解更多关于 Kubernetes 的新鲜事
 - 了解更多关于 [Kubernetes 发布团队](https://github.com/kubernetes/sig-release/tree/master/release-team) 的信息
