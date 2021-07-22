@@ -2,6 +2,9 @@
 title: Feature Gates
 weight: 10
 content_type: concept
+card:
+  name: reference
+  weight: 60
 ---
 
 <!-- overview -->
