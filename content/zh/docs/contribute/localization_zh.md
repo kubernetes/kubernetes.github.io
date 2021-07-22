@@ -354,7 +354,7 @@ Website 的仓库中 `scripts/linkchecker.py` 是一个工具，可用来检查�
 - bearer token，持有者令牌
 - capabilities权能字
   * 当泛指某主体执行某操作的能力时，可直译为“能力”
-  * 当特指 Linux 操作系统上的[权限控制](http://man7.org/linux/man-pages/man7/capabilities.7.html)机制时，译为“权能字”
+  * 当特指 Linux 操作系统上的[权限控制](https://man7.org/linux/man-pages/man7/capabilities.7.html)机制时，译为“权能字”
 - certificate authority，证书机构
 - certificate，证书
 - claim，申领
