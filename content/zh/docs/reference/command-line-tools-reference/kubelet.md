@@ -650,10 +650,10 @@ A comma separated list of levels of node allocatable enforcement to be enforced 
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-Maximum size of a bursty event records, temporarily allows event records to burst to this number, while still not exceeding `--event-qps`. Only used if `--event-qps` &gt; 0. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's `--config` flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
+Maximum size of a bursty event records, temporarily allows event records to burst to this number, while still not exceeding `--event-qps`. The number must be >= 0. If 0 will use DefaultBurst: 10. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's `--config` flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
 -->
 事件记录的个数的突发峰值上限，在遵从 <code>--event-qps</code> 阈值约束的前提下
-临时允许事件记录达到此数目。仅在 <code>--event-qps</code> 大于 0 时使用。
+临时允许事件记录达到此数目。此值必须不小于 0，当为 0 时将使用默认值 10。
 已弃用：应在 <code>--config</code> 所给的配置文件中进行设置。
 （<a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubelet-config-file/">进一步了解</a>）
 </td>
@@ -665,9 +665,9 @@ Maximum size of a bursty event records, temporarily allows event records to burs
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-If &gt; `0`, limit event creations per second to this value. If `0`, unlimited. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's `--config` flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
+QPS to limit event creations. The number must be >= 0. If 0 will use DefaultQPS: 5. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's `--config` flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
 -->
-设置大于 0 的值表示限制每秒可生成的事件数量。设置为 0 表示不限制。
+限制每秒可生成的事件数量。此值必须不小于 0，当为 0 时将使用默认值 5。
 已弃用：应在 <code>--config</code> 所给的配置文件中进行设置。
 （<a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubelet-config-file/">进一步了解</a>）
 </td>
@@ -1319,9 +1319,9 @@ If enabled, the kubelet will integrate with the kernel memcg notification to det
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-Burst to use while talking with kubernetes apiserver. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
+Burst to use while talking with kubernetes apiserver. The number must be >= 0. If 0 will use DefaultBurst: 10. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
 -->
-每秒发送到 apiserver 的突发请求数量上限。
+每秒发送到 apiserver 的突发请求数量上限。此值必须不小于 0，当为 0 时将使用默认值 10。
 已弃用：应在 <code>--config</code> 所给的配置文件中进行设置。
 （<a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubelet-config-file/">进一步了解</a>）
 </td>
@@ -1347,9 +1347,9 @@ Content type of requests sent to apiserver. (default "application/vnd.kubernetes
 <tr>
 <td></td><td style="line-height: 130%; word-wrap: break-word;">
 <!--
-QPS to use while talking with kubernetes apiserver. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
+QPS to use while talking with kubernetes apiserver. The number must be >= 0. If 0 will use DefaultQPS: 5. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet's --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)
 -->
-与 apiserver 通信的每秒查询个数（QPS）。
+与 apiserver 通信的每秒查询个数（QPS）。此值必须不小于 0，当为 0 时将使用默认值 5。
 已弃用：应在 <code>--config</code> 所给的配置文件中进行设置。
 （<a href="https://kubernetes.io/zh/docs/tasks/administer-cluster/kubelet-config-file/">进一步了解</a>）
 </td>
