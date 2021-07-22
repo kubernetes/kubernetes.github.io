@@ -330,4 +330,5 @@ Kubelet will merge any `imagePullSecrets` into a single virtual `.docker/config.
 
 ## {{% heading "whatsnext" %}}
 
-* Read the [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/master/manifest.md)
+* Read the [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/master/manifest.md).
+* Learn more about [pulling an Image from a Private Registry](/docs/tasks/configure-pod-container/pull-image-private-registry).
