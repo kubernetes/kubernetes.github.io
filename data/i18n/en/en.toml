@@ -60,6 +60,9 @@ other = "Older versions"
 [end_of_life]
 other = "End of Life:"
 
+[envvars_heading]
+other = "Environment Variables"
+
 [error_404_were_you_looking_for]
 other = "Were you looking for:"
 
