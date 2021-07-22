@@ -168,6 +168,7 @@ enforced/disallowed:
 				net.ipv4.ip_local_port_range<br>
 				net.ipv4.tcp_syncookies<br>
 				net.ipv4.ping_group_range<br>
+				net.ipv4.ip_unprivileged_port_start (since v1.22)<br>
 				undefined/empty<br>
 			</td>
 		</tr>
