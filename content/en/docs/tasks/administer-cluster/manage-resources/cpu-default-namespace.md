@@ -10,7 +10,9 @@ This page shows how to configure default CPU requests and limits for a namespace
 A Kubernetes cluster can be divided into namespaces. If a Container is created in a namespace
 that has a default CPU limit, and the Container does not specify its own CPU limit, then
 the Container is assigned the default CPU limit. Kubernetes assigns a default CPU request
-under certain conditions that are explained later in this topic.
+under certain conditions that are explained later in this topic. Kubernetes will also not allow 
+a pod creation if the pod requests more than the default CPU limit configured in the LimitRange 
+that is applied to the namespace where the pod creation request is made.
 
 
 
