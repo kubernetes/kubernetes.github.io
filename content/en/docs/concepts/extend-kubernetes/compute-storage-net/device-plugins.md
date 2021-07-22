@@ -242,6 +242,12 @@ message ContainerDevices {
 GetAllocatableResources provides information on resources initially available on the worker node.
 It provides more information than kubelet exports to APIServer.
 
+NOTE:
+
+- `GetAllocatableResources` should only be used to evaluate [allocatable](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#node-allocatable) resources on a node. If the goal is to evaluate free/unallocated resources it should 
+be used in conjunction with the List() endpoint. The result obtained by `GetAllocatableResources` would remain the same unless the underlying resources exposed to kubelet change. This happens rarely but when it does (e.g. CPUs onlined/offlined, devices added/removed), client is expected to call `GetAlloctableResources` endpoint.
+
+
 ```gRPC
 // AllocatableResourcesResponses contains informations about all the devices known by the kubelet
 message AllocatableResourcesResponse {
