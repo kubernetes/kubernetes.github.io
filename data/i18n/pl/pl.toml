@@ -1,6 +1,5 @@
 # i18n strings for the Polish site.
 # NOTE: Please keep the entries in alphabetical order when editing
-
 [caution]
 other = "Ostrzeżenie:"
 
@@ -28,8 +27,11 @@ other = "Twitter"
 [community_youtube_name]
 other = "YouTube"
 
+[deprecation_title]
+other = "Teraz oglądasz dokumentację Kubernetesa w wersji:"
+
 [deprecation_warning]
-other = " dokumentacja nie jest już aktualizowana. Wyświetlona jest wersja archiwalna. Po aktualną dokumentację zajrzyj na"
+other = " - dokumentacja nie jest już aktualizowana. Wyświetlona jest wersja archiwalna. Po aktualną dokumentację zajrzyj na"
 
 [deprecation_file_warning]
 other = "Przestarzały"
@@ -46,6 +48,24 @@ other = "Jestem..."
 [docs_label_users]
 other = "Użytkownicy"
 
+[docs_version_current]
+other = "(ta dokumentacja)"
+
+[docs_version_latest_heading]
+other = "Najnowsza wersja"
+
+[docs_version_other_heading]
+other = "Starsze wersje"
+
+[end_of_life]
+other = "Zakończenie wsparcia:"
+
+[error_404_were_you_looking_for]
+other = "Czy chodziło o:"
+
+[examples_heading]
+other = "Przykłady"
+
 [feedback_heading]
 other = "Twoja opinia"
 
@@ -58,11 +78,17 @@ other = "Czy ta strona była przydatna?"
 [feedback_yes]
 other = "Tak"
 
+[inline_list_separator]
+other = ","
+
 [input_placeholder_email_address]
 other = "adres e-mail"
 
+[latest_release]
+other = "Najnowsze wydanie:"
+
 [latest_version]
-other = "to najnowsza wersja."
+other = "najnowszą wersję."
 
 [layouts_blog_pager_prev]
 other = "<< Poprzedni"
@@ -128,16 +154,10 @@ other = "Wnieś swój wkład"
 other = """The Linux Foundation &reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>"""
 
 [main_documentation_license]
-other = """The Kubernetes Authors | Documentation Distributed under <a href="https://git.k8s.io/website/LICENSE" class="light-text">CC BY 4.0</a>"""
-
-[main_edit_this_page]
-other = "Edytuj stronę"
-
-[main_github_create_an_issue]
-other = "Zgłoś problem"
+other = """Autorzy Kubernetesa | Dokumentacja jest udostępniona w ramach licencji <a href="https://git.k8s.io/website/LICENSE" class="light-text">CC BY 4.0</a>"""
 
 [main_github_invite]
-other = "Chcesz zacząć współtworzyć kod Kubernetesa?"
+other = "Chcesz zacząć zabawę z kodem Kubernetesa?"
 
 [main_github_view_on]
 other = "Zajrzyj na GitHub"
@@ -172,26 +192,47 @@ other = "Informacja:"
 [objectives_heading]
 other = "Cele"
 
+[options_heading]
+other = "Opcje"
+
+[post_create_issue]
+other = "Zgłoś problem"
+
 [prerequisites_heading]
 other = "Nim zaczniesz"
 
+[previous_patches]
+other = "Poprawki:"
+
+[seealso_heading]
+other = "Zobacz też"
+
 [subscribe_button]
 other = "Subskrybuj"
+
+[synopsis_heading]
+other = "Streszczenie"
+
+[thirdparty_message]
+other = """Ta sekcja przekierowuje do projektów osób trzecich, które udostępniają funkcjonalność wymaganą przez Kubernetesa. Autory projektu Kubernetes nie są odpowiedzialni za te projekty. Ta strona podąża za <a href="https://github.com/cncf/foundation/blob/master/website-guidelines.md" target="_blank">wytycznymi CNCF dla stron internetowych</a> aby pokazać projekty w kolejności alfabetycznej. Aby dodać projekt na tę listę przeczytaj <a href="/docs/contribute/style/content-guide/#third-party-content">wytyczne dla zawartości</a> przed wysyłaniem zmian."""
 
 [ui_search_placeholder]
 other = "Szukaj"
 
 [version_check_mustbe]
-other = "Twój serwer Kubernetes musi być w wersji "
+other = "Twój serwer Kubernetesa musi być w wersji "
 
 [version_check_mustbeorlater]
-other = "Twój serwer Kubernetes musi być co najmniej w wersji "
+other = "Twój serwer Kubernetesa musi być co najmniej w wersji "
 
 [version_check_tocheck]
 other = "Aby sprawdzić wersję, wpisz "
+
+[version_menu]
+other = "Wersje"
 
 [warning]
 other = "Uwaga:"
 
 [whatsnext_heading]
-other = "Następne:"
+other = "Co dalej?"
