@@ -31,7 +31,7 @@ for database debugging.
 1. Create a Deployment that runs MongoDB:
 
     ```shell
-    kubectl apply -f https://k8s.io/examples/application/guestbook/mongo-deployment.yaml
+    kubectl apply -f https://k8s.io/examples/application/mongodb/mongo-deployment.yaml
     ```
 
     The output of a successful command verifies that the deployment was created:
@@ -84,7 +84,7 @@ for database debugging.
 2. Create a Service to expose MongoDB on the network:
 
     ```shell
-    kubectl apply -f https://k8s.io/examples/application/guestbook/mongo-service.yaml
+    kubectl apply -f https://k8s.io/examples/application/mongodb/mongo-service.yaml
     ```
 
     The output of a successful command verifies that the Service was created:
