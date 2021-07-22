@@ -28,8 +28,10 @@ weight: 10
             <div class="col-md-8">
             <h3>Updating an application</h3>
 
-            <p>Users expect applications to be available all the time and developers are expected to deploy new versions of them several times a day. In Kubernetes this is done with rolling updates. <b>Rolling updates</b> allow Deployments' update to take place with zero downtime by incrementally updating Pods instances with new ones. The new Pods will be scheduled on Nodes with available resources.</p>
+            <p>Users expect applications to be available all the time and developers are expected to deploy new versions of them several times a day. In Kubernetes this is done with rolling updates. <b>Rolling updates</b> allow Deployments' update to take place with minimal downtime by incrementally updating Pods instances with new ones. The new Pods will be scheduled on Nodes with available resources.</p>
 
+            <p>If you are running a web site or web application, a rolling update will cause a short period of downtime. This is due to pods being terminated before being removed from the service.<p>
+              
             <p>In the previous module we scaled our application to run multiple instances. This is a requirement for performing updates without affecting application availability. By default, the maximum number of Pods that can be unavailable during the update and the maximum number of new Pods that can be created, is one. Both options can be configured to either numbers or percentages (of Pods).
             In Kubernetes, updates are versioned and any Deployment update can be reverted to a previous (stable) version.</p>
 
@@ -42,7 +44,7 @@ weight: 10
                     </ul>
                 </div>
                 <div class="content__box content__box_fill">
-                    <p><i>Rolling updates allow Deployments' update to take place with zero downtime by incrementally updating Pods instances with new ones. </i></p>
+                    <p><i>Rolling updates allow Deployments' update to take place with minimal downtime by incrementally updating Pods instances with new ones. </i></p>
                 </div>
             </div>
         </div>
