@@ -44,23 +44,44 @@ This page shows you how to set up a simple Ingress which routes requests to Serv
 
 1. Verify that the NGINX Ingress controller is running
 
-    ```shell
-    kubectl get pods -n kube-system
-    ```
+  {{< tabs name="tab_with_md" >}}
+  {{% tab name="minikube v1.19 or later" %}}
+```shell
+kubectl get pods -n ingress-nginx
+```
+  {{< note >}}This can take up to a minute.{{< /note >}}
 
-    {{< note >}}This can take up to a minute.{{< /note >}}
+Output:
 
-    Output:
+```
+NAME                                        READY   STATUS      RESTARTS    AGE
+ingress-nginx-admission-create-g9g49        0/1     Completed   0          11m
+ingress-nginx-admission-patch-rqp78         0/1     Completed   1          11m
+ingress-nginx-controller-59b45fb494-26npt   1/1     Running     0          11m
+```
+    {{% /tab %}}
 
-    ```shell
-    NAME                                        READY     STATUS    RESTARTS   AGE
-    default-http-backend-59868b7dd6-xb8tq       1/1       Running   0          1m
-    kube-addon-manager-minikube                 1/1       Running   0          3m
-    kube-dns-6dcb57bcc8-n4xd4                   3/3       Running   0          2m
-    kubernetes-dashboard-5498ccf677-b8p5h       1/1       Running   0          2m
-    nginx-ingress-controller-5984b97644-rnkrg   1/1       Running   0          1m
-    storage-provisioner                         1/1       Running   0          2m
-    ```
+  {{% tab name="minikube v1.18.1 or earlier" %}}
+```shell
+kubectl get pods -n kube-system
+```
+{{< note >}}This can take up to a minute.{{< /note >}}
+
+Output:
+
+```
+NAME                                        READY     STATUS    RESTARTS   AGE
+default-http-backend-59868b7dd6-xb8tq       1/1       Running   0          1m
+kube-addon-manager-minikube                 1/1       Running   0          3m
+kube-dns-6dcb57bcc8-n4xd4                   3/3       Running   0          2m
+kubernetes-dashboard-5498ccf677-b8p5h       1/1       Running   0          2m
+nginx-ingress-controller-5984b97644-rnkrg   1/1       Running   0          1m
+storage-provisioner                         1/1       Running   0          2m
+```
+    {{% /tab %}}
+      {{< /tabs >}}
+  
+
 
 ## Deploy a hello, world app
 
