@@ -219,6 +219,7 @@ message ContainerResources {
     string name = 1;
     repeated ContainerDevices devices = 2;
     repeated int64 cpu_ids = 3;
+    bool is_exclusive = 4;
 }
 
 // Topology describes hardware topology of the resource
