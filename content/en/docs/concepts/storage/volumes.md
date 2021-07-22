@@ -303,17 +303,23 @@ Some uses for an `emptyDir` are:
 * holding files that a content-manager container fetches while a webserver
   container serves the data
 
-Depending on your environment, `emptyDir` volumes are stored on whatever medium that backs the
-node such as disk or SSD, or network storage. However, if you set the `emptyDir.medium` field
-to `"Memory"`, Kubernetes mounts a tmpfs (RAM-backed filesystem) for you instead.
-While tmpfs is very fast, be aware that unlike disks, tmpfs is cleared on
-node reboot and any files you write count against your container's
-memory limit.
+- **emptyDir.medium**
+  Depending on your environment, `emptyDir` volumes are stored on whatever medium that backs the
+  node such as disk or SSD, or network storage. However, if you set the `emptyDir.medium` field
+  to `"Memory"`, Kubernetes mounts a tmpfs (RAM-backed filesystem) for you instead.
+  While tmpfs is very fast, be aware that unlike disks, tmpfs is cleared on
+  node reboot and any files you write count against your container's
+  memory limit.
+
+- **emptyDir.sizeLimit**
+
+  Total amount of local storage allowed for this EmptyDir volume. For default storage backed up emptyDir,
+  the maximum usage on EmptyDir would be the minimum value between the sizeLimit specified here and the
+  sum of [local ephemeral storage resource limits](/docs/concepts/configuration/manage-resource-contaienrs/#configurations-for-local-ephemeral-storage) of all containers in a pod. Kubelet keeps monitoring the disk space used by pod emptyDir volume and it will evict pods when the usage exceeds the limit. The default is nil which means that the limit is undefined.
 
 {{< note >}}
-If the `SizeMemoryBackedVolumes` [feature gate](/docs/reference/command-line-tools-reference/feature-gates/) is enabled,
-you can specify a size for memory backed volumes.  If no size is specified, memory
-backed volumes are sized to 50% of the memory on a Linux host.
+If the `SizeMemoryBackedVolumes` (Alpha feature) [feature gate](/docs/reference/command-line-tools-reference/feature-gates/) is enabled,
+you can specify a size for memory backed volumes for Linux node.  Different from the sizeLimit for storage backed emptyDir, this is a hard limit. Pod cannot consume more memory than the limit specified. If no size is specified, memory backed volumes are sized to 50% of the memory on a Linux host.
 {{< /note>}}
 
 #### emptyDir configuration example
