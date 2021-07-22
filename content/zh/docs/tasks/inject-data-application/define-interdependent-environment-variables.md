@@ -99,7 +99,7 @@ is defined or not. This can be seen from the `ESCAPED_REFERENCE` case above.
 比如 `UNCHANGED_REFERENCE` 的例子。
 注意，解析不正确的环境变量通常不会阻止容器启动。
 
-`$(VAR_NAME)` 这样的语法可以用两个 `$` 转义，既：`$$(VAR_NAME)`。
+`$(VAR_NAME)` 这样的语法可以用两个 `$` 转义，即：`$$(VAR_NAME)`。
 无论引用的变量是否定义，转义的引用永远不会展开。
 这一点可以从上面 `ESCAPED_REFERENCE` 的例子得到印证。
 
