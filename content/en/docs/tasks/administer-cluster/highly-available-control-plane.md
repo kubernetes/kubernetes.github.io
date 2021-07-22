@@ -133,10 +133,18 @@ the [etcd administration guide](https://etcd.io/docs/v2.3/admin_guide/#member-mi
 
 ## Implementation notes
 
-![ha-master-gce](/images/docs/ha-master-gce.png)
+![ha-control-plane](/images/docs/ha-control-plane.svg)
 
 ### Overview
+The figure above illustrates three control plane nodes and their components in a highly available cluster. The control plane node’s components employ the following methods:
 
+- etcd: instances are clustered together using consensus.
+
+- Controllers, scheduler and cluster auto-scaler: only one instance of each will be active in a cluster using a lease mechanism.
+
+- Add-on manager: each works independently to keep add-ons in sync.
+
+In addition, a load balancer operating in front of the API servers routes external and internal traffic to the control plane nodes.
 Each of the control plane nodes will run the following components in the following mode:
 
 * etcd instance: all instances will be clustered together using consensus;
@@ -214,5 +222,4 @@ server coordination (for example, the `StorageVersionAPI` feature gate).
 ## Additional reading
 
 [Automated HA master deployment - design doc](https://git.k8s.io/community/contributors/design-proposals/cluster-lifecycle/ha_master.md)
-
 
