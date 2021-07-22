@@ -709,6 +709,7 @@ You can pause a Deployment before triggering one or more updates and then resume
 apply multiple fixes in between pausing and resuming without triggering unnecessary rollouts.
 
 * For example, with a Deployment that was created:
+
   Get the Deployment details:
   ```shell
   kubectl get deploy
@@ -759,7 +760,7 @@ apply multiple fixes in between pausing and resuming without triggering unnecess
     REVISION  CHANGE-CAUSE
     1   <none>
     ```
-* Get the rollout status to ensure that the Deployment is updated successfully:
+* Get the rollout status to verify that the existing ReplicaSet has not changed:
     ```shell
     kubectl get rs
     ```
